@@ -64,7 +64,9 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       self.availableOICEnvironments = ko.observableArray([
         new OICEnvironment("Training1", "https://oictraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining1ic"),
         new OICEnvironment("Training2", "https://oictraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining2ic"),
-        new OICEnvironment("Training3", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining3ic")
+        new OICEnvironment("Training3", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining3ic"),
+        new OICEnvironment("SC Training 1", "https://oicsctraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscA"),
+        new OICEnvironment("SC Training 2", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscB")
       ]),
       self.selectedOICEnvironment = ko.observable()
 
