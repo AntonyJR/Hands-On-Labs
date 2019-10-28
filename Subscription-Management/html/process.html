@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Published date: September 2019 -->
+        <!-- Template date: September 2019 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="OOW19-Process-Lab">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+		<!-- Use an imperative verb in the title. -->
+        <title>Oracle Integration Process - Hands-On Lab</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="In this hands-on lab, you'll create process to automate the updating of subscription usage data in Oracle Engagement Cloud Subscription Management.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--link rel="stylesheet" href="css/normalize.min.css"-->
+        <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+        <script type="text/javascript" src="./js/libs/require/require.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script> 
+		<link rel="stylesheet" href="css/copy-button.css">
+		<script src="js/copytoclipboard.js"></script>      
+    </head>
+    <body>
+
+        <div id="content" style="margin-top:5px">
+
+            <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+			<!-- Use an imperative verb in the title. -->
+			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration Process - Hands-On Lab</h1>
+			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
+
+            <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+                        <section>
+							<h2>Before You Begin</h2>
+
+							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
+
+							<p>Select your <strong>OIC Environment</strong>:&nbsp;
+								<select data-bind="options: availableOICEnvironments,
+									optionsText: 'name',
+									value: selectedOICEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+							</p>
+							<p>Enter your <strong>User Number</strong>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/>&nbsp;<button>OK</button></p>                         
+							<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+							<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+							<p>Your OIC Password will be provided by your lab facilitator.</p>
+							<p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
+                        </section>
+                        <section>
+	                        <h2>Background</h2>
+							<p>In this hands-on lab, you'll create a Process App to automate updating subscription usage data in Oracle Engagement Cloud Subscription Management.</p>
+                            <p>This lab is a continuation of a companion lab where you create an integration used by the Process App in this lab. If you've completed the integration lab, feel free to use the integration you created. If you have not completed the integration lab, don't worry, a completed integration has been made available for you to use.</p>
+							<p>The business scenario is to create a self-service Subscription Management application that allows subscribers of a good or service to self report subscription usage. Once subscription usage data is reported, the application will automate the review and approval of that data, and if approved, automate updating Oracle Engagement Cloud Subscription Management with the usage data. This scenario represents a common business process where requests are made, reviewed, approved, and result in updates to an enterprise application. Digitizing and automating these types of business process can yield significant benefits.</p>
+							<h4>What is a Process App?</h4>
+							<p>A Process App orchestrates the activities necessary to execute an end-to-end business process. These activities are digital representations of the individual business process steps and include examples such a user's request that initiates a business process, automated decision services that define business process policies, tasks to engage business process stakeholders responsible for decisions and work, and integrations to interact with enterprise applications relevant to the business process.</p>
+			
+							<p>This lab will highlight several key benfits of Oracle Integration Process:</p>
+							<ul>
+								<li>Automate end-to-end business processes that touch multiple stakeholders including requestors and decision makers.</li>
+								<li>Engage stakeholders where most effective, whether that be through self-service portals, dedicated task lists, actionalble emails, digial assistants, mobile apps, or SaaS applications.</li>
+								<li>Automate manual repetitive tasks by leveraging application integrations.</li>
+							</ul>
+						</section>
+						<hr>
+                        <!-- ========================================================================================================================= -->
+<!-- ########## SIGN IN ########## -->
+                        <section>    
+                            <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
+							<p> Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+
+                            <ol>
+								<li><p>Open a browser to the <strong>OIC URL</strong>.
+									<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC User Name</strong>.</p>
+									<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
+									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+								</li>
+                                <li><p>Click <strong>Home</strong>.</p>
+                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
+                                </li>  
+							</ol>
+							<p>You are now logged in and ready to use Oracle Integration. In the next section we will create a Process App.</p>                                                          
+                        </section>
+                        <hr>                        
+<!-- ########## CREATE PROCESS ########## -->                        
+                        <section> 
+                            <h2 id="section_2" role="button" style="text-align: left;">Create a Process App</h2>
+                            <p>Oracle Integration Process simplifies the effort and skillsets required to create Process Apps that digitize and automate end-to-end business processes. We will create our Process App from a QuickStart App that provides us a good starting point.</p>
+							<h4>What is a QuickStart App?</h4>
+							<p>A QuickStart App a ready to run Process App with all the implementation details included for you to play, test, and activate the application. QuickStart Apps can be configured within a pre-defined set of constraints defined by the QuickStart App author. The QuickStart App author can optionally allow the QuickStart App to be completely customized beyond the constraints they defined. In short, a QuickStart App is a template to create, configure, and customize a fully functioning Process App. This allows users to rapildly create ready to run Process Apps that can be tailored to their specific needs.</p>
+                            <ol>
+								<li><p>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Processes</strong>, and then select <strong>Process Applications</strong>.</p>
+									<p>This is where you create Process Apps. Depending on previous activity in your environment you may already have some Process Apps listed. If you do, just ignore them, we will create our own.</p>
+								</li>
+	                            <li>Click <strong>Create</strong>.</li>
+								<li>Hover over the <strong>Start with a QuickStart</strong> box, and then click <strong>Browse</strong>.</li>
+								<li><p>Locate the <strong>Subscription Management QuickStart</strong>, and click <strong>Create</strong>.</p><br>
+								<img src="img/screenshots/process/quickstart-gallery.png" width="600px"/>
+								</li>
+								<li>In the <strong>Create Application</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>My Subscriptions <em data-bind="text:user_number() || '<User Number>'"></em></span></code>.</li>
+								<li><p>Click <strong>Create</strong>.</p>
+									<p>The QuickStart App appears.</p>
+									<p>Notice how the options in this design mode are limited to <strong>Configure</strong>, <strong>Test</strong>, and <strong>Activate</strong>. This provides a simplified interface to quicky get Process Apps up and running.</p><br>
+									<img src="img/screenshots/process/quickstart.png" width="600px"/>
+								</li>																
+							</ol>   
+							<p>You have successfully created a Process App using a QuickStart App. In the next section we will configure our new application.</p>                                                          
+                        </section>
+                        <hr>
+<!-- ########## CONFIGURE QUICKSTART APP ########## -->                        
+                        <section> 
+                            <h2 id="section_3" role="button" style="text-align: left;">Configure the QuickStart</h2>
+                            <p>The Subscription Management Process App you just created comes ready to run but lacks some core functionality required by the business scenario. You will make the necessary modifications to complete this Process App.</p>
+							<p>We'll start by examining how a QuickStart App author can define specific configuration options that can be tailored with little understanding of the underlying Process App assets.</p>
+							<p>First, when it's time to run your Process App, you will need to be able to identify your application from your classmates. We will use QuickStart App configuration to uniquely identify your Process App with your <strong>user number</strong>.</p>
+							<p>Second, the Process App contains two email notification activities that will send an email to the subscriber when their usage data has either been accepted or rejected. The Process App is configured to use a temporary email address. We will use QuickStart configuration to update the send <strong>To</strong> email field for both of these email notification activities with your email address. Of course in a real solution we would use the email address associated with the logged in user however, since you are using a training account we will specify this through QuickStart App configuration.</p>
+                            <ol>
+								<li><p>From the QuickStart <strong>Overview</strong> page, click <strong>Configure</strong>.</p>
+									<p>The QuickStart Configure page appears.</p><br>
+									<img src="img/screenshots/process/quickstart-configure.png" width="600px"/>
+								</li>
+								<li><p>Click the <strong>Configure Process Start Title</strong> configuration option to open the configuration editor.</p>
+									<p>The configuration editor appears.</p><br>
+									<img src="img/screenshots/process/quickstart-configure-startForm-editor.png" width="600px"/>
+								</li>
+								<li><p>Replace the <strong>Title</strong> text with <code class="allow-copy"><span>User <em data-bind="text:user_number() || '<User Number>'"></em> Submit Subscription Update</span></code>.</p>
+									<p>Remember this name for later, when you run the Process App.</p>
+								</li>
+								<li><p>Click <img src="img/close.png" alt="Close icon" style="height: 15px; width: 15px;"/> to close the configuration editor.</p>
+									<p>The QuickStart Configure page appears.</p>
+								</li>
+								<li><p>Click the <strong>Configure Usage Accepted Notification Email</strong> configuration option to open the configuration editor.</p>
+									<p>The configuration editor appears.</p><br>
+									<img src="img/screenshots/process/quickstart-configure-email-editor.png" width="600px"/>
+								</li>
+								<li>Replace the temporary email address in the send <strong>To</strong> email field with your email address.</li>
+								<li><p>Click <img src="img/close.png" alt="Close icon" style="height: 15px; width: 15px;"/> to close the configuration editor.</p>
+									<p>The QuickStart Configure page appears.</p>
+								</li>
+								<li>Make the same change to the <strong>Configure Usage Rejected Notification Email</strong> configuration option.</li>
+
+								<li><p>Click <strong>Publish</strong> to publish your changes. Enter a comment in the <strong>Publish Application</strong> dialog to note your changes and click <strong>Publish.</strong></p><br>
+									<img src="img/screenshots/process/quickstart-publish.png" width="600px"/>
+								</li>
+							</ol>
+							<p>You have completed the QuickStart App configurations. In the next section we will expose the underlying Process App assets and make some more extensive customizations.</p>
+						</section>
+                        <hr>
+<!-- ########## REVIEW THE PROCESS APP ########## -->                        
+                        <section> 
+                            <h2 id="section_4" role="button" style="text-align: left;">Review the Process App</h2>
+							<p>The <strong>QuickStart App View</strong> provides a simplified interface to quickly configure and deploy a Process App. But the changes you can make are limited to what the QuickStart App author defined. Switching to the <strong>Application View</strong> exposes all of the underlying Process App assets and gives you full access to completely customize the application.</p>
+							<ol>
+	                            <li><p>On the <strong>QuickStart App</strong> page, click the <strong>Switch to Application View</strong> link.</p><br>
+									<p><img src="img/screenshots/process/switch-app-view.png" width="600px"/></p><br>
+									<p>The Process Composer page appears.</p>
+									<p>Once in <strong>Application View</strong>, the left side navigation pane displays the various asset types that make up a Process App. By default, the <strong>Processes</strong> asset type is selected and this Process App contains a single Process. We will open this Process and review it's structure.</p><br>
+									<p><img src="img/screenshots/process/process-composer.png" width="600px"/></p>
+
+								</li>
+								<li><p>With the <strong>Processes</strong> navigation item selected, click the <strong>Process</strong> asset to open it in the structured process editor.</p>
+									<p>The Process Canvas page appears.</p>
+									<p>The process flow defines the structure and flow of each step within the end-to-end business process. Review the structure and flow of this process, starting with the <strong>Submit Subscription Update</strong> <strong>Form Start</strong> activity, the <strong>Approve Subscription Update</strong> <strong>Approve</strong> activity, the <strong>Approved?</strong> <strong>Gateway</strong> activity, the <strong>Update Subscription</strong> <strong>Submit</strong> activity, the <strong>Notify</strong> activities, and finally the <strong>Completed</strong> <strong>End Event</strong> activity. Explore the types of activites availble from the BPMN pallette.</p><br>
+									<p><b><em>Be Careful not to make any changes just yet!</em></b></p><br>
+									<p><img src="img/screenshots/process/process.png" width="600px"/></p>
+								</li>
+							</ol>
+                        </section>
+                        <hr>
+<!-- ########## EDIT FORM ########## -->                        
+                        <section> 	
+							<h2 id="section_5" role="button" style="text-align: left;">Edit the Form</h2>
+                            <p>You’ll add two controls to the form that each call the source system and return values for customers to choose from.</p>
+                            <ol>
+								<li>Click the purple Start activity titled <strong>Submit Subscription Update</strong>.</li>
+								<li><p>Click <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/> and select <strong>Open Form</strong>.</p>
+									<p>The form editor appears. It contains a central canvas, a side pane for setting properties for selected controls, and a side palette pane with basic and advanced controls you can add to the form.</p>
+								</li>
+								<li><p>Add a <strong>Select</strong> control to select the subscription:</p>
+									<ol type="a">
+										<li><p>Drag and drop a <strong>Select</strong> control from the <strong>Basic Palette</strong> to the top of the form.</p></li>
+										<img src="img/screenshots/process/form-canvas-select-control.png" width="600px"/>										
+										<li><p>Select the control you just added.</p>
+											<p>Notice how the Properties pane changes: when you select a control, the properties panel displays its properties. When you click outside of a control, the properties panel displays the entire form’s properties.
+										</li>
+										<li>In the <strong>Properties</strong> pane, locate the <strong>General</strong> tab.</li>
+										<li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>SubscriptionPUID</span></code>.</li>										
+										<li>In the <strong>Label</strong> field, enter <code class="allow-copy"><span>Subscription</span></code>.</li>
+										<li><p>Click outside the new control.</p>
+											<p>Notice how the label is now Subscription and the select control is a dropdown field.</p>
+									</ol>
+								</li>
+								<li><p>Add a <strong>Select</strong> control to select the product:</p>
+									<ol type="a">
+										<li>In the form editor, drag and drop a <strong>Select</strong> control below the one you just created.</li>
+										<li>Select the control you just added.</li>
+										<li>In the <strong>Properties</strong> pane, locate the <strong>General</strong> tab.</li>
+										<li>in the <strong>Name</strong> field, enter <code class="allow-copy"><span>ProductPUID</span></code>.</li>										
+										<li><p>In the <strong>Label</strong> field, enter <code class="allow-copy"><span>Product</span></code>.</p>
+										<img src="img/screenshots/process/form-canvas.png" width="600px"/>											
+										</li>
+									</ol>
+
+								</li>
+								<li>Click the <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> <strong>Preview</strong> button to see the new fields in your form.</li>
+								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
+                            </ol>                         
+                        </section>
+                        <hr>
+<!-- ########## LINK THE INTEGRATIONS ########## -->                        
+                        <section> 
+                            <h2 id="section_6" role="button" style="text-align: left;">Link the Integrations</h2>
+                            <p>Here you’ll add two active integrations for use in your process.</p>
+                            <ol>
+								<li>From the <strong>Navigation</strong> menu, select <strong>Integrations</strong>.</li>
+								<li>Click <strong>Link to an Integration</strong>, and then select <strong>Browse Integrations</strong>.</li>
+								<li>In the <strong>Use an Integration</strong> dialog, search for and select <strong>Get Subscriptions</strong>, and then click <strong>Create</strong>.</li>
+								<li><p>On the <strong>Integrations</strong> page, click <strong>Create</strong>, and then click <strong>Use an Integration</strong>.</p>
+									<img src="img/screenshots/process/integrations-page.png" width="600px"/>
+								</li>
+								<li>In the <strong>Use an Integration</strong> dialog, search for and select <strong>Get Subscription Products by Subscription</strong>, and then click <strong>Create</strong>.</li>								
+                            </ol> 
+                            <p>Both integrations are now available.</p>
+                        </section>
+                        <hr>
+<!-- ########## CALL THE INTEGRATIONS ########## -->
+                        <section> 
+                            <h2 id="section_7" role="button" style="text-align: left;">Call the Integrations</h2>
+                            <p>Now you’ll configure the new controls to each call an integration and return values. The second control will depend on the first.</p>
+                            <h3>Configure the Subscription List</h3>
+                            <p>Let’s configure this select control to call the integration and return subscription items in its response.</p>
+                            <ol>
+								<li>Select the <strong>WebForm</strong> tab to display the form editor.</li>
+								<li>On the form canvas, select the <strong>Subscription</strong> control.</li>
+								<li>In the <strong>Properties</strong> pane, scroll down until you see the <strong>Options Source</strong> section, and select <strong>Connector</strong>.</li>
+								<li>From the <strong>Connector</strong> list, select <strong>GetSubscriptions</strong>.</li>
+								<li>From the <strong>Resource</strong> list, select <strong>resources</strong>.</li>
+								<li>From the <strong>Operation</strong> list, select <strong>getResource</strong>.</li>
+								<li>In the <strong>Response</strong> section, in the <strong>Options List</strong> field, enter <code class="allow-copy"><span>response.items</span></code>.</li>
+								<li>In the <strong>Label Binding</strong> field, enter <code>displayName</code> and then select <strong>displayName</strong>.</li>	
+								<li><p>In the <strong>Value Binding</strong> field, enter <code>subscriptionNumber</code> and then select <strong>subscriptionNumber</strong>.</p>
+									<img src="img/screenshots/process/label-binding.png" width="250px"/>
+								</li>
+								<li>Click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
+								<li>Click the <strong>Subscription</strong> list, and notice subscription options returned from the integration appear.</li>
+								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
+	
+                            </ol> 
+							<h3>Configure the Product List</h3>
+							<p>Let’s configure this select control to return product items in its response. The control should be hidden when the form first appears. Once the user selects a subscription, this <strong>Product</strong> field should appear, and display product items for the selected subscription.</p>
+                            <ol>
+								<li>On the <strong>Form</strong> canvas, select the <strong>Product</strong> control.</li>
+								<li>In the <strong>Properties</strong> pane, scroll down until you see the <strong>Options Source</strong> section, and select <strong>Connector</strong>.</li>
+								<li>From the <strong>Connector</strong> list, select <strong>GetSubscriptionProductsBySubscription</strong>.</li>
+								<li>From the <strong>Resource</strong> list, select <strong>resources</strong>.</li>
+								<li>From the <strong>Operation</strong> list, select <strong>getResource</strong>.</li>
+								<li>In the <strong>Template Parameters</strong> section, from the <strong>SubscriptionPUID</strong> field, select <strong>Control value</strong>.</li>
+								<li>From the field next to <strong>SubscriptionPUID</strong>, select <strong>SubscriptionPUID</strong>.</li>
+								<li>In the <strong>Response</strong> section, in the <strong>Options List</strong> field, enter <code class="allow-copy"><span>response.items</span></code>.</li>
+								<li>In the <strong>Label Binding</strong> field, enter <code>displayName</code> and then select <strong>displayName</strong>.</li>	
+								<li>In the <strong>Value Binding</strong> field, enter <code>subscriptionProductPuid</code> and then select <strong>subscriptionProductPuid</strong>.</li>
+								<li>Click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
+								<li><p>Click the <strong>Product</strong> list.</p>
+									<p>A message shows that an error occurred retrieving the data.</p>
+								</li>
+								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
+								<li>On the form canvas, select the <strong>Product</strong> control.</li> 
+								<li>In the <strong>Properties</strong> pane, select <strong>Skip Upon Load</strong>.</li>
+								<li>Select the <strong>Hide</strong> attribute.</p>
+									<p>Notice that the <strong>Product</strong> control is disabled to show it's hidden.</p>
+								</li>		
+								<li>On the <strong>Form</strong> canvas, select the <strong>Subscription</strong> control.</li>						
+								<li><p>In the Properties pane, scroll down until you find the <strong>Events</strong> section.</li>
+								<li><p>Click <img src="img/add.png" alt="Add icon" style="height: 12px; width: 12px;"/>.</p>
+								</li>
+								<li><p>From the list next to the <strong>Event Name</strong> field, select <strong>On Change</strong>.</p>
+									<img src="img/screenshots/process/on-change.png" width="250px"/>
+								</li>
+								<li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to display the <strong>Expression Editor</strong> dialog.</p>
+									<p>The <strong>On Change</strong> dialog appears.</p>									
+								</li>
+								<li><p>Add an action to load the <strong>Product</strong> list values when the user selects a subscription:</p>									
+									<ol type="a">
+										<li>Click <strong>+ Action</strong>.</li>
+										<li>From the <strong>Control Name</strong> list, select <strong>ProductPUID</strong>.</li>										
+										<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>																				
+									</ol>
+								</li>
+								<li><p>Add an action to show the values for the <strong>Product</strong> list values when the user selects a subscription:</p>
+								<ol type="a">
+										<li>Click <strong>+ Action</strong>.</li>
+										<li>From the <strong>Control Name</strong> list, select <strong>ProductPUID</strong>.</li>										
+										<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>																				
+									</ol>
+									<img src="img/screenshots/process/action-editor.png" width="650px"/>
+								</li>
+								<li>Click <strong>OK</strong>.</li>
+								<li><p>Let's preview the behavior you just added to the form controls:</p>
+								<ol type="a">
+									<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
+									<li><p>On the <strong>Preview</strong> page, from the <strong>Subscription</strong> list, select a subscription of your choice.</p> 
+										<p>Notice how the <stong>Product</stong> list displays its recently loaded values after the Subscription field changes.</p></li>
+									<li>From the <strong>Product</strong> list, select a product of your choice.</li>
+									<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
+								</ol>
+								</li>
+                            </ol> 
+                            <h3>Configure the Bill Lines Table</h3>
+								<p>Let’s configure the table to display values returned from an integration, and to refresh when the selected product changes.</p>
+								<ol>
+									<li>From the <strong>Navigation</strong> menu, select <strong>Integrations</strong>.</li>
+									<li>On the <strong>Application Home</strong> tab, click <strong>Create</strong>.</li>
+									<li>Select <strong>Use an Integration</strong>.</li>
+									<li>In the <strong>Use an Integration</strong> dialog, search for and select <strong>Get Subscription Product Bill Lines by Product</strong>.</li>
+									<li>Click <strong>Create</strong>.</li>
+									<li>Select the <strong>WebForm</strong> tab to return to the <strong>Form Editor</strong> page.</li>
+									<li>Select the <strong>Bill Lines</strong> table control.</li> 
+									<!--li>In the <strong>Properties</strong> pane, scroll down and select the <strong>Hide Labels</strong> and <strong>Hide Row Checkbox</strong> options.</li-->
+									<li><p>Configure the connector:</p>
+										<ol type="a">
+											<li>In the <strong>Properties</strong> pane, select <strong>Use Data from Connector</strong>.</li>
+											<li>From the <strong>Connector</strong> list, select <strong>GetSubscriptionProductBillLinesByProduct</strong>.</li>
+											<li>From the <strong>Resource</strong>, select <strong>resources</strong>.</li>
+											<li>From the <strong>Operation</strong> list, select <strong>getResource</strong>.</li>
+											<li>In the <strong>Template Parameters</strong> section, from the <strong>SubscriptionProductPUID</strong> field, select <strong>Control value</strong>.</li>
+											<li>From the field next to <strong>SubscriptionProductPUID</strong>, select <strong>ProductPUID</strong>.</li>											
+											<li>From the <strong>SubscriptionPUID</strong> field, select <strong>Control value</strong>.</li>
+											<li>From the field next to <strong>SubscriptionPUID</strong>, select <strong>SubscriptionPUID</strong>.</li>
+											<li>In the <strong>Response</strong> section, in the <strong>Options List</strong> field, enter <code class="allow-copy"><span>response.items</span></code>.</li>
+											<li>Click the <strong>BillLinePuid</strong> field, enter <code>billLinePuid</code> and then select <strong>billLinePuid</strong>.</li>
+											<li>In the <strong>Charge</strong> field, enter <code>invoiceText</code> and then select <strong>invoiceText</strong>.</li>
+											<li>In the <strong>BillingDate</strong> field, enter <code>dateToInterface</code> and then select <strong>dateToInterface</strong>.</li>
+											<li>In the <strong>BillFromDate</strong> field, enter <code>dateBilledFrom</code> and then select <strong>dateToInterface</strong>.</li>
+											<li>In the <strong>UsageQuantity</strong> field, enter <code>usageQuantity</code> and then select <strong>usageQuantity</strong>.</li>
+											<li>Select <strong>Skip Upon Load</strong>.</li>
+											<li>Scroll up and select <strong>Hide</strong>.</li>
+										</ol>
+									</li>
+									
+																											
+									<li>On the <strong>Form</strong> canvas, select the <strong>Product</strong> control.</li>
+									<li>In the Properties pane, scroll down until you find the <strong>Events</strong> section.</li>
+									<li>Click <img src="img/add.png" alt="Add icon" style="height: 12px; width: 12px;"/>.</li>
+									<li>From the list next to the <strong>Event Name</strong> field, select <strong>On Change</strong>.</li>
+									<li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to display the <strong>Expression Editor</strong> dialog.</li>										
+									<li><p>Add an action that refreshes the table when the selected product value changes:</p>
+										<ol type="a">
+											<li>Click <strong>+ Action</strong>.</li>
+											<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>
+											<li>Leave the default selection (<strong>Self</strong>) for the <strong>Which?</strong> field as is.</li>														
+											<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>																				
+										</ol>
+									</li>
+									<li><p>Add an action that shows the table when the selected subscription and product value change:</p>
+										<ol type="a">
+											<li>Click <strong>+ Action</strong>.</li>
+											<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>
+											<li>Leave the default selection (<strong>Self</strong>) for the <strong>Which?</strong> field as is.</li>											
+											<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>																				
+										</ol>
+									</li>
+									<li>Click <strong>OK</strong>.</li>
+									<li><p>Let's preview the behavior you just added to the table control:</p>
+										<ol type="a">
+											<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
+											<li><p>On the <strong>Preview</strong> page, from the <strong>Subscription</strong> list, select a subscription of your choice.</p> 
+												<p>Notice how the <stong>Product</stong> list displays its recently loaded values after the Subscription field changes.</p></li>
+											<li><p>From the <strong>Product</strong> list, select a product of your choice.</p>
+												<p>Notice how the <strong>Bill Lines</strong> table displays its recently loaded values after the <strong>Product</strong> field changes.</p>
+											</li>											
+											<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
+										</ol>
+									</li>
+                        		</ol> 
+                        <hr> 
+                        </section>     
+<!-- ########## AUTOMATE THE UPDATE TASK ########## -->                                                
+                        <section>
+                            <h2 id="section_8" role="button" style="text-align: left;">Automate the Update Task</h2>
+                            <p>Your last task is to configure an integration that updates the source system, Oracle Engagement Cloud, with all entries users make in the form.</p>
+                            <h3>Link an Integration</h3>
+                            <p>Here you’ll link an integration, then place the integration onto the process flow as its final step: updating the subscription product bill lines.</p>
+                            <ol>
+								<li>From the <strong>Navigation</strong> menu, select <strong>Integrations</strong>.</li>
+								<li>On the <strong>Application Home</strong> tab, click <strong>Create</strong>.</li>
+								<li>Select <strong>Use an Integration</strong>.</li>
+								<li>In the Use an Integration dialog, in the <strong>Search</strong> field, enter update, and then select <strong>Update Subscription Product Bill Lines</strong>. </li>
+								<li>Click <strong>Create</strong>.</li>
+								<li>Select the <strong>Process</strong> tab to display the process editor.</li>
+								<li>Select the <strong>Update Subscription</strong> human task from the flow.</li>
+								<li>Click <img src="img/delete.png" alt="Delete icon" style="height: 19px; width: 19px;"/>.</li>
+								<li>Insert the integration you previously linked onto the flow line.</li>
+								<ol type="a">
+									<li>Expand the <strong>Integrations</strong> category in the <strong>BPMN</strong> palette.</li>
+									<li>Drag and drop the <strong>UpdateSubscriptionProductBillLines</strong> integration to the same position on the flow as the deleted human task.</li>
+								</ol>
+                            </ol> 
+                            <h3>Configure the Integration’s Input</h3>
+                            <p>Let’s map data input from the web form into the integration.</p>
+                            <ol>
+	                            <li>Select the integration.</li>
+	                            <li>Click <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/>.</li>
+	                            <li><p>Select <strong>Open Data Association</strong>.</p>	                            	                            
+	                            	<img src="img/screenshots/process/select-data-association.png" width="650px"/>                            	
+	                            </li>
+	                            <li><p>On the <strong>Data Association</strong> page, click <img src="img/auto-map.png" alt="Auto Mapping icon" style="height: 19px; width: 19px;"/>.</p>
+	                            	<img src="img/screenshots/process/data-association.png" width="650px"/>
+	                            	<p>This action automatically maps the subscription and product values users select in the form to the corresponding source fields in Oracle Engagement Cloud:</p>
+	                            	<ul>
+		                            	<li>Process.Data Object.webFormDataObject.subscription &#x27F6; subscriptionPUID</li>
+		                            	<li>Process.Data Object.webFormDataObject.product &#x27F6; subscriptionProductPUID</li>
+	                            	</ul>
+	                            </li>
+	                            <li>Add a third data association for the bill lines table:
+	                            	<ol type="a">
+		                            	<li>In the <strong>Data Objects</strong> tree, expand <strong>Process</strong>.</li>
+										<li>Expand <strong>Data Object</strong>.</li>
+										<li>Expand <strong>webFormDataObject</strong>.</li>
+										<li>Drag and drop <strong>billLines</strong> to the <strong>New Association</strong> field in the <strong>Process</strong> section.</li>
+										<li>In the <strong>Update subscription product bill lines</strong> tree, expand <strong>body</strong>.</li>
+										<li><p>Drag and drop <strong>billLine</strong> from the <strong>Update subscription product bill lines</strong> tree to the blank field that maps the value for <strong>webFormDataObject.billLines</strong>.</p>
+										<p>The data association icon turns red and an error is displayed indicating that the arrays cannot be mapped as is.</p>
+										<img src="img/screenshots/process/data-mapping-error.png" width="600px"/>
+										</li>
+	                            	</ol>
+									<li><p>Create a transformation to map bill lines values:</p>
+										<ol type="a">
+											<li>Click <img src="img/screenshots/process/data-mapping-error-icon.png" alt="Data association error icon" style="width: 35px;"/>.</li>
+											<li><p>Select <strong>Transform</strong>.</p>
+												<p>The <strong>Transformation</strong> dialog appears.</p>					
+											</li>
+											<li><p>Click <strong>Create</strong>.<p>
+												<p>The Transform dialog appears.</p>
+											</li>
+											<li>In the <strong>Transformation</strong> dialog, enter <code class="allow-copy"><span>Bill Line</span></code>.</li>												
+											<li><p>Click <strong>Create</strong>.</p>
+												<p>The <strong>Data Association</strong> page changes to the <strong>Transform</strong> page.</p>
+											</li>
+											<li>Drag and drop to associate <strong>billLinePuid</strong> and <strong>billLinePUID</strong>.</li>			
+											<li><p>In the <strong>New Association</strong> field next to the <strong>WebFormBillLines</strong> tree, enter <code class="allow-copy"><span>string(usageQuantity)</span></code>.</p>
+											<li><p>On the same row, in the field next to <img src="img/screenshots/process/transformation-equal-icon.png" alt="Equal icon" style="width: 35px;"/>, enter <code class="allow-copy"><span>usageQuantity</span></code>.</p>
+											
+											<img src="img/screenshots/process/transformation.png" width="600px"/>
+											</li>
+											<li>Click <strong>Save</strong>.
+											<p>You exit the <strong>Transform</strong> page and return to the <strong>Data Association</strong> page.</p>
+												</li> 																				
+										</ol>
+									</li>	                            	
+	                            </li>
+                            </ol>
+                            <h3>Configure the Integration’s Output</h3>
+                            <p>Let’s map data output from the integration back to the process.</p>
+                            <ol>
+	                            <li><p>Select the <strong>Output</strong> tab.</p>
+	                            	<img src="img/screenshots/process/data-association-output-tab.png" width="600px"/>
+	                            </li>
+	                            <li>In the <strong>Data Objects</strong> tree, expand <strong>Process</strong>, then expand <strong>Data Object</strong> and select it.</li>
+	                            <li>In the <strong>Data Objects</strong> tree, click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            <li><p>In the <strong>Add Data Object</strong> dialog, complete these entries:</p>
+		                            <ul>
+			                            <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>updateBillLinesResponse</span></code>.</li>
+			                            <li>In the <strong>Data Type</strong> section, select <strong>Business</strong>.</li>
+			                            <li>Select <strong>OracleIntegrations.UpdateSubscriptionProductBillLines.Responsewrapper
+			                            </strong>.</li>
+		                            </ul>
+		                            <img src="img/screenshots/process/add-data-object.png" width="350px"/>
+	                            </li>
+	                            <li>Click <strong>Add</strong>.</li>
+	                            <li><p>Click <img src="img/auto-map.png" alt="Auto Mapping icon" style="height: 19px; width: 19px;"/>.</p>
+	                            	<p>An association between <strong>bodyOutput</strong> and <strong>updateBillLinesResponse</strong> was automatically configured.</p>
+	                            	<img src="img/screenshots/process/auto-map-result.png" width="650px"/>
+	                            </li>
+	                            <li><p>Click <strong>Apply</strong>.</p>
+	                            	<p>All data associations are saved, and you return to the <strong>Process</strong> tab.
+</p>
+	                            </li>	                            	                            	                            
+                        </section>                        
+<!-- ########## TEST THE PROCESS APPLICATION ########## -->                        
+                        <section>
+                            <h2 id="section_9" role="button" style="text-align: left;">Test the Process Application</h2>
+                            <p>Let’s see the subscription update process in action, as a user would.</p>
+                            <ol>
+								<li><p>Click <strong>Test</strong>.</p>
+									<img src="img/screenshots/process/test.png" width="650px"/>
+								</li>
+								<li><p>Click <strong>Activate</strong>.</p>
+									<img src="img/screenshots/process/test-activate.png" width="650px"/>
+								</li>
+								<li><p>In the <strong>Activate to Test</strong> dialog, ensure that <strong>Add Me to All Roles</strong> is selected, and click <strong>Activate</strong>.</p>
+									<p>A confirmation message informs you that the application was successfully activated.</p></li> 
+								<li>Click <strong>OK</strong>.</li>
+								<li><p>Click <strong>Try in Test Mode</strong>.</p>
+									<p>The <strong>My Apps</strong> page appears in a new tab in your web browser.</p>
+								</li>
+								<li><p>In the <strong>Search</strong> field, enter <code class="allow-copy"><span>User <em data-bind="text:user_number() || '<User Number>'"></em> Submit Subscription Update</span></code>, and select your process .<p>
+									<p>The form you edited appears.</p></li>							
+									<li><p>From the <strong>Subscription</strong> list, select <strong>Computer Service and Rentals -26009</strong>.</p></li>
+									<li>From the <strong>Product</strong> list, select <strong>GE Top Control Dishwasher</strong>.</li>
+									<li>In the <strong>Bill Lines</strong> table, update the <strong>Usage Quantity</strong> for the first row to <code>100</code>, and the next row to <code>200</code>.</li>
+									<li><p>Click <strong>Submit</strong>.</p>
+										<p>An instance was created.</p></li>
+									<li>From the <strong>Navigation</strong> menu, select <strong>My Tasks</strong>.</li>
+									<li><p>Select the task you just created.</p>
+										<p>Notice the quantities you just added in the form.</p></li>
+									<li><p>Click <strong>APPROVE</strong>.</p>
+										<p>The quantities are updated in the source system.</p>
+										<img src="img/screenshots/process/engagement-cloud.png" width="700px"/>
+									</li>
+                            </ol> 
+                        </section> 
+                    </article>
+                </div>
+                <br class="clearfloat">
+				<br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">	        
+            <div> 
+            	<img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>                        
+                    </ul>
+                </footer>
+            </div>
+            <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <!--div id="lpModal" class="modal">
+            <!-- Modal hdr and body -->
+            <!--div id="obe_dialog" class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close">  
+                        <span class="close">&times;</span>
+                    </a>
+                    <h1>Associated Learning Paths</h1>
+                </div>
+                <div id="dialog-content" >
+                </div>
+                <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                </div>
+            </div>   
+        </div-->
+        <!-- END OBE Dialog Box code -->
+    </body>
+</html>

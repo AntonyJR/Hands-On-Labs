@@ -1,0 +1,211 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "v01",
+    "title" : "OW_HOL_SWAGGER_GENERATO"
+  },
+  "host" : "ucf6-zggf-fa-ext.oracledemos.com",
+  "basePath" : "/crmRestApi/resources/11.13.18.05",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/subscriptions/{SubscriptionPUID}/child/products/{SubscriptionProductPUID}/child/billLines/{BillLinePUID}" : {
+      "patch" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "SubscriptionProductPUID",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "SubscriptionPUID",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "BillLinePUID",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "request-wrapper",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/request-wrapper"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "A sample description of the Response",
+            "schema" : {
+              "$ref" : "#/definitions/response-wrapper"
+            }
+          },
+          "500" : {
+            "description" : "Faults",
+            "schema" : {
+              "$ref" : "#/definitions/APIInvocationError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "request-wrapper" : {
+      "type" : "object",
+      "required" : [ "UsageQuantity" ],
+      "properties" : {
+        "UsageQuantity" : {
+          "type" : "string"
+        }
+      }
+    },
+    "response-wrapper" : {
+      "type" : "object",
+      "required" : [ "Amount", "BillLineId", "BillLinePuid", "BillingPeriod", "ChargeId", "ChargePeriod", "ChargePuid", "CoveredLevelId", "DateBilledFrom", "DateBilledTo", "DateToInterface", "InterfacedFlag", "InvoiceBillLineId", "InvoiceDate", "InvoiceText", "ListPrice", "PricingError", "RecurringFlag", "RevenueLineId", "SubscriptionId", "SubscriptionProductId", "TransactionAmount", "TransactionClass", "TransactionClassMeaning", "TransactionDate", "TransactionNumber", "TransactionTax", "UsageAcquiredFlag", "UsageCaptureDate", "UsageFlag", "UsagePricedFlag", "UsageQuantity" ],
+      "properties" : {
+        "BillLineId" : {
+          "type" : "number"
+        },
+        "BillLinePuid" : {
+          "type" : "string"
+        },
+        "SubscriptionId" : {
+          "type" : "number"
+        },
+        "SubscriptionProductId" : {
+          "type" : "number"
+        },
+        "CoveredLevelId" : {
+          "type" : "string"
+        },
+        "ChargeId" : {
+          "type" : "number"
+        },
+        "ChargePuid" : {
+          "type" : "string"
+        },
+        "BillingPeriod" : {
+          "type" : "number"
+        },
+        "DateToInterface" : {
+          "type" : "string"
+        },
+        "DateBilledFrom" : {
+          "type" : "string"
+        },
+        "DateBilledTo" : {
+          "type" : "string"
+        },
+        "Amount" : {
+          "type" : "number"
+        },
+        "RecurringFlag" : {
+          "type" : "boolean"
+        },
+        "UsageFlag" : {
+          "type" : "boolean"
+        },
+        "UsageAcquiredFlag" : {
+          "type" : "boolean"
+        },
+        "UsagePricedFlag" : {
+          "type" : "boolean"
+        },
+        "InterfacedFlag" : {
+          "type" : "boolean"
+        },
+        "TransactionClass" : {
+          "type" : "string"
+        },
+        "TransactionDate" : {
+          "type" : "string"
+        },
+        "TransactionNumber" : {
+          "type" : "string"
+        },
+        "TransactionTax" : {
+          "type" : "string"
+        },
+        "TransactionAmount" : {
+          "type" : "string"
+        },
+        "InvoiceText" : {
+          "type" : "string"
+        },
+        "InvoiceBillLineId" : {
+          "type" : "string"
+        },
+        "UsageCaptureDate" : {
+          "type" : "string"
+        },
+        "UsageQuantity" : {
+          "type" : "string"
+        },
+        "ChargePeriod" : {
+          "type" : "number"
+        },
+        "PricingError" : {
+          "type" : "string"
+        },
+        "ListPrice" : {
+          "type" : "number"
+        },
+        "RevenueLineId" : {
+          "type" : "number"
+        },
+        "TransactionClassMeaning" : {
+          "type" : "string"
+        },
+        "InvoiceDate" : {
+          "type" : "string"
+        }
+      }
+    },
+    "APIInvocationError" : {
+      "type" : "object",
+      "required" : [ "detail", "errorCode", "errorDetails", "title", "type" ],
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "detail" : {
+          "type" : "string"
+        },
+        "errorCode" : {
+          "type" : "string"
+        },
+        "errorDetails" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "instance" : {
+                "type" : "string"
+              },
+              "errorCode" : {
+                "type" : "string"
+              },
+              "type" : {
+                "type" : "string"
+              },
+              "title" : {
+                "type" : "string"
+              },
+              "errorPath" : {
+                "type" : "string"
+              }
+            },
+            "required" : [ "errorCode", "errorPath", "instance", "title", "type" ]
+          }
+        }
+      }
+    }
+  }
+}
