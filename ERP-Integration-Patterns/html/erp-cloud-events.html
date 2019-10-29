@@ -67,14 +67,12 @@
 							<p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
 						</section>
 						<hr>
-<!-- ========================================================================================================================= -->
 <!-- ########## BACKGROUND ########## -->
                         <section>
 	                        <h2>Background</h2>
 							<p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, HCM Cloud, Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify connectivity by handling the underlying complexities of connecting to applications using industry-wide best practices. You only need to create a connection that provides minimal connectivity information for each system.</p>
 						</section>
 						<hr>
-<!-- ========================================================================================================================= -->
 <!-- ########## USE CASE ########## -->
                         <section>
 	                        <h2>Use Case</h2>
@@ -90,7 +88,6 @@
 							<p><<img src="img/Purchase-Order-Real-Time-Synchronization.png" width="600px"/>/p>
 						</section>
 						<hr>
-<!-- ========================================================================================================================= -->
 <!-- ########## SIGN IN ########## -->
                         <section>    
                             <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
@@ -114,24 +111,41 @@
 							<p>You are now logged in and ready to use Oracle Integration. In the next section we will create a Process App.</p>                                                          
                         </section>
                         <hr>                        
-<!-- ========================================================================================================================= -->
-<!-- ########## DOCUMENTS ########## -->
+<!-- ########## Documents ########## -->
 						<section>    
 							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
 							<p>You will find additional documents and assets needed to complete this lab below.</p>
 							<ul>
-								<li>
-									<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD9C369B72BE24C373767D37F6C3FF17C1177E4725F3/fileview/D846573DC53C880C89D7C585F6C3FF17C1177E4725F3/_ERP-POEventToVBCS-LabGuide.pdf" target="_blank">Lab Guide</a>
-								</li>
-								<li>
-									<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD413274ABB8938E60505652F6C3FF17C1177E4725F3/fileview/D297008D28FFC6D6067E182CF6C3FF17C1177E4725F3/_LetterOfCreditPortal.zip" target="_blank">VBCS App</a>
-								</li>
-								<li>
-									<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD5ACB439A7026CCA8E2D361F6C3FF17C1177E4725F3/fileview/DB2E83D770A3E7C69F59A24EF6C3FF17C1177E4725F3/_XpathExpr.txt" target="_blank">XPath Expression</a>
-								</li>
+								<li><a href="../assets/Lab Guide.pdf" download>Lab Guide</a></li>
+								<li><a href="../assets/LetterOfCreditPortal.zip" download>LetterOfCreditPortal.zip</a></li>
+								<li><a href="../assets/XpathExpr.txt" download="">XpathExpr.txt</a></li>
 							</ul>
 						</section>
-						<hr>  
+						<hr> 
+<!--
+                        <section> 
+                            <h2 id="section_2" role="button" style="text-align: left;">Create a VBCS App</h2>
+                            <ol>
+								<li><p>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Visual Builder</strong>, and then select <strong>Visual Applications</strong>.</p>
+									<p>This is where you create Visual Builder Apps. Depending on previous activity in your environment you may already have some Visual Builder Apps listed. If you do, just ignore them, we will import our own.</p>
+								</li>
+								<li>Click <strong>Import</strong>.</li>
+								<li>Click <strong>Application fom file</strong>.</li>
+								<li>Hover over the <strong>Start with a QuickStart</strong> box, and then click <strong>Browse</strong>.</li>
+								<li><p>Locate the <strong>Subscription Management QuickStart</strong>, and click <strong>Create</strong>.</p><br>
+								<img src="img/screenshots/process/quickstart-gallery.png" width="600px"/>
+								</li>
+								<li>In the <strong>Create Application</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>My Subscriptions <em data-bind="text:user_number() || '<User Number>'"></em></span></code>.</li>
+								<li><p>Click <strong>Create</strong>.</p>
+									<p>The QuickStart App appears.</p>
+									<p>Notice how the options in this design mode are limited to <strong>Configure</strong>, <strong>Test</strong>, and <strong>Activate</strong>. This provides a simplified interface to quicky get Process Apps up and running.</p><br>
+									<img src="img/screenshots/process/quickstart.png" width="600px"/>
+								</li>																
+							</ol>   
+							<p>You have successfully created a Process App using a QuickStart App. In the next section we will configure our new application.</p>                                                          
+                        </section>
+						<hr>
+--> 
 <!-- ========================================================================================================================= -->
 					</article>
                 </div>
