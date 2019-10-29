@@ -70,6 +70,17 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       ]),
       self.selectedOICEnvironment = ko.observable()
 
+      class AppEnvironment {
+        constructor(name, url, usernamePrefix) {
+          this.name = name;
+          this.url = url;
+          this.usernamePrefix = usernamePrefix;
+        }
+      }      
+      self.availableAppEnvironments = ko.observableArray([
+        new AppEnvironment("ERP Cloud - zfqn", "https://adc2-zfqn-fa-ext.oracledemos.com/crmUI/faces/FuseWelcome?fndThemeName=Vision_NewsFeed", "bala.gupta"),
+      ]),
+      self.selectedAppEnvironment = ko.observable()
     }
 
     $(function() {
