@@ -47,6 +47,8 @@
                 </div>
                 <div id="bookContainer">
                     <article>
+<!-- ========================================================================================================================= -->
+<!-- ########## BEFORE YOU BEGIN ########## -->						
                         <section>
 							<h2>Before You Begin</h2>
 
@@ -64,17 +66,37 @@
 							<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
 							<p>Your OIC Password will be provided by your lab facilitator.</p>
 							<p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
-                        </section>
-                        <section>
-	                        <h2>Background</h2>
-							<p>TBD</p>
 						</section>
 						<hr>
-                        <!-- ========================================================================================================================= -->
+<!-- ========================================================================================================================= -->
+<!-- ########## BACKGROUND ########## -->
+                        <section>
+	                        <h2>Background</h2>
+							<p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, HCM Cloud, Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify connectivity by handling the underlying complexities of connecting to applications using industry-wide best practices. You only need to create a connection that provides minimal connectivity information for each system.</p>
+						</section>
+						<hr>
+<!-- ========================================================================================================================= -->
+<!-- ########## USE CASE ########## -->
+                        <section>
+	                        <h2>Use Case</h2>
+							<p>This use case explores the use of Oracle Integration to subscribe to Oracle ERP Cloud Events and push the relevant event information to downstream systems. As part of the lab you would be building the below use case scenario.</p>
+							<ul>
+								<li>User creates a Purchase Order(PO) in ERP Cloud and a PO event is raised (Flow1).</li>
+								<li>Oracle Integration subscribes to the PO event, transforms and pushes the relevant information to a custom table (VBCS) (Flow1).</li>
+								<li>User attaches Letter of Credit (LOC) information to the PO record from the VBCS Web App (Flow2).</li>
+								<li>PO Record in ERP Cloud is updated with the LOC information in ERP cloud (Flow2).</li>
+							</ul>
+							<p> The following diagram illustrates the proposed interaction between the systems involved in this use case. There 2 flows to complete this use case.</p>
+
+							<p><<img src="img/Purchase-Order-Real-Time-Synchronization.png" width="600px"/>/p>
+						</section>
+						<hr>
+
+<!-- ========================================================================================================================= -->
 <!-- ########## SIGN IN ########## -->
                         <section>    
                             <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
-							<p> Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+							<p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
 
                             <ol>
 								<li><p>Open a browser to the <strong>OIC URL</strong>.
@@ -94,7 +116,24 @@
 							<p>You are now logged in and ready to use Oracle Integration. In the next section we will create a Process App.</p>                                                          
                         </section>
                         <hr>                        
-
+<!-- ========================================================================================================================= -->
+<!-- ########## DOCUMENTS ########## -->
+<section>    
+		<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
+		<p>You will find additional documents and assets needed to complete this lab below.</p>
+		<ul>
+			<li>
+				<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD9C369B72BE24C373767D37F6C3FF17C1177E4725F3/fileview/D846573DC53C880C89D7C585F6C3FF17C1177E4725F3/_ERP-POEventToVBCS-LabGuide.pdf" target="_blank">Lab Guide</a>
+			</li>
+			<li>
+				<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD413274ABB8938E60505652F6C3FF17C1177E4725F3/fileview/D297008D28FFC6D6067E182CF6C3FF17C1177E4725F3/_LetterOfCreditPortal.zip" target="_blank">VBCS App</a>
+			</li>
+			<li>
+				<a href="https://publicdocs-corp.documents.us2.oraclecloud.com/documents/link/LD5ACB439A7026CCA8E2D361F6C3FF17C1177E4725F3/fileview/DB2E83D770A3E7C69F59A24EF6C3FF17C1177E4725F3/_XpathExpr.txt" target="_blank">XPath Expression</a>
+			</li>
+		</ul>
+	</section>
+	<hr>  
                     </article>
                 </div>
                 <br class="clearfloat">
