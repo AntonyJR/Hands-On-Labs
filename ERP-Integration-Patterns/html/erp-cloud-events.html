@@ -23,7 +23,8 @@
         <script type="text/javascript" src="./js/libs/require/require.js"></script>
 		<script type="text/javascript" src="./js/app.js"></script> 
 		<link rel="stylesheet" href="css/copy-button.css">
-		<script src="js/copytoclipboard.js"></script>      
+        <script src="js/copytoclipboard.js"></script>  
+        
     </head>
     <body>
 
@@ -62,9 +63,12 @@
 									optionsCaption: 'Select...'">
 								</select>
 							</p>
-							<p>Enter your <strong>User Number</strong>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/>&nbsp;<button>OK</button></p>                         
-							<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-							<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                            <p><label>Enter your <a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>                         
+
+                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                            
+                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                            
                             <p>Your OIC Password will be provided by your lab facilitator.</p>
 
                             <h3>ERP Cloud Environment</h3>
@@ -129,8 +133,15 @@
 							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
 							<p>You will find additional documents and assets needed to complete this lab below.</p>
 							<ul>
-								<li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide</a></li>
-								<li><a href="../assets/events-lab/LetterOfCreditPortal.zip" download>LetterOfCreditPortal.zip</a></li>
+                                <li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide</a></li>
+                                <li>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
+                                    </div>                                    
+                                </li>
 								<li><a href="../assets/events-lab/XpathExpr.txt" download>XpathExpr.txt</a></li>
 								&nbsp;
 							</ul>
@@ -138,29 +149,28 @@
 						<hr> 
 <!--
                         <section> 
-                            <h2 id="section_2" role="button" style="text-align: left;">Create a VBCS App</h2>
+                            <h2 id="section_2" role="button" style="text-align: left;">Import a VBCS App</h2>
                             <ol>
 								<li><p>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Visual Builder</strong>, and then select <strong>Visual Applications</strong>.</p>
 									<p>This is where you create Visual Builder Apps. Depending on previous activity in your environment you may already have some Visual Builder Apps listed. If you do, just ignore them, we will import our own.</p>
 								</li>
 								<li>Click <strong>Import</strong>.</li>
-								<li>Click <strong>Application fom file</strong>.</li>
-								<li>Hover over the <strong>Start with a QuickStart</strong> box, and then click <strong>Browse</strong>.</li>
-								<li><p>Locate the <strong>Subscription Management QuickStart</strong>, and click <strong>Create</strong>.</p><br>
-								<img src="img/screenshots/process/quickstart-gallery.png" width="600px"/>
-								</li>
-								<li>In the <strong>Create Application</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>My Subscriptions <em data-bind="text:user_number() || '<User Number>'"></em></span></code>.</li>
-								<li><p>Click <strong>Create</strong>.</p>
-									<p>The QuickStart App appears.</p>
-									<p>Notice how the options in this design mode are limited to <strong>Configure</strong>, <strong>Test</strong>, and <strong>Activate</strong>. This provides a simplified interface to quicky get Process Apps up and running.</p><br>
-									<img src="img/screenshots/process/quickstart.png" width="600px"/>
-								</li>																
+                                <li>Click <strong>Application fom file</strong>.</li>
+                                <li>
+                                    <p>Download the <strong>Letter of Credit Portal</strong> VBCS App provided by clicking the link below.</p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p>Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download</p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
+                                    </div>                                    
+                                </li>
+								<li>Import the VBCS App you just downloaded and click <strong>Import</strong>.</li>						
 							</ol>   
-							<p>You have successfully created a Process App using a QuickStart App. In the next section we will configure our new application.</p>                                                          
                         </section>
 						<hr>
---> 
-<!-- ========================================================================================================================= -->
+
+-->
 					</article>
                 </div>
                 <br class="clearfloat">
