@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Published date: September 2019 -->
+        <!-- Template date: September 2019 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="Visual Builder Introduction Lab">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+		<!-- Use an imperative verb in the title. -->
+        <title>Oracle Integration - Visual Builder Introduction Lab</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="Visual Builder Introduction Lab">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--link rel="stylesheet" href="css/normalize.min.css"-->
+        <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+        <script type="text/javascript" src="./js/libs/require/require.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script> 
+		<link rel="stylesheet" href="css/copy-button.css">
+        <script src="js/copytoclipboard.js"></script>  
+        
+    </head>
+    <body>
+
+        <div id="content" style="margin-top:5px">
+
+            <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+			<!-- Use an imperative verb in the title. -->
+			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration  - Visual Builder Introduction Lab</h1>
+			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
+
+            <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+<!-- ########## Before You Begin ########## -->						
+                        <section>
+							<h2>Before You Begin</h2>
+
+                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
+							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
+
+                            <h3>OIC Environment</h3>
+							<p>Select your <strong>OIC Environment</strong>:&nbsp;
+								<select data-bind="options: availableOICEnvironments,
+									optionsText: 'name',
+									value: selectedOICEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+							</p>
+                            <p><label>Enter your <a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>                         
+                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                            <p>Your OIC Password will be provided by your lab facilitator.</p>
+						</section>
+						<hr>
+<!-- ########## Sign In ########## -->
+                        <section>    
+                            <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
+							<p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+
+                            <ol>
+								<li><p>Open a browser to the <strong>OIC URL</strong>.
+									<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC User Name</strong>.</p>
+									<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
+									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+								</li>
+                                <li><p>Click <strong>Home</strong>.</p>
+                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
+                                </li>  
+							</ol>
+							<p>You are now logged in and ready to use Oracle Integration.</p>
+                        </section>
+                        <hr>                        
+<!-- ########## Documents ########## -->
+						<section>    
+							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
+							<p>You will find additional documents and assets needed to complete this lab below.</p>
+							<ul>
+                                <li><a href="http://bit.ly/oic-vbcs" target=”_blank”>Visual Builder Introduction Lab Guide</a></li>
+								&nbsp;
+							</ul>
+						</section>
+						<hr> 
+					</article>
+                </div>
+                <br class="clearfloat">
+				<br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">	        
+            <div> 
+            	<img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>                        
+                    </ul>
+                </footer>
+            </div>
+            <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <!--div id="lpModal" class="modal">
+            <!-- Modal hdr and body -->
+            <!--div id="obe_dialog" class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close">  
+                        <span class="close">&times;</span>
+                    </a>
+                    <h1>Associated Learning Paths</h1>
+                </div>
+                <div id="dialog-content" >
+                </div>
+                <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                </div>
+            </div>   
+        </div-->
+        <!-- END OBE Dialog Box code -->
+    </body>
+</html>
