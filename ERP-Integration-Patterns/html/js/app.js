@@ -81,6 +81,18 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         new AppEnvironment("ERP Cloud - zfqn", "https://adc2-zfqn-fa-ext.oracledemos.com/crmUI/faces/FuseWelcome?fndThemeName=Vision_NewsFeed", "bala.gupta"),
       ]),
       self.selectedAppEnvironment = ko.observable()
+
+      class FTPEnvironment {
+        constructor(name, url, usernamePrefix) {
+          this.name = name;
+          this.url = url;
+          this.usernamePrefix = usernamePrefix;
+        }
+      }      
+      self.availableFTPEnvironments = ko.observableArray([
+        new FTPEnvironment("Drive HQ", "https://www.drivehq.com", "oichcmcloud"),
+      ]),
+      self.selectedFTPEnvironment = ko.observable()
     }
 
     $(function() {
