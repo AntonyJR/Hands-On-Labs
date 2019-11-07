@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<allpersons>
+	<person>
+		<personal>
+			<firstName>John</firstName>
+			<lastName>Brown</lastName>
+			<dob>1989/02/24</dob>
+			<nationalIdentifier>420-54-7457</nationalIdentifier>
+		</personal>
+		<work>
+			<employeeExternalNumber>EN001</employeeExternalNumber>
+			<legalEmployerId>300000046973970</legalEmployerId>
+			<legalEmployerName>US1 Legal Entity</legalEmployerName>
+			<businessUnitId>300000046987012</businessUnitId>
+			<hireDate>2019/04/17</hireDate>
+		</work>
+		<contactInfo>
+			<homePhone>555-666-777</homePhone>
+			<email>john.brown.invalid@oracle.com</email>
+		</contactInfo>
+	</person>
+	<person>
+		<personal>
+			<firstName>Susan</firstName>
+			<lastName>Grey</lastName>
+			<dob>1979/05/14</dob>
+			<nationalIdentifier>646-22-1485</nationalIdentifier>
+		</personal>
+		<work>
+			<employeeExternalNumber>EN002</employeeExternalNumber>
+			<legalEmployerId>300000046973970</legalEmployerId>
+			<legalEmployerName>US1 Legal Entity</legalEmployerName>
+			<businessUnitId>300000046987012</businessUnitId>
+			<hireDate>2019/04/17</hireDate>
+		</work>
+		<contactInfo>
+			<homePhone>222-333-444</homePhone>
+			<email>susan.grey.invalid@oracle.com</email>
+		</contactInfo>
+	</person>	
+</allpersons>
+
+
+
+
+
+
+
