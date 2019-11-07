@@ -50,8 +50,10 @@
                         <section>
 							<h2>Before You Begin</h2>
 
+                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
 							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
 
+                            <h3>OIC Environment</h3>
 							<p>Select your <strong>OIC Environment</strong>:&nbsp;
 								<select data-bind="options: availableOICEnvironments,
 									optionsText: 'name',
@@ -59,18 +61,32 @@
 									optionsCaption: 'Select...'">
 								</select>
 							</p>
-							<p>Enter your <strong>User Number</strong>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/>&nbsp;<button>OK</button></p>                         
-							<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-							<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
-							<p>Your OIC Password will be provided by your lab facilitator.</p>
-							<p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
+                            <p><label>Enter your <a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>                         
+
+                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                            
+                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                            
+                            <p>Your OIC Password will be provided by your lab facilitator.</p>
+
+                            <h3>HCM Cloud Environment</h3>
+                            <p>Select your <strong>HCM Cloud Environment</strong>:&nbsp;
+								<select data-bind="options: availableAppEnvironments,
+									optionsText: 'name',
+									value: selectedAppEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+                            </p>
+                            <p><strong>HCM Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your App Environment]'"></em></span></code></p>
+                            <p><strong>HCM Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your HCM Cloud Environment]'"></em></span></code></p>
+                            <p>Your HCM Cloud Password will be provided by your lab facilitator.</p>
                         </section>
+                        <hr>
+<!-- ########## Background ########## -->
                         <section>
 	                        <h2>Background</h2>
-							<p>TBD</p>
 						</section>
 						<hr>
-                        <!-- ========================================================================================================================= -->
 <!-- ########## SIGN IN ########## -->
                         <section>    
                             <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
@@ -91,10 +107,23 @@
                                 	<img src="img/screenshots/integration/home-page.png" width="600px"/>
                                 </li>  
 							</ol>
-							<p>You are now logged in and ready to use Oracle Integration. In the next section we will create a Process App.</p>                                                          
+							<p>You are now logged in and ready to use Oracle Integration.</p>
                         </section>
+                        <hr>   
                         <hr>                        
-
+<!-- ########## Documents ########## -->
+						<section>    
+							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
+							<p>You will find additional documents and assets needed to complete this lab below.</p>
+							<ul>
+								<li><a href="../assets/directory-synchronization_lab/Lab Build Guide Directory Synchronization.pdf" download>Lab Build Guide Directory Synchronization.pdf</a></li>
+								<li><a href="../assets/directory-synchronization_lab/getEmployeeResponse.json" download>getEmployeeResponse.json</a></li>
+								<li><a href="../assets/directory-synchronization_lab/newEmployeeFile.csv" download>newEmployeeFile.csv</a></li>
+								&nbsp;
+							</ul>
+						</section>
+						<hr>  
+<!-- ========================================================================================================================= -->                     
                     </article>
                 </div>
                 <br class="clearfloat">

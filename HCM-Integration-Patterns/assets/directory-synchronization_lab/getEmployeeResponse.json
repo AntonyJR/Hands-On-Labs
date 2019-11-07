@@ -1,0 +1,217 @@
+{
+    "items": [
+        {
+            "Salutation": null,
+            "FirstName": "KI_REG_01",
+            "MiddleName": null,
+            "LastName": "ZCMPGSP",
+            "PreviousLastName": null,
+            "NameSuffix": null,
+            "DisplayName": "KI_REG_01 ZCMPGSP",
+            "PreferredName": null,
+            "Honors": null,
+            "CorrespondenceLanguage": null,
+            "PersonNumber": "955160008188555",
+            "WorkPhoneCountryCode": null,
+            "WorkPhoneAreaCode": null,
+            "WorkPhoneNumber": null,
+            "WorkPhoneExtension": null,
+            "WorkFaxCountryCode": null,
+            "WorkFaxAreaCode": null,
+            "WorkFaxNumber": null,
+            "WorkFaxExtension": null,
+            "WorkMobilePhoneCountryCode": null,
+            "WorkMobilePhoneAreaCode": null,
+            "WorkMobilePhoneNumber": null,
+            "WorkMobilePhoneExtension": null,
+            "HomePhoneCountryCode": null,
+            "HomePhoneAreaCode": null,
+            "HomePhoneNumber": null,
+            "HomePhoneExtension": null,
+            "HomeFaxCountryCode": null,
+            "HomeFaxAreaCode": null,
+            "HomeFaxNumber": null,
+            "HomeFaxExtension": null,
+            "WorkEmail": null,
+            "AddressLine1": null,
+            "AddressLine2": null,
+            "AddressLine3": null,
+            "City": null,
+            "Region": null,
+            "Region2": null,
+            "Country": null,
+            "PostalCode": null,
+            "DateOfBirth": "1966-08-09",
+            "Ethnicity": null,
+            "ProjectedTerminationDate": null,
+            "LegalEntityId": 40010,
+            "HireDate": "2016-01-01",
+            "TerminationDate": null,
+            "Gender": "F",
+            "MaritalStatus": null,
+            "NationalIdType": null,
+            "NationalId": null,
+            "NationalIdCountry": null,
+            "NationalIdExpirationDate": null,
+            "PersonId": 300100186883507,
+            "EffectiveStartDate": "2016-01-01",
+            "UserName": "KI_REG_01.ZCMPGSP",
+            "CitizenshipId": null,
+            "CitizenshipStatus": null,
+            "CitizenshipLegislationCode": null,
+            "CitizenshipToDate": null,
+            "Religion": null,
+            "ReligionId": null,
+            "PassportIssueDate": null,
+            "PassportNumber": null,
+            "PassportIssuingCountry": null,
+            "PassportId": null,
+            "PassportExpirationDate": null,
+            "LicenseNumber": null,
+            "DriversLicenseExpirationDate": null,
+            "DriversLicenseIssuingCountry": null,
+            "DriversLicenseId": null,
+            "MilitaryVetStatus": "N",
+            "CreationDate": "2018-03-21T18:19:23+00:00",
+            "LastUpdateDate": "2018-03-21T18:28:47.885+00:00",
+            "WorkerType": "E",
+            "links": [
+                {
+                    "rel": "self",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078",
+                    "name": "emps",
+                    "kind": "item",
+                    "properties": {
+                        "changeIndicator": "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000014770400000014737200116A6176612E6C616E672E496E746567657212E2A0A4F781873802000149000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000017371007E0002000000017371007E0002000000017372001B6F7261636C652E6A626F2E646F6D61696E2E4E756C6C56616C75655899C1C58DAABEEB02000149000A6D53514C54797065496478700000000C71007E000871007E000871007E000871007E000871007E000871007E000871007E000871007E000871007E00087371007E00020000000171007E000871007E000871007E000871007E00087371007E00020000000171007E000878"
+                    }
+                },
+                {
+                    "rel": "canonical",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078",
+                    "name": "emps",
+                    "kind": "item"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/LegalEmployerLOV",
+                    "name": "LegalEmployerLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/SalutationLOV",
+                    "name": "SalutationLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/CitizenshipLegislationCodeLOV",
+                    "name": "CitizenshipLegislationCodeLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/MaritalStatusLOV",
+                    "name": "MaritalStatusLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/GenderLOV",
+                    "name": "GenderLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/EthnicityLOV",
+                    "name": "EthnicityLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/CitizenshipStatusLOV",
+                    "name": "CitizenshipStatusLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/CorrespondenceLanguageLOV",
+                    "name": "CorrespondenceLanguageLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/MilitaryVetStatusLOV",
+                    "name": "MilitaryVetStatusLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/ReligionLOV",
+                    "name": "ReligionLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "lov",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/lov/NationalIdTypeLOV",
+                    "name": "NationalIdTypeLOV",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/visas",
+                    "name": "visas",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/personExtraInformation",
+                    "name": "personExtraInformation",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/directReports",
+                    "name": "directReports",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/photo",
+                    "name": "photo",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/assignments",
+                    "name": "assignments",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/roles",
+                    "name": "roles",
+                    "kind": "collection"
+                },
+                {
+                    "rel": "child",
+                    "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps/00020000000EACED00057708000110F0850945B30000004AACED00057372000D6A6176612E73716C2E4461746514FA46683F3566970200007872000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001624B01500078/child/personDFF",
+                    "name": "personDFF",
+                    "kind": "collection"
+                }
+            ]
+        }
+    ],
+    "count": 1,
+    "hasMore": false,
+    "limit": 25,
+    "offset": 0,
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://fuscdrmsmc222-fa-ext.us.oracle.com:443/hcmRestApi/resources/11.13.18.02/emps",
+            "name": "emps",
+            "kind": "collection"
+        }
+    ]
+}
