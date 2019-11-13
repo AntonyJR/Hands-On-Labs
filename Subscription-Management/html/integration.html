@@ -170,16 +170,16 @@ We also support other patterns such as publish and subscribe that let you distri
 										<li>Select <strong>JSON Sample</strong> for the <strong>request payload format</strong>.</li>
 										<li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
 										<li>Enter the following JSON sample:
-										<pre class="allow-copy"><code><span>
-{
+										
+<pre class="allow-copy"><code><span>{
 	"BillLine" : [
 		{
 			"BillLinePUID" : "string",
 			"UsageQuantity" : "0"
 		}
 	]
-}
-										</span></code></pre>
+}</span></code></pre>
+										
 										<p>This simple document specifies the product billing line we want to update and the new quantity for the subscription.
 										<p>Oracle Integration will validate the JSON document.</p>										
 										</li>
@@ -198,16 +198,16 @@ We also support other patterns such as publish and subscribe that let you distri
 											<p>The wizard gives you the option to define the response payload because you specified that the integration will return a payload on the <strong>Basic Info</strong> page.</p>
 										</li>
 										<li>Enter the following JSON sample:
-										<pre class="allow-copy"><code><span>
-{
+										
+<pre class="allow-copy"><code><span>{
 	"BillLine" : [
 		{
 			"BillLinePUID" : "string",
 			"UsageQuantity" : "0"
 		}
 	]
-}
-										</span></code></pre>
+}</span></code></pre>
+										
 										</li>																				
 										<li><p>Click <strong>OK</strong>.</p>
 											<p>Notice that in addition to returning a response in the body, you can also attach items to the response.</p>
@@ -414,17 +414,17 @@ We also support other patterns such as publish and subscribe that let you distri
                                 	<p>These requested values are the template parameters that you specified in the endpoint URI that triggers the integration.</p>
                                 </li>
                                 <li>Click the <strong>Body</strong> tab.</li>
-                                <li>Enter the following JSON:
-                                	<pre class="allow-copy"><code><span>
-{
+                                <li>Enter the following JSON:                                	
+
+<pre class="allow-copy"><code><span>{
   "BillLine" : [
     {
       "BillLinePUID" : "3021-PRDT-2005-BILL-2204",
       "UsageQuantity" : "5"
     }
   ]
-}
-                                	</span></code></pre></li>
+}</span></code></pre></li>
+                                
                                 <li><p>Click <strong>Test</strong>.</p>
                                 		<p>A confirmation message informing you that the request was submitted appears.</p>
                                 		<p>You can click the ID link to view the tracking information for this instance.</p>
