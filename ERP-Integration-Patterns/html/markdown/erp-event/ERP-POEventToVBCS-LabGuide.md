@@ -364,105 +364,61 @@ would be be creating PO Event flows.
     Select “inline” and enter the below JSON sample in the text area and
     Click OK. Select Next
 
-    {
-
-    "items": \[
+    ```
 
     {
-
-    "id": 24,
-
-    "creationDate": "2019-01-13T23:12:09+00:00",
-
-    "lastUpdateDate": "2019-01-13T23:12:09.027+00:00",
-
-    "createdBy": "john.doe@example.com",
-
-    "lastUpdatedBy": "john.doe@example.com",
-
-    "pOHeaderId": "300000074157561",
-
-    "orderNumber": "162180",
-
-    "procurementBUId": "300000046987012",
-
-    "procurementBusinessUnit": "US1 Business Unit",
-
-    "supplierId": "300000047414679",
-
-    "supplier": "Dell Inc.",
-
-    "soldToLegalEntity": "US1 Legal Entity",
-
-    "lOCId": null,
-
-    "links": \[
-
+        "items": \[
     {
-
-    "rel": "self",
-
-    "href":
-    "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
-
-    "name": "PO",
-
-    "kind": "item",
-
-    "properties": {
-
-    "changeIndicator":
-    "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"
-
+        "id": 24,
+        "creationDate": "2019-01-13T23:12:09+00:00",
+        "lastUpdateDate": "2019-01-13T23:12:09.027+00:00",
+        "createdBy": "john.doe@example.com",
+        "lastUpdatedBy": "john.doe@example.com",
+        "pOHeaderId": "300000074157561",
+        "orderNumber": "162180",
+        "procurementBUId": "300000046987012",
+        "procurementBusinessUnit": "US1 Business Unit",
+        "supplierId": "300000047414679",
+        "supplier": "Dell Inc.",
+        "soldToLegalEntity": "US1 Legal Entity",
+        "lOCId": null,
+        "links": \[
+    {
+        "rel": "self",
+        "href": "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+        "name": "PO",
+        "kind": "item",
+        "properties": {"changeIndicator":
+        "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"}
+        },
+    {
+        "rel": "canonical",
+        "href":
+        "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+        "name": "PO",
+        "kind": "item"
     }
-
-    },
-
-    {
-
-    "rel": "canonical",
-
-    "href":
-    "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
-
-    "name": "PO",
-
-    "kind": "item"
-
-    }
-
     \]
-
     }
-
     \],
-
-    "count": 1,
-
-    "hasMore": false,
-
-    "limit": 25,
-
-    "offset": 0,
-
-    "links": \[
-
+        "count": 1,
+        "hasMore": false,
+        "limit": 25,
+        "offset": 0,
+        "links": \[
     {
-
-    "rel": "self",
-
-    "href":
-    "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO",
-
-    "name": "PO",
-
-    "kind": "collection"
-
+        "rel": "self",
+        "href":
+        "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO",
+        "name": "PO",
+        "kind": "collection"
     }
 
     \]
 
     }
+
+    ```
 
 5.  In the Summary page review the information and click Done
 
