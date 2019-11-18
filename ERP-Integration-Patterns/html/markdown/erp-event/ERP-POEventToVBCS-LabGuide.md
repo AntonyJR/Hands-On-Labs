@@ -308,9 +308,7 @@ Creating the PO Event Integration (Flow1)
 
 <img src="media/image14.png" style="width:7in;height:3.69028in" />
 
-1.  In the next screen, select “With Business Events” as the option and
-    search for the “Purchase Order Event” and provide an XPath
-    Expression as below and Click Next
+4.	In the next screen, select “Receive Business Events raised within ERP Cloud” as the option and search           for the “Purchase Order Event” and provide an XPath Expression as below and Click Next
 
     ```xml 
     <xpathExpr xmlns:ns0="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/" xmlns:ns2="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/types/"\>$eventPayload/ns2:result ns0:Value/ns0:PurchaseOrderLine/ns0:ItemDescription="Lan
@@ -320,7 +318,7 @@ Creating the PO Event Integration (Flow1)
 Note: Change the highlighted value to some Item Description of your
 choice to filter the PO Record that you would be creating in ERP Cloud
 later. This is important as to filter your PO because multiple Users
-would be be creating PO Event flows.
+would be creating PO Event flows.
 
 <img src="media/image15.png" style="width:7in;height:5.09236in" />
 
@@ -336,7 +334,7 @@ would be be creating PO Event flows.
 
 > <img src="media/image18.png" style="width:5.93252in;height:2.22822in" />
 
-1.  Next we will add the Invoke Activity Using the REST connection
+1.  Next we will add the Invoke Action Using the REST connection
     created earlier to verify if the PO exists in VBCS PO table. Hover
     on the wiring next to the “POEVENT” and click on “+” sign and Select
     the REST Connection (VBCS\_REST\_CON\_\<ClassId\>\_\<StudentId\>)
@@ -428,8 +426,8 @@ would be be creating PO Event flows.
 
     <img src="media/image24.png" style="width:5.32515in;height:2.36938in" />
 
-7.  A Map activity (Map to GETPO) is created automatically. Perform the
-    mapping as per below. Select the Map activity and Click on “Edit” to
+7.  A Map Action (Map to GETPO) is created automatically. Perform the
+    mapping as per below. Select the Map Action and Click on “Edit” to
     open the Mapper
 
 Select the “q” Query Parameter from the Target, drag and drop the concat
@@ -463,7 +461,7 @@ Save your integration
 1.  Now, we will assign PO Record Count value to a variable “POHeaderId”
 
     Hover on the wiring next to “GETPO” and click on “+” sign and Select
-    Assign activity
+    Assign Action
 
     <img src="media/image30.png" style="width:3.40491in;height:2.14158in" />
 
@@ -505,7 +503,7 @@ Else
 <img src="media/image35.png" style="width:5.23926in;height:1.77644in" />
 
 Hover on the wiring next to the PORecord Acitivity and Select the
-“Switch” Activity
+“Switch” Action
 
 <img src="media/image36.png" style="width:2.73006in;height:2.13299in" />
 
@@ -520,8 +518,8 @@ Expression builder and provide the condition as per below
 
 <img src="media/image38.png" style="width:7in;height:2.46667in" />
 
-1.  Hover on the wiring next to the If Condition (1) activity and Click
-    on “+” Sign and select the “Assign” Activity
+1.  Hover on the wiring next to the If Condition (1) Action and Click
+    on “+” Sign and select the “Assign” Action
 
     Provide a name for the Assign Action as “AssignVBCSPOId”
 
@@ -534,7 +532,7 @@ Expression builder and provide the condition as per below
 
     Validate and Close the Assign window. Save your integration.
 
-2.  Hover on the wiring next to the Assign activity and Click on “+”
+2.  Hover on the wiring next to the Assign Action and Click on “+”
     Sign and select the REST Connection created earlier ex:
     VBCS\_REST\_CON\_\<ClassId\>\_\<StudentId\>
 
@@ -648,7 +646,7 @@ Expression builder and provide the condition as per below
 
 <img src="media/image45.png" style="width:4.27607in;height:2.83163in" />
 
-1.  A Map activity (Map to UPDATEPO) is created. Select the Map activity
+1.  A Map Action (Map to UPDATEPO) is created. Select the Map Action
     and Click on Edit Icon and provide mapping as per below screenshots
 
 <!-- -->
@@ -706,7 +704,7 @@ Expression builder and provide the condition as per below
 
 2.  **Else – Flow**
 
-    Hover on the wiring next to “Otherwise “ activity and Select
+    Hover on the wiring next to “Otherwise “ Action and Select
     VBCS\_REST\_CON\_\<ClassId\>\_\<StudentId\> connection
 
     <img src="media/image53.png" style="width:5.7546in;height:3.23982in" />
@@ -812,7 +810,7 @@ Expression builder and provide the condition as per below
 
     <img src="media/image55.png" style="width:5.65644in;height:3.22327in" />
 
-2.  A Map activity is created. Provide the mapping for the Map Activity
+2.  A Map Action is created. Provide the mapping for the Map Action
     (Map to CREATEPO) as per the screenshot below
 
     <img src="media/image56.png" style="width:7in;height:2.425in" />
@@ -1054,11 +1052,11 @@ Click **Create**. The integration canvas is displayed
 
 <img src="media/image76.png" style="width:5.17178in;height:2.99327in" />
 
-A Request/Response Flow is created. Delete the “Map to POPROXY” activity
+A Request/Response Flow is created. Delete the “Map to POPROXY” Action
 
 <img src="media/image77.png" style="width:7in;height:3.08819in" />
 
-1.  Hover on the wiring next to POPROXY activity and Click on “+” sign
+1.  Hover on the wiring next to POPROXY Action and Click on “+” sign
     and add the “ERP Conn 96 06” connection which is pre created
 
 <img src="media/image78.png" style="width:7in;height:2.77431in" />
@@ -1090,12 +1088,12 @@ Click Next
 
 <img src="media/image82.png" style="width:5.99386in;height:2.86968in" />
 
-1.  An invoke activity is configured with changePO operation and an
-    empty Map (Map to changePO) activity is created
+1.  An invoke action is configured with changePO operation and an
+    empty Map (Map to changePO) Action is created
 
 <img src="media/image83.png" style="width:7in;height:3.11667in" />
 
-1.  Edit the Map (Map to changePO) activity and provide below mapping
+1.  Edit the Map (Map to changePO) Action and provide below mapping
 
 <img src="media/image84.png" style="width:7in;height:2.98611in" />
 
@@ -1118,11 +1116,11 @@ Map lOCId -\> locId
 Validate and Save your integration
 
 1.  Hover on the wiring next to the changePO invoke activity and Click +
-    sign to add a Map activity
+    sign to add a Map Action
 
 <img src="media/image88.png" style="width:7in;height:3.07361in" />
 
-1.  Edit the “Map to POProxy” activity and perform the mapping as per
+1.  Edit the “Map to POProxy” Action and perform the mapping as per
     below
 
 changePurchaseOrderResponse -\> result-\>POHeaderId **TO**
