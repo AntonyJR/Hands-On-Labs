@@ -553,6 +553,8 @@ Expression builder and provide the condition as per below
 
     <img src="media/image44.png" style="width:4.77301in;height:3.18532in" />
 
+    ```
+   
     {
 
     "orderNumber": "163521",
@@ -571,55 +573,40 @@ Expression builder and provide the condition as per below
 
     }
 
+    ```
+
 3.  In the Response page Select the request payload format as “JSON
     Sample”. Select the “inline” link and provide the below Sample JSON
     Response and Click Next
 
+    ```
+    
     {
 
-    "id": 24,
-
-    "creationDate": "2019-01-13T23:12:09+00:00",
-
-    "lastUpdateDate": "2019-01-22T16:46:08+00:00",
-
-    "createdBy": "john.doe@example.com",
-
-    "lastUpdatedBy": "john.doe@example.com",
-
-    "pOHeaderId": "300000074157561",
-
-    "orderNumber": "163521",
-
-    "procurementBUId": "300000046987012",
-
-    "procurementBusinessUnit": "US1 Business Unit",
-
-    "supplierId": "300000047414679",
-
-    "supplier": "Dell.",
-
-    "soldToLegalEntity": "300000046973970",
-
-    "lOCId": null,
-
-    "links": \[
-
+        "id": 24,
+        "creationDate": "2019-01-13T23:12:09+00:00",
+        "lastUpdateDate": "2019-01-22T16:46:08+00:00",
+        "createdBy": "john.doe@example.com",
+        "lastUpdatedBy": "john.doe@example.com",
+        "pOHeaderId": "300000074157561",
+        "orderNumber": "163521",
+        "procurementBUId": "300000046987012",
+        "procurementBusinessUnit": "US1 Business Unit",
+        "supplierId": "300000047414679",
+        "supplier": "Dell.",
+        "soldToLegalEntity": "300000046973970",
+        "lOCId": null,
+        "links": \[
     {
 
-    "rel": "self",
-
-    "href":
-    "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
-
-    "name": "PO",
-
-    "kind": "item",
-
-    "properties": {
-
-    "changeIndicator":
-    "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870400000000000000078"
+        "rel": "self",
+        "href":
+        "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+        "name": "PO",
+        "kind": "item",
+        "properties": {
+        "changeIndicator":
+        "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870400000000000000078"
 
     }
 
@@ -627,20 +614,19 @@ Expression builder and provide the condition as per below
 
     {
 
-    "rel": "canonical",
-
-    "href":
-    "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
-
-    "name": "PO",
-
-    "kind": "item"
+        "rel": "canonical",
+        "href":
+        "https://oic\_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+        "name": "PO",
+        "kind": "item"
 
     }
 
     \]
 
     }
+
+    ```
 
 4.  Review the Summary Page and Click on Done
 
@@ -717,23 +703,21 @@ Expression builder and provide the condition as per below
     Sample”. Select the “inline” link and provide the below Sample JSON
     request and Click Next
 
+```
+
 {
 
 "pOHeaderId": "300000074157551",
-
 "orderNumber": "163521",
-
 "procurementBUId": "300000046987012",
-
 "procurementBusinessUnit": "US1 Business Unit",
-
 "supplierId": "300000047414679",
-
 "supplier": "Dell Inc.",
-
 "soldToLegalEntity": "US1 Legal Entity"
 
 }
+
+```
 
 1.  In the Response Page Select the response payload format as “JSON
     Sample”. Select the “inline” link and provide the below Sample JSON
@@ -741,49 +725,31 @@ Expression builder and provide the condition as per below
 
 {
 
-"id": 41,
-
-"creationDate": "2019-01-22T17:32:24+00:00",
-
-"lastUpdateDate": "2019-01-22T17:32:24.027+00:00",
-
-"createdBy": "john.doe@example.com",
-
-"lastUpdatedBy": "john.doe@example.com",
-
-"pOHeaderId": "300000074157551",
-
-"orderNumber": "163521",
-
-"procurementBUId": "300000046987012",
-
-"procurementBusinessUnit": "US1 Business Unit",
-
-"supplierId": "300000047414679",
-
-"supplier": "Dell Inc.",
-
-"soldToLegalEntity": "300000046973970",
-
-"lOCId": null,
-
-"links": \[
+    "id": 41,
+    "creationDate": "2019-01-22T17:32:24+00:00",
+    "lastUpdateDate": "2019-01-22T17:32:24.027+00:00",
+    "createdBy": "john.doe@example.com",
+    "lastUpdatedBy": "john.doe@example.com",
+    "pOHeaderId": "300000074157551",
+    "orderNumber": "163521",
+    "procurementBUId": "300000046987012",
+    "procurementBusinessUnit": "US1 Business Unit",
+    "supplierId": "300000047414679",
+    "supplier": "Dell Inc.",
+    "soldToLegalEntity": "300000046973970",
+    "lOCId": null,
+    "links": \[
 
 {
 
-"rel": "self",
-
-"href":
-"https://oichost/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/41",
-
-"name": "PO",
-
-"kind": "item",
-
-"properties": {
-
-"changeIndicator":
-"ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"
+    "rel": "self",
+    "href":
+    "https://oichost/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/41",
+    "name": "PO",
+    "kind": "item",
+    "properties": {
+    "changeIndicator":
+    "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"
 
 }
 
@@ -792,12 +758,9 @@ Expression builder and provide the condition as per below
 {
 
 "rel": "canonical",
-
 "href":
 "https://oichost/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/41",
-
 "name": "PO",
-
 "kind": "item"
 
 }
@@ -805,6 +768,8 @@ Expression builder and provide the condition as per below
 \]
 
 }
+
+```
 
 1.  Review the Summary and Click Done
 
@@ -1009,44 +974,40 @@ Click **Create**. The integration canvas is displayed
 1.  In the Request page Select Request payload format as “JSON Sample”
     and provide the sample JSON below by clicking on the inline link
 
+```
+
 {
 
-"id": 24,
-
-"lOCId": 3,
-
-"orderNumber": "163521",
-
-"pOHeaderId": "300000074157561",
-
-"procurementBUId": "300000046987012",
-
-"procurementBusinessUnit": "US1 Business Unit",
-
-"soldToLegalEntity": "US1 Legal Entity",
-
-"supplier": "Dell.",
-
-"supplierId": "300000047414679"
+    "id": 24,
+    "lOCId": 3,
+    "orderNumber": "163521",
+    "pOHeaderId": "300000074157561",
+    "procurementBUId": "300000046987012",
+    "procurementBusinessUnit": "US1 Business Unit",
+    "soldToLegalEntity": "US1 Legal Entity",
+    "supplier": "Dell.",
+    "supplierId": "300000047414679"
 
 }
+
+```
 
 1.  In the Response page Select Response payload format as “JSON Sample”
     and provide the sample JSON below by clicking on the inline link
 
+```
+
 {
 
-"pOHeaderId":"300000074157561",
-
-"orderNumber":"162180",
-
-"soldToLegalEntityId":"300000074157561",
-
-"changeOrderNumber":3,
-
-"requestStatus":"SUCCESS"
+    "pOHeaderId":"300000074157561",
+    "orderNumber":"162180",
+    "soldToLegalEntityId":"300000074157561",
+    "changeOrderNumber":3,
+    "requestStatus":"SUCCESS"
 
 }
+
+```
 
 1.  Review the Summary page and click on Done
 
@@ -1204,11 +1165,11 @@ Invoke ERP Cloud Service from VBCS Web App
 1.  In the Select Endpoints page Select the “PO\_PROXY” endpoint and
     click on Create
 
-> <img src="media/image99.png" style="width:5.34356in;height:2.58802in" />
->
-> Connection to the endpoint is created
->
-> <img src="media/image100.png" style="width:7in;height:2.00417in" />
+ <img src="media/image99.png" style="width:5.34356in;height:2.58802in" />
+
+ Connection to the endpoint is created
+
+ <img src="media/image100.png" style="width:7in;height:2.00417in" />
 
 1.  \(1) Click on Web application tab and (2) select the “editpopage” by
     expanding the localapp-\>flows-\>main.
@@ -1216,12 +1177,12 @@ Invoke ERP Cloud Service from VBCS Web App
     \(3) Select the “Change Order” button on the web page. (4) On the right
     handside select the Events tab
 
-> <img src="media/image101.png" style="width:6.58282in;height:3.05305in" />
+ <img src="media/image101.png" style="width:6.58282in;height:3.05305in" />
 
 1.  Click on New Event and select “Quick Start: ojAction” to create a
     new Action Chain
 
-> <img src="media/image102.png" style="width:7in;height:3.11389in" />
+ <img src="media/image102.png" style="width:7in;height:3.11389in" />
 
 1.  Provide Id as “ChangeOrderAction”. Drag and drop “Call REST
     Endpoint” action from Actions palette onto to the
