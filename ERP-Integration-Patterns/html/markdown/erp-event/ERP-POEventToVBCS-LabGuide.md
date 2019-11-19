@@ -557,19 +557,13 @@ Expression builder and provide the condition as per below
    
     {
 
-    "orderNumber": "163521",
-
-    "procurementBUId": "300000046987012",
-
-    "procurementBusinessUnit": "US1 Business Unit",
-
-    "supplierId": "300000047414679",
-
-    "supplier": "Dell.",
-
-    "soldToLegalEntity": "US1 Legal Entity",
-
-    "lOCId": 2
+        "orderNumber": "163521",
+        "procurementBUId": "300000046987012",
+        "procurementBusinessUnit": "US1 Business Unit",
+        "supplierId": "300000047414679",
+        "supplier": "Dell.",
+        "soldToLegalEntity": "US1 Legal Entity",
+        "lOCId": 2
 
     }
 
@@ -722,6 +716,8 @@ Expression builder and provide the condition as per below
 1.  In the Response Page Select the response payload format as “JSON
     Sample”. Select the “inline” link and provide the below Sample JSON
     response and Click Next
+
+```
 
 {
 
