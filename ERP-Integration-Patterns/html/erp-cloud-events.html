@@ -801,9 +801,106 @@ else
 
 <!-- ########## LOC Update Integration ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">LOC Update Integration</h2>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create an Integration</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create a Trigger</h4>
+                                <h2 id="section_2" role="button" style="text-align: left;">Update the Letter of Credit</h2>
+                                <h3 id="section_2" role="button" style="text-align: left;">Create an Integration</h3>
+                                <ol>
+	                                <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>.</li>
+	                                <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
+	                                <li>In the <strong>Select a Style/Pattern</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
+	                                <li>On the <strong>Create New Integration</strong> dialog, configure the integration:
+	                                	<ol type="a">
+		                                	<li><p><strong>What do you want to call your integration?</strong></p>
+		                                		<p>Enter <code class="allow-copy"><spam>ERP PO Proxy <em data-bind="text:user_number() || '<your user number>'"></em></spam></code></p>
+		                                	</li>
+		                                	<li><strong>Identifier</strong>: leave the default value (this is the name of the integration in uppercase).</li>
+		                                	<li><p><strong>Version</strong>: leave the default value.</p>
+		                                		<p>(Optional) If you want to change the version number, use the format <code>##.##.####</code>.</p>
+		                                	</li>
+		                                	<li><p><strong>What does this integration do?</strong></p>
+		                                		<p>Enter the following text:</p>
+		                                		<p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration REST Adapter to create a REST to SOAP proxy for ERP Cloud webservices.</span></code></p>
+		                                	</li>
+		                                	<li><strong>Which package does this integration belong to?</strong>: leave blank.</li>
+	                                	</ol>
+	                                </li>
+	                                <li>Click <strong>Create</strong>.</li>
+                                </ol>
+
+
+                                <h3 id="section_2" role="button" style="text-align: left;">Create a Trigger</h3>
+<ol>
+	                            	<li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            	<li>Type <code class="allow-copy"><span>PO REST</span></code> in the <strong>Search</strong> field to find your rest connection.</li>
+								<li><p>Select the REST connection that contains your user number.</p>
+								<p>The <strong>Configure REST Endpoint</strong> wizard appears.</p>									
+								<li><p>On the <strong>Basic Info</strong> page, configure the REST endpoint:</p>
+									<ol type="a">
+										<li>Name your endpoint <code class="allow-copy"><span>POPROXY</span></code>.</li>
+										<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span>This endpoint is a REST interface for the purchase order service.</span></code></li>
+										<li>In the <strong>relative resource URI</strong>, enter <code class="allow-copy"><span>/PO</span></code>.</li>
+										<li>Click <strong>Next</strong>.</li>
+									</ol>
+								</li>
+								<li><p>On the <strong>Resource Configuration</strong> page, configure the resource:</p>
+									<ol>
+										<li>Name your <strong>operation name</strong> <code class="allow-copy"><span>POPROXY</span></code>.</li>
+										<li>In the <strong>relative resource URI</strong>, enter <code class="allow-copy"><span>/PO_PROXY</span></code>.</li>
+										<li>In the <strong>action to perform on the endpoint</strong> field, select <strong>POST</strong>.</li>
+										<li><p>In the <strong>options that you want to configure section</strong>, select:</p>
+											<ul>
+												<li>Configure a request payload for this endpoint</li>
+												<li>Configure this endpoint to receive the response</li>
+											</ul>
+										</li>
+										<li>Click <strong>Next</strong>.</li>
+									</ol>
+								</li>	                             
+	                            <li>In the <strong>Request</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+	"id": 24,
+	"lOCId": 3,
+	"orderNumber": "163521",
+	"pOHeaderId": "300000074157561",
+	"procurementBUId": "300000046987012",
+	"procurementBusinessUnit": "US1 Business Unit",
+	"soldToLegalEntity": "US1 Legal Entity", 
+	"supplier": "Dell.",
+	"supplierId": "300000047414679"
+}                                                          												
+											</span></code></pre>
+									</li>									
+                                </ol>
+								<li>In the <strong>Response</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+	"pOHeaderId":"300000074157561", 
+	"orderNumber":"162180", 
+	"soldToLegalEntityId":"300000074157561", 
+	"changeOrderNumber":3, 
+	"requestStatus":"SUCCESS"
+}                                               												
+											</span></code></pre>
+									</li>									
+                                </ol>
+                                </li>
+								<li>Click <strong>OK</strong>.</li>
+								<li><p>Click <strong>Next</strong>.</p>		                            
+									<p>A summary of the properties you configured appears.</p>
+								</li>
+								<li><p>Review the summary and click <strong>Done</strong>.</p>
+									<p>A Request/Response Flow is created.</p>
+								</li>
+								<li>Delete the <strong>Map to POPROXY</strong> action.</li>
+
                                 <h4 id="section_2" role="button" style="text-align: left;">Update ERP PO</h4>
                                 <h4 id="section_2" role="button" style="text-align: left;">Update ERP PO Mapping</h4>
                                 <h4 id="section_2" role="button" style="text-align: left;">Response Mapping</h4>
