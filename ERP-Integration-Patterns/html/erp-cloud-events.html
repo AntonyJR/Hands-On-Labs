@@ -179,7 +179,7 @@
                                 <li><p>Click <img src="img/vbcs-copy.png" alt="Copy icon" style="height: 15px; width: 15px;"/> on <strong>Data</strong> <strong>Development</strong> to copy the the Business Object URL.</p>
                                     <p>You will use this URL in the next section to create an Integration Connection to the Business Object API.</p>
                                 </li>
-                                <li>Click <img src="img/vbcs-home.png" alt="Home icon" style="height: 15px; width: 15px;"/> then <img src="img/home.png" alt="Home icon" style="height: 15px; width: 15px;"/> to return to the Oracle Integration Home page.</li>
+                                <li>Click <img src="img/vbcs-home.png" alt="Home icon" style="height: 15px; width: 15px;"/> then <img src="img/home.png" alt="Home icon" style="height: 19px; width: 19px;"/> to return to the Oracle Integration Home page.</li>
                             </ol>   
                         </section>
 						<hr>
@@ -211,71 +211,585 @@
                                         </tbody>
                                     </table> 
                                 </li>
-                                <li>Configure the Connection with the following, then click <strong>Test</strong> and <strong>Save</strong>.
-                                    <table>
-                                        <col width="20%">
-                                        <thead>
-                                            <tr class="header">
-                                                <th><strong>Field</strong></th>
-                                                <th><strong>Entry</strong></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan=100%><strong>Connection Properties</strong></td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td>Connection Type</td>
-                                                <td>REST API Base URL</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td valign="top">Connection URL</td>
-                                                <td><p>The Business Object API URL with PO removed from the end</p>
-                                                    <p>Example</p>
-                                                    <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL : '[OIC Environment Base URL]'"></em>/ic/builder/design/LetterOfCreditPortal<em data-bind="text: user_number() ? user_number() : '[User Number]'"></em>/1.0/resources/data</span></code></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan=100%><strong>Security</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Security Policy</td>
-                                                <td>Basic Authentication</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Username</td>
-                                                <td><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></td>
-                                            </tr>
-                                        </tbody>
-                                    </table> 
+                                <li>Configure the connection properties:
+                                	<ol type="a">
+	                                	<li>From the <strong>Connection Type</strong> list, select <strong>REST API Base URL</strong>.</li>
+	                                	<li><p>In the <strong>Connection URL</strong> text field, enter the Business Object API URL and remove the "PO" at the end of the URL.</p>
+	                                		<p>For example: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL : '[OIC Environment Base URL]'"></em>/ic/builder/design/LetterOfCreditPortal<em data-bind="text: user_number() ? user_number() : '[User Number]'"></em>/1.0/resources/data</span></code></p>
+	                                	</li>
+	                                	<li>Click <strong>OK</strong>.</li>
+                                	</ol>
                                 </li>
-
+                                <li>Configure the security:
+                                <ol type="a">
+	                                <li>From the <strong>Security Policy</strong> list, select <strong>Basic Authentication</strong>.</li>
+	                                <li>In the <strong>Username</strong> text field, enter 
+	                                <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code>.
+	                                </li>
+	                                <li>Click <strong>OK</strong>.</li>
+                                </ol>
+                                <li>Click <strong>Test</strong>.</li>
+                                <li>Click <strong>Save</strong>.</li>
                             </ol>   
                         </section>
                         <hr>
 
 <!-- ########## PO Event Integration ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">PO Event Integration</h2>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create an Integration</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create a Trigger</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Get VBCS PO</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Get VBCS PO Mapping</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Add a Conditional</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Update VBCS PO</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Update VBCS PO Mapping</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create VBCS PO</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create VBCS PO Mapping</h4>
+                                <h2 id="section_2" role="button" style="text-align: left;">Create the Event Integration</h2> 
+                                <h3 id="section_2" role="button" style="text-align: left;">Create an Integration</h3>
+                                <ol>
+	                                <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>.</li>
+	                                <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
+	                                <li>In the <strong>Select a Style/Pattern</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
+	                                <li>On the <strong>Create New Integration</strong> dialog, configure the integration:
+	                                	<ol type="a">
+		                                	<li><p><strong>What do you want to call your integration?</strong></p>
+		                                		<p>Enter <code class="allow-copy"><spam>ERP PO Event VBCS <em data-bind="text:user_number() || '<your user number>'"></em></spam></code></p>
+		                                	</li>
+		                                	<li><strong>Identifier</strong>: leave the default value (this is the name of the integration in uppercase).</li>
+		                                	<li><p><strong>Version</strong>: leave the default value.</p>
+		                                		<p>(Optional) If you want to change the version number, use the format <code>##.##.####</code>.</p>
+		                                	</li>
+		                                	<li><p><strong>What does this integration do?</strong></p>
+		                                		<p>Enter the following text:</p>
+		                                		<p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration ERP Cloud Adapter Event with the REST adapter to store a purchase order record in the VBCS PO table.</span></code></p>
+		                                	</li>
+		                                	<li><strong>Which package does this integration belong to?</strong>: leave blank.</li>
+	                                	</ol>
+	                                </li>
+	                                <li>Click <strong>Create</strong>.</li>
+                                </ol>                              
+                                <h3 id="section_2" role="button" style="text-align: left;">Create a Trigger</h3>
+                                <ol>
+	                            	<li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            	<li>Type <code class="allow-copy"><span>ERP</span></code> in the <strong>Search</strong> field to find your rest connection.</li>
+								<li><p>Select the connection that starts with <strong>ERP Connection</strong>.</p>
+								<p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
+								</li>
+								<li>Name your endpoint <code class="allow-copy"><span>POEVENT</span></code>.</li>
+								<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span></span>This endpoint subscribes to the purchase order events.</code></li>
+								<li>Click <strong>Next</strong>.</li>
+								<li>In the <strong>Request</strong> tab, configure the request properties:
+									<ol type="a">
+										<li>From the <strong>Configure a Request</strong> options, select <strong>With Business Events</strong>.</li>
+										<li>In the <strong>Business Event For Subscription</strong> type <code class="allow-copy"><span>Purchase</span></code>.</li>
+										<li><p>Select <strong>Purchase Order Event</strong>.</p>
+										<li><p>In the <strong>Filter Expr for Purchase Order Event</strong> field, enter the following expression:</p>
+										<pre class="allow-copy"><code><span>&lt;xpathExpr xmlns:ns0="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/" xmlns:ns2="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/types/"&gt;$eventPayloa d/ns2:result/ns0:Value/ns0:PurchaseOrderLine/ns0:ItemDescription="Lan Cable"&lt;/xpathExpr&gt;
+										</span></code></pre>
+										</li>
+										<li>Click <strong>Next</strong>.
+									</ol>
+								</li>
+								<li>In the <strong>Response</strong> tab, from the <strong>Response Type</strong> options, select <strong>None</strong>.</li>
+								<li><p>Click <strong>Next</strong>.</p>
+									<p>A summary of the properties you configured appears.</p>
+								</li>
+								<li>Review the summary and click <strong>Done</strong>.</li>
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Retrieve the Purchase Order from the Visual Builder Cloud Service Table</h3>
+                                <ol>
+	                                <li>Hover over the outgoing arrow for <strong>POEVENT</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            	<li>Type <code class="allow-copy"><span>VBCS_REST_CON_<em data-bind="text:user_number() || '<your user number>'"></em></span></code> in the <strong>Search</strong> field to find your rest connection.</li>
+								<li><p>Select the REST connection that contains your user number.</p>
+									<p>The <strong>Configure REST Endpoint</strong> wizard appears.</p>
+								</li>
+								<li><p>On the <strong>Basic Info</strong> page, configure the REST endpoint:</p>
+									<ol type="a">
+										<li>Name your endpoint <code class="allow-copy"><span>GETPO</span></code>.</li>
+										<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span>This endpoint retrieves the purchase order information from the Visual Builder Cloud Service tables if the purchase order exists.</code></li>
+										<li>In the <strong>relative resource URI</strong>, enter <code class="allow-copy"><span>/PO</span></code>.</li>
+										<li>In the <strong>action to perform on the endpoint</strong> field, select <strong>GET</strong>.</li>
+										<li><p>In the <strong>options that you want to configure section</strong>, select:</p>
+											<ul>
+												<li>Add and review parameters for this endpoint</li>
+												<li>Configure this endpoint to receive the response</li>
+											</ul>
+										</li>
+										<li>Click <strong>Next</strong>.</li>
+									</ol>
+								</li>
+	                            <li><p>In the <strong>Request Parameters</strong> tab, add a query parameter:</p>
+	                            	<ol type="a">
+		                            	<li>Click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+		                            	<li>In the <strong>Name</strong> column, enter <code>q</code>.</li>
+		                            	<li>From the list in the <strong>Data Type</strong> column, select <strong>string</strong>.</li>
+		                            	<li>Click <strong>Next</strong>.</li>
+	                            	</ol>
+	                            	<p>This query parameter will allow us to search for the purchase order, you can run a search using a query similar to: <code class="allow-copy"><span>https://<oid_host>/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO?q=pOHeaderId=300000074157561</span></code> </p>
+	                            </li>
+	                            <li>In the <strong>Response</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+	"items": [ 
+	{
+		"id": 24,
+		"creationDate": "2019-01-13T23:12:09+00:00", 
+		"lastUpdateDate": "2019-01-13T23:12:09.027+00:00", 
+		"createdBy": "john.doe@example.com", "lastUpdatedBy": "john.doe@example.com", 
+		"pOHeaderId": "300000074157561",
+		"orderNumber": "162180",
+		"procurementBUId": "300000046987012", 
+		"procurementBusinessUnit": "US1 Business Unit", 
+		"supplierId": "300000047414679",
+		"supplier": "Dell Inc.",
+		"soldToLegalEntity": "US1 Legal Entity",
+		"lOCId": null,
+		"links": [
+			{
+				"rel": "self",
+				"href": "https://oic_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24", "name": "PO",
+				"kind": "item",
+				"properties": {
+					"changeIndicator": "ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787 000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C 7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"
+					}
+				},
+				{
+					"rel": "canonical",
+					"href": "https://oic_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+					"name": "PO",
+					"kind": "item" 
+				}
+		]
+	}
+	],
+	"count": 1, 
+	"hasMore": false, 
+	"limit": 25, 
+	"offset": 0, 
+	"links": [
+		{
+			"rel": "self",
+			"href": "https://oic_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO", 
+			"name": "PO",
+			"kind": "collection"
+		} 
+	]
+}                                                                   												
+											</span></code></pre>
+									</li>
+									<li>Click <strong>OK</strong>.</li>
+									<li><p>Click <strong>Next</strong>.</p>		                            
+										<p>A summary of the properties you configured appears.</p>
+									</li>
+									<li>Review the summary and click <strong>Done</strong>.</li>
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Add the Purchase Order Mapping</h3>
+                                <ol>
+	                                <li><p>Click <strong>Map to GETPO</strong>, and then click <img src="img/edit.png" alt="Edit icon" style="height: 18px; width: 18px;"/>.</p></li>
+	                                <li>In the <strong>Target</strong> section, locate the query parameter named <code>q</code>.</li>
+	                                <li>From the <strong>Components</strong> section, drag and drop the <strong>concat</strong> function (located in the <strong>String</strong> category) to the <code>q</code> query parameter.</li>
+	                                <li>Configure the <code>concat</code> function parameters in the <strong>Expression for q</strong> panel:
+	                                	<ol type="a">
+		                                	<li>Set the first parameter to <code class="allow-copy"><span>pOHeaderId</span></code></li>
+		                                	<li>Set the second parameter to <code class="allow-copy"><span>=</span></code></li>
+		                                	<li>From the <strong>Sources</strong> section, drag the <code>POHeaderId</code> element and drop it over the <strong>concat</strong> function.</li>
+		                                	<li>In the <strong>Expression for q</strong> panel, click <img src="img/check.png" alt="Edit icon" style="height: 18px; width: 18px;"/> to save your expression.</li>
+		                                	<li>Click <strong>Validate</strong> to check for errors.</li>
+		                                	<li>Click <strong>Close</strong>.</li>
+		                                	<li>Click <strong>Save</strong>.</li>
+	                                	</ol>
+	                                </li>
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define a Counter Variable</h3>                               
+                            	<ol>
+                                	<li>Hover over the outgoing arrow for <strong>GETPO</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li></li>
+                                	<li>From the <strong>Commonly Used</strong> section, click <img src="img/assign.png" alt="Assign icon" style="height: 18px; width: 18px;".</li>
+                                	<li>In the <strong>Create Action</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>PORecord</span></code>.</li>
+                                	<li><p>Click <strong>Create</strong>.</p>
+                                		<p>The <strong>PORecord</strong> page appears.
+                                	</li>
+                                	<li><p>Click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/> to add a new variable.</p>
+                                	<p>A new row appears in the <strong>Variables</strong> table.</p>
+                                	</li>
+                                	<li>Click the <strong>Variable</strong> column for the new row, and rename the variable to <code class="allow-copy"><span>PORecordCount</span></code>.</li>
+                                	<li>From the list in the <strong>Data Type</strong> column, select <strong>String</strong>.</li>
+                                	<li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to add an expression that assigns a value to the <code>PORecordCount</code> variable.</li>
+                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>count</strong> node and drop it over the <strong>Expression</strong> field.</li>
+                                	<li>Click <strong>Validate</strong>.</li>
+                                	<li>Click <strong>Close</strong> to close the expression builder.</li>
+                                	<li>Click <strong>Close</strong> to close the <strong>PORecord</strong> page.</li>
+                                	<li>Click <strong>Save</strong>.</li>
+								</ol>
+								<h3 id="section_2" role="button" style="text-align: left;">Create a Conditional Flow</h3>
+								<p>We will add the if-else logic for the following pseudo-code:</p>
+								<p><pre style="margin-left: 60px"><code ><span>
+search for PO record based on POHeaderID (implemented in the previous steps) 
+if (count of PORecords in VBCS) = 1
+	Update existing VBCS PO Record
+else
+ 	insert a new PO Record
+								</span></code></pre></p>									                               
+                            	<ol>
+                                	<li>Hover over the outgoing arrow for <strong>PORecordActivity</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                                	<li><p>From the <strong>Commonly Used</strong> section, click <img src="img/advanced.png" alt="Switch icon" style="height: 18px; width: 18px;"/>.</p>
+	                                	<p>A switch block appears in the <strong>Integration</strong> canvas.</p>
+	                                	<p><img src="img/screenshots/ERP/conditional-flow.png " alt="Switch block." style="width: 300px;"/></p>
+	                                	</li>
+		                            <li><p>Define the if flow (condition 1):</p>
+		                            	<ol type="a">
+			                            	<li>Select condition <strong>1 (Undefined)</strong>.</li>			                            
+			                            	<li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+			                            		<p>The expression builder appears.</p>
+			                            	</li>
+			                            	<li>In the <strong>Expression Name</strong> field, enter <code class="allow-copy"><span>PO record exists in VBCS</span></code>.</li>
+			                            	<li>From the <strong>Source</strong> list in the <strong>Inputs</strong>, drag the <strong>PORecordCount</strong> node and drop it over the first field of the <strong>New Condition</strong>.</li>
+			                            	<li>In the field after the equal sing in the <strong>New Condition</strong>, type <code class="allow-copy"><span>"1"</span></code></li>
+			                            	<li>Click <strong>Validate</strong>.</li>
+			                            	<li>Click <strong>Close</strong>.</li>			                            
+			                            </ol>
+			                        </li>
+			                        <li>Click <strong>Save</strong>.</li>	                            																</ol>
+		                        <h3 id="section_2" role="button" style="text-align: left;">Assign the purchase order ID</h3>		                    
+	                        	<ol>
+		                        	<li>Hover over the outgoing arrow for <strong>condition 1</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            	<li>From the <strong>Commonly Used</strong> section, click <img src="img/assign.png" alt="Assign icon" style="height: 18px; width: 18px;"/>.</li>
+                                	<li>In the <strong>Create Action</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>AssignVBCSPOId</span></code>.</li>	
+                        			<li><p>Click <strong>Create</strong>.</p>
+										<p>The <strong>AssignVBCSPOId</strong> page appears.
+									</li>
+                        			<li><p>Click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/> to add a new variable.</p>
+                                	<p>A new row appears in the <strong>Variables</strong> table.</p>
+                                	</li>
+                                	<li>Click the <strong>Variable</strong> column for the new row, and rename the variable to <code class="allow-copy"><span>VBCSPOId</span></code>.</li>
+                                	<li>From the list in the <strong>Data Type</strong> column, select <strong>String</strong>.</li>
+                                	<li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to add an expression that assigns a value to the <code>VBCSPOId</code> variable.</li>
+                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>id</strong> node and drop it over the <strong>Expression</strong> field.</li>
+                                	<li>Click <strong>Validate</strong>.</li>
+                                	<li>Click <strong>Close</strong> to close the expression builder.</li>
+                                	<li>Click <strong>Close</strong> to close the <strong>AssignVBCSPOId</strong> page.</li>
+                                	<li>Click <strong>Save</strong>.</li>
+		                        </ol>
+    
+                                <h3 id="section_2" role="button" style="text-align: left;">Update the Purchase Order</h3>
+                                <ol>
+		                        	<li>Hover over the outgoing arrow for the assign action and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+		                        	<li>Select the REST connection you created earlier: <strong>VBCS_REST_CON_<em data-bind="text:user_number() || '<your user number>'"></em></strong>.
+		                        	<li><p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
+		                        		<ol type="a">
+											<li>Name your endpoint <code class="allow-copy"><span>UPDATEPO</span></code>.</li>
+											<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span>This endpoint updates the purchase with the VBCS cross reference ID.</code></li>
+											<li>In the <strong>relative resource URI</strong>, enter <code class="allow-copy"><span>/PO/{ID}</span></code>.</li>
+											<li>In the <strong>action to perform on the endpoint</strong> field, select <strong>PATCH</strong>.</li>
+											<li><p>In the <strong>options that you want to configure section</strong>, select:</p>
+												<ul>
+													<li>Add and review parameters for this endpoint</li>
+													<li>Configure a request payload for this endpoint</li>
+													<li>Configure this endpoint to receive the response</li>
+												</ul>
+											</li>											
+										</ol>
+									</li>
+									<li>Click <strong>Next</strong>.</li>		                        	
+									</li>
+									<li>In the <strong>Request Parameters</strong> page, click <strong>Next</strong>.</li>
+									
+																		
+	                            <li>In the <strong>Request</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>request payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+"orderNumber": "163521",
+"procurementBUId": "300000046987012", 
+"procurementBusinessUnit": "US1 Business Unit", 
+"supplierId": "300000047414679",
+"supplier": "Dell.",
+"soldToLegalEntity": "US1 Legal Entity",
+"lOCId": 2
+}                                                            												
+											</span></code></pre>
+									</li>									
+								</ol>
+								<li>Click <strong>Next</strong>.</li>
+								</li>	
+									
+								<li>In the <strong>Response</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+	"id": 24,
+	"creationDate": "2019-01-13T23:12:09+00:00", 
+	"lastUpdateDate": "2019-01-22T16:46:08+00:00", 
+	"createdBy": "john.doe@example.com", 
+	"lastUpdatedBy": "john.doe@example.com", 
+	"pOHeaderId": "300000074157561", 
+	"orderNumber": "163521",
+	"procurementBUId": "300000046987012", 
+	"procurementBusinessUnit": "US1 Business Unit", 
+	"supplierId": "300000047414679",
+	"supplier": "Dell.",
+	"soldToLegalEntity": "300000046973970", 
+	"lOCId": null,
+	"links": [
+		{
+			"rel": "self",
+			"href": "https://oic_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+			"name": "PO",
+			"kind": "item",
+			"properties": {
+				"changeIndicator": 
+"ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A65787 000000001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C 7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870400000000000000078"
+			} 
+		},
+		{
+			"rel": "canonical",
+			"href": "https://oic_host/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/24",
+			"name": "PO",
+			"kind": "item"
+		} 
+	]
+}                                                          												
+											</span></code></pre>
+									</li>
+								</ol>
+									<li><p>Click <strong>Next</strong>.</p>
+									<p>A summary of the properties you configured appears.</p>
+									</li>
+									<li>Review the summary and click <strong>Done</strong>.</li>										
+		                        </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Data Mapping for the Update Action</h3>
+                                <p>A Map action named <strong>Map to UPDATEPO</strong> is automatically created. We'll define this data mapping.</p>
+                                <ol>
+	                                <li>Select the <strong>Map to UPDATEPO</strong> action.</li>
+	                                <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+			                            <p>The <strong>Data Mapping</strong> page appears.</p>
+			                        </li>
+									<li>Define the following mappings:</code>.										                                
+		                                <table>
+	                                        <col width="20%">
+	                                        <thead>
+	                                            <tr class="header">
+	                                                <th><strong>Source</strong></th>
+	                                                <th><strong>Target</strong></th>
+	                                            </tr>
+	                                        </thead>
+	                                        <tbody>
+	                                            <tr class="odd">
+	                                                <td><code>$VBCSPOId</code></td>
+	                                                <td><code>TemplateParameters &#9656; ID</td>
+	                                            </tr>
+	                                            <tr class="even">
+	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; ProcurementBUId</code></td>
+	                                                <td><code>request-wrapper &#9656; procurementBUId</code></td>
+	                                            </tr>
+	                                            <tr class="odd">
+	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; ProcurementBusinessUnit</code></td>
+	                                                <td><code>request-wrapper &#9656; procurementBusinessUnit</code></td>
+	                                            </tr>
+
+	                                            <tr class="even">
+	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; Supplier</code></td>
+	                                                <td><code>request-wrapper &#9656; supplier</code></td>
+	                                            </tr>
+	                                            <tr class="odd">
+	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; SupplierId</code></td>
+	                                                <td><code>request-wrapper &#9656; supplierId</code></td>
+	                                            </tr>
+	                                            <tr class="even">
+	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; HeaderFlexfield &#9656; locId</code></td>
+	                                                <td><code>request-wrapper &#9656; lOCId</td>
+	                                            </tr>
+	                                            </tbody>
+	                                    </table> 
+                                    </li>
+                                    <li>Click <strong>Validate</strong>.</li>
+                                    <li>Click <strong>Close</strong>.</li>	
+                                    <li>Click <strong>Save</strong>.</li>                                
+	                            </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Create Purchase Order</h3>
+                                <p>Let's define the else flow.</p>
+                                <ol>
+	                                <li>Hover over the outgoing arrow for the <strong>Otherwise</strong> condition and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+		                        	<li>Select the REST connection you created earlier: <strong>VBCS_REST_CON_<em data-bind="text:user_number() || '<your user number>'"></em></strong>.
+		                        	<li><p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
+		                        		<ol type="a">
+											<li>Name your endpoint <code class="allow-copy"><span>CREATEPO</span></code>.</li>
+											<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span>This endpoint creates a purchase order in Visual Builder Cloud Service.</code></li>
+											<li>In the <strong>relative resource URI</strong>, enter <code class="allow-copy"><span>/PO</span></code>.</li>
+											<li>In the <strong>action to perform on the endpoint</strong> field, select <strong>POST</strong>.</li>
+											<li><p>In the <strong>options that you want to configure section</strong>, select:</p>
+												<ul>
+													<li>Configure a request payload for this endpoint</li>
+													<li>Configure this endpoint to receive the response</li>
+												</ul>
+											</li>											
+										</ol>
+									</li>
+									<li>Click <strong>Next</strong>.</li>
+									<li>In the <strong>Request Parameters</strong> page, click <strong>Next</strong>.</li>
+									
+																		
+		                            <li>In the <strong>Request</strong> page, configure the following values:</li>
+		                            <ol>
+			                            <li><p>From the <strong>request payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+			                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+										<li>Enter the following JSON sample:
+												<pre class="allow-copy"><code><span>
+{
+	"pOHeaderId": "300000074157551",
+	"orderNumber": "163521",
+	"procurementBUId": "300000046987012",
+	"procurementBusinessUnit": "US1 Business Unit",
+	"supplierId": "300000047414679",
+	"supplier": "Dell Inc.",
+	"soldToLegalEntity": "US1 Legal Entity"
+}	                                            												
+												</span></code></pre>
+										</li>									
+									</ol>
+									<li>Click <strong>Next</strong>.</li>
+									</li>
+									<li>In the <strong>Response</strong> page, configure the following values:</li>
+	                            <ol>
+		                            <li><p>From the <strong>response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
+		                            <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+									<li>Enter the following JSON sample:
+											<pre class="allow-copy"><code><span>
+{
+	"id": 41,
+	"creationDate": "2019-01-22T17:32:24+00:00",
+	"lastUpdateDate": "2019-01-22T17:32:24.027+00:00",
+	"createdBy": "john.doe@example.com",
+	"lastUpdatedBy": "john.doe@example.com",
+	"pOHeaderId": "300000074157551",
+	"orderNumber": "163521",
+	"procurementBUId": "300000046987012",
+	"procurementBusinessUnit": "US1 Business Unit",
+	"supplierId": "300000047414679",
+	"supplier": "Dell Inc.",
+	"soldToLegalEntity": "300000046973970", 
+	"lOCId": null,
+	"links": [ 
+		{
+			"rel": "self",
+			"href": "https://oichost/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/41",
+			"name": "PO",
+			"kind": "item",
+			"properties": {
+				"changeIndicator": 
+"ACED0005737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A657870000 00001770400000001737200106A6176612E6C616E672E446F75626C6580B3C24A296BFB0402000144000576616C75657872 00106A6176612E6C616E672E4E756D62657286AC951D0B94E08B02000078703FF000000000000078"
+			} 
+		},
+		{
+			"rel": "canonical",
+			"href": "https://oichost/ic/builder/design/LetterOfCreditPortal/1.0/resources/data/PO/41", 
+			"name": "PO",
+			"kind": "item"
+		} 
+	]
+}                                              												
+											</span></code></pre>
+									</li>
+									<li><p>Click <strong>Next</strong>.</p>		                            
+										<p>A summary of the properties you configured appears.</p>
+									</li>
+									<li>Review the summary and click <strong>Done</strong>.</li>
+								</ol>	
+	                            </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Data Mapping for the Create Action</h3>
+                                <p>A Map action named <strong>Map to CREATEPO</strong> is automatically created. We'll define this data mapping.</p>
+                                <ol>
+	                                <li>Select the <strong>Map to CREATEPO</strong> action.</li>
+	                                <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+			                            <p>The <strong>Data Mapping</strong> page appears.</p>
+			                        </li>
+			                        <li>Map the source <code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; soldToLegalEntity</code> to the target <code>execute &#9656; request-wrapper &#9656; soldToLegalEntity</code>.</li>
+									<li>Click <strong>Validate</strong>.</li>
+                                    <li>Click <strong>Close</strong>.</li>	
+                                    <li>Click <strong>Save</strong>.</li>                                
+	                            </ol>
                         </section>
                         <hr>
+<!-- ########## Define Tracking Fields ########## -->
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Define Tracking Fields</h2>                        
+                                <ol>
+	                                <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>, and then select <strong>Tracking</strong>.</p>
+	                                <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection" style="width: 200px;"/></p>
+									</li>
+									<li><p>In the <strong>Business Identifiers for Tracking</strong> dialog, configure tracking fields to identify your instance when a purchase order is created in ERP Cloud:</p>
+										<ol type="a">
+											<li>In the <strong>Source</strong> section, select <strong>OrderNumber</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+											<li>Select <strong>POHeaderId</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+											<li>Select <strong>ItemDescription</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+										</ol>
+										<p>The selected fields appear in the <strong>Tracking Fields</strong> table.</p>
+									</li> 
+									<li>Click <strong>Save</strong>.</li> 
+									<li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
+                                </ol>
+                        </section>
+                        <hr>  
 <!-- ########## Activate PO Event Integration ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Activate PO Event Integration</h2>
-                        </section>
-                        <hr>                        
+                                <h2 id="section_2" role="button" style="text-align: left;">Activate the Event Integration</h2>
+                                <ol>	                              
+	                                <li>On the <strong>Integrations</strong> page, locate your integration (named <strong>ERP PO EVENT VBCS <em data-bind="text:user_number() || '<your user number>'"></em></strong>).</li>
+									<li><p>Turn on the slider button.</p>
+										<p>The <strong>Activate Integration</strong> dialog appears.</p>							
+									</li>
+									<li><p>Select the <strong>Oracle Recommends</strong> option.</p>
+										<p>This option sends your mappings to the recommendations engine which uses this information to suggest you mappings for similar integrations.</p>
+									</li>
+									<li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
+										<p>Typically this options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
+									</li>
+									<li><p>Click <strong>Activate</strong>.</p>
+										<p>Typically the activation completes in a few seconds. If the activation succeeds a confirmation message appears at the top of the page.</p>
+									</li>
+	                            </ol>
+                        </section> 
+                        <hr>                                             
 <!-- ########## Create ERP PO ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Create ERP Cloud PO</h2>
+                                <h2 id="section_2" role="button" style="text-align: left;">Create a Purchase Order in ERP Cloud</h2>
+                                <ol>
+	                                <li>Log in to the ERP Cloud as <code class="allow-copy"><span>casey.brown</span></code> with the credentials we provided you.</li>
+	                                <li>Select the <strong>Procurement</strong> tab.</li>
+	                                <li>Click <strong>Purchase Orders</strong>.</li>
+	                                <li>Select the <strong>Tasks</strong> tab.</li>
+	                                <li>Click <strong>Create Order</strong>.</li>
+	                                <li>In the <strong>Supplier</strong> field, enter <code class="allow-copy"><span>Dell Inc.</span></code>.</li>
+	                                <li>For the rest of the fields, leave the default value.</li>
+	                                <li>Click <strong>Create</strong>.</li>
+	                                <li>On the <strong>Purchase Order</strong> page, in the <strong>Additional Information</strong> section, edit the row in the <strong>Lines</strong> table and set the following values:
+	                                	<ul>
+		                                	<li><strong>Type</strong>: select <strong>Goods</strong>.</li>
+		                                	<li><strong>Description</strong>: enter the same unique value that you chose when you configured the ERP adapter PO Event, and that you used in the xpath expression.</li>
+		                                	<li><strong>Category Name</strong>: enter <code class="allow-copy"><span>Computer Supplies</span></code>.</li>
+		                                	<li><strong>Quantity UOM</strong>: select 1.</li>
+		                                	<li><strong>Price</strong>: enter <code class="allow-copy"><span>5.00</span></code>.</li>
+	                                	</ul>
+	                                </li>
+	                                <li>Click <strong>Submit</strong> to create the purchase order.</li>
+	                                <li>Write down the order number.</li>
+	                                <li>Select the <strong>Tasks</strong> tab.</li>
+	                                <li>Select <strong>Manage Order</strong>.</li>
+	                                <li>Search for you order using the order number you wrote down, and then wait for the <strong>Status</strong> field to change to <strong>Open</strong>.</li>
+	                                <li>In <strong>Oracle Integration</strong>, select <strong>Monitoring</strong> from the <strong>Navigation</strong> menu, and then select <strong>Tracking</strong>.</li>
+	                                <li>In the <strong>Search</strong> field, enter your order number.</li>
+	                                <li>Click the instance that appears as the result of the search.</li>
+									<li><p>Verify that the flow completed successfully.</p>
+										<p>Notice that because this is a new purchase order record that doesn't exist in Visual Builder Cloud Service, the condition will resolve to the <strong>Otherwise</strong> flow path.</p>
+									</li>
+									<li>Click <strong>Close</strong>.</li>
+									<li>Click <img src="img/home.png" alt="Home icon" style="height: 19px; width: 19px;"/>.</li>
+									<li>Click <strong>Visual Builder</strong>.</li>
+									<li>Select the <strong>Business Objects</strong> tab.</li>
+									<li>Click the <strong>PO</strong> object, verify that a new record was created.</li>
+	                            </ol>
+	                            <p>You just completed the first flow of this use case.</p>
                         </section>
                         <hr>
 <!-- ########## View Tracking Information ########## -->
