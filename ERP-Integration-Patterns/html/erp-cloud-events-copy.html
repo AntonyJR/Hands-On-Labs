@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Published date: September 2019 -->
+        <!-- Template date: September 2019 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="ERP Cloud Events Lab">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+		<!-- Use an imperative verb in the title. -->
+        <title>Oracle Integration - ERP Cloud Events Lab</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="ERP Cloud Events Lab">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--link rel="stylesheet" href="css/normalize.min.css"-->
+        <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+        <script type="text/javascript" src="./js/libs/require/require.js"></script>
+		<script type="text/javascript" src="./js/app.js"></script> 
+		<link rel="stylesheet" href="css/copy-button.css">
+        <script src="js/copytoclipboard.js"></script>  
+        
+    </head>
+    <body>
+
+        <div id="content" style="margin-top:5px">
+
+            <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+			<!-- Use an imperative verb in the title. -->
+			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration  - ERP Cloud Events Lab</h1>
+			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
+
+            <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+                <div class="navbackwide border-right"><!-- --></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar"><!-- -->
+                    <div class="left-nav-tut"><!-- -->
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div  id="navbar" class="left-nav-w"><!-- -->
+                            <div id="toc" class="tocify"><!-- --></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bookContainer">
+                    <article>
+<!-- ########## Before You Begin ########## -->						
+                        <section>
+							<h2>Before You Begin</h2>
+
+                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
+							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
+
+                            <h3>OIC Environment</h3>
+							<p>Select your <strong>OIC Environment</strong>:&nbsp;
+								<select data-bind="options: availableOICEnvironments,
+									optionsText: 'name',
+									value: selectedOICEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+							</p>
+                            <p><label>Enter your <a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>                         
+
+                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                            
+                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                            
+                            <p>Your OIC Password will be provided by your lab facilitator.</p>
+
+                            <h3>ERP Cloud Environment</h3>
+                            <p>Select your <strong>ERP Cloud Environment</strong>:&nbsp;
+								<select data-bind="options: availableAppEnvironments,
+									optionsText: 'name',
+									value: selectedAppEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+                            </p>
+                            <p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your App Environment]'"></em></span></code></p>
+                            <p><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your ERP Cloud Environment]'"></em></span></code></p>
+                            <p>Your ERP Cloud Password will be provided by your lab facilitator.</p>
+						</section>
+						<hr>
+<!-- ########## Background ########## -->
+                        <section>
+	                        <h2>Background</h2>
+							<p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, HCM Cloud, Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify connectivity by handling the underlying complexities of connecting to applications using industry-wide best practices. You only need to create a connection that provides minimal connectivity information for each system.</p>
+						</section>
+						<hr>
+<!-- ########## Use Case ########## -->
+                        <section>
+	                        <h2>Use Case</h2>
+							<p>This use case explores the use of Oracle Integration to subscribe to Oracle ERP Cloud Events and push the relevant event information to downstream systems. As part of the lab you would be building the below use case scenario.</p>
+							<ul>
+								<li>User creates a Purchase Order(PO) in ERP Cloud and a PO event is raised (Flow1).</li>
+								<li>Oracle Integration subscribes to the PO event, transforms and pushes the relevant information to a custom table (VBCS) (Flow1).</li>
+								<li>User attaches Letter of Credit (LOC) information to the PO record from the VBCS Web App (Flow2).</li>
+								<li>PO Record in ERP Cloud is updated with the LOC information in ERP cloud (Flow2).</li>
+							</ul>
+							<p> The following diagram illustrates the proposed interaction between the systems involved in this use case. There 2 flows to complete this use case.</p>
+
+							<p><img src="img/screenshots/integration/Purchase-Order-Real-Time-Synchronization.png" width="600px"/></p>
+						</section>
+						<hr>
+<!-- ########## Sign In ########## -->
+                        <section>    
+                            <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
+							<p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+
+                            <ol>
+								<li><p>Open a browser to the <strong>OIC URL</strong>.
+									<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC User Name</strong>.</p>
+									<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+								</li>
+								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
+									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+								</li>
+                                <li><p>Click <strong>Home</strong>.</p>
+                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
+                                </li>  
+							</ol>
+							<p>You are now logged in and ready to use Oracle Integration.</p>
+                        </section>
+                        <hr>                        
+<!-- ########## Documents ########## -->
+						<section>    
+							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
+							<p>You will find additional documents and assets needed to complete this lab below.</p>
+							<ul>
+                                <li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide</a></li>
+                                <li>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
+                                    </div>                                    
+                                </li>
+								<li><a href="../assets/events-lab/XpathExpr.txt" download>XpathExpr.txt</a></li>
+								&nbsp;
+							</ul>
+						</section>
+                        <hr> 
+<!--
+                        <section> 
+                            <h2 id="section_2" role="button" style="text-align: left;">Prepare VBCS LOC App</h2>
+                            <h4 id="section_2" role="button" style="text-align: left;">Import a VBCS App</h4>
+                            <ol>
+                                <li>
+                                    <p>Download your Letter of Credit App.</p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access the download
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
+                                    </div>                                    
+                                </li>
+								<li><p>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Visual Builder</strong>, and then select <strong>Visual Applications</strong>.</p>
+									<p>This is where you create Visual Builder Apps. Depending on previous activity in your environment you may already have some Visual Builder Apps listed. If you do, just ignore them, we will import our own.</p>
+								</li>
+								<li>Click <strong>Import</strong>.</li>
+                                <li>Click <strong>Application from file</strong>.</li>
+								<li>Import the VBCS App you downloaded and click <strong>Import</strong>.</li>						
+                            </ol>   
+                            <h4 id="section_2" role="button" style="text-align: left;">Business Object API</h4>
+                                                        <ol>
+								<li><p>Open your VBCS App.</p>
+									<p>The app contains a Web Application and several Business Objects.</p>
+                                </li>
+                                <li>Click <img src="img/bo.png" alt="Business Objects icon" style="height: 15px; width: 15px;"/> to view the Business Objects.</li>
+                                <li>Click <strong>PO</strong> to select the PO Business Object.</li>
+                                <li>Click <strong>Endpoints</strong> then expand <strong>Resource APIs</strong> to view the PO Business Object API.</li>
+                                <li><p>Click <img src="img/vbcs-copy.png" alt="Copy icon" style="height: 15px; width: 15px;"/> on <strong>Data</strong> <strong>Development</strong> to copy the the Business Object URL.</p>
+                                    <p>You will use this URL in the next section to create an Integration Connection to the Business Object API.</p>
+                                </li>
+                                <li>Click <img src="img/vbcs-home.png" alt="Home icon" style="height: 15px; width: 15px;"/> then <img src="img/home.png" alt="Home icon" style="height: 15px; width: 15px;"/> to return to the Oracle Integration Home page.</li>
+                            </ol>   
+                        </section>
+						<hr>
+
+                        <section> 
+                            <h2 id="section_2" role="button" style="text-align: left;">Create VBCS Connection</h2>
+                            <ol>
+								<li>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Integrations</strong>, and then select <strong>Connections</strong>.</li>
+                                <li>Click <strong>Create</strong>.</li>                                
+                                <li>Search for and select the <strong>REST</strong> Adaptor, then click <strong>Select</strong>.</li>
+                                <li>Create the Connection with the following, then click <strong>Create</strong>.
+                                    <table>
+                                        <col width="20%">
+                                        <thead>
+                                            <tr class="header">
+                                                <th><strong>Field</strong></th>
+                                                <th><strong>Entry</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td>Name</td>
+                                                <td><code class="allow-copy"><span>VBCS REST <em data-bind="text: user_number() ? user_number() : '[User Number]'"></em></span></code></td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td>Role</td>
+                                                <td>Invoke</td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </li>
+                                <li>Configure the Connection with the following, then click <strong>Test</strong> and <strong>Save</strong>.
+                                    <table>
+                                        <col width="20%">
+                                        <thead>
+                                            <tr class="header">
+                                                <th><strong>Field</strong></th>
+                                                <th><strong>Entry</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan=100%><strong>Connection Properties</strong></td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <td>Connection Type</td>
+                                                <td>REST API Base URL</td>
+                                            </tr>
+                                            <tr class="even">
+                                                <td valign="top">Connection URL</td>
+                                                <td><p>The Business Object API URL with PO removed from the end</p>
+                                                    <p>Example</p>
+                                                    <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL : '[OIC Environment Base URL]'"></em>/ic/builder/design/LetterOfCreditPortal<em data-bind="text: user_number() ? user_number() : '[User Number]'"></em>/1.0/resources/data</span></code></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan=100%><strong>Security</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Security Policy</td>
+                                                <td>Basic Authentication</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Username</td>
+                                                <td><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></td>
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                </li>
+
+                            </ol>   
+                        </section>
+                        <hr>
+
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">PO Event Integration</h2>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create an Integration</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create a Trigger</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Get VBCS PO</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Get VBCS PO Mapping</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Add a Conditional</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Update VBCS PO</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Update VBCS PO Mapping</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create VBCS PO</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create VBCS PO Mapping</h4>
+                        </section>
+                        <hr>
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Activate PO Event Integration</h2>
+                        </section>
+                        <hr>                        
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Create ERP Cloud PO</h2>
+                        </section>
+                        <hr>
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Review Tracking</h2>
+                        </section>
+                        <hr>
+
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">LOC Update Integration</h2>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create an Integration</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create a Trigger</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Update ERP PO</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Update ERP PO Mapping</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Response Mapping</h4>
+                        </section>
+                        <hr>
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Activate LOC Integration</h2>
+                        </section>
+                        <hr>                        
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Copy Swagger URL</h2>
+                        </section>
+                        <hr>                        
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Update VBCS LOC App</h2>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create Service Connection</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Add Action</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Create Service Connection</h4>
+                        </section>
+                        <hr>                        
+
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>
+                                <h4 id="section_2" role="button" style="text-align: left;">Add PO LOC</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Review Tracking</h4>
+                                <h4 id="section_2" role="button" style="text-align: left;">Review PO LOC</h4>
+                        </section>
+                        <hr>                        
+                    -->
+                    </article>
+                </div>
+                <br class="clearfloat">
+				<br class="clearfloat">
+            </div>
+        </div>
+        <!--close main--> 
+        <!--end content-->
+        <div class="footer-container ">	        
+            <div> 
+            	<img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+                <footer class="footer-list">
+                    <ul>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>                        
+                    </ul>
+                </footer>
+            </div>
+            <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+        </div>
+        <!-- OBE Dialog Box code 10/15/2018 -->
+        <!-- DO NOT ALTER THE CODE BELOW   -->
+        <!--div id="lpModal" class="modal">
+            <!-- Modal hdr and body -->
+            <!--div id="obe_dialog" class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close">  
+                        <span class="close">&times;</span>
+                    </a>
+                    <h1>Associated Learning Paths</h1>
+                </div>
+                <div id="dialog-content" >
+                </div>
+                <div id="dialog-close" class="closeBtn">
+                    <a href="#" class="close2">  
+                        <p class="close2"> 
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                        </p>
+                    </a>  
+                </div>
+            </div>   
+        </div-->
+        <!-- END OBE Dialog Box code -->
+    </body>
+</html>
