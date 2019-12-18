@@ -84,6 +84,25 @@
                             <p>Your ERP Cloud Password will be provided by your lab facilitator.</p>
 						</section>
 						<hr>
+<!-- ########## Resources ########## -->
+						<section>    
+							<h2 id="section_1" role="button" style="text-align: left;">Resources</h2>
+							<p>These are the additional documents and assets the you will need to complete this lab:</p>
+							<ul>
+                                <li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide (PDF version)</a></li>
+                                <li>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download.
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
+                                    </div>                                    
+                                </li>
+								<li><a href="../assets/events-lab/XpathExpr.txt" download>XpathExpr.txt</a></li>
+								&nbsp;
+							</ul>
+						</section>
+						<hr> 						
 <!-- ########## Background ########## -->
                         <section>
 	                        <h2>Background</h2>
@@ -128,28 +147,9 @@
 							<p>You are now logged in and ready to use Oracle Integration.</p>
                         </section>
                         <hr>                        
-<!-- ########## Documents ########## -->
-						<section>    
-							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
-							<p>You will find additional documents and assets needed to complete this lab below.</p>
-							<ul>
-                                <li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide</a></li>
-                                <li>
-                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                        Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download
-                                    </div>
-                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
-                                        <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
-                                    </div>                                    
-                                </li>
-								<li><a href="../assets/events-lab/XpathExpr.txt" download>XpathExpr.txt</a></li>
-								&nbsp;
-							</ul>
-						</section>
-						<hr> 
 <!-- ########## Prepare Your VBCS App ########## -->
                         <section> 
-                            <h2 id="section_2" role="button" style="text-align: left;">Prepare VBCS LOC App</h2>
+                            <h2 id="section_2" role="button" style="text-align: left;">Prepare Your VBCS LOC App</h2>
                             <h4 id="section_2" role="button" style="text-align: left;">Import a VBCS App</h4>
                             <ol>
                                 <li>
@@ -168,7 +168,7 @@
                                 <li>Click <strong>Application from file</strong>.</li>
 								<li>Import the VBCS App you downloaded and click <strong>Import</strong>.</li>						
                             </ol>   
-                            <h4 id="section_2" role="button" style="text-align: left;">Business Object API</h4>
+                            <h4 id="section_2" role="button" style="text-align: left;">Access the Business Object API</h4>
                                                         <ol>
 								<li><p>Open your VBCS App.</p>
 									<p>The app contains a Web Application and several Business Objects.</p>
@@ -185,7 +185,7 @@
 						<hr>
 <!-- ########## Create VBCS Connection ########## -->
                         <section> 
-                            <h2 id="section_2" role="button" style="text-align: left;">Create VBCS Connection</h2>
+                            <h2 id="section_2" role="button" style="text-align: left;">Create the VBCS Connection</h2>
                             <ol>
 								<li>From the <strong>Home</strong> page’s <strong>Navigation menu</strong>, select <strong>Integrations</strong>, and then select <strong>Connections</strong>.</li>
                                 <li>Click <strong>Create</strong>.</li>                                
@@ -288,7 +288,7 @@
 								</li>
 								<li>Review the summary and click <strong>Done</strong>.</li>
                                 </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Retrieve the Purchase Order from the Visual Builder Cloud Service Table</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Retrieve the Purchase Order</h3>
                                 <ol>
 	                                <li>Hover over the outgoing arrow for <strong>POEVENT</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
 	                            	<li>Type <code class="allow-copy"><span>VBCS_REST_CON_<em data-bind="text:user_number() || '<your user number>'"></em></span></code> in the <strong>Search</strong> field to find your rest connection.</li>
@@ -445,7 +445,7 @@ else
 			                            </ol>
 			                        </li>
 			                        <li>Click <strong>Save</strong>.</li>	                            																</ol>
-		                        <h3 id="section_2" role="button" style="text-align: left;">Assign the purchase order ID</h3>		                    
+		                        <h3 id="section_2" role="button" style="text-align: left;">Assign the Purchase Order ID</h3>		                    
 	                        	<ol>
 		                        	<li>Hover over the outgoing arrow for <strong>condition 1</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
 	                            	<li>From the <strong>Commonly Used</strong> section, click <img src="img/assign.png" alt="Assign icon" style="height: 18px; width: 18px;"/>.</li>
@@ -558,7 +558,7 @@ else
 									</li>
 									<li>Review the summary and click <strong>Done</strong>.</li>										
 		                        </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Define the Data Mapping for the Update Action</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Update Action's Data Mapping</h3>
                                 <p>A Map action named <strong>Map to UPDATEPO</strong> is automatically created. We'll define this data mapping.</p>
                                 <ol>
 	                                <li>Select the <strong>Map to UPDATEPO</strong> action.</li>
@@ -607,7 +607,7 @@ else
                                     <li>Click <strong>Close</strong>.</li>	
                                     <li>Click <strong>Save</strong>.</li>                                
 	                            </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Create Purchase Order</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Create a Purchase Order</h3>
                                 <p>Let's define the else flow.</p>
                                 <ol>
 	                                <li>Hover over the outgoing arrow for the <strong>Otherwise</strong> condition and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
@@ -697,7 +697,7 @@ else
 									<li>Review the summary and click <strong>Done</strong>.</li>
 								</ol>	
 	                            </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Define the Data Mapping for the Create Action</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Create Action's Data Mapping</h3>
                                 <p>A Map action named <strong>Map to CREATEPO</strong> is automatically created. We'll define this data mapping.</p>
                                 <ol>
 	                                <li>Select the <strong>Map to CREATEPO</strong> action.</li>
@@ -934,7 +934,7 @@ else
 									</ol>
 								</li>
                                 </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Define the Mapping for the ERP Purchase Order</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the ERP Purchase Order Mapping</h3>
                                 <ol>
 	                                <li>Select the <strong>Map to changePO</strong> action.</li>
 	                                <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
@@ -995,7 +995,7 @@ else
                         </section>                        
 <!-- ########## Activate the Integration ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Activate LOC Integration</h2>
+                                <h2 id="section_2" role="button" style="text-align: left;">Activate the LOC Integration</h2>
                                 <ol>	                              
 	                                <li>On the <strong>Integrations</strong> page, locate your integration (named <strong>ERP PO Proxy <em data-bind="text:user_number() || '<your user number>'"></em></strong>).</li>
 									<li><p>Turn on the slider button.</p>
@@ -1093,8 +1093,8 @@ else
                         <hr>                        
 <!-- ##########  ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>                                                             
-                                <h3 id="section_2" role="button" style="text-align: left;">Add PO LOC</h3>
+                                <h2 id="section_2" role="button" style="text-align: left;">Run the VBCS LOC App</h2>                                                             
+                                <h3 id="section_2" role="button" style="text-align: left;">Add the PO LOC</h3>
                                 <ol>
 	                                <li><p>Click <img src="img/vb-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>.</p>
 	                                	<p>The web application opens up in a separate web browser. We have provided you a basic web app for you to test the end-to-end flow.</p>
@@ -1114,7 +1114,7 @@ else
 	                                	<p>An instance is created.</p>
 	                                </li>
 	                            </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Review Tracking</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Review the Tracking</h3>
                                 <ol>
 	                                <li>In <strong>Oracle Integration</strong>, in the <strong>Navigation</strong> menu, select <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select <strong>Tracking</strong>.</li>
 	                                <li>Click the <strong>Order Number</strong> and confirm that the flow was successfully completed. The flow will be gree, to indicate that it ran successfully.</li>
@@ -1124,7 +1124,7 @@ else
 	                                </li>
 	                                <li>Open the new instance, note that the if condition was true so the resulting flow updated the purchase order in Visual Builder Cloud Service.</li>
                                 </ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Review PO LOC</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Review the PO LOC</h3>
                                 <ol>
 	                                <li>In <strong>Oracle Integration</strong>, in the <strong>Navigation</strong> menu, select <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select <strong>Tracking</strong>.</li>
 	                                <li>Click the <strong>Order Number</strong> and confirm that the flow was successfully completed. The flow will be gree, to indicate that it ran successfully.</li>
@@ -1134,12 +1134,9 @@ else
 	                                </li>
 	                                <li>Open the new instance, note that the if condition was true so the resulting flow updated the purchase order in Visual Builder Cloud Service.</li>
 	                                <li>Go back to the <strong>PO List</strong> page in your web application, note that the <strong>LOCId</strong> field was updated.</li>
-                                </ol>   
-                        </section>
-                        <hr>                        
-						<section>
-							<p>You just finished defining and testing the second flow, an end-to-end flow to capture the purchase order events and update the corresponding letter of credit identifier in the Visual Builder Cloud Service web application.
-						</section>
+                                </ol> 
+                                <p>You just finished defining and testing the second flow, an end-to-end flow to capture the purchase order events and update the corresponding letter of credit identifier in the Visual Builder Cloud Service web application.</p>  
+                        </section>                        							
                     </article>
                 </div>
                 <br class="clearfloat">
