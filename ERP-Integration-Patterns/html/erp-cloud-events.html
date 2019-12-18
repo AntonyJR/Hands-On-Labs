@@ -176,10 +176,10 @@
                                 <li>Click <img src="img/bo.png" alt="Business Objects icon" style="height: 15px; width: 15px;"/> to view the Business Objects.</li>
                                 <li>Click <strong>PO</strong> to select the PO Business Object.</li>
                                 <li>Click <strong>Endpoints</strong> then expand <strong>Resource APIs</strong> to view the PO Business Object API.</li>
-                                <li><p>Click <img src="img/vbcs-copy.png" alt="Copy icon" style="height: 15px; width: 15px;"/> on <strong>Data</strong> <strong>Development</strong> to copy the the Business Object URL.</p>
+                                <li><p>Click <img src="img/vbcs-copy.png" alt="Copy icon" style="height: 19px; width: 19px;"/> on <strong>Data</strong> <strong>Development</strong> to copy the the Business Object URL.</p>
                                     <p>You will use this URL in the next section to create an Integration Connection to the Business Object API.</p>
                                 </li>
-                                <li>Click <img src="img/vbcs-home.png" alt="Home icon" style="height: 15px; width: 15px;"/> then <img src="img/home.png" alt="Home icon" style="height: 19px; width: 19px;"/> to return to the Oracle Integration Home page.</li>
+                                <li>Click ☰ and then click <img src="img/home.png" alt="Home icon" style="height: 19px; width: 19px;"/> to return to the Oracle Integration Home page.</li>
                             </ol>   
                         </section>
 						<hr>
@@ -564,45 +564,20 @@ else
 	                                <li>Select the <strong>Map to UPDATEPO</strong> action.</li>
 	                                <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
 			                            <p>The <strong>Data Mapping</strong> page appears.</p>
-			                        </li>
-									<li>Define the following mappings:</code>.										                                
-		                                <table>
-	                                        <col width="70%">
-	                                        <thead>
-	                                            <tr class="header">
-	                                                <th><strong>Source</strong></th>
-	                                                <th><strong>Target</strong></th>
-	                                            </tr>
-	                                        </thead>
-	                                        <tbody>
-	                                            <tr class="odd">
-	                                                <td><code>$VBCSPOId</code></td>
-	                                                <td><code>TemplateParameters &#9656; ID</td>
-	                                            </tr>
-	                                            <tr class="even">
-	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; ProcurementBUId</code></td>
-	                                                <td><code>request-wrapper &#9656; procurementBUId</code></td>
-	                                            </tr>
-	                                            <tr class="odd">
-	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; ProcurementBusinessUnit</code></td>
-	                                                <td><code>request-wrapper &#9656; procurementBusinessUnit</code></td>
-	                                            </tr>
-
-	                                            <tr class="even">
-	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; Supplier</code></td>
-	                                                <td><code>request-wrapper &#9656; supplier</code></td>
-	                                            </tr>
-	                                            <tr class="odd">
-	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; SupplierId</code></td>
-	                                                <td><code>request-wrapper &#9656; supplierId</code></td>
-	                                            </tr>
-	                                            <tr class="even">
-	                                                <td><code>onEvent &#9656; getPurchaseOrderResponse &#9656; result &#9656; &lt;sequence&gt; &#9656; Value &#9656; HeaderFlexfield &#9656; locId</code></td>
-	                                                <td><code>request-wrapper &#9656; lOCId</td>
-	                                            </tr>
-	                                            </tbody>
-	                                    </table> 
-                                    </li>
+			                        </li>			                       											                        
+									<li><p>Define the following mappings:</p>
+										<ol>
+											<li>In the <strong>Target</strong> section, expand the <strong>request-wrapper</strong> element.</li>
+					                        <li>Map the <strong>$VBCSPOId</strong> element in the <strong>Sources</strong> section, to the <strong>ID</strong> element in the <strong>Target</strong> section.</li>
+					                        <li>In the <strong>Sources</strong> section, expand the <strong>onEvent</strong> element, then expand the <strong>getPurchaseOrderResponse</strong> element, then expand the <strong>&lt;sequence&gt;</strong> element, and then expand the <strong>Value</strong> element.</li>
+											<li>In the <strong>Target</strong> section, expand the <strong>rTemplateParameters</strong> element.</li>
+											<li>Map the <strong>ProcurementBUId</strong> element in the <strong>Sources</strong> section, to the <strong>procurementBUId</strong> element in the <strong>Target</strong> section.</li>
+											<li>Map the <strong>ProcurementBusinessUnit</strong> element in the <strong>Sources</strong> section, to the <strong>procurementBusinessUnit</strong> element in the <strong>Target</strong> section.</li>
+											<li>Map the <strong>Supplier</strong> element in the <strong>Sources</strong> section, to the <strong>supplier</strong> element in the <strong>Target</strong> section.</li>
+											<li>Map the <strong>SupplierId</strong> element in the <strong>Sources</strong> section, to the <strong>supplierId</strong> element in the <strong>Target</strong> section.</li>
+											<li>In the  <strong>Sources</strong> section, expand the <strong>HeaderFlexfield</strong> element, then map the <strong>locId</strong> element to the <strong>lOCId</strong> element in the <strong>Target</strong> section.</li>
+										</ol>										                                
+									</li>
                                     <li>Click <strong>Validate</strong>.</li>
                                     <li>Click <strong>Close</strong>.</li>	
                                     <li>Click <strong>Save</strong>.</li>                                
@@ -963,7 +938,7 @@ else
 	                                	<p>The <strong>Map to POProxy</strong> action appears on the <strong>Integration</strong> canvas.</p>
 	                                </li>
 	                                <li>In the <strong>Sources</strong> section, expand the <strong>$changePO</strong> element, then expand the <strong>changePurchaseOrderResponse</strong> element, and then expand the <strong>result</strong> element.</li>
-									<li>In the <strong>Target</strong> section, expand the <strong>executeResponse</strong>.</li>
+									<li>In the <strong>Target</strong> section, expand the <strong>executeResponse</strong> element.</li>
 									<li>Map the <strong>POHeaderId</strong> element in the <strong>Sources</strong> section, to the <strong>poHeaderId</strong> element in the <strong>Target</strong> section.</li>
 									<li>Map the <strong>OrderNumber</strong> element in the <strong>Sources</strong> section, to the <strong>orderNumber</strong> element in the <strong>Target</strong> section.</li>
 									<li>Map the <strong>SoldtoLegalEntityId</strong> element in the <strong>Sources</strong> section, to the <strong>soldToLegalEntityId</strong> element in the <strong>Target</strong> section.</li>
