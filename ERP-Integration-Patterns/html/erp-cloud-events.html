@@ -421,7 +421,7 @@
 								<p><pre style="margin-left: 60px"><code ><span>
 search for PO record based on POHeaderID (implemented in the previous steps) 
 if (count of PORecords in VBCS) = 1
-	Update existing VBCS PO Record
+	update existing VBCS PO Record
 else
  	insert a new PO Record
 								</span></code></pre></p>									                               
@@ -1093,13 +1093,53 @@ else
                         <hr>                        
 <!-- ##########  ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>                                
+                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>                                                             
                                 <h3 id="section_2" role="button" style="text-align: left;">Add PO LOC</h3>
+                                <ol>
+	                                <li><p>Click <img src="img/vb-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>.</p>
+	                                	<p>The web application opens up in a separate web browser. We have provided you a basic web app for you to test the end-to-end flow.</p>
+	                                <li>
+	                                <li><p>Click <strong>LC List Page</strong>.</p> 
+	                                	<p>All the letters of credit appear in a table.</p>
+	                                </li>
+	                                <li>Click <strong>Back</strong>.</li>
+	                                <li><p>Click <strong>PO List Page</strong>.</p> 
+	                                	<p>Notice that the PO record that we created in ERP Cloud was also synchronized to Visual Builder Cloud Service.</p>
+	                                </li>
+	                                <li>Click <strong>Edit PO</strong>.</li>
+	                                <li>On the <strong>Edit PO</strong> page, from the <strong>LOC Id</strong> list, select the letter of credit ID.</li>
+	                                <li>For the rest of the fields, leave the default value.</li>
+	                                <li><p>Click <strong>Change Order</strong>.</p>
+	                                	<p>This button invokes the <code class="allow-copy"><spam>ERP PO Proxy <em data-bind="text:user_number() || '<your user number>'"></em></spam></code> Integration flow.</p>
+	                                	<p>An instance is created.</p>
+	                                </li>
+	                            </ol>
                                 <h3 id="section_2" role="button" style="text-align: left;">Review Tracking</h3>
+                                <ol>
+	                                <li>In <strong>Oracle Integration</strong>, in the <strong>Navigation</strong> menu, select <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select <strong>Tracking</strong>.</li>
+	                                <li>Click the <strong>Order Number</strong> and confirm that the flow was successfully completed. The flow will be gree, to indicate that it ran successfully.</li>
+	                                <li>In your web application, in the <strong>Edit PO Page</strong>, notice an information message that confirms that the payload was submitted to the Proxy Integration flow.</li>
+	                                <li><p>In <strong>Oracle Integration</strong>, in the <strong>Tracking</strong> page, notice that a new instance was created.</p>
+	                                	<p>This instance was created because when LOCId was updated in ERP Cloud, it triggered the Flow 1 again. The purchase order event is raised when creating or updating records.</p>
+	                                </li>
+	                                <li>Open the new instance, note that the if condition was true so the resulting flow updated the purchase order in Visual Builder Cloud Service.</li>
+                                </ol>
                                 <h3 id="section_2" role="button" style="text-align: left;">Review PO LOC</h3>
+                                <ol>
+	                                <li>In <strong>Oracle Integration</strong>, in the <strong>Navigation</strong> menu, select <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select <strong>Tracking</strong>.</li>
+	                                <li>Click the <strong>Order Number</strong> and confirm that the flow was successfully completed. The flow will be gree, to indicate that it ran successfully.</li>
+	                                <li>In your web application, in the <strong>Edit PO Page</strong>, notice an information message that confirms that the payload was submitted to the Proxy Integration flow.</li>
+	                                <li><p>In <strong>Oracle Integration</strong>, in the <strong>Tracking</strong> page, notice that a new instance was created.</p>
+	                                	<p>This instance was created because when LOCId was updated in ERP Cloud, it triggered the Flow 1 again. The purchase order event is raised when creating or updating records.</p>
+	                                </li>
+	                                <li>Open the new instance, note that the if condition was true so the resulting flow updated the purchase order in Visual Builder Cloud Service.</li>
+	                                <li>Go back to the <strong>PO List</strong> page in your web application, note that the <strong>LOCId</strong> field was updated.</li>
+                                </ol>   
                         </section>
                         <hr>                        
-
+						<section>
+							<p>You just finished defining and testing the second flow, an end-to-end flow to capture the purchase order events and update the corresponding letter of credit identifier in the Visual Builder Cloud Service web application.
+						</section>
                     </article>
                 </div>
                 <br class="clearfloat">
