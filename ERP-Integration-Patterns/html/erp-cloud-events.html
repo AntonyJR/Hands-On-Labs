@@ -410,7 +410,7 @@
                                 	<li>Click the <strong>Variable</strong> column for the new row, and rename the variable to <code class="allow-copy"><span>PORecordCount</span></code>.</li>
                                 	<li>From the list in the <strong>Data Type</strong> column, select <strong>String</strong>.</li>
                                 	<li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to add an expression that assigns a value to the <code>PORecordCount</code> variable.</li>
-                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>count</strong> node and drop it over the <strong>Expression</strong> field.</li>
+                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>count</strong> element and drop it over the <strong>Expression</strong> field.</li>
                                 	<li>Click <strong>Validate</strong>.</li>
                                 	<li>Click <strong>Close</strong> to close the expression builder.</li>
                                 	<li>Click <strong>Close</strong> to close the <strong>PORecord</strong> page.</li>
@@ -438,7 +438,7 @@ else
 			                            		<p>The expression builder appears.</p>
 			                            	</li>
 			                            	<li>In the <strong>Expression Name</strong> field, enter <code class="allow-copy"><span>PO record exists in VBCS</span></code>.</li>
-			                            	<li>From the <strong>Source</strong> list in the <strong>Inputs</strong>, drag the <strong>PORecordCount</strong> node and drop it over the first field of the <strong>New Condition</strong>.</li>
+			                            	<li>From the <strong>Source</strong> list in the <strong>Inputs</strong>, drag the <strong>PORecordCount</strong> element and drop it over the first field of the <strong>New Condition</strong>.</li>
 			                            	<li>In the field after the equal sing in the <strong>New Condition</strong>, type <code class="allow-copy"><span>"1"</span></code></li>
 			                            	<li>Click <strong>Validate</strong>.</li>
 			                            	<li>Click <strong>Close</strong>.</li>			                            
@@ -459,7 +459,7 @@ else
                                 	<li>Click the <strong>Variable</strong> column for the new row, and rename the variable to <code class="allow-copy"><span>VBCSPOId</span></code>.</li>
                                 	<li>From the list in the <strong>Data Type</strong> column, select <strong>String</strong>.</li>
                                 	<li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to add an expression that assigns a value to the <code>VBCSPOId</code> variable.</li>
-                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>id</strong> node and drop it over the <strong>Expression</strong> field.</li>
+                                	<li>In the expression builder, from the <strong>Source</strong> tree in the <strong>Input</strong> section, drag the <strong>id</strong> element and drop it over the <strong>Expression</strong> field.</li>
                                 	<li>Click <strong>Validate</strong>.</li>
                                 	<li>Click <strong>Close</strong> to close the expression builder.</li>
                                 	<li>Click <strong>Close</strong> to close the <strong>AssignVBCSPOId</strong> page.</li>
@@ -818,7 +818,7 @@ else
 		                                	</li>
 		                                	<li><p><strong>What does this integration do?</strong></p>
 		                                		<p>Enter the following text:</p>
-		                                		<p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration REST Adapter to create a REST to SOAP proxy for ERP Cloud webservices.</span></code></p>
+		                                		<p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration REST Adapter to create a REST to SOAP proxy for ERP Cloud web services.</span></code></p>
 		                                	</li>
 		                                	<li><strong>Which package does this integration belong to?</strong>: leave blank.</li>
 	                                	</ol>
@@ -901,35 +901,202 @@ else
 								</li>
 								<li>Delete the <strong>Map to POPROXY</strong> action.</li>
 								</ol>
-                                <h3 id="section_2" role="button" style="text-align: left;">Update ERP PO</h3>
-                                <h3 id="section_2" role="button" style="text-align: left;">Update ERP PO Mapping</h3>
-                                <h3 id="section_2" role="button" style="text-align: left;">Response Mapping</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Update the Purchase Order in the ERP</h3>
+                                <ol>
+	                                <li>Hover over the outgoing arrow for <strong>POPROXY</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                            	<li>Type <code class="allow-copy"><span>ERP Conn<em data-bind="text:user_number() || '<your user number>'"></em></span></code> in the <strong>Search</strong> field.</li>
+								<li><p>Select the connection named <strong>“ERP Conn 96 06”</strong>.</p>
+									<p>This connection was created for you for this lab.</p>
+									<p>The <strong>Configure REST Endpoint</strong> wizard appears.</p>
+								</li>
+								<li><p>On the <strong>Basic Info</strong> page, configure the REST endpoint:</p>
+									<ol type="a">
+										<li>Name your endpoint <code class="allow-copy"><span>CHANGEPO</span></code>.</li>
+										<li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span>This endpoint updates the purchase order.</code></li>
+									</ol>
+								</li>
+								<li><p>On the <strong>Actions</strong> page, select <strong>Query, Create, Update or Delete Information</strong>.</p>
+									<p>This is to consume the Purchase Order V2 Service.</p>
+								</li>
+								<li><p>On the <strong>Operations</strong> page:
+									</p>
+									<ol type="a">
+										<li>From the <strong>Browse by</strong> list, select <strong>Services</strong>.</li>
+										<li>In the <strong>Select a Service</strong> field, type <strong>Purchase</strong> to search for the purchase order.</li>
+										<li><p>Select <strong>PurchaseOrderService</strong>.</p>
+											<p>To confirm that you have selected the right PurchaseOrderService service, verify that the list of operations contains the operation <strong>acknowledgePurchaseOrder</strong>.</p>
+										</li>
+										<li>From the <strong>operation to perform</strong> list, select <strong>changePurchaseOrder</strong>.</li>
+										<li>Click <strong>Next</strong>.</li>
+										<li><p>Review the summary and click <strong>Done</strong>.</p>
+											<p>An action configured to invoke the <strong>changePO</strong> operation and a <strong>Map to changePO</strong> map appear on the <strong>Integration</strong> canvas. The map is empty.</p>
+										</li>										
+									</ol>
+								</li>
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Mapping for the ERP Purchase Order</h3>
+                                <ol>
+	                                <li>Select the <strong>Map to changePO</strong> action.</li>
+	                                <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+			                            <p>The <strong>Data Mapping</strong> page appears.</p>
+			                        </li>
+									<li>In the <strong>Sources</strong> section, expand the <strong>execute</strong> element, and then expand the <strong>request-wrapper</strong> element.</li>
+									<li>In the <strong>Target</strong> section, expand the <strong>changePurchaseOrder</strong> element, and then expand the <strong>changeOrderEntry</strong> element.</li>
+									<li>Map the <strong>pOHeaderId</strong> element in the <strong>Sources</strong> section, to the <strong>pOHeaderId</strong> element in the <strong>Target</strong> section.</li>
+									<li>In the <strong>Target</strong> section, expand the <strong>changeOrderEntry</strong> element, and right-click the <strong>ChangeOrderDescription</strong> element.</li>
+									<li><p>Select <strong>Create Target Node</strong>.</p>
+										<p>The expression builder dialog appears.</p>
+									</li> 
+									<li>In the expression builder dialog, enter <code class="allow-copy"><span>‘Update of LOCId’</span></code>.</li>
+									<li>Click <img src="img/check.png" alt="Edit icon" style="height: 18px; width: 18px;"/> to save your expression.</li>
+									<li>In the <strong>Target</strong> section, expand the <strong>HeaderFlexField</strong> element.</li>
+									<li>Map the <strong>id</strong> element in the <strong>Sources</strong> section, to the <strong>customerPo</strong> element in the <strong>Target</strong> section.</li>
+									<li>Map the <strong>lOCId</strong> element in the <strong>Sources</strong> section, to the <strong>locId</strong> element in the <strong>Target</strong> section.</li>
+									<li>Click <strong>Validate</strong> to check for errors.</li>
+		                            <li>Click <strong>Close</strong>.</li>
+		                            <li>Click <strong>Save</strong>.</li>								
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Define the Response Mapping</h3>
+                                <ol>
+	                                <li>Hover over the outgoing arrow for <strong>changePO</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+	                                <li><p>From the <strong>Actions</strong> section, select <strong>Map</strong>.</p>
+	                                	<p>The <strong>Map to POProxy</strong> action appears on the <strong>Integration</strong> canvas.</p>
+	                                </li>
+	                                <li>In the <strong>Sources</strong> section, expand the <strong>$changePO</strong> element, then expand the <strong>changePurchaseOrderResponse</strong> element, and then expand the <strong>result</strong> element.</li>
+									<li>In the <strong>Target</strong> section, expand the <strong>executeResponse</strong>.</li>
+									<li>Map the <strong>POHeaderId</strong> element in the <strong>Sources</strong> section, to the <strong>poHeaderId</strong> element in the <strong>Target</strong> section.</li>
+									<li>Map the <strong>OrderNumber</strong> element in the <strong>Sources</strong> section, to the <strong>orderNumber</strong> element in the <strong>Target</strong> section.</li>
+									<li>Map the <strong>SoldtoLegalEntityId</strong> element in the <strong>Sources</strong> section, to the <strong>soldToLegalEntityId</strong> element in the <strong>Target</strong> section.</li>
+									<li>Map the <strong>ChangeOrderNumber</strong> element in the <strong>Sources</strong> section, to the <strong>changeOrderNumber</strong> element in the <strong>Target</strong> section.</li>
+									<li>Map the <strong>RequestStatus</strong> element in the <strong>Sources</strong> section, to the <strong>requestStatus</strong> element in the <strong>Target</strong> section.</li>
+									<li>Click <strong>Validate</strong> to check for errors.</li>
+		                            <li>Click <strong>Close</strong>.</li>
+	                            </ol>
                         </section>
                         <hr>
+<!-- ########## Define Tracking Fields ########## -->
+                        <section>
+                                <h2 id="section_2" role="button" style="text-align: left;">Define Tracking Fields</h2>                        
+                                <ol>
+	                                <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>, and then select <strong>Tracking</strong>.</p>
+	                                <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection" style="width: 200px;"/></p>
+									</li>
+									<li><p>In the <strong>Business Identifiers for Tracking</strong> dialog, configure tracking fields to identify your instance when a purchase order is created in ERP Cloud:</p>
+										<ol type="a">
+											<li>In the <strong>Source</strong> section, select <strong>OrderNumber</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+											<li>Select <strong>id</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+											<li>Select <strong>IOCid</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+										</ol>
+										<p>The selected fields appear in the <strong>Tracking Fields</strong> table.</p>
+									</li> 
+									<li>Click <strong>Save</strong>.</li> 
+									<li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
+                                </ol>
+                        </section>                        
 <!-- ########## Activate the Integration ########## -->
                         <section>
                                 <h2 id="section_2" role="button" style="text-align: left;">Activate LOC Integration</h2>
-                        </section>
-                        <hr>                        
+                                <ol>	                              
+	                                <li>On the <strong>Integrations</strong> page, locate your integration (named <strong>ERP PO Proxy <em data-bind="text:user_number() || '<your user number>'"></em></strong>).</li>
+									<li><p>Turn on the slider button.</p>
+										<p>The <strong>Activate Integration</strong> dialog appears.</p>							
+									</li>
+									<li><p>Select the <strong>Oracle Recommends</strong> option.</p>
+										<p>This option sends your mappings to the recommendations engine which uses this information to suggest you mappings for similar integrations.</p>
+									</li>
+									<li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
+										<p>Typically this options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
+									</li>
+									<li><p>Click <strong>Activate</strong>.</p>
+										<p>Typically the activation completes in a few seconds. If the activation succeeds a confirmation message appears at the top of the page.</p>
+									</li>									
+	                            </ol>
+                        </section> 
+                        <hr>                               
 <!-- ##########  ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Copy Swagger URL</h2>
+                                <h2 id="section_2" role="button" style="text-align: left;">Obtain the Swagger URL</h2>
+                                <ol>
+	                                <li><p>Click <img src="img/how-to-run.png" alt="How to run icon" style="height: 19px; width: 19px;"/> (located next to the activate slider).</p>
+										<p>A box with the a link to the endpoint metadata appears.</p></li>
+									<li><p>Open the <strong>Endpoint URL</strong> in a web browser.</p>
+										<p>The metadata page provides a detailed description for your REST endpoint.</p>
+									</li>
+									<li><p>Copy the Swagger URL from the endpoint metadata description.</p> 
+										<p>In the next section, we'll use the Swagger definition to create a service connection in the Visual Builder Cloud Service web application.</p></li>
+	                            </ol>
                         </section>
                         <hr>                        
 <!-- ########## Update VBCS App ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Update VBCS LOC App</h2>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create Service Connection</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Add Action</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Create Service Connection</h4>
+                                <h2 id="section_2" role="button" style="text-align: left;">Update the Letter of Credit App</h2>
+                                
+                                <h3 id="section_2" role="button" style="text-align: left;">Create Service Connection</h3>
+                                <ol>
+	                                <li>In <strong>Oracle Integration</strong>, click <img src="img/home.png" alt="Home icon" style="height: 19px; width: 19px;"/>.</li>
+									<li>Click <strong>Visual Builder</strong>.</li>
+									<li>From the list of applications, open the <strong>LetterOfCreditPortal<em data-bind="text:user_number() || '<your user number>'"></em></strong> web application.</li>
+									<li>If the <strong>Navigator</strong> menu isn't visible, click <img src="img/expand-navigator.png" alt="Expand Navigator icon" style="height: 19px; width: 19px;"/> located below the <strong>Navigation</strong> menu icon.</li>
+									<li>From the <strong>Navigator</strong> menu, click <img src="img/service-connections.png" alt="Service Connections icon" style="height: 19px; width: 19px;"/>.</li>
+									<li>Click the <strong>+ Service Connection</strong> button to create a new service connection that you will invoke with the click of a button.</li>
+									<li>On the <strong>Create Service Connection</strong> page, click <strong>Define by Specification</strong>.</li>
+									<li>In the <strong>Create Service Connection</strong> dialog, configure the service specification:
+									<ol type="a">
+										<li>From the <strong>API Type</strong> list, select <strong>Swagger</strong>.</li>
+										<li>From the <strong>Service Specification</strong> options, select <strong>Web Address</strong>, and then enter the swagger URL that you copied in the previous section.</li>
+										<li>In the <strong>Service Id</strong> field, enter <code class="allow-copy"><span>POPROXY</span></code>.</li>
+										<li>From the <strong>Authentication Mechanism</strong> list, select <strong>Basic</strong>.</li>
+										<li>In the <strong>Username</strong> and <strong>Password</strong> fields, enter your Oracle Integration credentials.</li>
+										<li>Click <strong>Next</strong>.</li>
+									</ol>
+									<li>In the <strong>Select Endpoints</strong> section, select <strong>PO_PROXY</strong></li>
+									<li><p>Click <strong>Create</strong>.</p>
+										<p>A connection to the endpoint is created.</p>
+									</li>
+	                            </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Add Action</h3>
+                                <ol>
+	                                <li>From the <strong>Navigator</strong> menu, click <img src="img/web-applications.png" alt="Web Applications icon" style="height: 19px; width: 19px;"/>.</li>
+	                                <li>In the <strong>Web Apps</strong> tree, expand <strong>localapp</strong>, then expand  <strong>flows</strong>, and then expand <strong>main</strong>.</li>
+	                                <li><p>Select <strong>editopage</strong>.</p>
+	                                	<p>The <strong>editopage</strong> tab appears.</p>
+	                                </li>
+	                                <li>In the <strong>editopage</strong> tab, click <strong>Change Order</strong>.</li>
+	                                <li>In the <strong>Design</strong> pane, select the <strong>Events</strong> tab.</li>
+	                                <li>Click <strong>+ New Event</strong> and select <strong>Quick Start:'ojAction'</strong> to create a new action chain.</li>
+	                                <li>In the <strong>Id</strong> field, enter <code class="allow-copy"><span>ChangeOrderAction</span></code>.</li>	                                
+                                </ol>
+                                <h3 id="section_2" role="button" style="text-align: left;">Create the Service Connection</h3>
+                                <ol>
+	                                <li>From the <strong>Actions</strong> palette, drag <strong>Call REST Endpoint</strong> to the canvas, and drop it over <img src="img/vb-end.png" alt="End icon" style="height: 19px; width: 19px;"/>.</li>
+	                                <li>In the <strong>Call REST Endpoint</strong> pane, click <strong>Select Endpoint</strong>.</li>
+	                                <li>Configure the service connection that you created earlier.</li>
+	                                <li><p>Click <strong>Select</strong>.</p>
+	                                	<p>The endpoint is now configured to be invoked from the action chain.</p>
+	                                </li>
+	                                <li><p>Select <strong>Parameters</strong>.</p>
+	                                	<p>The mapper page appears.</p>
+	                                </li>
+	                                <li>In the <strong>Sources</strong> tree, expand <strong>Page</strong>.</li>
+	                                <li><p>Map <strong>$poRecord</strong> in the <strong>Sources</strong> section, to <strong>body</strong> in the <strong>Target</strong> section.</p>
+	                                	<p>This maps the <code>editpopage</code> page variables to the interface of the endpoint.</p>
+	                                	<p>An expression is generated based on the mapping you defined. <code>poRecord</code> is a page variable that stores the data from <code>editpopage</code>.</p>
+	                                </li>
+	                                <li><p>Click <strong>Save</strong>.</p>
+	                                	<p>The body parameter now appears marked as <strong>MAPPED</strong>.</p>
+	                                </li>
+	                                <li>From the <strong>Actions</strong> palette, drag <strong>Fire Notifications</strong> to the canvas, and drop it over <img src="img/vb-end.png" alt="End icon" style="height: 19px; width: 19px;"/>.</li>
+									<li>In the <strong>Fire Notification</strong> panel, in the <strong>Message</strong> field, enter a message.</li>
+									<li>From the <strong>Notification Type</strong> list, select <strong>info</strong>.</li>
+                                </ol>
                         </section>
                         <hr>                        
 <!-- ##########  ########## -->
                         <section>
-                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>
-                                <h4 id="section_2" role="button" style="text-align: left;">Add PO LOC</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Review Tracking</h4>
-                                <h4 id="section_2" role="button" style="text-align: left;">Review PO LOC</h4>
+                                <h2 id="section_2" role="button" style="text-align: left;">Run VBCS LOC App</h2>                                
+                                <h3 id="section_2" role="button" style="text-align: left;">Add PO LOC</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Review Tracking</h3>
+                                <h3 id="section_2" role="button" style="text-align: left;">Review PO LOC</h3>
                         </section>
                         <hr>                        
 
