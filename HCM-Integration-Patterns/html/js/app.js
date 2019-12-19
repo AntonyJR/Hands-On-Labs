@@ -78,7 +78,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }      
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("HCM Cloud - zgms", "https://ucf6-zgms-login.oracledemos.com/oam/server/obrareq.cgi?encquery%3DTzDjgDD%2Breh7Kh2XwHtIPXzSJm0MU3vevUL3vpH2ImqlGegbNvNw9i2xDc84tfUZPF0z5BxcaGs7G5Oc3n48%2BAu8%2BEFP9rw%2B%2BuZ8EVoTE4DW1AYm9DMRgBEvtXilLyee3LDpUMhZgqXTMFuPyuB60bCJ8t%2FYL7D3jiHGOqRXzpi7fgfisrdB6uitj9gT0eaIJfObwegvxHNGa%2BDS49mcwmXbJ7bYDrTAU0a7Mq%2FYTJUMeStaRNnOjKDZXhRhiqH%2FJi5gIeISKLQFk6iOb%2FRe78IhO520g6nttGtsrFbqMy0dMrpRFYSrzUqtWNW%2B%2F9Yp7SWWoGhveKwifnSWgtZAHvOSP4KRY%2FVP05OAZpGUVCC8HB1i%2Fp1YH9pNmkfUWKZPeLxHeeQmduAbGNY2THI0ipYUDJogPwnYsXZlOrsyqHyTvkSPfmLg25HmGMEhCOEUT3oUwcQ9bLci106Dl%2FzW3ff%2Fq4ZbEHHRrKYUFvmG9qOrLN0czdPeO%2FlmeI0zPRG%2B%20agentid%3DOraFusionApp_11AG%20ver%3D1%20crmethod%3D2%26cksum%3D07c58bc78d83822b2b1a5a2ebea4dc04e51c5071&ECID-Context=1.005aVptlj9r7Y7tpGcDCif0000mN0002Cr%3BkXjE", "bala.gupta"),
+        new AppEnvironment("HCM Cloud - zgms", "https://ucf6-zgms-fa-ext.oracledemos.com/", "betty.anderson"),
       ]),
       self.selectedAppEnvironment = ko.observable()
 

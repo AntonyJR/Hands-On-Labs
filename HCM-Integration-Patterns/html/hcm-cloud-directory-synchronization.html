@@ -80,6 +80,18 @@
                             <p><strong>HCM Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your App Environment]'"></em></span></code></p>
                             <p><strong>HCM Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your HCM Cloud Environment]'"></em></span></code></p>
                             <p>Your HCM Cloud Password will be provided by your lab facilitator.</p>
+
+                            <h3>FTP Environment</h3>
+                            <p>Select your <strong>FTP Environment</strong>:&nbsp;
+								<select data-bind="options: availableFTPEnvironments,
+									optionsText: 'name',
+									value: selectedFTPEnvironment,
+									optionsCaption: 'Select...'">
+								</select>
+                            </p>
+                            <p><strong>FTP URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : '[Select your FTP Environment]'"></em></span></code></p>
+                            <p><strong>FTP User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : '[Select your FTP Environment]'"></em></span></code></p>
+                            <p>Your FTP Password will be provided by your lab facilitator.</p>                       
                         </section>
                         <hr>
 <!-- ########## Background ########## -->
