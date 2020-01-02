@@ -87,9 +87,8 @@
 <!-- ########## Resources ########## -->
 						<section>    
 							<h2 id="section_1" role="button" style="text-align: left;">Resources</h2>
-							<p>These are the additional documents and assets the you will need to complete this lab:</p>
+							<p>To complete this lab, you will need to download the following additional assets:</p>
 							<ul>
-                                <li><a href="../assets/events-lab/ERP Cloud Events Lab Guide.pdf" download>ERP Cloud Events Lab Guide (PDF version)</a></li>
                                 <li>
                                     <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                         Please enter your user number <a href="#userNumberInput" style="color: red">above</a>  to access your download.
@@ -98,7 +97,6 @@
                                         <a style="color: red"; href="../assets/events-lab/LetterOfCreditPortal.zip"; data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a>
                                     </div>                                    
                                 </li>
-								<li><a href="../assets/events-lab/XpathExpr.txt" download>XpathExpr.txt</a></li>
 								&nbsp;
 							</ul>
 						</section>
@@ -256,10 +254,16 @@
 									<ol type="a">
 										<li>From the <strong>Configure a Request</strong> options, select <strong>With Business Events</strong>.</li>
 										<li>In the <strong>Business Event For Subscription</strong> type <code class="allow-copy"><span>Purchase</span></code>.</li>
-										<li><p>Select <strong>Purchase Order Event</strong>.</p>
-										<li><p>In the <strong>Filter Expr for Purchase Order Event</strong> field, enter the following expression:</p>
-										<pre class="allow-copy"><code><span>&lt;xpathExpr xmlns:ns0="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/" xmlns:ns2="http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/types/"&gt;$eventPayloa d/ns2:result/ns0:Value/ns0:PurchaseOrderLine/ns0:ItemDescription="Lan Cable"&lt;/xpathExpr&gt;
-										</span></code></pre>
+										<li><p>Select <strong>Purchase Order Event</strong>.</p></li>
+
+										<li>
+											<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+												Please enter your user number <a href="#userNumberInput" style="color: red">above</a> for the next step.
+											</div>
+											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+												In the <strong>Filter Expr for Purchase Order Event</strong> field, enter the following expression:
+												<pre class="allow-copy"><code><span><em data-bind="text: '&lt;xpathExpr xmlns:ns0=&#x22;http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/&#x22; xmlns:ns2=&#x22;http://xmlns.oracle.com/apps/prc/po/editDocument/purchaseOrderServiceV2/types/&#x22;&gt;$eventPayload/ns2:result/ns0:Value/ns0:PurchaseOrderLine/ns0:ItemDescription=&#x22;Lan Cable ' + user_number() + '&#x22;&lt;/xpathExpr&gt;'"></em></span></code></pre>												
+											</div>                                    
 										</li>
 										<li>Click <strong>Next</strong>.
 									</ol>
@@ -712,7 +716,7 @@ else
                         <section>
                                 <h2 id="section_2" role="button" style="text-align: left;">Create a Purchase Order in ERP Cloud</h2>
                                 <ol>
-	                                <li>Log in to the ERP Cloud as <code class="allow-copy"><span>casey.brown</span></code> with the credentials we provided you.</li>
+	                                <li>Log in to the ERP Cloud as <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your ERP Cloud Environment]'"></em></span></code> with the ERP Cloud credentials provided by your lab facilitator.</li>
 	                                <li>Select the <strong>Procurement</strong> tab.</li>
 	                                <li>Click <strong>Purchase Orders</strong>.</li>
 	                                <li>Select the <strong>Tasks</strong> tab.</li>
@@ -721,13 +725,22 @@ else
 	                                <li>For the rest of the fields, leave the default value.</li>
 	                                <li>Click <strong>Create</strong>.</li>
 	                                <li>On the <strong>Purchase Order</strong> page, in the <strong>Additional Information</strong> section, edit the row in the <strong>Lines</strong> table and set the following values:
-	                                	<ul>
-		                                	<li><strong>Type</strong>: select <strong>Goods</strong>.</li>
-		                                	<li><strong>Description</strong>: enter the same unique value that you chose when you configured the ERP adapter PO Event, and that you used in the xpath expression.</li>
-		                                	<li><strong>Category Name</strong>: enter <code class="allow-copy"><span>Computer Supplies</span></code>.</li>
-		                                	<li><strong>Quantity UOM</strong>: select 1.</li>
+	                                	<ol type="a">
+											<li><strong>Type</strong>: select <code class="allow-copy"><span>Goods</span></code>.</li>
+
+											<li>
+												<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+													Please enter your user number <a href="#userNumberInput" style="color: red">above</a> for the next step.
+												</div>
+												<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+													<strong>Description</strong>: enter <code class="allow-copy"><span><em data-bind="text: 'Lan Cable ' + user_number()"></em></span></code>.
+												</div>                                    
+											</li>
+
+		                                	<li><strong>Category Name</strong>: select <code class="allow-copy"><span>Computer Supplies</span></code>.</li>
+		                                	<li><strong>Quantity UOM</strong>: enter <code class="allow-copy"><span>1</span></code>.</li>
 		                                	<li><strong>Price</strong>: enter <code class="allow-copy"><span>5.00</span></code>.</li>
-	                                	</ul>
+	                                	</ol>
 	                                </li>
 	                                <li>Click <strong>Submit</strong> to create the purchase order.</li>
 	                                <li>Write down the order number.</li>
