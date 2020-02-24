@@ -5,8 +5,8 @@
     "version" : "v01",
     "title" : "OW_HOL_SWAGGER_GENERATO"
   },
-  "host" : "ucf6-zggf-fa-ext.oracledemos.com",
-  "basePath" : "/crmRestApi/resources/11.13.18.05",
+  "host" : "adc2-zjie-fa-ext.oracledemos.com",
+  "basePath" : "/crmRestApi/resources/latest",
   "schemes" : [ "https" ],
   "paths" : {
     "/subscriptions/{SubscriptionPUID}/child/products/{SubscriptionProductPUID}/child/billLines/{BillLinePUID}" : {
