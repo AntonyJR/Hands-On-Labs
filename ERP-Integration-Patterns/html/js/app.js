@@ -79,8 +79,10 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }      
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("ERP Cloud Purchasing - zgms", "https://ucf6-zgms-fa-ext.oracledemos.com/crmUI/faces/FuseWelcome?fndThemeName=Vision_NewsFeed", "casey.brown"),
-        new AppEnvironment("ERP Cloud Payables - zgms", "https://ucf6-zgms-fa-ext.oracledemos.com/crmUI/faces/FuseWelcome?fndThemeName=Vision_NewsFeed", "bala.gupta"),
+        new AppEnvironment("ERP Cloud Purchasing - zjie", "https://adc2-zjie-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "casey.brown"),
+        new AppEnvironment("ERP Cloud Payables - zjie",   "https://adc2-zjie-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
+        new AppEnvironment("ERP Cloud Purchasing - ziyj", "https://adc4-ziyj-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "casey.brown"),
+        new AppEnvironment("ERP Cloud Payables - ziyj",   "https://adc4-ziyj-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
       ]),
       self.selectedAppEnvironment = ko.observable()
 
