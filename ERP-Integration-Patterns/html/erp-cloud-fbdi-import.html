@@ -1,188 +1,779 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Published date: September 2019 -->
-        <!-- Template date: September 2019 -->
-        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
-        <meta name="contentid" content="ERP Cloud FDBI Import Lab">
-        <meta content="text/html; charset=utf-8" http-equiv="content-type">
-        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
-		<!-- Use an imperative verb in the title. -->
-        <title>Oracle Integration - ERP Cloud FDBI Import Lab</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="robots" content="INDEX, FOLLOW">
-        <meta name="description" content="ERP Cloud FDBI Import Lab">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--link rel="stylesheet" href="css/normalize.min.css"-->
-        <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
-        <link rel="stylesheet" href="css/obe-lite.css">
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/jquery-ui-1.10.4.custom.js"></script>
-        <script src="js/jquery.tocify.jd.js"></script>
-        <script src="js/leftnav.js"></script>
-        <script type="text/javascript" src="./js/libs/require/require.js"></script>
-		<script type="text/javascript" src="./js/app.js"></script> 
-		<link rel="stylesheet" href="css/copy-button.css">
-		<script src="js/copytoclipboard.js"></script>      
-    </head>
-    <body>
+<head>
+    <!-- Published date: September 2019 -->
+    <!-- Template date: September 2019 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="ERP Cloud FDBI Import Lab">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Oracle Integration - ERP Cloud FDBI Import Lab</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="ERP Cloud FDBI Import Lab">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="css/normalize.min.css"-->
+    <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+    <script type="text/javascript" src="./js/libs/require/require.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <link rel="stylesheet" href="css/copy-button.css">
+    <script src="js/copytoclipboard.js"></script>
+</head>
+<body>
 
-        <div id="content" style="margin-top:5px">
+<div id="content" style="margin-top:5px">
 
-            <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
-			<!-- Use an imperative verb in the title. -->
-			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration  - ERP Cloud FBDI Import Lab</h1>
-			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
+    <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+    <!-- Use an imperative verb in the title. -->
+    <h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration  - ERP Cloud FBDI Import Lab</h1>
+    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
 
-            <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
-                <div class="navbackwide border-right"><!-- --></div>
-                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
-                <div id="sidebar"><!-- -->
-                    <div class="left-nav-tut"><!-- -->
-                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
-                        <div  id="navbar" class="left-nav-w"><!-- -->
-                            <div id="toc" class="tocify"><!-- --></div>
-                        </div>
-                    </div>
+    <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+            <div class="left-nav-tut"><!-- -->
+                <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                <div  id="navbar" class="left-nav-w"><!-- -->
+                    <div id="toc" class="tocify"><!-- --></div>
                 </div>
-                <div id="bookContainer">
-                    <article>
-<!-- ########## Before You Begin ########## -->						
-                        <section>
-							<h2>Before You Begin</h2>
-
-                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
-							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
-
-                            <h3>OIC Environment</h3>
-							<p>Select your <strong>OIC Environment</strong>:&nbsp;
-								<select data-bind="options: availableOICEnvironments,
-									optionsText: 'name',
-									value: selectedOICEnvironment,
-									optionsCaption: 'Select...'">
-								</select>
-							</p>
-							<p>Enter your <strong>User Number</strong>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/>&nbsp;<button>OK</button></p>                         
-							<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-							<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
-                            <p>Your OIC Password will be provided by your lab facilitator.</p>
-
-                            <h3>ERP Cloud Environment</h3>
-                            <p>Select your <strong>ERP Cloud Environment</strong>:&nbsp;
-								<select data-bind="options: availableAppEnvironments,
-									optionsText: 'name',
-									value: selectedAppEnvironment,
-									optionsCaption: 'Select...'">
-								</select>
-                            </p>
-                            <p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your App Environment]'"></em></span></code></p>
-                            <p><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your ERP Cloud Environment]'"></em></span></code></p>
-                            <p>Your ERP Cloud Password will be provided by your lab facilitator.</p>
-
-                            <h3>FTP Environment</h3>
-                            <p>Select your <strong>FTP Environment</strong>:&nbsp;
-								<select data-bind="options: availableFTPEnvironments,
-									optionsText: 'name',
-									value: selectedFTPEnvironment,
-									optionsCaption: 'Select...'">
-								</select>
-                            </p>
-                            <p><strong>FTP URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : '[Select your FTP Environment]'"></em></span></code></p>
-                            <p><strong>FTP User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : '[Select your FTP Environment]'"></em></span></code></p>
-                            <p>Your FTP Password will be provided by your lab facilitator.</p>                       
-                        </section>
-<!-- ########## Background ########## -->
-                        <section>
-	                        <h2>Background</h2>
-						</section>
-						<hr>
-<!-- ########## Sign In ########## -->
-                        <section>    
-                            <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
-							<p> Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
-
-                            <ol>
-								<li><p>Open a browser to the <strong>OIC URL</strong>.
-									<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-								</li>
-								<li><p>Enter your <strong>OIC User Name</strong>.</p>
-									<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
-								</li>
-								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
-									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
-								</li>
-                                <li><p>Click <strong>Home</strong>.</p>
-                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
-                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
-                                </li>  
-							</ol>
-							<p>You are now logged in and ready to use Oracle Integration.</p>
-                        </section>
-                        <hr>                        
-<!-- ########## Documents ########## -->
-						<section>    
-							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
-							<p>You will find additional documents and assets needed to complete this lab below.</p>
-							<ul>
-								<li><a href="../assets/fbdi-import-lab/ERP Cloud FBDI Import Lab Guide.pdf" download>ERP Cloud FBDI Import Lab Guide</a></li>
-								<li><a href="../assets/fbdi-import-lab/apinvoiceimport.zip" download>apinvoiceimport.zip</a></li>
-								<li><a href="../assets/fbdi-import-lab/APTEST.PROPERTIES" download>APTEST.PROPERTIES</a></li>
-								<li><a href="../assets/fbdi-import-lab/FailedRecords_ AP_INTERFACE_REJECTIONS.csv" download>FailedRecords_ AP_INTERFACE_REJECTIONS.csv</a></li>
-								<li><a href="../assets/fbdi-import-lab/GSEPayablesStandardInvoiceImportTemplate.xlsm" download>GSEPayablesStandardInvoiceImportTemplate.xlsm</a></li>
-								<li><a href="../assets/fbdi-import-lab/vbcsrestreq.json" download>vbcsrestreq.json</a></li>
-								<li><a href="../assets/fbdi-import-lab/Invoice%20Error%20Handling%20Portal.zip" download> Invoice Handling Portal</a></li>
-								&nbsp;
-							</ul>
-						</section>
-						<hr>  
-<!-- ========================================================================================================================= -->
-                    </article>
-                </div>
-                <br class="clearfloat">
-				<br class="clearfloat">
             </div>
         </div>
-        <!--close main--> 
-        <!--end content-->
-        <div class="footer-container ">	        
-            <div> 
-            	<img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
-                <footer class="footer-list">
+        <div id="bookContainer">
+            <article>
+                <!-- ########## Before You Begin ########## -->
+                <section>
+                    <h2>Before You Begin</h2>
+
+                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                    <p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
+
+                    <h3>OIC Environment</h3>
+                    <p>Select your <strong>OIC Environment</strong>:&nbsp;
+                        <select data-bind="options: availableOICEnvironments,
+                           optionsText: 'name',
+                           value: selectedOICEnvironment,
+                           optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <p>Enter your <strong>User Number</strong>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/>&nbsp;<button>OK</button></p>
+                    <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                    <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                    <p>Your OIC Password will be provided by your lab facilitator.</p>
+
+                    <h3>ERP Cloud Environment</h3>
+                    <p>Select your <strong>ERP Cloud Environment</strong>:&nbsp;
+                        <select data-bind="options: availableAppEnvironments,
+                           optionsText: 'name',
+                           value: selectedAppEnvironment,
+                           optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your App Environment]'"></em></span></code></p>
+                    <p><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your ERP Cloud Environment]'"></em></span></code></p>
+                    <p>Your ERP Cloud Password will be provided by your lab facilitator.</p>
+
+                    <h3>FTP Environment</h3>
+                    <p>Select your <strong>FTP Environment</strong>:&nbsp;
+                        <select data-bind="options: availableFTPEnvironments,
+                           optionsText: 'name',
+                           value: selectedFTPEnvironment,
+                           optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <p><strong>FTP URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : '[Select your FTP Environment]'"></em></span></code></p>
+                    <p><strong>FTP User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : '[Select your FTP Environment]'"></em></span></code></p>
+                    <p>Your FTP Password will be provided by your lab facilitator.</p>
+                </section>
+                <!-- ########## Background ########## -->
+                <section>
+                    <h2>Background</h2>
+                    <p> This use case uses Oracle Integration (OIC) and ERP Cloud Import Bulk Data services with File-based Data Integration (FBDI) compliant files.
+                        The goal is to import ERP data such as account payable invoices using processes in ERP Cloud.</p>
+                    <p>The typical flow for this use case is:</p>
+                    <ol>
+                        <li>The user uploads an FBDI-based account payable invoice file to an FTP server.</li>
+                        <li>Oracle Integration imports the account payable invoice file to the ERP Cloud.</li>
+                        <li>Oracle Integration receives callback from the ERP Cloud.</li>
+                        <li>Oracle Integration displays the rejected invoices in a VBCS web application.</li>
+                    </ol>
+                    <p>This lab will explore the ERP adapter and Visual Builder Cloud Service features, and show you how to perform the following tasks:</p>
                     <ul>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>                        
+                        <li>Integrate your ERP with Oracle Integration.</li>
+                        <li>Read files from an FTP server.</li>
+                        <li>Synchronize account payable invoices to the ERP Cloud.</li>
+                        <li>Receive a callback from the Oracle ERP Cloud.</li>
+                        <li>Build a dashboard with Visual Builder Cloud Service to monitor exceptions or import rejections.</li>
                     </ul>
-                </footer>
-            </div>
-            <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+                </section>
+                <hr>
+                <!-- ########## Sign In ########## -->
+                <section>
+                    <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
+                    <p> Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+
+                    <ol>
+                        <li><p>Open a browser to the <strong>OIC URL</strong>.
+                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                        </li>
+                        <li><p>Enter your <strong>OIC User Name</strong>.</p>
+                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+                        </li>
+                        <li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
+                            <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+                        </li>
+                        <li><p>Click <strong>Home</strong>.</p>
+                            <p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                            <img src="img/screenshots/integration/home-page.png" width="600px"/>
+                        </li>
+                    </ol>
+                    <p>You are now logged in and ready to use Oracle Integration.</p>
+                </section>
+                <hr>
+                <!-- ########## Documents ########## -->
+                <section>
+                    <h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
+                    <p>This lab uses the following documents and assets:</p>
+                    <ul>
+                        <!--li><a href="../assets/fbdi-import-lab/ERP Cloud FBDI Import Lab Guide.pdf" download>ERP Cloud FBDI Import Lab Guide</a></li-->
+                        <li><a href="../assets/fbdi-import-lab/apinvoiceimport.zip" download>apinvoiceimport.zip</a></li>
+                        <li><a href="../assets/fbdi-import-lab/APTEST.PROPERTIES" download>APTEST.PROPERTIES</a></li>
+                        <li><a href="../assets/fbdi-import-lab/FailedRecords_ AP_INTERFACE_REJECTIONS.csv" download>FailedRecords_ AP_INTERFACE_REJECTIONS.csv</a></li>
+                        <li><a href="../assets/fbdi-import-lab/GSEPayablesStandardInvoiceImportTemplate.xlsm" download>GSEPayablesStandardInvoiceImportTemplate.xlsm</a></li>
+                        <li><a href="../assets/fbdi-import-lab/vbcsrestreq.json" download>vbcsrestreq.json</a></li>
+                        <li><a href="../assets/fbdi-import-lab/Invoice%20Error%20Handling%20Portal.zip" download> Invoice Handling Portal</a></li>
+                        &nbsp;
+                    </ul>
+                </section>
+                <hr>
+                <!-- ########## CREATE THE INTEGRATION ########## -->
+                <section>
+                    <h2 id="section_3" role="button" style="text-align: left;">Create the integration</h2>
+                    <p> </p>
+
+                    <ol>
+                        <li>On the Oracle Integration <strong>Home</strong> page, click <strong>Integrations</strong>.</li>
+                        <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
+                        <li>Select <strong>Scheduled Orchestration</strong>.</li>
+                        <li><p>Enter the following values:</p>
+                            <ul>
+                                <li><strong>Name</strong>: <code class="allow-copy"><span>FBDI APIINV ERP <em data-bind="text:user_number() || 'your_user_number'"></em> class_id</span></code></li>
+                                <li><strong>Identifier</strong>: leave the default value.
+                                    <p>The default value is the name of the integration in upper case.</p>
+                                </li>
+                                <li><strong>Version</strong>: leave the default value (01.00.0000).
+                                    <p>To change this value enter a version number in the format ##.##.####</p>
+                                </li>
+                                <li><strong>Description:</strong>
+                                    <code class="allow-copy"><span>This integration demonstrates the use of OIC’s ERP Cloud Adapter with the FTP adapter to retrieve an AP Invoices file, import it to the ERP Cloud, and receive a call back from the ERP Cloud.</span></code>
+                                </li>
+                                <li><strong>Package</strong>: leave blank.</li>
+                            </ul>
+                        </li>
+                        <li><p>Click <strong>Create</strong>.</p>
+                            <p>The <strong>Integration</strong> canvass appears.</p>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## GET THE FILE FROM AN FTP SERVER ########## -->
+                <section>
+                    <h2 id="section_4" role="button" style="text-align: left;">Get the file from an FTP server</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>Schedule</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Select the FTP connection (FTP Conn 96 06).</li>
+                        <li>In the <strong>Oracle Adapter Endpoint Configuration Wizard</strong> name your endpoint <code class="allow-copy"><span>downloadInvoiceZIP</span></code>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>From the <strong>Operation</strong> list, select <strong>Download File</strong>.</li>
+                        <li>From the <strong>Transfer Mode</strong> options, select <strong>ASCII</strong>.</li>
+                        <li><p>Enter the following values</p>
+                            <ol type="a">
+                                <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/&lt;student_id&gt;/in</span></code></li>
+                                <li><strong>File Name</strong>: <code class="allow-copy"><span>apinvoiceimport.zip</span></code></li>
+                                <li><p><strong>Download Directory</strong>: <code class="allow-copy"><span>/apinvoicezip</span></code></p>
+                                    <p>This is the staging directory. It is created automatically.</p>
+                                </li>
+                            </ol>
+                            <p>
+                                <i>Note:</i> verify that the input directory exists (The FTP information is provided as a text file).
+                                If it doesn't exist, create a folder named after your student ID in the folder
+                                <code>upload/public_ftp/</code>. Then create the subfolders <code>in</code> and <code>out</code>.
+                            </p>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</p>
+                            <p>The FTP endpoint and a Mapping action appear in the <strong>Integration</strong> canvas.</p>
+                        </li>
+                        <li><p>Delete the Mapping action.</p>
+                            <p>This action isn't needed because we aren't passing parameters between the Schedule action and the downloadInvoiceZIP action.</p>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## UNZIP THE FILE ########## -->
+                <section>
+                    <h2 id="section_5" role="button" style="text-align: left;">Unzip the file</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>downloadInvoiceZIP</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Select <strong>Stage File</strong>.</li>
+                        <li>In the <strong>Configure Stage File Action</strong> wizard, name your action <code class="allow-copy"><span>unzipFile</span></code>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>In the <strong>Configure Operation</strong> page, from the <strong>Stage File Operation</strong> list, select <strong>Unzip File</strong>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Zip File Name</strong> field.</li>
+                        <li><p>In the <strong>Expression Builder</strong>, enter the following expression:</p>
+                            <p><code class="allow-copy"><span>$downloadInvoiceZIP/nsmpr3:DownloadFileToICSResponse/nsmpr1:DownloadResponse/nsmpr1:ICSFiles/nsmpr2:Properties/nsmpr2:filename</span></code></p>
+                        </li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Zip File Directory</strong> field.</li>
+                        <li><p>In the <strong>Expression Builder</strong>, enter the following expression:</p>
+                            <p><code class="allow-copy"><span>$downloadInvoiceZIP/nsmpr3:DownloadFileToICSResponse/nsmpr1:DownloadResponse/nsmpr1:ICSFiles/nsmpr2:Properties/nsmpr2:filename</span></code></p>
+                        </li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Unzip</strong> field.</li>
+                        <li><p>In the <strong>Expression Builder</strong>, enter the following expression:</p>
+                            <p><code class="allow-copy"><span>/apinvoice</span></code></p>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## LIST THE FILES ########## -->
+                <section>
+                    <h2 id="section_6" role="button" style="text-align: left;">List the files</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>unzipFile</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Select <strong>Stage File</strong>.</li>
+                        <li>In the <strong>Configure Stage File Action</strong> wizard, name your action <code class="allow-copy"><span>listInvoiceFiles</span></code>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>In the <strong>Configure Operation</strong> page, from the <strong>Stage File Operation</strong> list, select <strong>List Files</strong>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to List Files From</strong> field.</li>
+                        <li><p>In the <strong>Expression Builder</strong>, enter the following expression:</p>
+                            <p><code class="allow-copy"><span>/apinvoice</span></code></p>
+                        </li>
+                        <li>In the <strong>File Pattern to Use</strong> field, enter <code class="allow-copy"><span>*.csv</span></code></li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## ITERATE THE INVOICE FILES ########## -->
+                <section>
+                    <h2 id="section_7" role="button" style="text-align: left;">Iterate the invoice files</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>listInvoiceFiles</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Enter <code class="allow-copy"><span>For Each</span></code> and then select <strong>For Each</strong>.</li>
+                        <li>In the <strong>For Each</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>IterateThroughFile</span></code>.</li>
+                        <li><p>In the <strong>Repeating Element</strong> field, enter the following expression:</p>
+                            <p><code class="allow-copy"><span>$listInvoiceFiles/nsmpr5:ListFilesResponse/nsmpr3:ListFilesResponse/nsmpr3:FileList/nsmpr2:ICSFile</span></code></p>
+                        </li>
+                        <li>In the <strong>Current Element Name</strong> field, enter <code class="allow-copy"><span>currentFile</span></code>.</li>
+                        <li>Click <strong>Create</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## ADD A SWITCH CONDITION ########## -->
+                <section>
+                    <h2 id="section_8" role="button" style="text-align: left;">Add a switch condition</h2>
+                    <p></p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>IterateThroughFile</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li><p>Enter <code class="allow-copy"><span>switch</span></code> and then select <strong>switch</strong>.</p>
+                            <p>Two flows are added to the main flow.</p>
+                        </li>
+                    </ol>
+                </section>
+                <!-- ########## DEFINE THE IF FLOW ########## -->
+                <section>
+                    <h2 id="section_9" role="button" style="text-align: left;">Define the if flow</h2>
+                    <p></p>
+
+                    <!-- ########## DEFINE THE CONDITION ########## -->
+                    <section>
+                        <h3 id="section_10" role="button" style="text-align: left;">Define the condition</h3>
+                        <ol>
+                            <li>Select condition <strong>1 (Undefined)</strong>.</li>
+                            <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                                <p>The expression builder appears.</p>
+                            </li>
+                            <li>In the <strong>Expression Name</strong> field, enter <code class="allow-copy"><span>Filename APInvoiceInterface</span></code>.</li>
+                            <li>In the <strong>Source</strong> section, expand <strong>currentFile</strong>, then expand <strong>ICSFile</strong>, and then expand <strong>Properties</strong>.</li>
+                            <li>From the <strong>Source</strong> list in the <strong>Inputs</strong> section, drag the <strong>filename</strong> element and drop it over the first field of the <strong>New Condition</strong>.</li>
+                            <li>In the field after the equal sing, type <code class="allow-copy"><span>"ApInvoicesInterface.csv"</span></code>.</li>
+                            <li>Click <strong>Validate</strong>.</li>
+                            <li>Click <strong>Close</strong>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <!-- ########## READ THE INVOICE ########## -->
+                    <section>
+                        <h3 id="section_11" role="button" style="text-align: left;">Read the invoice</h3>
+                        <p> </p>
+                        <ol>
+                            <li>Hover over the outgoing arrow for the <strong>IF</strong> condition and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                            <li>Name your action: <code class="allow-copy"><span>readAPInvoiceInterfaceFilter</span>.</code></li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Read Entire File</strong>.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, select the filename element.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Read From</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, select the directory element.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Schema Options</strong> page, select <strong>Create a new schema from a CSV file</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Format Definition</strong> page, click the <strong>Browse</strong> button next to the <strong>New Delimited Data File</strong> field.</li>
+                            <li>Locate and select the <code class="allow-copy"><span>ApInvoicesInterface.csv</span></code> from the ERP Lab Artifacts.</li>
+                            <li>In the <strong>Record Name</strong> field, enter <code class="allow-copy"><span>APINVInterfaceRN</span></code>.</li>
+                            <li>In the <strong>Record Set Name</strong> field, enter <code class="allow-copy"><span>APINVInterfaceRSN</span></code>.</li>
+                            <li>From the <strong>Field Delimiter</strong> list, select <strong>Comma (,)</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <!-- ########## WRITE THE INVOICE ########## -->
+                    <section>
+                        <h3 id="section_12" role="button" style="text-align: left;">Write the invoice</h3>
+                        <p> </p>
+                        <ol>
+                            <li>Hover over the outgoing arrow for the <strong>readAPInvoiceInterfaceFilter</strong> condition and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                            <li>Name your action: <code class="allow-copy"><span>writeInvoiceInterfaceFile</span>.</code></li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Write File</strong>.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, select the FDBI filename element.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Read From</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, enter the stage the directory where to write the transformed FBDI file:  <code class="allow-copy"><span>“/apinvoicetransformed"</span></code>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Schema Options</strong> page, select <strong>Create a new schema from CSV file</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Format Definition</strong> page, click the <strong>Browse</strong> button next to the <strong>New Delimited Data File</strong> field.</li>
+                            <li>Locate and select the <code class="allow-copy"><span>ApInvoicesInterface.csv</span></code> from the ERP Lab Artifacts.</li>
+                            <li>In the <strong>Record Name</strong> field, enter <code class="allow-copy"><span>APINVInterfaceRN</span></code>.</li>
+                            <li>In the <strong>Record Set Name</strong> field, enter <code class="allow-copy"><span>APINVInterfaceRSN</span></code>.</li>
+                            <li>From the <strong>Field Delimiter</strong> list, select <strong>Comma (,)</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <!-- ########## MAP THE DATA ########## -->
+                    <section>
+                        <h3 id="section_13" role="button" style="text-align: left;">Map the data</h3>
+                        <p> </p>
+                        <ol>
+                            <li>Hover over the outgoing arrow for the <strong>readAPInvoiceInterfaceFilter</strong> condition and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>map</span></code> in the <strong>Search</strong> field, and select <strong>Map</strong>.</li>
+                            <li>In the <strong>Target</strong> section, expand the <strong>Write</strong> element.</li>
+                            <li>Right click the <strong>APINVInterfaceRSN</strong> element, and select <strong>Create Target node</strong>.</li>
+                            <li>From the main toolbar, click <strong>Advanced</strong>.</li>
+                            <li>Click <strong>Toggle Functions</strong> to display the <strong>Components</strong> palette.</li>
+                            <li>Expand the <strong>XSLT</strong> section, and then expand the <strong>Output</strong> element.</li>
+                            <li><p>Drag and drop <strong>copy-of</strong> to the <strong>APINVInterfaceRSN</strong> element in the <strong>Target</strong> section.</p>
+                                <p>Notice that the <strong>copy-of</strong> element appears above the <strong>APINVInterfaceRSN</strong> element.
+                                    The <strong>copy-of</strong> element copies the complete structure from the course to the target, instead of mapping each element individually.
+                                    This is useful when the source and target are same.</p>
+                            </li>
+                            <li>Expand the <strong>$readAPInvoiceInterfaceFile</strong> element in the <strong>Sources</strong> section, and then expand the <strong>ReadResponse</strong> element.</li>
+                            <li>Map the <strong>APIMVInterfacerRSN</strong> element to the <strong>copy-of</strong> element in the <strong>Target</strong> section.</li>
+                            <li>Click <strong>Validate</strong>.</li>
+                            <li>Click <strong>Close</strong>.</li>
+                            <li>Click <strong>Save</strong> to save the integration.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                </section>
+                <!-- ########## DEFINE THE OTHERWISE FLOW ########## -->
+                <section>
+                    <h2 id="section_14" role="button" style="text-align: left;">Define the otherwise flow</h2>
+                    <p></p>
+
+                    <!-- ########## READ THE LINE ITEMS ########## -->
+                    <section>
+                        <h3 id="section_15" role="button" style="text-align: left;">Read the line items</h3>
+                        <ol>
+                            <li>Hover over the outgoing arrow for <strong>Otherwise</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                            <li>Name your action: <code class="allow-copy"><span>readAPLineItems</span>.</code></li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Read Entire File</strong>.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, select the filename element.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Read From</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, select the directory element.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Schema Options</strong> page, select <strong>Create a new schema from a CSV file</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Format Definition</strong> page, click the <strong>Browse</strong> button next to the <strong>New Delimited Data File</strong> field.</li>
+                            <li>Locate and select the <code class="allow-copy"><span>ApInvoiceLinesInterface.csv</span></code> from the ERP Lab Artifacts.</li>
+                            <li>In the <strong>Record Name</strong> field, enter <code class="allow-copy"><span>APInvoiceLineRN</span></code>.</li>
+                            <li>In the <strong>Record Set Name</strong> field, enter <code class="allow-copy"><span>APInvoiceLineRSN</span></code>.</li>
+                            <li>From the <strong>Field Delimiter</strong> list, select <strong>Comma (,)</strong>.</li>
+                            <li>Select <strong>Mark all as Optional</strong>.</li>
+                            <li>In the <strong>Invoice ID</strong> column, select <strong>Mandatory</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <!-- ########## WRITE THE LINE ITEMS ########## -->
+                    <section>
+                        <h3 id="section_16" role="button" style="text-align: left;">Write the line items</h3>
+                        <ol>
+                            <li>Hover over the outgoing arrow for <strong>readAPLineItems</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                            <li>Name your action: <code class="allow-copy"><span>writeInvoiceLineItemFile</span>.</code></li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Write File</strong>.</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, "select the FDBI filename element."</li>
+                            <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Read From</strong> field.</li>
+                            <li>In the <strong>Expression Builder</strong>, enter the stage the directory where to write the transformed FBDI file:  <code class="allow-copy"><span>“/apinvoicetransformed"</span></code>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Schema Options</strong> page, select <strong>Create a new schema from CSV file</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>On the <strong>Format Definition</strong> page, click the <strong>Browse</strong> button next to the <strong>New Delimited Data File</strong> field.</li>
+                            <li>Locate and select the <code class="allow-copy"><span>ApInvoiceLinesInterface.csv</span></code> from the ERP Lab Artifacts.</li>
+                            <li>In the <strong>Record Name</strong> field, enter <code class="allow-copy"><span>APInvoiceLineRN</span></code>.</li>
+                            <li>In the <strong>Record Set Name</strong> field, enter <code class="allow-copy"><span>APInvoiceLineRSN</span></code>.</li>
+                            <li>From the <strong>Field Delimiter</strong> list, select <strong>Comma (,)</strong>.</li>
+                            <li>Select <strong>Mark all as Optional</strong>.</li>
+                            <li>In the <strong>Invoice ID</strong> column, select <strong>Mandatory</strong>.</li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                        </ol>
+                    </section>
+                    <hr>
+                    <!-- ########## MAP THE DATA ########## -->
+                    <section>
+                        <h3 id="section_16" role="button" style="text-align: left;">Map the data</h3>
+                        <ol>
+                            <li>Hover over the outgoing arrow for <strong>readAPLineItems</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Type <code class="allow-copy"><span>map</span></code> in the <strong>Search</strong> field, and select <strong>Map</strong>.</li>
+                            <li>In the <strong>Target</strong> section, expand the <strong>Write</strong> element.</li>
+                            <li>Right click the <strong>APInvoiceLineRSN</strong> element, and select <strong>Create Target node</strong>.</li>
+                            <li>From the main toolbar, click <strong>Advanced</strong>.</li>
+                            <li>Click <strong>Toggle Fucntions</strong> to display the <strong>Components</strong> palette.</li>
+                            <li>Expand the <strong>XSLT</strong> section, and then expand the <strong>Output</strong> element.</li>
+                            <li><p>Drag and drop <strong>copy-of</strong> to the <strong>APInvoiceLineRSN</strong> element in the <strong>Target</strong> section.</p>
+                                <p>Notice that the <strong>copy-of</strong> element appears above the <strong>APInvoiceLineRSN</strong> element.
+                                    The <strong>copy-of</strong> element copies the complete structure from the course to the target, instead of mapping each element individually.
+                                    This is useful when the source and target are same.</p>
+                            </li>
+                            <li>Expand the <strong>$readAPLineItemse</strong> element in the <strong>Sources</strong> section, and then expand the <strong>ReadResponse</strong> element.</li>
+                            <li>Map the <strong>APInvoiceLineRSN</strong> element to the <strong>copy-of</strong> element in the <strong>Target</strong> section.</li>
+                            <li>Click <strong>Validate</strong>.</li>
+                            <li>Click <strong>Close</strong>.</li>
+                            <li>Click <strong>Save</strong> to save the integration.</li>
+                        </ol>
+                    </section>
+                </section>
+                <hr>
+                <!-- ########## CREATE VARIABLES ########## -->
+                <section>
+                    <h2 id="section_17" role="button" style="text-align: left;">Create variables</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the arrow after the switch flow and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>Assign</span></code> in the <strong>Search</strong> field, and select <strong>Assign</strong>.</li>
+                        <li>In the <strong>Create Action</strong> dialog, in the <strong>Name</strong> field, enter <code class="allow-copy"><span>NullVar</span></code>.</li>
+                        <li>Click <strong>Create</strong>.</li>
+                        <li>In the <strong>Expression Editor</strong>, add a variable named <code class="allow-copy"><span>Null</span></code>, and assign it the value <code class="allow-copy"><span>“#Null”</span></code>.</li>
+                        <li>Click <strong>Validate</strong>.</li>
+                        <li>Click <strong>Close</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## CREATE A MANIFEST ########## -->
+                <section>
+                    <h2 id="section_18" role="button" style="text-align: left;">Create a Manifest</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for the <strong>NullVar</strong> assign activity, and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                        <li>Name your action: <code class="allow-copy"><span>createManifest</span>.</code></li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Write File</strong>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                        <li>In the <strong>Expression Builder</strong>, build the following expression: <code class="allow-copy"><span>Concat (Substring(Filename), “.properties)</span></code>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to Read From</strong> field.</li>
+                        <li>In the <strong>Expression Builder</strong>, enter <code class="allow-copy"><span>"/apinvoicetransformed</span></code>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Schema Options</strong> page, select <strong>Create a new schema from a CSV file</strong>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Format Definition</strong> page, click the <strong>Browse</strong> button next to the <strong>New Delimited Data File</strong> field.</li>
+                        <li>Locate and select the <code class="allow-copy"><span>apinvoiceimport-properties.csv</span></code> from the ERP Lab Artifacts.</li>
+                        <li>In the <strong>Record Name</strong> field, enter <code class="allow-copy"><span>invoicePropertiesRN</span></code>.</li>
+                        <li>In the <strong>Record Set Name</strong> field, enter <code class="allow-copy"><span>invoicePropertiesRSN</span></code>.</li>
+                        <li>From the <strong>Field Delimiter</strong> list, select <strong>Comma (,)</strong>.</li>
+                        <li>Select <strong>Mark all as Optional</strong>.</li>
+                        <li>In the <strong>jobPackageName</strong> column, select <strong>Mandatory</strong>.</li>
+                        <li>In the <strong>jobDefinitionName</strong> column, select <strong>Mandatory</strong>.</li>
+                        <li>In the <strong>zipFilePrefix</strong> column, select <strong>Mandatory</strong>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## PASS VALUES ########## -->
+                <section>
+                    <h2 id="section_18" role="button" style="text-align: left;">Pass values to manifest file</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>NullVar</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>map</span></code> in the <strong>Search</strong> field, and select <strong>Map</strong>.</li>
+                        <li>
+                            <p>Map the following values:</p>
+                            <ol type="a" style="padding:0">
+                                <li><code>oracle/apps/ess/financials/payables/invoices/transactions</code> &#x27F6; <code>jobPackageName</code></li>
+                                <li><code>APXIIMPT</code> &#x27F6; <code>jobDefinitionName</code></li>
+                                <li><code>substring-before ($downloadInvoiceZIP/nsmpr0:DownloadFileToICSResponse/ns3:DownloadResponse/ns3:ICSFil es/ns0:ICSFile/ns0:Properties/ns0:filename, "." )</code> &#x27F6; <code>>zipFilePrefix</code></li>
+                                <li><code>$Null (Variable created earlier)</code> &#x27F6; <code>param1</code></li>
+                                <li><code>US1 Business Unit</code> &#x27F6; <code>param2</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param3</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param4</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param5</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param6</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param7</code></li>
+                                <li><code>External</code> &#x27F6; <code>param8</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param9</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param10</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param11</code></li>
+                                <li><code>1</code> &#x27F6; <code>param12</code></li>
+                                <li><code>$Null</code> &#x27F6; <code>param13</code></li>
+                            </ol>
+                            <p><b>Note</b>: Don't copy the expressions, instead build them using the expression editor.</p>
+                            <p><b>Note</b>: Surround static values with quotes.</p>
+                        </li>
+                        <li>Click <strong>Validate</strong>.</li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong> to save the integration.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## ZIP TRANSFORMED FILE ########## -->
+                <section>
+                    <h2 id="section_19" role="button" style="text-align: left;">Zip transformed file</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>createManifest</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>stage</span></code> in the <strong>Search</strong> field, and select <strong>Stage File</strong>.</li>
+                        <li>Name your action: <code class="allow-copy"><span>zipTranformedFile</span>.</code></li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>In the <strong>Configure Operation</strong> page, in the <strong>Stage File Operation</strong> field, select <strong>Zip Files</strong>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>File Name</strong> field.</li>
+                        <li>In the <strong>Expression Builder</strong>, select the <strong>fileName</strong> element.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Directory to zip</strong> field.</li>
+                        <li>In the <strong>Expression Builder</strong>, enter <code class="allow-copy"><span>"/apinvoicetransformed"</span></code>.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Output directory</strong> field.</li>
+                        <li>In the <strong>Expression Builder</strong>, enter <code class="allow-copy"><span>"/apinvoice/fileout</span></code>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## UPLOAD FILE TO THE ERP CLOUD ########## -->
+                <section>
+                    <h2 id="section_20" role="button" style="text-align: left;">Upload the file to the ERP Cloud</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>zipTransformedFile</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>ERP Conn</span></code> in the <strong>Search</strong> field, and select <strong>ERP Conn 96 06</strong>.</li>
+                        <li>Name your action: <code class="allow-copy"><span>importAPInvoicesERP</span>.</code></li>
+                        <li>On the <strong>Actions</strong> page, select <strong>Import Bulk Data into ERP Cloud</strong>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Operations</strong> page, select the FDBI process <strong>Import Payables Invoices</strong>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Response</strong> page, leave the default values and click <strong>Next</strong>.</li>
+                        <li><p>(Optional) If you want to implement callback flow, select <strong>Enable Callback</strong>.</p>
+                            <p>You must implement the callback as a separate integration.</p>
+                        </li>
+                        <li>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## PASS PARAMETERS TO THE ERP CLOUD ########## -->
+                <section>
+                    <h2 id="section_21" role="button" style="text-align: left;">Pass parameters to the ERP Cloud</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>zipTransformedFile</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>map</span></code> in the <strong>Search</strong> field, and select <strong>Map</strong>.</li>
+                        <li><p>In the <strong>Sources</strong> section expand the following elements:</p>
+                            <ol type="a">
+                                <li><strong>$zipTranformedFile</strong></li>
+                                <li><strong>ZipResponse</strong></li>
+                                <li><strong>ZipResponse</strong></li>
+                                <li><strong>ICSFile</strong></li>
+                            </ol>
+                        </li>
+                        <li><p>In the <strong>Target</strong> section expand the following elements:</p>
+                            <ol type="a">
+                                <li><strong>importBulkData</strong></li>
+                                <li><strong>importBulkData</strong></li>
+                                <li><strong>ICSFile</strong></li>
+                            </ol>
+                        </li>
+                        <li>Map the <strong>FileReference</strong> element in the <strong>Sources</strong> section, to the element with the same name in the <strong>Target</strong> section.</li>
+                        <li>In the <strong>Sources</strong> section, expand the <strong>Properties</strong> element.</li>
+                        <li>In the <strong>Target</strong> section, expand the <strong>Properties</strong> element.</li>
+                        <li>Map the <strong>Directory</strong> and <strong>filename</strong> elements in the <strong>Sources</strong> section, to the elements with the same names in the <strong>Target</strong> section.</li>
+                        <li>Click <strong>Validate</strong>.</li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong> to save the integration.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## CREATE AN EMAIL NOTIFICATION ########## -->
+                <section>
+                    <h2 id="section_22" role="button" style="text-align: left;">Create an email notification</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for <strong>importAPInvoicesERP</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Type <code class="allow-copy"><span>notification</span></code> in the <strong>Search</strong> field, and select <strong>Notification</strong>.</li>
+                        <li>
+                            <p>Click the <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the notification fields, to define the following expressions using the <strong>Expression Builder</strong>:</p>
+                            <ol type="a">
+                                <li><strong>From</strong>: <code class="allow-copy"><span>admin@oracle.com</span></code>.</li>
+                                <li><strong>To</strong>: <code class="allow-copy"><span>admin@oracle.com</span></code>.</li>
+                                <li><strong>Subject</strong> <code class="allow-copy"><span>concat("Fusion ERP Confirmation Code: ", result)</span></code>.</li>
+                            </ol>
+                        </li>
+                        <li>In the <strong>To</strong> field, enter <code class="allow-copy"><span>admin@oracle.com</span></code>.</li>
+                        <li>Click <strong>Validate</strong>.</li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong> to save the integration.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## DEFINE BUSINESS TRACKING IDENTIFIERS ########## -->
+                <section>
+                    <h2 id="section_" role="button" style="text-align: left;">Define Business Tracking Identifiers</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Click the <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/> icon located in the main toolbar, next to the <strong>Last Saved</strong> date.</li>
+                        <li>Select <strong>Tracking</strong>.</li>
+                        <li>In the <strong>Source</strong> section, expand the <strong>schedule</strong> element.</li>
+                        <li><p>Drag and drop the <strong>startTime</strong> element to the <strong>Tracking Field</strong> cell in the <strong>Business Identifiers</strong> table.</p>
+                            <p>This configures the monitoring console will identify instances of this flow using the start time as the unique ID.</p>
+                        </li>
+                        <li>Click <strong>Save</strong>.</li>
+                        <li>Activate the integration flow.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## TEST THE BULK IMPORT TO THE ERP CLOUD ########## -->
+                <section>
+                    <h2 id="section_" role="button" style="text-align: left;">Test the bulk import to the ERP Cloud</h2>
+                    <p> </p>
+                    <ol>
+                        <li>Locate and open the <code class="allow-copy"><span>ApInvoicesInterface.csv</span></code> file in the ERP Lab artifacts folder.</li>
+                        <li>Change the values for the InvoiceId and Invoice Number fields to use a unique number for each record.</li>
+                        <li>Locate and open the <code class="allow-copy"><span>ApInvoiceLineInterface.csv</span></code> file in the ERP Lab artifacts folder.</li>
+                        <li>Change the value for the InvoiceId field to use a unique number for each record.</li>
+                        <li>Zip the edited csv files. Don't include the directory structure in the zip file.</li>
+                        <li>Log in to your FTP Server and copy the file <code class="allow-copy"><span>apinvoiceimport.zip</span></code> to the folder <code class="allow-copy"><span>/upload/public_ftp/user_<em data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code>.</li>
+                        <li>Click <img src="img/more-actions.png" alt="More Actions icon" style="height: 15px; width: 15px;"/> for the <strong>FBCI APINV ERP <em data-bind="text:user_number() || 'your_user_number'"></em></strong> integration flow.</li>
+                        <li><p>Select <strong>Submit Now</strong> to run the flow.</p>
+                            <p>A confirmation message with a link to the running instance appears.</p>
+                        </li>
+                        <li><p>Click the link to the running instance to track it.</p>
+                            <p>The <strong>Track Runs</strong> page appears. The integration status should be <strong>Processing</strong> or <strong>Successful</strong>.</p>
+                            <p>When the status changes to <strong>successful</strong>, you will receive the confirmation email notification that you configured.</p>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## VERIFY THE BULK IMPORT TO THE ERP CLOUD ########## -->
+                <section>
+                    <h2 id="section_" role="button" style="text-align: left;">Verify the bulk import to the ERP Cloud</h2>
+                    <p> </p>
+                    <ol>
+                        <li><p>Log in to the ERP Cloud Service using these values:</p>
+                            <ul>
+                                <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
+                                <li><strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code></li>
+                                <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
+                            </ul>
+                            <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
+                                same user that you used to create ERP connection.</p>
+                        </li>
+                        <li>Click <strong>Tools</strong>.</li>
+                        <li>Click <strong>Scheduled Processes</strong>.</li>
+                        <li><p>To verify that the invoice was created in the ERP Cloud, log in to the ERP Cloud Service using these values</p>
+                            <ul>
+                                <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
+                                <li><strong>User name</strong>: <code class="allow-copy"><span>casey.brown</span></code></li>
+                                <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
+                            </ul>
+                            <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
+                                same user that you used to create ERP connection.</p>
+                        </li>
+                        <li>Click <strong>Payables</strong>.</li>
+                        <li>Click <strong>Invoices</strong>.</li>
+                        <li>Click <img src="img/search.png" alt="Search icon" style="height: 15px; width: 15px;"/> in the <strong>Details</strong> panel located under the <strong>User</strong> menu.</li>
+                        <li>Enter the invoice number and click <strong>Search</strong>.</li>
+                    </ol>
+                    <p>The invoice should appear in the search results.</p>
+                </section>
+                <hr>
+                <!-- ========================================================================================================================= -->
+            </article>
         </div>
-        <!-- OBE Dialog Box code 10/15/2018 -->
-        <!-- DO NOT ALTER THE CODE BELOW   -->
-        <!--div id="lpModal" class="modal">
-            <!-- Modal hdr and body -->
-            <!--div id="obe_dialog" class="modal-content">
-                <div class="modal-header">
-                    <a href="#" class="close">  
-                        <span class="close">&times;</span>
-                    </a>
-                    <h1>Associated Learning Paths</h1>
-                </div>
-                <div id="dialog-content" >
-                </div>
-                <div id="dialog-close" class="closeBtn">
-                    <a href="#" class="close2">  
-                        <p class="close2"> 
-                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
-                        </p>
-                    </a>  
-                </div>
-            </div>   
-        </div-->
-        <!-- END OBE Dialog Box code -->
-    </body>
+        <br class="clearfloat">
+        <br class="clearfloat">
+    </div>
+</div>
+<!--close main-->
+<!--end content-->
+<div class="footer-container ">
+    <div>
+        <img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+        <footer class="footer-list">
+            <ul>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
+                <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
+                <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+            </ul>
+        </footer>
+    </div>
+    <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+</div>
+<!-- OBE Dialog Box code 10/15/2018 -->
+<!-- DO NOT ALTER THE CODE BELOW   -->
+<!--div id="lpModal" class="modal">
+    <!-- Modal hdr and body -->
+<!--div id="obe_dialog" class="modal-content">
+    <div class="modal-header">
+        <a href="#" class="close">
+            <span class="close">&times;</span>
+        </a>
+        <h1>Associated Learning Paths</h1>
+    </div>
+    <div id="dialog-content" >
+    </div>
+    <div id="dialog-close" class="closeBtn">
+        <a href="#" class="close2">
+            <p class="close2">
+                 <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span>
+            </p>
+        </a>
+    </div>
+</div>
+</div-->
+<!-- END OBE Dialog Box code -->
+</body>
 </html>
