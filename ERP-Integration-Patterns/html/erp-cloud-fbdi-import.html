@@ -163,7 +163,7 @@
                         <li>Select <strong>Scheduled Orchestration</strong>.</li>
                         <li><p>Enter the following values:</p>
                             <ul>
-                                <li><strong>Name</strong>: <code class="allow-copy"><span>FBDI APIINV ERP <em data-bind="text:user_number() || 'your_user_number'"></em> class_id</span></code></li>
+                                <li><strong>Name</strong>: <code class="allow-copy"><span>FBDI APIINV ERP <em data-bind="text:user_number() || 'your_user_number'"></em></span></code></li>
                                 <li><strong>Identifier</strong>: leave the default value.
                                     <p>The default value is the name of the integration in upper case.</p>
                                 </li>
@@ -195,7 +195,7 @@
                         <li>From the <strong>Transfer Mode</strong> options, select <strong>ASCII</strong>.</li>
                         <li><p>Enter the following values</p>
                             <ol type="a">
-                                <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/&lt;student_id&gt;/in</span></code></li>
+                                <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/<em data-bind="text:user_number() || '[Enter your User Number]'"></em>/in</span></code></li>
                                 <li><strong>File Name</strong>: <code class="allow-copy"><span>apinvoiceimport.zip</span></code></li>
                                 <li><p><strong>Download Directory</strong>: <code class="allow-copy"><span>/apinvoicezip</span></code></p>
                                     <p>This is the staging directory. It is created automatically.</p>
