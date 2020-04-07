@@ -705,8 +705,14 @@ pre {
     overflow: auto;
     padding: 3px;
     display: block;
-    white-space: pre !important;
-    word-wrap: normal !important;
+    /*white-space: pre !important;
+    word-wrap: normal !important;*/
+    
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
 code, kbd, pre, samp {
@@ -918,4 +924,11 @@ div.closeBtn p {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border-radius: 10px; 
+}
+
+p.warning-text {
+	color: #e3503c;
+	text-transform: none;
+	font-variant: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }
