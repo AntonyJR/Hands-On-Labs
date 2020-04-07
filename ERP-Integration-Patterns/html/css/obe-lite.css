@@ -932,3 +932,10 @@ p.warning-text {
 	font-variant: normal;
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
+
+a.warning-text {
+	color: #e3503c;
+	text-transform: none;
+	font-variant: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
