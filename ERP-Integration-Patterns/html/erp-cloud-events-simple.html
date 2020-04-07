@@ -123,7 +123,7 @@
 							<h3>Download Your Resources</h3>
 
 								<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-									<p class="warning-text"><a href="#userNumberInput">Enter your user number in the Get Your OIC Environment section to access your download.</a></p>
+									<p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number in the Get Your OIC Environment section to access your download.</></p>
 								</div>
 								<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
 									<p>Download the following additional assets:
@@ -143,7 +143,7 @@
 										<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
 									</div>
 									<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-										<p class="warning-text"><a href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+										<p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
 									</div>
 								</li>
 								<li><p>Enter your <strong>OIC User Name</strong>.</p>
@@ -151,10 +151,10 @@
 										<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
 									</div>
 									<div data-bind="attr: {style: userName() ? 'display:none' : 'display:initial'}">
-										<p class="warning-text"><a href="#userNumberInput">Select your user name in the Before You Begin section to get a customized URL.</a></p>
+										<p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your user name in the Before You Begin section to get a customized URL.</></p>
 									</div>
 									<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-										<p class="warning-text"><a href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+										<p class="warning-text"><a style="color: #e3503c"  href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</></p>
 									</div>
 								</li>
 								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
@@ -375,7 +375,7 @@
 										<p>This option sends your mappings to the recommendations engine which uses this information to suggest you mappings for similar integrations.</p>
 									</li>
 									<li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
-										<p>Typically this options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
+										<p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
 									</li>
 									<li><p>Click <strong>Activate</strong>.</p>
 										<p>The activation will complete in a few seconds. If the activation succeeds a confirmation message appears at the top of the page.</p>
@@ -390,13 +390,13 @@
 									<li><p>Open a browser to sign in to the <strong>ERP Cloud</strong> using the following sign in information:</p>
 										<ol type="a">
 												<div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-													<li><p class="warning-text"><a href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized URL.</a></p></li>
+													<li><p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized URL.</a></p></li>
 												</div>
 												<div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
 													<li><p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : '[Select your APP Environment]'"></em></span></code></p></li>
 												</div>
 											<div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-												<li><p class="warning-text"><a href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p></li>
+												<li><p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</></p></li>
 											</div>
 											<div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
 												<li><strong>User:</strong> <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : '[Select your ERP Cloud Environment]'"></em></span></code></li>
