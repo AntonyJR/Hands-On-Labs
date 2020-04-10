@@ -132,12 +132,12 @@
 								</div>
 						</section>
 						<hr>
-<!-- ########## Sign In ########## -->
-                        <section>    
-                            <h2>Sign In</h2>
+						<!-- ########## Sign In ########## -->
+						<section>
+							<h2>Sign In</h2>
 							<p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
 
-                            <ol>
+							<ol>
 								<li><p>Open a browser to the <strong>OIC URL</strong>.</p>
 									<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
 										<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
@@ -147,10 +147,10 @@
 									</div>
 								</li>
 								<li><p>Enter your <strong>OIC User Name</strong>.</p>
-									<div data-bind="attr: {style: userName() & selectedOICEnvironment ? 'display:none' : 'display:initial'}">
-										<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
+									<div data-bind="attr: {style: user_number() & selectedOICEnvironment ? 'display:none' : 'display:initial'}">
+										<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment]'"></em><em data-bind="text:user_number() || 'your_user_number]'"></em></span></code></p>
 									</div>
-									<div data-bind="attr: {style: userName() ? 'display:none' : 'display:initial'}">
+									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 										<p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your user name in the Before You Begin section to get a customized URL.</a></p>
 									</div>
 									<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
@@ -160,15 +160,14 @@
 								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
 									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
 								</li>
-                                <li><p>Click <strong>Home</strong>.</p>
-                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
-                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
-                                </li>  
+								<li><p>Click <strong>Home</strong>.</p>
+									<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+									<img src="img/screenshots/integration/home-page.png" width="600px"/>
+								</li>
 							</ol>
 							<p>You are now logged in and ready to use Oracle Integration.</p>
-                        </section>
-                        <hr>
-
+						</section>
+						<hr>
 <!-- ########## Create the Integration ########## -->
                         <section>
                                 <h2>Create the Integration</h2>
