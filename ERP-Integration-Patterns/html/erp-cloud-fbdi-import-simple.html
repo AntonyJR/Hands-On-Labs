@@ -73,6 +73,20 @@
                     <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>
                     <p>Your instructor will provide you the information you need to access the environments used in this lab.</p>
                     <hr>
+                    <h3>Prerequisites</h3>
+                    <p>For this lab you need the following applications and assets:</p>
+                    <ul>
+                        <li>Oracle Integration</li>
+                        <li>ERP Cloud R13+</li>
+                        <li>An FTP server</code></li>
+                        <li>The file <code>apinvoiceimport.zip</code></li>
+                    </ul>
+                    <p>For your convenience we created and configured the following connections:</p>
+                    <ul>
+                        <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>
+                        <li><strong>FTP adapter</strong>: <code>FTP Conn</code></li>
+                    </ul>
+                    <hr>
                     <h3>Get Your OIC Environment</h3>
                     <p>Select your OIC environment and enter your user number to get the information to access Oracle Integration.</p>
                     <p><strong>OIC Environment</strong>:&nbsp;
@@ -156,25 +170,40 @@
                     <p>You are now logged in and ready to use Oracle Integration.</p>
                 </section>
                 <hr>
-<!-- ########## Documents ########## -->
+                <!-- ########## CREATE THE FBDI FILE ########## -->
                 <section>
-                    <h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>
-                    <p>This lab uses the following documents and assets:</p>
-                    <ul>
-                        <!--li><a href="../assets/fbdi-import-lab/ERP Cloud FBDI Import Lab Guide.pdf" download>ERP Cloud FBDI Import Lab Guide</a></li-->
-                        <li><a href="../assets/fbdi-import-lab/apinvoiceimport.zip" download>apinvoiceimport.zip</a></li>
-                        <li><a href="../assets/fbdi-import-lab/APTEST.PROPERTIES" download>APTEST.PROPERTIES</a></li>
-                        <li><a href="../assets/fbdi-import-lab/FailedRecords_ AP_INTERFACE_REJECTIONS.csv" download>FailedRecords_ AP_INTERFACE_REJECTIONS.csv</a></li>
-                        <li><a href="../assets/fbdi-import-lab/GSEPayablesStandardInvoiceImportTemplate.xlsm" download>GSEPayablesStandardInvoiceImportTemplate.xlsm</a></li>
-                        <li><a href="../assets/fbdi-import-lab/vbcsrestreq.json" download>vbcsrestreq.json</a></li>
-                        <li><a href="../assets/fbdi-import-lab/Invoice%20Error%20Handling%20Portal.zip" download> Invoice Handling Portal</a></li>
-                        &nbsp;
-                    </ul>
+                    <h2>Create the FBDI File</h2>
+                    <p> </p>
+                    <ol>
+                        <li><p>Go to the <code>ERP Lab Artifacts</code> folder and open the file <code>GSEPayablesStandardInvoiceImportTemplate.xlsm</code> with a spreadsheet application.</p>
+                            <p>Before editing this file, you might want to create a duplicate for your reference.</p>
+                            <p>Notice that this file contains macros and you might get a security warning. Select the option to enable the content. </p>
+                        </li>
+                        <li><p>Open the <strong>AP_INVOICES_INTERFACE</strong> sheet and update the following fields with unique random numbers:</p>
+                            <ul>
+                                <li><strong>Invoice ID</strong></li>
+                                <li><strong>Invoice Number</strong></li>
+                            </ul>
+                            <p>For example, you can use your user number concatenated with the current date.</p>
+                            <p>Enter the data in each cell, don't copy paste. This is to preserve the data type of each column. If you change the data type, this lab will fail.</p>
+                        </li>
+                        <li><p>Save the file.</p>
+                            <p>You might get a warning message about the macros used in this spreadsheet. Accept the message.</p>
+                        </li>
+                        <li>Open the <strong>AP_INVOICE_LINE_INTERFACE</strong> sheet.</li>
+                        <li>Enter the same invoice IDs that you used in the <strong>AP_INVOICES_INTERFACE</strong> sheet.</li>
+                        <li>Save the file.</li>
+                    </ol>
+                    <p><i>Note</i>: For the purpose of this lab we won't change the values for the <strong>Business Unit</strong>, <strong>Supplier Name</strong>, <strong>Supplier Number</strong>,
+                        and <strong>Supplier Site</strong> fields in the <strong>AP_INVOICES_INTERFACE</strong> sheet. If you want to change them in the future, makse sure that the values you provide
+                        match the values in the ERP instance.
+                    </p>
                 </section>
                 <hr>
+
 <!-- ########## CREATE THE INTEGRATION ########## -->
                 <section>
-                    <h2 id="section_3" role="button" style="text-align: left;">Create the integration</h2>
+                    <h2>Create the integration</h2>
                     <p> </p>
 
                     <ol>
@@ -204,7 +233,7 @@
                 <hr>
 <!-- ########## GET THE FILE FROM AN FTP SERVER ########## -->
                 <section>
-                    <h2 id="section_4" role="button" style="text-align: left;">Get the file from an FTP server</h2>
+                    <h2>Get the File from an FTP server</h2>
                     <p> </p>
                     <ol>
                         <li>Hover over the outgoing arrow for <strong>Schedule</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
@@ -240,9 +269,9 @@
                 </section>
                 <hr>
 
-<!-- ########## UPLOAD FILE TO THE ERP CLOUD ########## -->
+<!-- ########## UPLOAD FILE TO ERP CLOUD ########## -->
                 <section>
-                    <h2 id="section_20" role="button" style="text-align: left;">Upload the file to the ERP Cloud</h2>
+                    <h2>Upload the File to ERP Cloud</h2>
                     <p> </p>
                     <ol>
                         <li>Hover over the outgoing arrow for <strong>ReadAPInvoicesFileFromFTP</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
@@ -271,9 +300,9 @@
                     </ol>
                 </section>
                 <hr>
-<!-- ########## PASS PARAMETERS TO THE ERP CLOUD ########## -->
+<!-- ########## DEFINE THE DATA MAPPING ########## -->
                 <section>
-                    <h2 id="section_21" role="button" style="text-align: left;">Pass parameters to the ERP Cloud</h2>
+                    <h2>Define the Data Mapping</h2>
                     <p> </p>
                     <ol>
                         <li>Click the action <strong>Map to ImportAPInvoicestoERPCloud</strong> and click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
@@ -293,9 +322,9 @@
                     </ol>
                 </section>
                 <hr>
-<!-- ########## DEFINE BUSINESS TRACKING IDENTIFIERS ########## -->
+<!-- ########## DEFINE THE TRACKING FIELDS ########## -->
                 <section>
-                    <h2 id="section_" role="button" style="text-align: left;">Define Business Tracking Identifiers</h2>
+                    <h2>Define the Tracking Fields</h2>
                     <p> </p>
                     <ol>
                         <li><p>In the <strong>Integration</strong> canvas, click the error icon <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>&nbsp; next to the <strong>Last Saved</strong> field.</p>
@@ -317,7 +346,7 @@
                 <hr>
 <!-- ########## ACTIVATE THE INTEGRATION ########## -->
                 <section>
-                    <h2 id="section_" role="button" style="text-align: left;">Activate the Integration</h2>
+                    <h2>Activate the Integration</h2>
                     <p> </p>
                     <ol>
                         <li><p>On the <strong>Integrations</strong> page, locate your integration</p>
@@ -334,51 +363,40 @@
                             <p>The activation will complete in a few seconds. If the activation succeeds a confirmation message appears at the top of the page.</p>
                         </li>
                     </ol>
-
-<!-- ########## TEST THE BULK IMPORT TO THE ERP CLOUD ########## -->
+                </section>
+                <hr>
+<!-- ########## RUN THE INTEGRATION ########## -->
                 <section>
-                    <h2 id="section_" role="button" style="text-align: left;">Test the bulk import to the ERP Cloud</h2>
+                    <h2 >Run the Integration</h2>
                     <p> </p>
                     <ol>
-                        <li>Locate and open the <code class="allow-copy"><span>ApInvoicesInterface.csv</span></code> file in the ERP Lab artifacts folder.</li>
-                        <li>Change the values for the InvoiceId and Invoice Number fields to use a unique number for each record.</li>
-                        <li>Locate and open the <code class="allow-copy"><span>ApInvoiceLineInterface.csv</span></code> file in the ERP Lab artifacts folder.</li>
-                        <li>Change the value for the InvoiceId field to use a unique number for each record.</li>
-                        <li>Zip the edited csv files. Don't include the directory structure in the zip file.</li>
-                        <li>Log in to your FTP Server and copy the file <code class="allow-copy"><span>apinvoiceimport.zip</span></code> to the folder <code class="allow-copy"><span>/upload/public_ftp/user_<em data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code>.</li>
-                        <li>Click <img src="img/more-actions.png" alt="More Actions icon" style="height: 15px; width: 15px;"/> for the <strong>FBCI APINV ERP <em data-bind="text:user_number() || 'your_user_number'"></em></strong> integration flow.</li>
-                        <li><p>Select <strong>Submit Now</strong> to run the flow.</p>
-                            <p>A confirmation message with a link to the running instance appears.</p>
+                        <li><p>Click <strong>How to run</strong>, then click <strong>Submit Now</strong> twice.</p>
+                            <p>A confirmation message with a link to track instance appears.</p>
                         </li>
-                        <li><p>Click the link to the running instance to track it.</p>
-                            <p>The <strong>Track Runs</strong> page appears. The integration status should be <strong>Processing</strong> or <strong>Successful</strong>.</p>
-                            <p>When the status changes to <strong>successful</strong>, you will receive the confirmation email notification that you configured.</p>
+                        <li><p>Click the link to track the instance.</p>
+                            <p>The <strong>Track Instances</strong> page appears. The integration state should be <strong>Processing</strong> or <strong>Successful</strong>.</p>
+                            <p>The importing of the invoices to the ERP Cloud might take a few minutes.</p>
                         </li>
+
                     </ol>
                 </section>
                 <hr>
- <!-- ########## VERIFY THE BULK IMPORT TO THE ERP CLOUD ########## -->
+ <!-- ########## VERIFY THE BULK IMPORT########## -->
                 <section>
-                    <h2 id="section_" role="button" style="text-align: left;">Verify the bulk import to the ERP Cloud</h2>
-                    <p> </p>
+                    <h2>Verify the Bulk Import</h2>
+                    <p>Wait 5 minutes before performing this procedure.</p>
                     <ol>
                         <li><p>Log in to the ERP Cloud Service using these values:</p>
-                            <ul>
+                            <ol type="a">
                                 <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
-                                <li><strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code></li>
+                                <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                    <li><strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code></li>
+                                </div>
+                                <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                    <li><p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p></li>
+                                </div>
                                 <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
-                            </ul>
-                            <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
-                                same user that you used to create ERP connection.</p>
-                        </li>
-                        <li>Click <strong>Tools</strong>.</li>
-                        <li>Click <strong>Scheduled Processes</strong>.</li>
-                        <li><p>To verify that the invoice was created in the ERP Cloud, log in to the ERP Cloud Service using these values</p>
-                            <ul>
-                                <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
-                                <li><strong>User name</strong>: <code class="allow-copy"><span>casey.brown</span></code></li>
-                                <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
-                            </ul>
+                            </ol>
                             <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
                                 same user that you used to create ERP connection.</p>
                         </li>
