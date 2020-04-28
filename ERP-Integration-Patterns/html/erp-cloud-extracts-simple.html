@@ -518,7 +518,8 @@
                                         <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
                                         <li>
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                                <strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code>
+                                                <strong>User name</strong>: <code class="allow-copy"><span
+                                                    data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></code>
                                             </div>
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
                                                 <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p>
