@@ -31,8 +31,8 @@
 
     <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
     <!-- Use an imperative verb in the title. -->
-    <h1><!--img src="img/o.png" align="middle" alt="Oracle"-->Oracle Integration  - ERP Cloud FBDI Import Lab</h1>
-    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
+    <h1><!--img src="img/o.png" align="middle" alt="Oracle"-->Oracle Integration - ERP Cloud FBDI Import Lab</h1>
+    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"></a>
 
     <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
         <div class="navbackwide border-right"><!-- --></div>
@@ -40,7 +40,7 @@
         <div id="sidebar"><!-- -->
             <div class="left-nav-tut"><!-- -->
                 <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
-                <div  id="navbar" class="left-nav-w"><!-- -->
+                <div id="navbar" class="left-nav-w"><!-- -->
                     <div id="toc" class="tocify"><!-- --></div>
                 </div>
             </div>
@@ -50,14 +50,17 @@
 <!-- ########## Background ########## -->
                 <section>
                     <h2>Background</h2>
-                    <p> This use case uses Oracle Integration (OIC) and ERP Cloud Import Bulk Data services with File-based Data Integration (FBDI) compliant files.
-                        The goal is to import ERP data such as account payable invoices using processes in ERP Cloud.</p>
+                    <p> This use case uses Oracle Integration (OIC) and ERP Cloud Import Bulk Data services with
+                        File-based Data Integration (FBDI) compliant files.
+                        The goal is to import ERP data such as account payable invoices using processes in ERP
+                        Cloud.</p>
                     <p>The typical flow for this use case is:</p>
                     <ol>
                         <li>The user uploads an FBDI-based account payable invoice file to an FTP server.</li>
                         <li>Oracle Integration imports the account payable invoice file to the ERP Cloud.</li>
                     </ol>
-                    <p>This lab will explore the ERP adapter and Visual Builder Cloud Service features, and show you how to perform the following tasks:</p>
+                    <p>This lab will explore the ERP adapter and Visual Builder Cloud Service features, and show you how
+                        to perform the following tasks:</p>
                     <ul>
                         <li>Read files from an sFTP server.</li>
                         <li>Synchronize account payable invoices to the ERP Cloud.</li>
@@ -70,25 +73,28 @@
 <!-- ########## Before You Begin ########## -->
                 <section>
                     <h2>Before You Begin</h2>
-                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>
-                    <p>Your instructor will provide you the information you need to access the environments used in this lab.</p>
+                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard"
+                                                               height="19px" width="19px"> icon next to them. Click this
+                        icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                    <p>Your instructor will provide you the information you need to access the environments used in this
+                        lab.</p>
                     <hr>
-                    <h3>Prerequisites</h3>
-                    <p>For this lab you need the following applications and assets:</p>
+                    <p>For this lab we will provide you the following:</p>
                     <ul>
                         <li>Oracle Integration</li>
                         <li>ERP Cloud R13+</li>
-                        <li>An FTP server</code></li>
+                        <li>An FTP server</li>
                         <li>The file <code>apinvoiceimport.zip</code></li>
                     </ul>
-                    <p>For your convenience we created and configured the following connections:</p>
-                    <ul>
-                        <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>
-                        <li><strong>FTP adapter</strong>: <code>FTP Conn</code></li>
-                    </ul>
+<!--                    <p>For your convenience we created and configured the following connections:</p>-->
+<!--                    <ul>-->
+<!--                        <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>-->
+<!--                        <li><strong>FTP adapter</strong>: <code>FTP Conn</code></li>-->
+<!--                    </ul>-->
                     <hr>
                     <h3>Get Your OIC Environment</h3>
-                    <p>Select your OIC environment and enter your user number to get the information to access Oracle Integration.</p>
+                    <p>Select your OIC environment and enter your user number to get the information to access Oracle
+                        Integration.</p>
                     <p><strong>OIC Environment</strong>:&nbsp;
                         <select data-bind="options: availableOICEnvironments,
 									optionsText: 'name',
@@ -96,10 +102,18 @@
 									optionsCaption: 'Select...'">
                         </select>
                     </p>
-                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>
+                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input
+                            data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>
+                        OK
+                    </button>
+                    </p>
                     <ul>
-                        <li><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the OIC Environment above'"></em></span></code></li>
-                        <li><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select the OIC Environment above'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></li>
+                        <li><strong>OIC URL</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the OIC Environment above'"></em></span></code>
+                        </li>
+                        <li><strong>OIC User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select the OIC Environment above'"></em><em
+                                data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></li>
                         <li><strong>OIC Password</strong>: will be provided during the training session.</li>
                     </ul>
                     <hr>
@@ -113,8 +127,12 @@
                         </select>
                     </p>
                     <ul>
-                        <li><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select the App Environment above'"></em></span></code></li>
-                        <li><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></em></span></code></li>
+                        <li><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select the App Environment above'"></em></span></code>
+                        </li>
+                        <li><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></em></span></code>
+                        </li>
                         <li><strong>ERP Password</strong>: will be provided during the training session.</li>
                     </ul>
                     <hr>
@@ -128,101 +146,160 @@
                         </select>
                     </p>
                     <ul>
-                        <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code></li>
-                        <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code></li>
+                        <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                        </li>
+                        <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                        </li>
                         <li><strong>Password:</strong> will be provided during the training session.</li>
                     </ul>
+                </section>
+                <hr>
+<!-- ########## CREATE THE FBDI FILE ########## -->
+                <section>
+                    <h2>Create the FBDI File</h2>
+                    <p></p>
+                    <ol>
+                        <li><p>Go to the <code>ERP Lab Artifacts</code> folder and open the file <code>GSEPayablesStandardInvoiceImportTemplate.xlsm</code>
+                            with a spreadsheet application.</p>
+                            <p>Before editing this file, you might want to create a duplicate for your reference.</p>
+                            <p>Notice that this file contains macros and you might get a security warning. Select the
+                                option to enable the content. </p>
+                        </li>
+                        <li><p>Open the <strong>AP_INVOICES_INTERFACE</strong> sheet and update the following fields
+                            with unique random numbers:</p>
+                            <ul>
+                                <li><strong>Invoice ID</strong></li>
+                                <li><strong>Invoice Number</strong></li>
+                            </ul>
+                            <p>For example, you can use your user number concatenated with the current date.</p>
+                            <p>Enter the data in each cell, don't copy paste. This is to preserve the data type of each
+                                column. If you change the data type, this lab will fail.</p>
+                        </li>
+                        <li><p>Save the file.</p>
+                            <p>You might get a warning message about the macros used in this spreadsheet. Accept the
+                                message.</p>
+                        </li>
+                        <li>Open the <strong>AP_INVOICE_LINE_INTERFACE</strong> sheet.</li>
+                        <li>Enter the same invoice IDs that you used in the <strong>AP_INVOICES_INTERFACE</strong>
+                            sheet.
+                        </li>
+                        <li>Save the file.</li>
+                        <li>Open the sheet <strong>Instructions and CSV Generation</strong>.</li>
+                        <li><p>Click <strong>Generate CSV file</strong></p>
+                            <p>A file browser dialog appears.</p>
+                        </li>
+                        <li>Name the zip file: <code class="allow-copy"><span>apinvoiceimport.zip</span></code>.</li>
+                        <li>Save the <strong>AP_INVOICES_INTERFACE</strong> file as <code class="allow-copy"><span>ApInvoiceInterface.csv</span></code>.</li>
+                        <li>Save the <strong>AP_INVOICES_LINES_INTERFACE</strong> file as <code class="allow-copy"><span>ApInvoiceLinesInterface.csv</span></code>.</li>
+                        <li><p>Copy the <code>APTEST.PROPERTIES</code> file to the <code>apinvoiceimport.zip</code> zip file.</p>
+                            <p>The zip file should contain three files: <code>ApInvoiceInterface.csv</code>, <code>ApInvoiceLinesInterface.csv</code>, and <code>APTEST.PROPERTIES</code>.</p>
+                            <p><em>Note</em>: Failing to copy the <code>APTEST.PROPERTIES</code> file will prevent the import payables job from running.</p>
+                        </li>
+                        <li><p>Log in to the FTP server.</p>
+                            <ul>
+                                <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
+                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                                </li>
+                                <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
+                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                                </li>
+                                <li><strong>Password:</strong> will be provided during the training session.</li>
+                            </ul>
+                        </li>
+                        <li><p>If the following directory doesn't exist in the FTP server, create it:</p>
+                            <p><code class="allow-copy"><span>/upload/public_ftp/<em
+                                    data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></p>
+                        </li>
+                        <li>Copy the <code>apinvoiceimport.zip</code> file to the directory mentioned in the previous step.</li>
+                    </ol>
+                    <p><i>Note</i>: For the purpose of this lab we won't change the values for the <strong>Business
+                        Unit</strong>, <strong>Supplier Name</strong>, <strong>Supplier Number</strong>,
+                        and <strong>Supplier Site</strong> fields in the <strong>AP_INVOICES_INTERFACE</strong> sheet.
+                        If you want to change them in the future, make sure that the values you provide
+                        match the values in the ERP instance. If you change the business unit or the source, you must also update the properties file.
+                    </p>
                 </section>
                 <hr>
 <!-- ########## Sign In ########## -->
                 <section>
                     <h2>Sign In</h2>
-                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
-
+                    <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
+                    <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
+                    <!--                        restricted to specific environments. They may be assigned different roles in each-->
+                    <!--                        environment.</p>-->
                     <ol>
                         <li><p>Open a browser to the <strong>OIC URL</strong>.</p>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                                <p><strong>OIC URL</strong>: <code class="allow-copy"><span><span
+                                        data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>
+                                </p>
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
                             </div>
                         </li>
                         <li><p>Enter your <strong>OIC User Name</strong>.</p>
-                            <div data-bind="attr: {style: user_number() & selectedOICEnvironment ? 'display:none' : 'display:initial'}">
-                                <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment]'"></em><em data-bind="text:user_number() || 'your_user_number]'"></em></span></code></p>
+                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><strong>OIC User Name</strong>:
+                                    <code class="allow-copy">
+                                        <span>
+                                            <span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></span><span
+                                                data-bind="text: user_number()? user_number() :'your_user_number'"></span>
+                                        </span>
+                                    </code>
+                                </p>
                             </div>
                             <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your user name in the Before You Begin section to get a customized URL.</a></p>
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                    user name in the Before You Begin section to get a customized URL.</a></p>
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c"  href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
                             </div>
                         </li>
-                        <li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
-                            <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+                        <li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click
+                            <strong>Sign In</strong>.</p>
+                            <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn
+                                more. Keep scrolling to find more useful links.</p>
                         </li>
                         <li><p>Click <strong>Home</strong>.</p>
-                            <p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                            <p>The <strong>Home</strong> page displays an overview with the current state of your
+                                instance. You can drill down to get information about available Processes, Integrations,
+                                and Visual Applications.</p><br>
                             <img src="img/screenshots/integration/home-page.png" width="600px"/>
                         </li>
                     </ol>
                     <p>You are now logged in and ready to use Oracle Integration.</p>
                 </section>
                 <hr>
-                <!-- ########## CREATE THE FBDI FILE ########## -->
-                <section>
-                    <h2>Create the FBDI File</h2>
-                    <p> </p>
-                    <ol>
-                        <li><p>Go to the <code>ERP Lab Artifacts</code> folder and open the file <code>GSEPayablesStandardInvoiceImportTemplate.xlsm</code> with a spreadsheet application.</p>
-                            <p>Before editing this file, you might want to create a duplicate for your reference.</p>
-                            <p>Notice that this file contains macros and you might get a security warning. Select the option to enable the content. </p>
-                        </li>
-                        <li><p>Open the <strong>AP_INVOICES_INTERFACE</strong> sheet and update the following fields with unique random numbers:</p>
-                            <ul>
-                                <li><strong>Invoice ID</strong></li>
-                                <li><strong>Invoice Number</strong></li>
-                            </ul>
-                            <p>For example, you can use your user number concatenated with the current date.</p>
-                            <p>Enter the data in each cell, don't copy paste. This is to preserve the data type of each column. If you change the data type, this lab will fail.</p>
-                        </li>
-                        <li><p>Save the file.</p>
-                            <p>You might get a warning message about the macros used in this spreadsheet. Accept the message.</p>
-                        </li>
-                        <li>Open the <strong>AP_INVOICE_LINE_INTERFACE</strong> sheet.</li>
-                        <li>Enter the same invoice IDs that you used in the <strong>AP_INVOICES_INTERFACE</strong> sheet.</li>
-                        <li>Save the file.</li>
-                    </ol>
-                    <p><i>Note</i>: For the purpose of this lab we won't change the values for the <strong>Business Unit</strong>, <strong>Supplier Name</strong>, <strong>Supplier Number</strong>,
-                        and <strong>Supplier Site</strong> fields in the <strong>AP_INVOICES_INTERFACE</strong> sheet. If you want to change them in the future, makse sure that the values you provide
-                        match the values in the ERP instance.
-                    </p>
-                </section>
-                <hr>
-
 <!-- ########## CREATE THE INTEGRATION ########## -->
                 <section>
                     <h2>Create the integration</h2>
-                    <p> </p>
+                    <p></p>
 
                     <ol>
-                        <li>On the Oracle Integration <strong>Home</strong> page, click <strong>Integrations</strong>.</li>
+                        <li>On the Oracle Integration <strong>Home</strong> page, click <strong>Integrations</strong>.
+                        </li>
                         <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
                         <li>Select <strong>Scheduled Orchestration</strong>.</li>
                         <li><p>Enter the following values:</p>
                             <ul>
-                                <li><strong>Name</strong>: <code class="allow-copy"><span>Invoice Bulk Import to ERP <em data-bind="text:user_number() || 'your_user_number'"></em></span></code></li>
-                                <li><strong>Identifier</strong>: leave the default value.
-                                    <p>The default value is the name of the integration in upper case.</p>
-                                </li>
-                                <li><strong>Version</strong>: leave the default value (01.00.0000).
-                                    <p>To change this value enter a version number in the format ##.##.####</p>
-                                </li>
+                                <li><strong>Name</strong>: <code class="allow-copy"><span>Invoice Bulk Import to ERP <em
+                                        data-bind="text:user_number() || 'your_user_number'"></em></span></code></li>
+<!--                                <li><strong>Identifier</strong>: leave the default value.-->
+<!--                                    <p>The default value is the name of the integration in upper case.</p>-->
+<!--                                </li>-->
+<!--                                <li><strong>Version</strong>: leave the default value (01.00.0000).-->
+<!--                                    <p>To change this value enter a version number in the format ##.##.####</p>-->
+<!--                                </li>-->
                                 <li><strong>Description:</strong>
                                     <code class="allow-copy"><span>This integration demonstrates the use of OIC’s ERP Cloud Adapter with the FTP adapter to retrieve an AP Invoices file, import it to the ERP Cloud, and receive a call back from the ERP Cloud.</span></code>
                                 </li>
-                                <li><strong>Package</strong>: leave blank.</li>
+<!--                                <li><strong>Package</strong>: leave blank.</li>-->
                             </ul>
                         </li>
                         <li><p>Click <strong>Create</strong>.</p>
@@ -234,37 +311,50 @@
 <!-- ########## GET THE FILE FROM AN FTP SERVER ########## -->
                 <section>
                     <h2>Get the File from an FTP server</h2>
-                    <p> </p>
+                    <p></p>
                     <ol>
-                        <li>Hover over the outgoing arrow for <strong>Schedule</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Hover over the outgoing arrow for <strong>Schedule</strong> and click <img src="img/add.png"
+                                                                                                       alt="Add icon"
+                                                                                                       style="height: 15px; width: 15px;"/>.
+                        </li>
                         <li>Select the FTP connection (FTP Conn).</li>
-                        <li>In the <strong>Oracle Adapter Endpoint Configuration Wizard</strong> name your endpoint <code class="allow-copy"><span>ReadAPInvoicesFileFromFTP</span></code>.</li>
+                        <li>In the <strong>Oracle Adapter Endpoint Configuration Wizard</strong> name your endpoint
+                            <code class="allow-copy"><span>ReadAPInvoicesFileFromFTP</span></code>.
+                        </li>
                         <li><p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
-                            <p>Retrieves the AP Invoices that comply with FBDI from an FTP location.</p>
+                            <p><code class="allow-copy"><span>Retrieves the AP Invoices that comply with FBDI from an FTP location.</span></code></p>
                         </li>
                         <li>Click <strong>Next</strong>.</li>
                         <li>From the <strong>Operation</strong> list, select <strong>Read a File</strong>.</li>
                         <li>From the <strong>Transfer Mode</strong> options, select <strong>ASCII</strong>.</li>
                         <li><p>Enter the following values</p>
                             <ol type="a">
-                                <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/<em data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></li>
-                                <li><strong>File Name</strong>: <code class="allow-copy"><span>apinvoiceimport.zip</span></code></li>
-                                <li><p><strong>Do you want to specify the structure for the contents of the file</strong>: select <strong>No</strong>.</p>
-
-                                </li>
+                                <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/<em
+                                        data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></li>
+                                <li><strong>File Name</strong>: <code
+                                        class="allow-copy"><span>apinvoiceimport.zip</span></code></li>
                             </ol>
                             <p>
-                                <i>Note:</i> verify that the input directory exists (The FTP information is provided as a text file).
+                                <i>Note:</i> verify that the input directory exists (The FTP information is provided as
+                                a text file).
                                 If it doesn't exist, create a folder named after your student ID in the folder
                                 <code>upload/public_ftp/</code>. Then create the subfolders <code>in</code> and <code>out</code>.
                             </p>
                         </li>
                         <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Schema</strong> page, in the <p><strong>Do you want to specify the structure for the contents of the
+                            file</strong> section, select <strong>No</strong>.</p>
+
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
                         <li><p>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</p>
-                            <p>The FTP endpoint and a Mapping action appear in the <strong>Integration</strong> canvas.</p>
+                            <p>The FTP endpoint and a Mapping action appear in the <strong>Integration</strong> canvas.
+                            </p>
                         </li>
                         <li><p>Delete the Mapping action.</p>
-                            <p>This action isn't needed because we aren't passing parameters from the Schedule action and the downloadInvoiceZIP action.</p>
+                            <p>This action isn't needed because we aren't passing parameters from the Schedule action
+                                and the downloadInvoiceZIP action.</p>
+                        <li>Click <strong>Save</strong>.</li>
                     </ol>
                 </section>
                 <hr>
@@ -272,25 +362,38 @@
 <!-- ########## UPLOAD FILE TO ERP CLOUD ########## -->
                 <section>
                     <h2>Upload the File to ERP Cloud</h2>
-                    <p> </p>
+                    <p></p>
                     <ol>
-                        <li>Hover over the outgoing arrow for <strong>ReadAPInvoicesFileFromFTP</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                        <li>Type <code class="allow-copy"><span>ERP Conn</span></code> in the <strong>Search</strong> field, and select <strong>ERP Conn_zjie</strong>.</li>
-                        <li>Name your action: <code class="allow-copy"><span>ImportAPInvoicestoERPCloud</span>.</code></li>
+                        <li>Hover over the outgoing arrow for <strong>ReadAPInvoicesFileFromFTP</strong> and click <img
+                                src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li>Type <code class="allow-copy"><span>ERP Conn</span></code> in the <strong>Search</strong>
+                            field, and select <strong>ERP Conn_</strong>.
+                        </li>
+                        <li>Name your action: <code class="allow-copy"><span>ImportAPInvoicestoERPCloud</span>.</code>
+                        </li>
                         <li><p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
                             <p><code class="allow-copy"><span>Uploads files to UCM in ERP Cloud.</span></code></p>
                         </li>
                         <li>Click <strong>Next</strong>.</li>
-                        <li>On the <strong>Actions</strong> page, select <strong>Import Bulk Data into Oracle ERP Cloud</strong>.</li>
+                        <li>On the <strong>Actions</strong> page, select <strong>Import Bulk Data into Oracle ERP
+                            Cloud</strong>.
+                        </li>
                         <li>Click <strong>Next</strong>.</li>
-                        <li>On the <strong>Operations</strong> page, select <strong>Import Payables Invoices</strong>.</li>
+                        <li>On the <strong>Operations</strong> page, select <strong>Import Payables Invoices</strong>.
+                        </li>
                         <li>Click <strong>Next</strong>.</li>
                         <li><p>On the <strong>Response</strong> page, select the following options:</p>
                             <ul>
-                                <li>From the <strong>Notification Mode</strong> list, select <strong>Email & Bell Notification</strong>.</li>
-                                <li>From the <strong>Occurrence</strong> list, select <strong>Send in any case</strong>.</li>
+                                <li>From the <strong>Notification Mode</strong> list, select <strong>Email & Bell
+                                    Notification</strong>.
+                                </li>
+                                <li>From the <strong>Occurrence</strong> list, select <strong>Send in any case</strong>.
+                                </li>
                             </ul>
-                            <p>This configures how the ERP console shows the status of the process. For your convenience, you can configure these values from the adapter without having to open the ERP Console.</p>
+                            <p>This configures how the ERP console shows the status of the process. For your
+                                convenience, you can configure these values from the adapter without having to open the
+                                ERP Console.</p>
                         </li>
                         <li>Click <strong>Next</strong>.</li>
                         <li><p>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</p>
@@ -303,14 +406,29 @@
 <!-- ########## DEFINE THE DATA MAPPING ########## -->
                 <section>
                     <h2>Define the Data Mapping</h2>
-                    <p> </p>
+                    <p></p>
                     <ol>
-                        <li>Click the action <strong>Map to ImportAPInvoicestoERPCloud</strong> and click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
-                        <li><p>In the <strong>Sources</strong> section expand ICSFile.</p>
-                        <li><p>In the <strong>Sources</strong> and <strong>Target</strong> sections expand <strong>ICSFile</strong>.</p>
-                        <li><p>Drag the <strong>FileReference</strong> element in the <Strong>Sources</Strong> section, and drop it on the element of the same name in the <strong>Target</strong> section.</p></li>
-                        <li><p>In the <strong>Sources</strong> and <strong>Target</strong> sections expand <strong>Properties</strong>.</p>
-                        <li><p>Drag the following elements from the  <strong>Sources</strong> and drop them on the element of the same name in the <strong>Target</strong> section:</p>
+                        <li>Click the action <strong>Map to ImportAPInvoicestoERPCloud</strong> and click <img
+                                src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li><p>In the <strong>Sources</strong> section successively expand the following elements:</p>
+                            <ol type="a">
+                                <li><strong>SReadAPInvoicesFileFromFTP</strong></li>
+                                <li><strong>SyncReadFileResponse</strong></li>
+                                <li><strong>ICSFile</strong></li>
+                            </ol>
+                        </li>
+                        <li><p>In the <strong>Target</strong> section successively expand the following elements:</p>
+                            <ol type="a">
+                                <li><strong>importBulkData</strong></li>
+                                <li><strong>ICSFile</strong></li>
+                            </ol>
+                        </li>
+                        <li><p>Drag the <strong>FileReference</strong> element in the <Strong>Sources</Strong> section,
+                            and drop it on the element of the same name in the <strong>Target</strong> section.</p></li>
+                        <li>In the <strong>Sources</strong> and <strong>Target</strong> sections expand <strong>Properties</strong> located under <strong>ICSFile</strong>.</li>
+                        <li><p>Drag the following elements from the <strong>Sources</strong> and drop them on the
+                            element of the same name in the <strong>Target</strong> section:</p>
                             <ol type="a">
                                 <li><strong>directory</strong></li>
                                 <li><strong>filename</strong></li>
@@ -325,18 +443,29 @@
 <!-- ########## DEFINE THE TRACKING FIELDS ########## -->
                 <section>
                     <h2>Define the Tracking Fields</h2>
-                    <p> </p>
+                    <p></p>
                     <ol>
-                        <li><p>In the <strong>Integration</strong> canvas, click the error icon <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>&nbsp; next to the <strong>Last Saved</strong> field.</p>
-                        <p>The icon shows the number of errors you need to fix in your integration. You should have one error. To fix this error you need to add business tracking identifiers.</p></li>
-                        <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>, and then select <strong>Tracking</strong>.</p>
-                            <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection" style="width: 200px;"/></p>
+                        <li><p>In the <strong>Integration</strong> canvas, click the error icon <img src="img/error.png"
+                                                                                                     alt="Error icon"
+                                                                                                     style="height: 15px; width: 15px;"/>&nbsp;
+                            next to the <strong>Last Saved</strong> field.</p>
+                            <p>The icon shows the number of errors you need to fix in your integration. You should have
+                                one error. To fix this error you need to add business tracking identifiers.</p></li>
+                        <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png"
+                                                                                      alt="Actions icon"
+                                                                                      style="height: 15px; width: 15px;"/>,
+                            and then select <strong>Tracking</strong>.</p>
+                            <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection"
+                                    style="width: 200px;"/></p>
                         </li>
                         <li>In the <strong>Source</strong> section, expand the <strong>schedule</strong> element.</li>
                         <li>
-                            <p>In the <strong>Source</strong> section, select <strong>startTime</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>:</p>
-                            <p>The selected field appears in the <strong>Tracking Fields</strong> table and is marked as <strong>Primary</strong>.</p>
-                            <p>This defines how to identify your instances in the <strong>Monitoring</strong> console.</p>
+                            <p>In the <strong>Source</strong> section, select <strong>startTime</strong>, and then click
+                                <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>:</p>
+                            <p>The selected field appears in the <strong>Tracking Fields</strong> table and is marked as
+                                <strong>Primary</strong>.</p>
+                            <p>This defines how to identify your instances in the <strong>Monitoring</strong> console.
+                            </p>
                         </li>
                         <li><p>Click <strong>Save</strong>.</p>
                             <p>Notice that now there aren't any errors.</p>
@@ -347,68 +476,85 @@
 <!-- ########## ACTIVATE THE INTEGRATION ########## -->
                 <section>
                     <h2>Activate the Integration</h2>
-                    <p> </p>
+                    <p></p>
                     <ol>
                         <li><p>On the <strong>Integrations</strong> page, locate your integration</p>
-                            <p>The name of your integration is <code><span>Invoice Bulk Import to ERP <em data-bind="text:user_number() || 'your_user_number'"></em></span></code>.</p>
+                            <p>The name of your integration is <code><span>Invoice Bulk Import to ERP <em
+                                    data-bind="text:user_number() || 'your_user_number'"></em></span></code>.</p>
                         </li>
-                        <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.
+                        </li>
                         <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>
-                            <p>This option sends your mappings to the recommendations engine which uses this information to suggest you mappings for similar integrations.</p>
+                            <p>This option sends your mappings to the recommendations engine which uses this information
+                                to suggest you mappings for similar integrations.</p>
                         </li>
                         <li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
-                            <p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
+                            <p>Typically these options are disabled in production environments, but we'll enable them
+                                for the purpose of this lab.</p>
                         </li>
                         <li><p>Click <strong>Activate</strong>.</p>
-                            <p>The activation will complete in a few seconds. If the activation succeeds a confirmation message appears at the top of the page.</p>
+                            <p>The activation will complete in a few seconds. If the activation succeeds a confirmation
+                                message appears at the top of the page.</p>
                         </li>
                     </ol>
                 </section>
                 <hr>
 <!-- ########## RUN THE INTEGRATION ########## -->
                 <section>
-                    <h2 >Run the Integration</h2>
-                    <p> </p>
+                    <h2>Run the Integration</h2>
+                    <p></p>
                     <ol>
                         <li><p>Click <strong>How to run</strong>, then click <strong>Submit Now</strong> twice.</p>
                             <p>A confirmation message with a link to track instance appears.</p>
                         </li>
                         <li><p>Click the link to track the instance.</p>
-                            <p>The <strong>Track Instances</strong> page appears. The integration state should be <strong>Processing</strong> or <strong>Successful</strong>.</p>
+                            <p>The <strong>Track Instances</strong> page appears. The integration state should be
+                                <strong>Processing</strong> or <strong>Successful</strong>.</p>
                             <p>The importing of the invoices to the ERP Cloud might take a few minutes.</p>
                         </li>
 
                     </ol>
                 </section>
                 <hr>
- <!-- ########## VERIFY THE BULK IMPORT########## -->
+<!-- ########## VERIFY THE BULK IMPORT########## -->
                 <section>
                     <h2>Verify the Bulk Import</h2>
                     <p>Wait 5 minutes before performing this procedure.</p>
                     <ol>
                         <li><p>Log in to the ERP Cloud Service using these values:</p>
                             <ol type="a">
-                                <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
-                                <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                    <li><strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code></li>
-                                </div>
-                                <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                    <li><p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p></li>
-                                </div>
-                                <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
+                                <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code>
+                                </li>
+                                <li>
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <strong>User name</strong>: <code
+                                                class="allow-copy"><span
+                                            data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></code>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                            your ERP Cloud environment in the Before You Begin section to get a customized
+                                            user.</a></p>
+                                    </div>
+                                </li>
+                                <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code>
+                                </li>
                             </ol>
-                            <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
+                            <p>Notice that the scheduled processes are specific to user. To check scheduled process, log
+                                in with the
                                 same user that you used to create ERP connection.</p>
                         </li>
                         <li>Click <strong>Payables</strong>.</li>
                         <li>Click <strong>Invoices</strong>.</li>
-                        <li>Click <img src="img/preview.png" alt="Search icon" style="height: 15px; width: 15px;"/> in the <strong>Details</strong> panel located under the <strong>User</strong> menu.</li>
+                        <li>Click <img src="img/preview.png" alt="Search icon" style="height: 15px; width: 15px;"/> in
+                            the <strong>Details</strong> panel located under the <strong>User</strong> menu.
+                        </li>
                         <li>Enter the invoice number and click <strong>Search</strong>.</li>
                     </ol>
                     <p>The invoice should appear in the search results.</p>
                 </section>
                 <hr>
-                <!-- ========================================================================================================================= -->
+<!-- ========================================================================================================================= -->
             </article>
         </div>
         <br class="clearfloat">
@@ -422,13 +568,20 @@
         <img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
         <footer class="footer-list">
             <ul>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About Oracle</a> </li>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html" target="_blank">Contact Us</a> </li>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal Notices</a> </li>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
-                <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
-                <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019-2020, Oracle and/or its affiliates. All rights reserved.</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                    Oracle</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html"
+                       target="_blank">Contact Us</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                    Notices</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                    of Use</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html"
+                       target="_blank">Your Privacy Rights</a></li>
+                <li><a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash"
+                       target="_blank">#OOW19</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright ©
+                    2019-2020, Oracle and/or its affiliates. All rights reserved.</a></li>
             </ul>
         </footer>
     </div>
@@ -436,7 +589,7 @@
 </div>
 <!-- OBE Dialog Box code 10/15/2018 -->
 <!-- DO NOT ALTER THE CODE BELOW   -->
-<!--div id="lpModal" class="modal">
+<!--div id="lpModal" class="modal"-->
     <!-- Modal hdr and body -->
 <!--div id="obe_dialog" class="modal-content">
     <div class="modal-header">
