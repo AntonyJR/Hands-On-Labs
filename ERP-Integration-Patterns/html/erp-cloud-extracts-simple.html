@@ -63,8 +63,8 @@
                                 <li>Deliver the report to UCM or SFTP or trigger a report using ERP integration service.</li>
                             </ul>
                             <p>The data file can be larger than 10MB. Oracle Integration supports handling large files as an
-                                attachment (instead of base64 encoding). We recommend that you use CVS format to reduce the size of the file.</p>
-                            <p>See this <a href="https://blogs.oracle.com/fmw/oracle-integration-cloud-oic-file-based-integration-best-practices">blog article</a> to learn how to handle files from various interfaces and file size constraints</p>
+                                attachment (instead of base64 encoding). We recommend that you use CSV format to reduce the size of the file.</p>
+                            <p>See this <a href="https://blogs.oracle.com/fmw/oracle-integration-cloud-oic-file-based-integration-best-practices">blog article</a> to learn how to handle files from various interfaces and file size constraints.</p>
 <!--                            <p> The following diagram shows the interaction between the systems involved in this use case.</p>-->
 <!--                            <p><img src="img/screenshots/ERP/Purchase-Order-Real-Time-Synchronization-Simple.png" width="650px"/></p>-->
                         </section>
@@ -75,19 +75,17 @@
 
                             <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>
                             <p>Your instructor will provide you the information you need to access the environments used in this lab.</p>
-                            <hr>
-                            <h3>Prerequisites</h3>
-                            <p>For this lab you need the following applications and assets:</p>
+                            <p>For this lab we will provide you the following:</p>
                             <ul>
                                 <li>Oracle Integration</li>
                                 <li>ERP Cloud R12+</li>
-                                <li>A Visual Builder Cloud Service application that you will import from the file <code>LetterOfCreditforEventsLab.zip</code></li>
+                                <li>An FTP server</li>
                             </ul>
-                            <p>For your convenience we created and configured the following connections:</p>
-                            <ul>
-                                <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>
-                                <li><strong>REST adapter</strong>: <code>VBCS Rest Conn</code></li>
-                            </ul>
+<!--                            <p>For your convenience we created and configured the following connections:</p>-->
+<!--                            <ul>-->
+<!--                                <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>-->
+<!--                                <li><strong>REST adapter</strong>: <code>VBCS Rest Conn</code></li>-->
+<!--                            </ul>-->
                             <hr>
                             <h3>Get Your OIC Environment</h3>
                             <p>Select your OIC environment and enter your user number to get the information to access Oracle Integration.</p>
@@ -137,49 +135,65 @@
                                 <li><strong>Password:</strong> will be provided during the training session.</li>
                             </ul>
                             <hr>
-                            <h3>Download Your Resources</h3>
+<!--                            <h3>Download Your Resources</h3>-->
 
-                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number in the Get Your OIC Environment section to access your download.</a></p>
-                            </div>
-                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
-                                <p>Download the following additional assets:
-                                    <b><a style="color: #C74634" href="../assets/events-lab/LetterOfCreditPortal.zip"
-                                          data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a></b>
-                                </p>
-                            </div>
+<!--                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">-->
+<!--                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number in the Get Your OIC Environment section to access your download.</a></p>-->
+<!--                            </div>-->
+<!--                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">-->
+<!--                                <p>Download the following additional assets:-->
+<!--                                    <b><a style="color: #C74634" href="../assets/events-lab/LetterOfCreditPortal.zip"-->
+<!--                                          data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a></b>-->
+<!--                                </p>-->
+<!--                            </div>-->
                         </section>
-                        <hr>
 <!-- ########## Sign In ########## -->
                         <section>
                             <h2>Sign In</h2>
-                            <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
-
+                            <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
+                            <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
+                            <!--                        restricted to specific environments. They may be assigned different roles in each-->
+                            <!--                        environment.</p>-->
                             <ol>
                                 <li><p>Open a browser to the <strong>OIC URL</strong>.</p>
                                     <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                        <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
+                                        <p><strong>OIC URL</strong>: <code class="allow-copy"><span><span
+                                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>
+                                        </p>
                                     </div>
                                     <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                            OIC environment in the Before You Begin section to get a customized URL.</a></p>
                                     </div>
                                 </li>
                                 <li><p>Enter your <strong>OIC User Name</strong>.</p>
-                                    <div data-bind="attr: {style: user_number() & selectedOICEnvironment ? 'display:none' : 'display:initial'}">
-                                        <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment]'"></em><em data-bind="text:user_number() || 'your_user_number]'"></em></span></code></p>
+                                    <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p><strong>OIC User Name</strong>:
+                                            <code class="allow-copy">
+                                        <span>
+                                            <span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></span><span data-bind="text: user_number()? user_number() :'your_user_number'"></span>
+                                        </span>
+                                            </code>
+                                        </p>
                                     </div>
                                     <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your user name in the Before You Begin section to get a customized URL.</a></p>
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                            user name in the Before You Begin section to get a customized URL.</a></p>
                                     </div>
                                     <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c"  href="#userNumberInput">Select your OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                            OIC environment in the Before You Begin section to get a customized URL.</a></p>
                                     </div>
                                 </li>
-                                <li><p>Enter your <strong>OIC Password</strong> (provided by your instructor) and click <strong>Sign In</strong>.</p>
-                                    <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
+                                <li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click
+                                    <strong>Sign In</strong>.</p>
+                                    <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn
+                                        more. Keep scrolling to find more useful links.</p>
                                 </li>
                                 <li><p>Click <strong>Home</strong>.</p>
-                                    <p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
+                                    <p>The <strong>Home</strong> page displays an overview with the current state of your
+                                        instance. You can drill down to get information about available Processes, Integrations,
+                                        and Visual Applications.</p><br>
                                     <img src="img/screenshots/integration/home-page.png" width="600px"/>
                                 </li>
                             </ol>
@@ -218,9 +232,9 @@
                         <h2>Create the Initiate Extract Activity </h2>
                         <p></p>
                         <ol>
-                            <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                            <li>Hover over the outgoing arrow for the <strong>Schedule</strong> activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
                             <li>Type <code class="allow-copy"><span>ERP</span></code> in the <strong>Search</strong> field to find your connection.</li>
-                            <li><p>Select the connection named <code class="allow-copy"><span>ERP Conn_<em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().connectionPrefix : 'your_ERP_Cloud_Environment'"></em></span></code>.</p>
+                            <li><p>Select the connection named <code class="allow-copy"><span>ERP Conn_<!--em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().connectionPrefix : 'your_ERP_Cloud_Environment'"></em--></span></code>.</p>
                                 <p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
                             </li>
                             <li>Name your endpoint <code class="allow-copy"><span>InitiateExtract</span></code>.</li>
@@ -229,6 +243,7 @@
                             <li>On the <strong>Actions</strong> page, Query, Create, Update or Delete Information.</li>
                             <li>Click <strong>Next</strong>.</li>
                             <li>On the <strong>Operations</strong> page, from the <strong>Browse by</strong> list, select <strong>Services</strong>.</li>
+                            <li>In the <strong>Select a Service</strong> field, enter <strong>ERPIntegrationService</strong> and select it from the list.</li>
                             <li>From the <strong>Operation to perform on the Business Object/Resource or Service</strong> list, select <strong>Export Bulk Data</strong>.</li>
                             <li>Click <strong>Next</strong>.</li>
                             <li>Review the summary and click <strong>Done</strong>.</li>
@@ -402,6 +417,8 @@
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
+                                <li>In the <strong>Source</strong> section, expand <strong>$downloadFile</strong>, then expand the <strong>getDocumentsForFilePrefixResponse</strong>, and then expand <strong>result</strong>.</li>
+                                <li>In the <strong>Target</strong> section, expand <strong>ICSFile</strong>.</li>
                                 <li>Map the <strong>Content</strong> element in the <strong>Source</strong> section to the <strong>FileReference</strong> element in the <strong>Target</strong> section.</li>
                                 <li>In the <strong>Expression</strong> window, click <img src="img/check.png" alt="Check icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>Click <strong>Validate</strong>.</li>
@@ -501,7 +518,8 @@
                                         <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
                                         <li>
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                                <strong>User name</strong>: <code class="allow-copy"><span>bala.gupta</span></code>
+                                                <strong>User name</strong>: <code class="allow-copy"><span
+                                                    data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></code>
                                             </div>
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
                                                 <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p>
@@ -557,8 +575,8 @@
         </div>
         <!-- OBE Dialog Box code 10/15/2018 -->
         <!-- DO NOT ALTER THE CODE BELOW   -->
-        <!--div id="lpModal" class="modal">
-            <!-- Modal hdr and body -->
+        <!--div id="lpModal" class="modal"-->
+         <!-- Modal hdr and body -->
             <!--div id="obe_dialog" class="modal-content">
                 <div class="modal-header">
                     <a href="#" class="close">  
