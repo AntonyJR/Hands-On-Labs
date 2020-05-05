@@ -528,13 +528,17 @@
                         </li>
                         <li>Select the <strong>Procurement</strong> tab.</li>
                         <li>Click <strong>Purchase Orders</strong>.</li>
-                        <li>Select the <strong>Tasks</strong> tab.</li>
-                        <li>Click <strong>Create Order</strong>.</li>
+                        <li><p>Select the <strong>Tasks</strong> tab.</p>
+                            <p>The <strong>Tasks</strong> menu appears.</p>
+                        </li>
+                        <li><p>In the <strong>Orders</strong> section, click <strong>Create Order</strong>.</p>
+                            <p>The <strong>Create Order</strong> dialog appears.</p>
+                        </li>
                         <li>In the <strong>Supplier</strong> field, enter <code
                                 class="allow-copy"><span>Dell Inc.</span></code></li>
 <!--                        <li>For the rest of the fields, leave the default value.</li>-->
                         <li>Click <strong>Create</strong>.</li>
-                        <li><p>On the <strong>Purchase Order</strong> page, in the <strong>Additional Information</strong>
+                        <li><p>On the <strong>Edit Document (Purchase Order)</strong> page, in the <strong>Additional Information</strong>
 							section, click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/></p>
 							<p>A new row appears in the <strong>Lines</strong> table.</p>
 						</li>
@@ -557,7 +561,9 @@
                                 <li>Price: <code class="allow-copy"><span>1.00</span></code></li>
                             </ol>
                         </li>
-                        <li>Click <strong>Submit</strong> to create the purchase order.</li>
+                        <li><p>Click <strong>Submit</strong> to create the purchase order.</p>
+                            <p>A confirmation message with the purchase order number appears.</p>
+                        </li>
                         <li>Write down the order number.</li>
                     </ol>
 
@@ -584,12 +590,12 @@
                     <ol>
                         <li><p>Open the following link in a web browser and sign in using your Oracle Integration
                             credentials.</p>
-                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
-                                    your ERP Cloud environment in the Before You Begin section to get a customized
+                                    your OIC Cloud environment in the Before You Begin section to get a customized
                                     URL.</a></p>
                             </div>
-                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
                                 <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL : 'your_OIC_environment'"></em>/ic/builder/design/LetterOfCreditPortalForEventsLab/1.0/preview/webApps/locapp/</span></code></p>
                             </div>
                             <p>The web application opens in a separate browser window. This basic application lets you
