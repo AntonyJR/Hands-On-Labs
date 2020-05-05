@@ -94,8 +94,8 @@
                     </ul>
 <!--                    <p>For your convenience we created and configured the following connections:</p>-->
 <!--                    <ul>-->
-<!--                        <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>-->
-<!--                        <li><strong>REST adapter</strong>: <code>VBCS Rest Conn</code></li>-->
+<!--                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>-->
+<!--                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>-->
 <!--                    </ul>-->
                     <hr>
                     <h3>Get Your OIC Environment</h3>
@@ -257,7 +257,7 @@
                         <li>Type <code class="allow-copy"><span>ERP</span></code> in the <strong>Search</strong> field
                             to find your rest connection.
                         </li>
-                        <li><p>Select the connection named <code class="allow-copy"><span>ERP Conn_zjie</span></code>.
+                        <li><p>Select the connection named <code class="allow-copy"><span>ERP Cloud</span></code>.
                         </p>
                             <p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
                         </li>
@@ -274,7 +274,7 @@
                                 <li>In the <strong>Business Event For Subscription</strong> type <code
                                         class="allow-copy"><span>Purchase Order</span></code>.
                                 </li>
-                                <li><p>Select the <strong>Purchase Order Event</strong>.</p></li>
+                                <li><p>Select <strong>Purchase Order Event</strong>.</p></li>
 
                                 <li>
                                     <p>In the <strong>Filter Expr for Purchase Order Event</strong> field, enter the
@@ -309,7 +309,7 @@
                         <li>Hover over the outgoing arrow for the <strong>POEVENT</strong> activity and click <img
                                 src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li>Select <strong>VBCS Rest Conn</strong>.</li>
+                        <li>Select <strong>Visual Builder PO Event</strong>.</li>
                         <li><p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
                             <ol type="a">
                                 <li>Name your endpoint <code class="allow-copy"><span>CREATEPO</span></code>.</li>
@@ -372,16 +372,15 @@
 	"supplier": "Dell Inc.",
 	"soldToLegalEntity": "300000046973970", 
 	"lOCId": null,
-	"soldToLegalEntity": "300000046973970", "lOCId": null,
+	"soldToLegalEntity": "300000046973970", "lOCId": null
 }</span></code></pre>
                             </li>
 							<li>Click <strong>OK</strong>.</li>
-                            <li><p>Click <strong>Next</strong>.</p>
-                                <p>A summary of the properties you configured appears.</p>
-                            </li>
-                            <li>Review the summary and click <strong>Done</strong>.</li>
-
                         </ol>
+                        <li><p>Click <strong>Next</strong>.</p>
+                            <p>A summary of the properties you configured appears.</p>
+                        </li>
+                        <li>Review the summary and click <strong>Done</strong>.</li>
 						<li>Click <strong>Save</strong>.</li>
                     </ol>
                 </section>
@@ -394,26 +393,33 @@
                     <ol>
                         <li>Select the <strong>Map to CREATEPO</strong> action.</li>
                         <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
-                            <p>The <strong>Data Mapping</strong> page appears.</p>
+                            <p>The <strong>Map to CREATEPO</strong> page appears.</p>
                         </li>
-						<li>In the <strong>Sources</strong> section, click <strong>Load more</strong>,  the <strong>result</strong>, the second <strong>&lt;sequence&gt;</strong>, and the <strong>value</strong> elements.</li>
-						<li>In the <strong>Target</strong> section, expand the <strong>request-wrapper</strong> element.</li>
-                        <li><p>Map the following fields from the <strong>value</strong> element in the
-                            <strong>Sources</strong> section, to the corresponding elements with the same name in the
-                            <strong>request-wrapper</strong> element in the <strong>Target</strong> section:</p>
-                            <ol type="a">
-                                <li><strong>POHeaderId</strong></li>
-                                <li><strong>OrderNumber</strong></li>
-                                <li><strong>ProcurementBUId</strong></li>
-                                <li><strong>ProcurementBusinessUnit</strong></li>
-                                <li><strong>SoldToLegalEntity</strong></li>
-                                <li><strong>SupplierId</strong></li>
-                                <li><strong>Supplier</strong></li>
-                            </ol>
-							<p>To map an element, select the element from the <strong>Sources</strong> section, then while clicking your mouse move it towards the target element. When you reach the target element the line turns green and a check mark appears. </p>
-                            <p>The finished data mapping looks like this:</p>
-                            <img src="img/screenshots/ERP/data-mapping.png" width="650px"/>
+                        <li><p>Click <img src="img/recommendations.png" alt="Recommend icon" style="height: 15px; width: 15px;"/> <strong>Recommend</strong>.</p>
+                            <p>The recommended mapping appears:</p>
+                            <img src="img/screenshots/ERP/recommended-mapping.png" width="650px"/>
                         </li>
+                        <li><p>Click <img src="img/check.png" alt="Apply Recommendations icon" style="height: 15px; width: 15px;"/> <strong>Apply Recommendations</strong>.</p>
+                            <p>A confirmation message appears informing you that the recommendations were applied.</p>
+                        </li>
+<!--						<li>In the <strong>Sources</strong> section, click <strong>Load more</strong>,  the <strong>result</strong>, the second <strong>&lt;sequence&gt;</strong>, and the <strong>value</strong> elements.</li>-->
+<!--						<li>In the <strong>Target</strong> section, expand the <strong>request-wrapper</strong> element.</li>-->
+<!--                        <li><p>Map the following fields from the <strong>value</strong> element in the-->
+<!--                            <strong>Sources</strong> section, to the corresponding elements with the same name in the-->
+<!--                            <strong>request-wrapper</strong> element in the <strong>Target</strong> section:</p>-->
+<!--                            <ol type="a">-->
+<!--                                <li><strong>POHeaderId</strong></li>-->
+<!--                                <li><strong>OrderNumber</strong></li>-->
+<!--                                <li><strong>ProcurementBUId</strong></li>-->
+<!--                                <li><strong>ProcurementBusinessUnit</strong></li>-->
+<!--                                <li><strong>SoldToLegalEntity</strong></li>-->
+<!--                                <li><strong>SupplierId</strong></li>-->
+<!--                                <li><strong>Supplier</strong></li>-->
+<!--                            </ol>-->
+<!--							<p>To map an element, select the element from the <strong>Sources</strong> section, then while clicking your mouse move it towards the target element. When you reach the target element the line turns green and a check mark appears. </p>-->
+<!--                            <p>The finished data mapping looks like this:</p>-->
+<!--                            <img src="img/screenshots/ERP/data-mapping.png" width="650px"/>-->
+<!--                        </li>-->
 						<li><p>Click <strong>Validate</strong>.</p>
 							<p>A confirmation message appears.</p>
 						</li>
@@ -432,10 +438,11 @@
                             and then select <strong>Tracking</strong>.</p>
                             <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection"
                                     style="width: 200px;"/></p>
+                            <p>The <strong>Business Identifiers for Tracking</strong> dialog appears.</p>
                         </li>
 						<li>In the <strong>Source</strong> section, expand <strong>result</strong> and click <strong>Load more</strong>.</li>
 						<li>Expand  <strong>value</strong> and then click  <strong>Load more</strong>.</li>
-                        <li><p>In the <strong>Business Identifiers for Tracking</strong> dialog, configure tracking
+                        <li><p>Configure tracking
                             fields to identify your instance when a purchase order is created in ERP Cloud:</p>
                             <ol type="a">
                                 <li>From the <strong>Source</strong> section, select <strong>OrderNumber</strong>, and
@@ -454,7 +461,7 @@
                                 field is marked as <strong>Primary</strong>.</p>
                         </li>
                         <li>Click <strong>Save</strong>.</li>
-                        <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
+                        <li>In the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
                             <strong>Close</strong>.
                         </li>
                     </ol>
@@ -471,17 +478,18 @@
                         </li>
                         <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>
-                            <p>This option sends your mappings to the recommendations engine which uses this information
-                                to suggest you mappings for similar integrations.</p>
-                        </li>
-                        <li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
+                        <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
+<!--                        <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>-->
+<!--                            <p>This option sends your mappings to the recommendations engine which uses this information-->
+<!--                                to suggest you mappings for similar integrations.</p>-->
+<!--                        </li>-->
+                        <li><p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
                             <p>Typically these options are disabled in production environments, but we'll enable them
                                 for the purpose of this lab.</p>
                         </li>
                         <li><p>Click <strong>Activate</strong>.</p>
                             <p>The activation will complete in a few seconds. If the activation succeeds a confirmation
-                                message appears at the top of the page.</p>
+                                message appears at the top of the page, and the status will change to <span style="color:#86BD66;">&#x25CF;</span> Active.</p>
                         </li>
                     </ol>
                 </section>
@@ -490,8 +498,7 @@
                 <section>
                     <h2>Testing the Integration</h2>
                     <ol>
-                        <li><p>Open a browser to sign in to the <strong>ERP Cloud</strong> using the following sign in
-                            information:</p>
+                        <li><p>Open a browser to sign in to the <strong>ERP Cloud</strong> using the following information:</p>
                             <ol type="a">
                                 <li>
                                 <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
@@ -500,8 +507,8 @@
                                         URL.</a></p>
                                 </div>
                                 <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                    <p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><span
-                                            data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'your_ERP_environment'"></span></span></code>
+                                    <p><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span
+                                            data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'your_ERP_environment'"></span></code>
                                     </p>
                                 </div>
                                 </li>
@@ -575,17 +582,22 @@
                 <section>
                     <h2>Run the Web Application</h2>
                     <ol>
-                        <li>Open the text file <code>IntegrationWorkshopEnv.txt</code> (provided in this training
-                            session) and copy the link to a Visual Builder application.
-                        </li>
-                        <li><p>Open the link you copied in a web browser and sign in using your Oracle Integration
+                        <li><p>Open the following link in a web browser and sign in using your Oracle Integration
                             credentials.</p>
+                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                    your ERP Cloud environment in the Before You Begin section to get a customized
+                                    URL.</a></p>
+                            </div>
+                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL : 'your_OIC_environment'"></em>/ic/builder/design/LetterOfCreditPortalForEventsLab/1.0/preview/webApps/locapp/</span></code></p>
+                            </div>
                             <p>The web application opens in a separate browser window. This basic application lets you
                                 test the end to end flow.</p>
                         </li>
-                        <li><p>Click <strong>LC List Page</strong>.</p>
-                            <p>A custom table displays all the available letters of credit.</p>
-                        </li>
+<!--                        <li><p>Click <strong>LC List Page</strong>.</p>-->
+<!--                            <p>A custom table displays all the available letters of credit.</p>-->
+<!--                        </li>-->
                         <li>Click <strong>Back</strong>.</li>
                         <li>Click <strong>PO List Page</strong>.</li>
                         <li>Verify that your purchase order was created in the Visual Builder Cloud Service
