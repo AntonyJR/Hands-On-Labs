@@ -59,7 +59,7 @@
                         transformations and writes it into the REST client.
                     </p>
                     <p>The following diagram shows the interaction between the different systems in this use case:</p>
-                    <img src="img/screenshots/ERP/hover-activate-bip-report.png" width="650px"/>
+                    <p><img src="img/screenshots/ERP/bip-report-stage-file.png" width="650px"/></p>
                 </section>
                 <hr>
                 <!-- ########## Before You Begin ########## -->
@@ -75,13 +75,13 @@
                     <ul>
                         <li>Oracle Integration</li>
                         <li>ERP Cloud R12+</li>
-                        <li>A Visual Builder application</li>
+                        <li>Postman</li>
                     </ul>
-                    <p>For your convenience we created and configured the following connections:</p>
-                    <ul>
-                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>
-                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>
-                    </ul>
+<!--                    <p>For your convenience we created and configured the following connections:</p>-->
+<!--                    <ul>-->
+<!--                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>-->
+<!--                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>-->
+<!--                    </ul>-->
                     <hr>
                     <h3>Get Your OIC Environment</h3>
                     <p>Select your OIC environment and enter your user number to get the information to access Oracle
@@ -766,7 +766,7 @@
                         </li>
                         <li><p>Send the request.</p>
                             <p>The response you get should look similar to the following JSON:</p>
-                            <code><pre>
+                            <pre><code>
 [
     {
         “LEDGERNAME”: “US Primary Ledger”,
@@ -793,8 +793,8 @@
         “AccountID”: 21
     }
 ]
-                                </pre>
                             </code>
+                            </pre>
                         </li>
                         <li>Open Oracle Integration.</li>
                         <li>In the <strong>Navigation</strong> menu, select
