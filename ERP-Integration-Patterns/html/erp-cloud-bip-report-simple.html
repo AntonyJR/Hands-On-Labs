@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Published date: September 2019 -->
+    <!-- Template date: September 2019 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="ERP Cloud BIP Report Lab">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Oracle Integration - ERP Cloud BIP Report Lab</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="ERP Cloud BIP Report Lab">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="css/normalize.min.css"-->
+    <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+    <script type="text/javascript" src="./js/libs/require/require.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <link rel="stylesheet" href="css/copy-button.css">
+    <script src="js/copytoclipboard.js"></script>
+</head>
+<body>
+
+<div id="content" style="margin-top:5px">
+
+    <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+    <!-- Use an imperative verb in the title. -->
+    <h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration - ERP Cloud BIP Report Lab</h1>
+    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"/>
+
+    <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+            <div class="left-nav-tut"><!-- -->
+                <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                <div id="navbar" class="left-nav-w"><!-- -->
+                    <div id="toc" class="tocify"><!-- --></div>
+                </div>
+            </div>
+        </div>
+        <div id="bookContainer">
+            <article>
+                <!-- ########## Background ########## -->
+                <section>
+                    <h2>Background</h2>
+                    <p>
+                        This lab describes how to use Oracle Integration with Oracle ERP Business Intelligence
+                        Publish (BIP) report.</p>
+                    <p>
+                        The user creates a report in Oracle ERP Cloud and uploads it to a shared folder. Oracle Integration
+                        connects to the ERP BIP service, pulls the report, decodes the response, applies the required
+                        transformations and writes it into the REST client.
+                    </p>
+                    <p>The following diagram shows the interaction between the different systems in this use case:</p>
+                    <img src="img/screenshots/ERP/hover-activate-bip-report.png" width="650px"/>
+                </section>
+                <hr>
+                <!-- ########## Before You Begin ########## -->
+                <section>
+                    <h2>Before You Begin</h2>
+
+                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard"
+                                                               height="19px" width="19px"> icon next to them. Click this
+                        icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                    <p>Your instructor will provide you the information you need to access the environments used in this
+                        lab.</p>
+                    <p>For this lab we will provide you the following:</p>
+                    <ul>
+                        <li>Oracle Integration</li>
+                        <li>ERP Cloud R12+</li>
+                        <li>A Visual Builder application</li>
+                    </ul>
+                    <p>For your convenience we created and configured the following connections:</p>
+                    <ul>
+                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>
+                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>
+                    </ul>
+                    <hr>
+                    <h3>Get Your OIC Environment</h3>
+                    <p>Select your OIC environment and enter your user number to get the information to access Oracle
+                        Integration.</p>
+                    <p><strong>OIC Environment</strong>:&nbsp;
+                        <select data-bind="options: availableOICEnvironments,
+									optionsText: 'name',
+									value: selectedOICEnvironment,
+									optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input
+                            data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>
+                        OK
+                    </button>
+                    </p>
+                    <ul>
+                        <li><strong>OIC URL</strong>: <code class="allow-copy"><span><span
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the OIC Environment above'"></span></span></code>
+                        </li>
+
+                        <li><strong>OIC User Name</strong>: <code class="allow-copy"><span><span
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select the OIC Environment above'"></span><em
+                                data-bind="text:user_number() || 'your_user_number'"></em></span></code></li>
+
+                        <li><strong>OIC Password</strong>: will be provided during the training session.</li>
+                    </ul>
+                    <hr>
+                    <h3>Get Your ERP Cloud Environment</h3>
+                    <p>Select your ERP environment to get the information to access Oracle ERP Cloud.</p>
+                    <p><strong>ERP Cloud Purchasing Environment</strong>:&nbsp;
+                        <select data-bind="options: availableAppEnvironments,
+									optionsText: 'name',
+									value: selectedAppEnvironment,
+									optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <ul>
+                        <li><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><span
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select the App Environment above'"></span></span></code>
+                        </li>
+                        <li><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><span
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></span></code>
+                        </li>
+                        <li><strong>ERP Password</strong>: will be provided during the training session.</li>
+                    </ul>
+                    <!--                    <hr>-->
+                    <!--                    <h3>Download Your Resources</h3>-->
+
+                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">-->
+                    <!--                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number-->
+                    <!--                            in the Get Your OIC Environment section to access your download.</a></p>-->
+                    <!--                    </div>-->
+                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">-->
+                    <!--                        <p>Download the following additional assets:-->
+                    <!--                            <b><a style="color: #C74634" ; href="../assets/events-lab/LetterOfCreditPortal.zip" ;-->
+                    <!--                                  data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span-->
+                    <!--                                    data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a></b>-->
+                    <!--                        </p>-->
+                    <!--                    </div>-->
+                </section>
+                <hr>
+                <!-- ########## Sign In ########## -->
+                <section>
+                    <h2>Sign In</h2>
+                    <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
+                    <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
+                    <!--                        restricted to specific environments. They may be assigned different roles in each-->
+                    <!--                        environment.</p>-->
+                    <ol>
+                        <li><p>Open your Oracle Integration instance.</p>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p>
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment' }">
+                                        <span>
+                                            <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>
+                                        </span>
+                                    </a>
+                                </p>
+
+                                <!--                                <p><code class="allow-copy"><span><span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>-->
+                                <!--                                </p>-->
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                            </div>
+                        </li>
+                        <li><p>Enter your user name and password.</p>
+                            <ul>
+
+                                <li>Your user name is:
+                                    <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <code class="allow-copy">
+                                                <span>
+                                                    <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                                        data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                                </span>
+                                        </code>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter
+                                            your
+                                            user number in the Before You Begin section to get a customized user
+                                            name.</a></p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                            your
+                                            OIC environment in the Before You Begin section to get a customized user
+                                            name.</a>
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>Your password will be provided by the instructor during the training session.</li>
+                            </ul>
+                        </li>
+                        <li><p>Click
+                            <strong>Sign In</strong>.</p>
+                            <p>The <strong>Home</strong> page appears.</p>
+                            <p>You are now logged in and ready to use Oracle Integration.</p>
+                            <img src="img/screenshots/integration/home-page.png" width="600px"/>
+                        </li>
+                    </ol>
+
+                </section>
+                <hr>
+                <!-- ########## Create the Integration ########## -->
+                <section>
+                    <h2>Create the Integration</h2>
+                    <ol>
+                        <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>.</li>
+                        <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
+                        <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>App Driven
+                            Orchestration</strong>.
+                        </li>
+                        <li>Click <strong>Select</strong>.</li>
+                        <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
+                            <ol type="a">
+                                <li><p><strong>What do you want to call your integration?</strong></p>
+                                    <p>Enter <code class="allow-copy"><span>Short BIP Report <em
+                                            data-bind="text:user_number() || 'your_user_number'"></em></span></code></p>
+                                </li>
+                                <!--                                <li><strong>Identifier</strong>: leave the default value (this is the name of the-->
+                                <!--                                    integration in uppercase).-->
+                                <!--                                </li>-->
+                                <!--                                <li><p><strong>Version</strong>: leave the default value.</p>-->
+                                <!--                                    <p>(Optional) To change the version number, use the format <code>##.##.####</code>.-->
+                                <!--                                    </p>-->
+                                <!--                                </li>-->
+                                <!--                                        <li><p><strong>What does this integration do?</strong></p>-->
+                                <!--                                            <p>Enter the following text:</p>-->
+                                <!--                                            <p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration ERP cloud adapter event to store a purchase order record in a Visual Builder application.</span></code>-->
+                                <!--                                            </p>-->
+                                <!--                                        </li>-->
+                                <!--                                <li><strong>Which package does this integration belong to?</strong>: leave blank.</li>-->
+                            </ol>
+                        </li>
+                        <li>Click <strong>Create</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Create the Trigger ########## -->
+                <section>
+                    <h2>Create the Trigger</h2>
+                    <ol>
+                        <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon"
+                                                                             style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li>Type <code class="allow-copy"><span>REST</span></code> in the <strong>Search</strong> field
+                            to find your rest connection.
+                        </li>
+                        <li><p>Select the connection named <strong>REST Conn</strong>.
+                        </p>
+                            <p>The <strong>Configure REST Endpoint</strong> wizard appears.</p>
+                        </li>
+                        <li>Name your endpoint <code class="allow-copy"><span>ShortBIPReport</span></code>.</li>
+                        <!--                                <li>In the <strong>What does this endpoint do?</strong> field, enter <code-->
+                        <!--                                        class="allow-copy"><span>This endpoint subscribes to the purchase order events.</span></code>-->
+                        <!--                                </li>-->
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Resource Configuration</strong> page, configure the following properties:
+                            <ol type="a">
+                                <li><strong>Provide an operation name</strong>: <code class="allow-copy"><span>getLedgers</span></code>
+                                </li>
+                                <li><strong>What does this operation do?</strong>: <code class="allow-copy"><span>Retrieves ledgers from the ERP system.</span></code>
+                                </li>
+                                <li><strong>What is the endpoint's relative resource URI</strong>: <code
+                                        class="allow-copy"><span>/BIP</span></code></li>
+                                <li><strong>What action do you want to perform on the endpoint?</strong>: select
+                                    <strong>GET</strong>.
+                                </li>
+                                <li>Select <strong>Add and review parameters for this endpoint</strong>.</li>
+                                <li>Select <strong>Configure this endpoint to receive the response.</strong></li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Request Parameters</strong> page, in the <strong>Specify Query
+                            Parameters</strong> section, click <img src="img/add.png" alt="Add icon"
+                                                                    style="height: 15px; width: 15px;"/>.</p>
+                            <p>A new row appears.</p>
+                        </li>
+                        <li>In the <strong>Name</strong> column, enter <code class="allow-copy"><span>LedgerName</span></code>.
+                        </li>
+                        <li>From the list in the <strong>Data Type</strong> column, select <strong>string</strong>.</li>
+                        <li><p>In the same way you added the <code>LedgerName</code> parameter, add the following
+                            parameters of type <code>string</code>:</p>
+                            <ol type="a">
+                                <li><code class="allow-copy"><span>ReportAbsolutePath</span></code></li>
+                                <li><code class="allow-copy"><span>UserID</span></code></li>
+                                <li><code class="allow-copy"><span>Password</span></code></li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Response</strong> page, configure the following values:</p>
+                            <ol type="a">
+                                <li><p>From the <strong>Select the request payload format</strong> list, select <strong>JSON
+                                    Sample</strong>.</li>
+                                <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
+                                <li>Enter the following JSON sample:
+                                    <pre class="allow-copy"><code><span>[{
+"LEDGERNAME" : "US Primary Ledger",
+"SEGMENT1" : 31,
+"SEGMENT2" : 21,
+"AccountID" : 1
+}, {
+"LEDGERNAME" : "US Primary Ledger",
+"SEGMENT1" : 31,
+"SEGMENT2" : 21,
+"AccountID" : 21
+}]</span></code></pre>
+                                </li>
+                                <li>Click <strong>OK</strong>.</li>
+                            </ol>
+                        <li><p>Click <strong>Next</strong>.</p>
+                            <p>A summary of the properties you configured appears.</p>
+                        </li>
+                        <li>Review the summary and click <strong>Done</strong>.</li>
+                        <li><p>In the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select
+                            <strong>Horizontal</strong>.</p>
+                            <p><img src="img/screenshots/ERP/horizontal-layout.png"
+                                    width="600px"/></p>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Get the BIP Report  ########## -->
+                <section>
+                    <h2>Get the BIP Report </h2>
+                    <p></p>
+                    <ol>
+                        <li>Hover over the outgoing arrow for the <strong>ShortBIPReport</strong> activity and click
+                            <img
+                                    src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li>Select <strong>ERBIP Conn</strong>.</li>
+                        <li>In the <strong>Basic Info</strong> page, name your endpoint <code class="allow-copy"><span>GetBIPReport</span></code>.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>From the <strong>Do you want to configure this as a callback invoke?</strong> options,
+                            select <strong>No</strong>.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Operations</strong> page, from the <strong>Select the Operation</strong>
+                            list, select <strong>runReport</strong>.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Headers</strong> page, click <strong>Next</strong>.</li>
+                        <li>Review the summary and click <strong>Done</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                    <!-- ########## Define the Data Mapping ########## -->
+                    <h3>Define the Data Mapping</h3>
+                    <p>A Map action named <strong>Map to GetBIPReport</strong> is automatically created. We'll define
+                        this
+                        data mapping.</p>
+                    <ol>
+                        <li>Select the <strong>Map to GetBIPReport</strong> action.</li>
+                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                            <p>The <strong>Data Mapping</strong> page appears.</p>
+                        </li>
+                        <li><p>Map the <strong>UserID</strong> field:</p>
+                            <ol type="a">
+                                <li>In the <strong>Sources</strong> section, expand <strong>execute</strong>, and then
+                                    <strong>QueryParameters</strong>.
+                                </li>
+                                <li>In the <strong>Target</strong> section, expand
+                                    <strong>OutboundSOAPRequestDocument</strong>, then expand <strong>Body</strong>, and
+                                    then expand <strong>runReport</strong>.
+                                </li>
+                                <li><p>Map the <strong>UserID</strong> field in the <strong>Sources</strong> section, to
+                                    the <strong>UserID</strong> field in the <strong>Target</strong> section.</p>
+                                    <p>To map an element, select the element from the <strong>Sources</strong> section,
+                                        then while clicking your mouse move it towards the target element. When you
+                                        reach the target element the line turns green and a check mark appears. </p>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><p>Map the <strong>ReportAbsolutePath</strong> field:</p>
+                            <ol type="a">
+                                <li>In the <strong>Target</strong> section, and then expand
+                                    <strong>reportRequest</strong>.
+                                </li>
+                                <li><p>Map the <strong>ReportAbsolutePath</strong> field in the <strong>Sources</strong>
+                                    section, to the <strong>reportAbsolutePath</strong> field in the
+                                    <strong>Target</strong> section.</p>
+                            </ol>
+                        </li>
+                        <li><p>Assign a value to the <strong>name</strong> field:</p>
+                            <ol type="a">
+                                <li>In the <strong>Target</strong> section, expand <strong>parameterNameValues</strong>,
+                                    and then expand <strong>item</strong>.
+                                </li>
+                                <li>Right click the <strong>name</strong> field.</li>
+                                <li>Click <strong>Create Target Node</strong>.</li>
+                                <li>In the <strong>Expression for name</strong> panel, enter <code
+                                        class="allow-copy"><span>"LedgerName"</span></code>.
+                                </li>
+                                <li>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/>.
+                                </li>
+                                <li>Click <img src="img/close.png" alt="Close icon" style="height: 15px; width: 15px;"/>.
+                                </li>
+                            </ol>
+                        </li>
+                        <li><p>Map the <strong>LedgerName</strong> field in the <strong>Sources</strong> section, to the
+                            <strong>item</strong> field in the <strong>Target</strong> section.</p>
+
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A confirmation message appears.</p>
+                        </li>
+                        <li>Click <img src="img/test.png" alt="Save icon" style="height: 20px; width: 20px;"/> <strong>Test</strong>.
+                        </li>
+                        <li>Click <img src="img/generate-inputs.png" alt="Generate Inputs icon"
+                                       style="height: 17px; width: 17px;"/> <strong>Generate Inputs</strong>.
+                        </li>
+                        <li>Click <img src="img/execute.png" alt="Execute icon" style="height: 15px; width: 15px;"/>
+                            <strong>Execute</strong>.
+                        </li>
+                        <li>Verify that the <strong>Target</strong> section shows the values that you have assigned to
+                            the different fields.
+                        </li>
+                        <!--                                <li>Click <strong>Validate</strong>.</li>-->
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Write the File to Stage  ########## -->
+                <section>
+                    <h2>Write the File</h2>
+                    <p></p>
+                    <ol>
+                        <li>Download the <a href="../assets/bip-report-lab/opaque_schema.xsd" download="opaque_schema.xsd" target="_blank">GLCCReport1.csv</a> file.</li>
+                        <li>Hover over the outgoing arrow for the <strong>GetBIPReport</strong> activity and click <img
+                                src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li>Type <code class="allow-copy"><span>Stage</span></code> in the <strong>Search</strong>
+                            field.
+                        </li>
+                        <li><p>Select the action named <strong>Stage File</strong>.
+                        <li>In the <strong>Basic Info</strong> page, name your action <code class="allow-copy"><span>StageFileWrite</span></code>.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Configure Operation</strong> page, from the <strong>Choose Stage File
+                            Operation</strong> list, select <strong>Write File</strong>.</li>
+                        <li>
+                            <p>Specify the file name:</p>
+                            <ol type="a">
+                                <li><p>Click <img src="img/edit.png" alt="Edit icon"
+                                                  style="height: 15px; width: 15px;"/> next to the <strong>Specify the
+                                    File Name</strong> field.</p>
+                                    <p>The <strong>Configure Stage File Action</strong> dialog appears.</p>
+                                </li>
+                                <li>In the <strong>Expression</strong> field, enter <code class="allow-copy"><span>"temp.csv"</span></code>.
+                                </li>
+                                <li><p>Click <strong>Save</strong>.</p>
+                                    <p>A confirmation message appears.</p>
+                                </li>
+                                <li>Click <strong>OK</strong>.</li>
+                                <li>Click <strong>Exit Expression Builder</strong></li>
+                            </ol>
+                        </li>
+                        <li>
+                            <p>Specify the output directory:</p>
+                            <ol type="a">
+                                <li><p>Click <img src="img/edit.png" alt="Edit icon"
+                                                  style="height: 15px; width: 15px;"/> next to the <strong>Specify the
+                                    Output Directory</strong> field.</p>
+                                    <p>The <strong>Configure Stage File Action</strong> dialog appears.</p>
+                                </li>
+                                <li>In the <strong>Expression</strong> field, enter <code class="allow-copy"><span>"/tmp"</span></code>.
+                                </li>
+                                <li><p>Click <strong>Save</strong>.</p>
+                                    <p>A confirmation message appears.</p>
+                                </li>
+                                <li>Click <strong>OK</strong>.</li>
+                                <li>Click <strong>Exit Expression Builder</strong></li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Schema Options</strong> page, specify the following values:</p>
+                            <ol type="a">
+                                <li><strong>Do you want to specify the structure for the contents of the file</strong>:
+                                    select <strong>Yes</strong>.
+                                </li>
+                                <li><strong>Which of the following choices describes the structure of the file
+                                    contents</strong>: select <strong>XML Schema (XSD) document</strong>.
+                                </li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Format Definition</strong> page, click <strong>Choose File</strong> and
+                            select the <code>opaque_schema.xsd</code> you downloaded.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>Review the summary and click <strong>Done</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                    <!-- ########## Define the Data Mapping ########## -->
+                    <h3>Define the Data Mapping</h3>
+                    <p>A Map action named <strong>Map to StageFileWrite</strong> is automatically created. We'll define
+                        this
+                        data mapping.</p>
+                    <ol>
+                        <li>Select the <strong>Map to StageFileWrite</strong> action.</li>
+                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                            <p>The <strong>Data Mapping</strong> page appears.</p>
+                        </li>
+                        <li>In the <strong>Sources</strong> section, expand <strong>$GetBIPReport</strong>, then
+                            <strong>runReportResponse</strong>, and then <strong>runReportReturn</strong>.
+                        </li>
+                        <li>In the <strong>Target</strong> section, expand <strong>Write</strong>.</li>
+                        <li>Map the <strong>reportBytes</strong> field in the <strong>Sources</strong> section, to the
+                            <strong>opaqueElement</strong> field in the <strong>Target</strong> section.
+                        </li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A confirmation message appears.</p>
+                        </li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Read the File from Stage  ########## -->
+                <section>
+                    <h2>Read the File from Stage</h2>
+                    <ol>
+                        <li>Download the <a href="../assets/bip-report-lab/GLCCReport1.csv" download="GLCCReport1.csv" target="_blank">GLCCReport1.csv</a> file.</li>
+                        <li>
+                            <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
+                                and from the <strong>Data</strong> section, drag and drop <strong>Stage File</strong> to
+                                the <strong>Integration</strong>
+                                and place it after the <strong>StageFileWrite</strong> activity.</p>
+                            <img src="img/screenshots/ERP/actions-stage-file.png" height="300px"/>
+                            <p>The <strong>Configure Stage File Action</strong> wizard appears.</p>
+                        </li>
+                        <li>On the <strong>Basic Info</strong> page, name the activity <code class="allow-copy"><span>ReadFileFromStage</span></code>.
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Configure Operation</strong> page, from the <strong>Choose Stage File
+                            Operation</strong> list, select <strong>Read Entire File</strong>.</li>
+                        <li>
+                            <p>Specify the file name:</p>
+                            <ol type="a">
+                                <li><p>Click <img src="img/edit.png" alt="Edit icon"
+                                                  style="height: 15px; width: 15px;"/> next to the <strong>Specify the
+                                    File Name</strong> field.</p>
+                                    <p>The <strong>Configure Stage File Action</strong> dialog appears.</p>
+                                </li>
+                                <li>In the <strong>Expression</strong> field, enter <code class="allow-copy"><span>"temp.csv"</span></code>.
+                                </li>
+                                <li><p>Click <strong>Save</strong>.</p>
+                                    <p>A confirmation message appears.</p>
+                                </li>
+                                <li>Click <strong>OK</strong>.</li>
+                                <li>Click <strong>Exit Expression Builder</strong>.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <p>Specify the output directory:</p>
+                            <ol type="a">
+                                <li><p>Click <img src="img/edit.png" alt="Edit icon"
+                                                  style="height: 15px; width: 15px;"/> next to the <strong>Specify the
+                                    Output Directory</strong> field.</p>
+                                    <p>The <strong>Configure Stage File Action</strong> dialog appears.</p>
+                                </li>
+                                <li>In the <strong>Expression</strong> field, enter <code class="allow-copy"><span>"/tmp"</span></code>.
+                                </li>
+                                <li><p>Click <strong>Save</strong>.</p>
+                                    <p>A confirmation message appears.</p>
+                                </li>
+                                <li>Click <strong>OK</strong>.</li>
+                                <li>Click <strong>Exit Expression Builder</strong>.</li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li>On the <strong>Schema Options</strong> page, click <strong>Next</strong>.</li>
+                        <li><p>On the <strong>Format Definition</strong> page, specify the following values:</p>
+                            <ol type="a">
+                                <li>Click <strong>Choose File</strong> and select the <code>GLCCReport1.csv</code> file you downloaded.</li>
+                                <li>In the <strong>Enter Record Name</strong> field, enter <code
+                                        class="allow-copy"><span>Ledger</span></code>.
+                                </li>
+                                <li>In the <strong>Enter Recordset Name</strong> field, enter <code
+                                        class="allow-copy"><span>LedgerSet</span></code>.
+                                </li>
+                                <li><p>Click <strong>Next</strong>.</p>
+                                    <p>A summary of the properties you configured appears.</p>
+                                </li>
+                                <li>Review the summary and click <strong>Done</strong>.</li>
+                            </ol>
+                        </li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                    <!-- ########## Define the Data Mapping########## -->
+                    <h3>Define the Data Mapping</h3>
+                    <p>A Map action named <strong>Map to ShortBIPReport</strong> is automatically created. We'll define
+                        this
+                        data mapping.</p>
+                    <ol>
+                        <li>Select the <strong>Map to ShortBIPReport</strong> action.</li>
+                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                            <p>The <strong>Data Mapping</strong> page appears.</p>
+                        </li>
+                        <li>In the <strong>Sources</strong> section, expand <strong>$ReadFileFromStage</strong>, then
+                            <strong>ReadResponse</strong>, and then <strong>LedgerSet</strong>.
+                        </li>
+                        <li>In the <strong>Target</strong> section, expand <strong>response-wrapper</strong>.</li>
+                        <li>Map the <strong>Ledger</strong> field in the <strong>Sources</strong> section, to the
+                            <strong>topLevelArray</strong> field in the <strong>Target</strong> section.
+                        </li>
+                        <li>In the <strong>Sources</strong> section, expand <strong>Ledger</strong>.</li>
+                        <li>In the <strong>Target</strong> section, expand <strong>topLevelArray</strong>.</li>
+                        <li><p>Map the following fields from the <strong>Sources</strong> section to the fields in the
+                            <strong>Target</strong> section:</p>
+                            <table>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Target</th>
+                                </tr>
+                                <tr>
+                                    <td>LEDGERNAME</td>
+                                    <td>LEDGERNAME</td>
+                                </tr>
+                                <tr>
+                                    <td>SEGMENT1</td>
+                                    <td>SEGMENT1</td>
+                                </tr>
+                                <tr>
+                                    <td>SEGMENT2</td>
+                                    <td>SEGMENT2</td>
+                                </tr>
+                                <tr>
+                                    <td>CHART_OF_ACCOUNTS_ID</td>
+                                    <td>AccountID</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A confirmation message appears.</p>
+                        </li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Define the Tracking Fields ########## -->
+                <section>
+                    <h2>Define the Tracking Fields</h2>
+                    <ol>
+                        <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png"
+                                                                                      alt="Actions icon"
+                                                                                      style="height: 15px; width: 15px;"/>,
+                            and then select <strong>Tracking</strong>.</p>
+                            <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection"
+                                    style="width: 200px;"/></p>
+                            <p>The <strong>Business Identifiers for Tracking</strong> dialog appears.</p>
+                        </li>
+                        <li>From the <strong>Source</strong> section, select <strong>LedgerName</strong>, and
+                            then click <img src="img/right-arrow.png" alt="Edit icon"
+                                            style="height: 15px; width: 15px;"/>.
+                        <li>Click <strong>Save</strong>.</li>
+                        <li>In the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
+                            <strong>Close</strong>.
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Activate the Integration ########## -->
+                <section>
+                    <h2>Activate the Integration</h2>
+                    <ol>
+                        <li><p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                            <p>The name of your integration is <code>Short BIP Report <em
+                                    data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
+                            <p>When you hover over the integration, a set of actions appear in the
+                                <strong>Status</strong> column. </p>
+                            <img src="img/screenshots/ERP/hover-activate-bip-report.png" width="650px"/>
+                        </li>
+                        <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.
+                        </li>
+                        <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
+                        <!--                        <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>-->
+                        <!--                            <p>This option sends your mappings to the recommendations engine which uses this information-->
+                        <!--                                to suggest you mappings for similar integrations.</p>-->
+                        <!--                        </li>-->
+                        <li><p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.
+                        </p>
+                            <p>Typically these options are disabled in production environments, but we'll enable them
+                                for the purpose of this lab.</p>
+                        </li>
+                        <li><p>Click <strong>Activate</strong>.</p>
+                            <p>The activation will complete in a few seconds. If the activation succeeds, a confirmation
+                                message appears at the top of the page, and the status will change to <span
+                                        style="color:#86BD66;">&#x25CF;</span> Active.</p>
+                        </li>
+                        <li><p>After the status changes to active, click <img src="img/how-to-run.png"
+                                                                              alt="How to Run icon"
+                                                                              style="height: 15px; width: 15px;"/>.</p>
+                            <img src="img/screenshots/ERP/how-to-run.png" width="650px"/>
+                        </li>
+                        <li>Click <strong>Test</strong>.</li>
+                        <li>Copy the <strong>Endpoint URL</strong></li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Run the Integration ########## -->
+                <section>
+                    <h2>Run the Integration</h2>
+                    <ol>
+                        <li>Open Postman.</li>
+                        <li>Create a new request.</li>
+                        <li>Name your request <code class="allow-copy"><span>Short BIP Report</span></code>.</li>
+                        <li>Create a collection named <code class="allow-copy"><span>OIC</span></code>.</li>
+                        <li>Create a folder named <code class="allow-copy"><span>OIC</span></code>.</li>
+                        <li>Save your request to the <strong>OIC</strong> folder.</li>
+                        <li>Enter the URL you copied before in the request URL field.</li>
+                        <li><p>Configure the query parameter to use the following values:</p>
+                            <ul>
+                                <li><strong>LedgerName</strong>: <code
+                                        class="allow-copy"><span>"US Primary Ledger"</span></code></li>
+                                <li><strong>ReportAbsolutePath</strong>: <code class="allow-copy"><span>“/Custom/Financials/GLCCReport.xdo”</span></code>
+                                </li>
+                                <li><strong>UserID</strong>:
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <code class="allow-copy"><span><em
+                                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'your_ERP_user'"></em></span></code>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                            your ERP Cloud environment in the Before You Begin section to get a
+                                            customized
+                                            user.</a></p>
+                                    </div>
+                                </li>
+                                <li><strong>Password</strong>: the ERP password that your instructor provided.</li>
+                            </ul>
+                        </li>
+                        <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
+                            Integration credentials.</p>
+                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><strong>OIC User Name</strong>:
+                                    <code class="allow-copy"><span>
+                                            <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                            data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                            </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                    user number in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    OIC environment in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <p>The password will be provided by your instructor during the training session.</p>
+                        </li>
+                        <li><p>Send the request.</p>
+                            <p>The response you get should look similar to the following JSON:</p>
+                            <code><pre>
+[
+    {
+        “LEDGERNAME”: “US Primary Ledger”,
+        “SEGMENT1”: 101,
+        “SEGMENT2”: 10,
+        “AccountID”: 21
+    },
+    {
+        “LEDGERNAME”: “US Primary Ledger”,
+        “SEGMENT1”: 101,
+        “SEGMENT2”: 10,
+        “AccountID”: 21
+    },
+    {
+        “LEDGERNAME”: “US Primary Ledger”,
+        “SEGMENT1”: 101,
+        “SEGMENT2”: 10,
+        “AccountID”: 21
+    },
+    {
+        “LEDGERNAME”: “US Primary Ledger”,
+        “SEGMENT1”: 101,
+        “SEGMENT2”: 10,
+        “AccountID”: 21
+    }
+]
+                                </pre>
+                            </code>
+                        </li>
+                        <li>Open Oracle Integration.</li>
+                        <li>In the <strong>Navigation</strong> menu, select
+                            <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select
+                            <strong>Tracking</strong>.
+                        </li>
+                        <li>Confirm that the flow was successfully completed. The flow is colored in green to indicate
+                            that it ran successfully.
+                        </li>
+                    </ol>
+                </section>
+                <p><strong>Congratulations!</strong> You've invoked an integration from a web client using REST. On the
+                    Oracle Integration side, you've called a service, convert the response to JSON, and sent the data
+                    back to the web client.</p>
+                <!-- ========================================================================================================================= -->
+            </article>
+        </div>
+        <br class="clearfloat">
+        <br class="clearfloat">
+    </div>
+</div>
+<!--close main-->
+<!--end content-->
+<div class="footer-container ">
+    <div>
+        <img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+        <footer class="footer-list">
+            <ul>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                    Oracle</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html"
+                       target="_blank">Contact Us</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                    Notices</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                    of Use</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html"
+                       target="_blank">Your Privacy Rights</a></li>
+                <li><a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash"
+                       target="_blank">#OOW19</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright ©
+                    2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+            </ul>
+        </footer>
+    </div>
+    <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+</div>
+<!-- OBE Dialog Box code 10/15/2018 -->
+<!-- DO NOT ALTER THE CODE BELOW   -->
+<!--div id="lpModal" class="modal"-->
+<!-- Modal hdr and body -->
+<!--div id="obe_dialog" class="modal-content">
+    <div class="modal-header">
+        <a href="#" class="close">
+            <span class="close">&times;</span>
+        </a>
+        <h1>Associated Learning Paths</h1>
+    </div>
+    <div id="dialog-content" >
+    </div>
+    <div id="dialog-close" class="closeBtn">
+        <a href="#" class="close2">
+            <p class="close2">
+                 <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span>
+            </p>
+        </a>
+    </div>
+</div>
+</div-->
+<!-- END OBE Dialog Box code -->
+</body>
+</html>
