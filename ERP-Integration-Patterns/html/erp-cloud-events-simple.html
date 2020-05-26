@@ -99,10 +99,10 @@
                     <!--                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>-->
                     <!--                    </ul>-->
                     <hr>
-                    <h3>Get Your OIC Environment</h3>
-                    <p>Select your OIC environment and enter your user number to get the information to access Oracle
+                    <h3>Get Your Oracle Integration (OIC) Environment</h3>
+                    <p>Select your environment and enter your user number to get the information to access Oracle
                         Integration.</p>
-                    <p><strong>OIC Environment</strong>:&nbsp;
+                    <p><strong>Oracle Integration Environment</strong>:&nbsp;
                         <select data-bind="options: availableOICEnvironments,
 									optionsText: 'name',
 									value: selectedOICEnvironment,
@@ -115,9 +115,9 @@
                     </button>
                     </p>
                     <ul>
-                        <li><strong>OIC URL</strong>:
+                        <li><strong>URL</strong>:
                             <!--                            <code class="allow-copy"><span><span-->
-                            <!--                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the OIC Environment above'"></span></span></code>-->
+                            <!--                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the Oracle Integration Environment above'"></span></span></code>-->
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
                                 <p>
                                     <a class="allow-copy" target="_blank"
@@ -129,15 +129,15 @@
                                 </p>
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <code>Select an environment from the OIC Environment list.</code>
+                                <code>Select an environment from the Oracle Integration Environment list.</code>
                             </div>
                         </li>
 
-                        <li><strong>OIC User Name</strong>: <code class="allow-copy"><span><span
-                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select an environment from the OIC Environment list.'"></span><em
+                        <li><strong>User Name</strong>: <code class="allow-copy"><span><span
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select an environment from the Oracle Integration Environment list.'"></span><em
                                 data-bind="text:user_number() || ''"></em></span></code></li>
 
-                        <li><strong>OIC Password</strong>: will be provided during the training session.</li>
+                        <li><strong>Password</strong>: will be provided during the training session.</li>
                     </ul>
                     <hr>
                     <h3>Get Your ERP Cloud Environment</h3>
@@ -150,7 +150,7 @@
                         </select>
                     </p>
                     <ul>
-                        <li><strong>ERP Cloud URL</strong>:
+                        <li><strong>URL</strong>:
                             <!--                            <code class="allow-copy"><span><span-->
                             <!--                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select an environment from the ERP Cloud Environment list.'"></span></span>-->
                             <!--                            </code>-->
@@ -169,17 +169,17 @@
                                 <code>Select an environment from the ERP Cloud Environment list.</code>
                             </div>
                         </li>
-                        <li><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><span
+                        <li><strong>User Name</strong>: <code class="allow-copy"><span><span
                                 data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an environment from the ERP Cloud Environment list.'"></span></span></code>
                         </li>
-                        <li><strong>ERP Password</strong>: will be provided during the training session.</li>
+                        <li><strong>Password</strong>: will be provided during the training session.</li>
                     </ul>
                     <!--                    <hr>-->
                     <!--                    <h3>Download Your Resources</h3>-->
 
                     <!--                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">-->
                     <!--                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number-->
-                    <!--                            in the Get Your OIC Environment section to access your download.</a></p>-->
+                    <!--                            in the Get Your Oracle Integration Environment section to access your download.</a></p>-->
                     <!--                    </div>-->
                     <!--                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">-->
                     <!--                        <p>Download the following additional assets:-->
@@ -214,7 +214,7 @@
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
-                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                                    Oracle Integration environment in the Before You Begin section to get a customized URL.</a></p>
                             </div>
                         </li>
                         <li><p>Enter your user name and password.</p>
@@ -238,7 +238,7 @@
                                     <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
                                             your
-                                            OIC environment in the Before You Begin section to get a customized user
+                                            Oracle Integration environment in the Before You Begin section to get a customized user
                                             name.</a>
                                         </p>
                                     </div>
@@ -691,7 +691,7 @@
                         <li><p>Open the following link in a web browser:</p>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
-                                    your OIC Cloud environment in the Before You Begin section to get a customized
+                                    your Oracle Integration Cloud environment in the Before You Begin section to get a customized
                                     URL.</a></p>
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
