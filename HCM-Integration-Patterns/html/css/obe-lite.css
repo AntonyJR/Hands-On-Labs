@@ -15,7 +15,6 @@ html, body, input {
 }
 
 body, input {
-    color: #4d3628;
 	-ms-overflow-style: scrollbar;
 	background-color: #feffff;
 }
@@ -27,7 +26,7 @@ p.comment {
 a, a:link {
 	text-decoration: none;
 	/*color: #0572ce; DL*/	
-	color: #4d3628; /*DL*/
+	color: #403c37; /*DL*/
 }
 
 a.standalone-link {
@@ -39,7 +38,7 @@ a:hover {
 }
 a:visited {
 	text-decoration: none;
-	color: #d1340f; /*DL*/
+	color: #403c37; DL
 }
 
 a:focus {
@@ -48,7 +47,7 @@ a:focus {
 }
 
 input {
-	color: #4d3628;
+	color: #403c37;
 	background-color: #dfe2e0;
 	border-style: none;
 	height: 25px;
@@ -73,16 +72,15 @@ button {
 }
     
 h1 {
-	color: #d0340c;
 	margin: 15px 0 15px 0 !important;
 	font-style: normal;
 	font-size: 36px;
 	line-height: 1.1em;
+	color: #d0340c;
 }
 h2 {
 	font-size: 30px;
 	line-height: 1.2em;
-	color: #727272;
 	margin: 15px 0 15px 0;
 	font-weight: normal;
 }
@@ -90,24 +88,20 @@ h3 {
 	font-size: 24px;
 	line-height: 1.2em;
 	font-weight: normal;
-	color: #171717;
 	margin: 15px 0 15px 0;
 }
 h4 {
 	font-size: 18px;
 	line-height: 1.2em;
 	font-weight: normal;
-	color: #171717;
 	margin: 12px 0 12px 0;
 }
 h5 {
 	font-size: 15px;
-	color: #171717;
 	margin: 12px 0 4px 0;
 }
 h6 {
 	font-size: 15px;
-	color: #171717;
 	margin: 15px 0 4px 0;
 }
 
@@ -487,7 +481,7 @@ display: block;
  *
  */
 body{
-    color: #3f3c37;
+    color: #4d3628;
 }
 
 tutorial{
@@ -614,7 +608,7 @@ article ol li table{
 
 article ol li tr th{
     border-style: solid;
-    background-color: #4d3628;
+    background-color: #403c37;
     color: white;
     border-width: 0px;
     padding: 5px 5px 5px 5px;
@@ -628,6 +622,34 @@ article ol li tr td{
     padding: 5px 5px 5px 5px;
 }
 
+article tr th{
+    border-style: solid;
+    background-color: #403c37;
+    color: white;
+    border-width: 0px;
+    padding: 3px 3px 3px 3px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+article tr td{
+    border-bottom-style: solid;
+    border-color: #000;
+    border-width: 1px;
+    padding: 3px 3px 3px 3px;
+    font-size: 14px;
+}
+
+article table{
+    margin-top: 10px;
+    width: 100%;
+	margin-left: 62px;
+}
+
+article table p {
+	font-size: 14px;
+    line-height: 1.2;
+}
 
 /* TMM changed border color 4/3/17 */
 article ol figure img{
@@ -673,7 +695,7 @@ article ol ul li {
 }
 
 article ol ul li::before {
-  color: #4d3628;
+  color: #403c37;
   content: "\25A0 " ;
   list-style: circle outside;
   padding-right: 5px;
@@ -711,8 +733,14 @@ pre {
     overflow: auto;
     padding: 3px;
     display: block;
-    white-space: pre !important;
-    word-wrap: normal !important;
+    /*white-space: pre !important;
+    word-wrap: normal !important;*/
+    
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
 code, kbd, pre, samp {
@@ -924,4 +952,18 @@ div.closeBtn p {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border-radius: 10px; 
+}
+
+p.warning-text {
+	color: #e3503c;
+	text-transform: none;
+	font-variant: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+a.warning-text {
+	color: #e3503c;
+	text-transform: none;
+	font-variant: normal;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }

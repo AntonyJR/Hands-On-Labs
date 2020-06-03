@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "7a645bce-3a80-45f8-bbce-cb72bd253615",
+		"name": "OICRestLab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clone",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"code\":\"IMPORT_PENDING_WORKER_<StudentId>\",\r\n\t\"version\":\"01.00.0000\",\r\n\t\"name\":\"Import Pending Worker <StudenId>\",\r\n\t\"description\":\"Pending worker import <StudentId>\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://<oic_host>/ic/api/integration/v1/integrations/IMPORT_PENDING_WORKER|01.00.0000/clone",
+					"protocol": "https",
+					"host": [
+						"<oic_host>"
+					],
+					"path": [
+						"ic",
+						"api",
+						"integration",
+						"v1",
+						"integrations",
+						"IMPORT_PENDING_WORKER|01.00.0000",
+						"clone"
+					]
+				},
+				"description": "Clone HCM Pending Worker Integration"
+			},
+			"response": []
+		},
+		{
+			"name": "Activate",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-HTTP-Method-Override",
+						"value": "PATCH"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"status\":\"ACTIVATED\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://<oic_host>/icsapis/v2/integrations/IMPORT_PENDING_WORKER_<StudentId>|01.00.0000",
+					"protocol": "https",
+					"host": [
+						"<oic_host>"
+					],
+					"path": [
+						"icsapis",
+						"v2",
+						"integrations",
+						"IMPORT_PENDING_WORKER_<StudentId>|01.00.0000"
+					]
+				},
+				"description": "Activate pending worker import"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": []
+}

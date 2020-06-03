@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd"
+        xmlns:tns="http://supoc.oracle.com/WorkerData"
+        targetNamespace="http://supoc.oracle.com/WorkerData"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+
+        nxsd:stream="chars"
+        nxsd:version="NXSD"
+        nxsd:encoding="UTF8"
+        nxsd:encodeLineTerminators="false"
+>
+
+   <element name="WorkerData">
+     <complexType>
+       <choice maxOccurs="unbounded" minOccurs="0">
+         <element ref="tns:WorkerLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|Worker|" />
+         <element ref="tns:Worker" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|Worker|" />
+         <element ref="tns:PersonLegislativeDataLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonLegislativeData|" />
+         <element ref="tns:PersonLegislativeData" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonLegislativeData|" />
+         <element ref="tns:PersonNameLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonName|" />
+         <element ref="tns:PersonName" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonName|" />
+         <element ref="tns:PersonEmailLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonEmail|" />
+         <element ref="tns:PersonEmail" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonEmail|" />
+         <element ref="tns:PersonAddressLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonAddress|" />
+         <element ref="tns:PersonAddress" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonAddress|" />
+         <element ref="tns:PersonPhoneLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonPhone|" />
+         <element ref="tns:PersonPhone" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonPhone|" />
+         <element ref="tns:PersonNationalIdentifierLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonNationalIdentifier|" />
+         <element ref="tns:PersonNationalIdentifier" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonNationalIdentifier|" />
+         <element ref="tns:WorkRelationshipLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|WorkRelationship|" />
+         <element ref="tns:WorkRelationship" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|WorkRelationship|" />
+         <element ref="tns:WorkTermsLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|WorkTerms|" />
+         <element ref="tns:WorkTerms" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|WorkTerms|" />
+         <element ref="tns:AssignmentLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|Assignment|" />
+         <element ref="tns:Assignment" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|Assignment|" />
+      </choice>
+     </complexType>
+   </element>
+
+   <!-- WorkerLabel -->
+   <element name="WorkerLabel">
+      <complexType>
+         <sequence>
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="StartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="CategoryCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="ActionCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="DateOfBirthLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ApplicantNumberLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- Worker -->
+   <element name="Worker">
+      <complexType>
+         <sequence>
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="StartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="CategoryCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="ActionCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="DateOfBirth" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ApplicantNumber" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+   
+      <!-- PersonLegislativeDataLabel -->
+   <element name="PersonLegislativeDataLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonLegislativeData -->
+   <element name="PersonLegislativeData">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+   
+   
+         <!-- PersonNameLabel -->
+   <element name="PersonNameLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NameTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="FirstNameLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="MiddleNamesLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LastNameLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonName -->
+   <element name="PersonName">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NameType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="FirstName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="MiddleNames" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LastName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+            <!-- PersonEmailLabel -->
+   <element name="PersonEmailLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateFromLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateToLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EmailTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EmailAddressLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonEmail -->
+   <element name="PersonEmail">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateFrom" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateTo" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EmailType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EmailAddress" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+            <!-- PersonAddressLabel -->
+   <element name="PersonAddressLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="AddressTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AddressLine1Label" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AddressLine2Label" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="CountryLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="Region2Label" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="Region3Label" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="TownOrCityLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="PostalCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonAddress -->
+   <element name="PersonAddress">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+			<element name="AddressType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AddressLine1" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AddressLine2" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="Country" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="Region2" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="Region3" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="TownOrCity" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="PostalCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+   
+   
+               <!-- PersonPhoneLabel -->
+   <element name="PersonPhoneLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateFromLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateToLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PhoneTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PhoneNumberLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonPhone -->
+   <element name="PersonPhone">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateFrom" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateTo" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PhoneType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PhoneNumber" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+                  <!-- PersonNationalIdentifierLabel -->
+   <element name="PersonNationalIdentifierLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="IssueDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ExpirationDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NationalIdentifierTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NationalIdentifierNumberLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+            <element name="PrimaryFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- PersonNationalIdentifier -->
+   <element name="PersonNationalIdentifier">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="IssueDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ExpirationDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegislationCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NationalIdentifierType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="NationalIdentifierNumber" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+            <element name="PrimaryFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /> 
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+               <!-- WorkRelationshipLabel -->
+   <element name="WorkRelationshipLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateStartLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="WorkerTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegalEntityIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- WorkRelationship -->
+   <element name="WorkRelationship">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateStart" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="WorkerType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="LegalEntityId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+               <!-- WorkTermsLabel -->
+   <element name="WorkTermsLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PeriodOfServiceIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveSequenceLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveLatestChangeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateStartLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="BusinessUnitIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="AssignentStatusTypeCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="WorkerTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="LegalEmployerNameLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AssignmentTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PersonTypeCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryWorkTermsFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ProjectedStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+            <element name="ProposedWorkerTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- WorkTerms -->
+   <element name="WorkTerms">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PeriodOfServiceIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveSequence" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveLatestChange" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="DateStart" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="BusinessUnitId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="AssignentStatusTypeCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="WorkerType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="LegalEmployerName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AssignmentType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PersonTypeCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryWorkTermsFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ProjectedStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+            <element name="ProposedWorkerType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+   
+   
+   
+                  <!-- AssignmentLabel -->
+   <element name="AssignmentLabel">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveSequenceLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveLatestChangeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="WorkTermsAssignmentidSourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AssignmentTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="BusinessUnitIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="AssignentStatusTypeCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="WorkerTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="LegalEmployerNameLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryAssignmentFlagLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PersonTypeCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ProjectedStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+            <element name="ProposedWorkerTypeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+
+   <!-- Assignment -->
+   <element name="Assignment">
+      <complexType>
+         <sequence>
+            <element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveSequence" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="EffectiveLatestChange" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="WorkTermsAssignmentidSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="AssignmentType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="BusinessUnitId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />        
+            <element name="AssignentStatusTypeCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />   
+            <element name="WorkerType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />     
+            <element name="LegalEmployerName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PrimaryAssignmentFlag" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ActionCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="PersonTypeCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="ProjectedStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+            <element name="ProposedWorkerType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />  
+			<element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" />
+            <element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" />
+         </sequence>
+      </complexType>
+   </element>
+   
+</schema>

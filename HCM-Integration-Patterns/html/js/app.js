@@ -55,18 +55,19 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       self.userName = ko.observable("");
       
       class OICEnvironment {
-        constructor(name, url, usernamePrefix) {
+        constructor(name, baseURL, url, usernamePrefix) {
           this.name = name;
+          this.baseURL = baseURL;
           this.url = url;
           this.usernamePrefix = usernamePrefix;
         }
       }
       self.availableOICEnvironments = ko.observableArray([
-        new OICEnvironment("Training 1", "https://oictraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining1ic"),
-        new OICEnvironment("Training 2", "https://oictraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining2ic"),
-        new OICEnvironment("Training 3", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining3ic"),
-        new OICEnvironment("SC Training 1", "https://oicsctraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscA"),
-        new OICEnvironment("SC Training 2", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscB")
+        new OICEnvironment("Training 1", "https://oictraining1-oicpm.integration.ocp.oraclecloud.com", "https://oictraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining1ic"),
+        new OICEnvironment("Training 2", "https://oictraining2-oicpm.integration.ocp.oraclecloud.com", "https://oictraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining2ic"),
+        new OICEnvironment("Training 3", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining3ic"),
+        new OICEnvironment("SC Training 1", "https://oicsctraining1-oicpm.integration.ocp.oraclecloud.com", "https://oicsctraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscA"),
+        new OICEnvironment("SC Training 2", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscB")
       ]),
       self.selectedOICEnvironment = ko.observable()
 
@@ -78,7 +79,11 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }      
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("HCM Cloud - zgms", "https://ucf6-zgms-fa-ext.oracledemos.com/", "betty.anderson"),
+        new AppEnvironment("ERP Cloud Testing - zmyc",    "https://ucf1-zmyc-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Redwood", "casey.brown"),
+        new AppEnvironment("ERP Cloud Purchasing - zjie", "https://adc2-zjie-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "casey.brown"),
+        new AppEnvironment("ERP Cloud Payables - zjie",   "https://adc2-zjie-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
+        new AppEnvironment("ERP Cloud Purchasing - ziyj", "https://adc4-ziyj-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "casey.brown"),
+        new AppEnvironment("ERP Cloud Payables - ziyj",   "https://adc4-ziyj-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
       ]),
       self.selectedAppEnvironment = ko.observable()
 
@@ -94,7 +99,6 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       ]),
       self.selectedFTPEnvironment = ko.observable()
     }
-
 
     $(function() {
       function init() {

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Published date: September 2019 -->
+    <!-- Template date: September 2019 -->
+    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+    <meta name="contentid" content="HCM Cloud Directory Synchronization Lab">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+    <!-- Use an imperative verb in the title. -->
+    <title>Oracle Integration - HCM Pending Worker Import Lab</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="description" content="ERP Cloud BIP Report Lab">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" href="css/normalize.min.css"-->
+    <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+    <link rel="stylesheet" href="css/obe-lite.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.js"></script>
+    <script src="js/jquery.tocify.jd.js"></script>
+    <script src="js/leftnav.js"></script>
+    <script type="text/javascript" src="./js/libs/require/require.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <link rel="stylesheet" href="css/copy-button.css">
+    <script src="js/copytoclipboard.js"></script>
+</head>
+<body>
+
+<div id="content" style="margin-top:5px">
+
+    <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
+    <!-- Use an imperative verb in the title. -->
+    <h1><!--img src="img/o.png" align="middle" alt="Oracle"-->Oracle Integration - HCM Pending Worker Import Lab</h1>
+    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"/>
+
+    <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+        <div class="navbackwide border-right"><!-- --></div>
+        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+        <div id="sidebar"><!-- -->
+            <div class="left-nav-tut"><!-- -->
+                <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                <div id="navbar" class="left-nav-w"><!-- -->
+                    <div id="toc" class="tocify"><!-- --></div>
+                </div>
+            </div>
+        </div>
+        <div id="bookContainer">
+            <article>
+                <!-- ########## Background ########## -->
+                <section>
+                    <h2>Background</h2>
+                    <p> You can use Oracle Integration (OIC) mapping to transform source data at runtime. If you
+                        combine this with native schema formatting for output file definition, you can produce
+                        output files in any desired format.
+                    </p>
+                    <p>This lab uses Oracle Integration to automate the following tasks:</p>
+                    <ol>
+                        <li>Read a file that contains new hired employes from an external FTP server.</li>
+                        <li>Transform and format the data to generate an DAT file that can be used in HCM.</li>
+                        <li>Import the DAT file to HCM Cloud using the HCM Data Loader, to create pending workers.</li>
+                    </ol>
+                    <p> The following diagram shows the interaction between the systems involved in this use case:</p>
+                    <p><img src="img/screenshots/HCM/pending-worker-import.png" width="700px"/></p>
+                </section>
+                <hr>
+                <!-- ########## Before You Begin ########## -->
+                <section>
+                    <h2>Before You Begin</h2>
+
+                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard"
+                                                               height="19px" width="19px"> icon next to them. Click this
+                        icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                    <p>Your instructor will provide you the information you need to access the environments used in this
+                        lab.</p>
+                    <p>For this lab we will provide you the following:</p>
+                    <ul>
+                        <li>Oracle Integration</li>
+                        <li>ERP Cloud R13+</li>
+                        <li>Postman</li>
+                        <li>An FTP server</li>
+                    </ul>
+                    <p class="comment">The PDF mentions the file personsSchema.xsd here. I did a search and couldn't find where it was used. Can you please clarify and let me know if this is still needed?</p>
+<!--                    <p>For your convenience we created and configured the following connections:</p>-->
+<!--                    <ul>-->
+<!--                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>-->
+<!--                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>-->
+<!--                    </ul>-->
+                    <hr>
+                    <h3>Get Your Oracle Integration (OIC) Environment</h3>
+                    <p>Select your environment and enter your user number to get the information to access Oracle
+                        Integration.</p>
+                    <p><strong>Oracle Integration Environment</strong>:&nbsp;
+                        <select data-bind="options: availableOICEnvironments,
+									optionsText: 'name',
+									value: selectedOICEnvironment,
+									optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input
+                            data-bind="value: user_number" type="text" placeholder="Enter a number."/></label>&nbsp;<button>
+                        OK
+                    </button>
+                    </p>
+                    <ul>
+                        <li><strong>URL</strong>:
+<!--                            <code class="allow-copy"><span><span-->
+<!--                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the Oracle Integration Environment above'"></span></span></code>-->
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p>
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
+                                        <span>
+                                            <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <code>Select an environment from the Oracle Integration Environment list.</code>
+                            </div>
+                        </li>
+
+                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select an environment from the Oracle Integration Environment list.'"></em><em
+                                data-bind="text:user_number() || ''"></em></span></code></li>
+
+                        <li><strong>Password</strong>: will be provided during the training session.</li>
+                    </ul>
+                    <hr>
+                    <h3>Get Your ERP Cloud Environment</h3>
+                    <p>Select your environment to get the information to access Oracle ERP Cloud.</p>
+                    <p><strong>ERP Cloud Environment</strong>:&nbsp;
+                        <select data-bind="options: availableAppEnvironments,
+									optionsText: 'name',
+									value: selectedAppEnvironment,
+									optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <ul>
+                        <li><strong>URL</strong>:
+<!--                            <code class="allow-copy"><span><span-->
+<!--                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select an environment from the ERP Cloud Environment list.'"></span></span>-->
+<!--                            </code>-->
+
+                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p>
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: selectedAppEnvironment()? selectedAppEnvironment().url : '' }">
+                                        <span>
+                                            <em data-bind="text: selectedAppEnvironment()? selectedAppEnvironment().url : 'your_ERP_environment'"></em>
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                <code>Select an environment from the ERP Cloud Environment list.</code>
+                            </div>
+                        </li>
+                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an environment from the ERP Cloud Environment list.'"></em></span></code>
+                        </li>
+                        <li><strong>Password</strong>: will be provided during the training session.</li>
+                    </ul>
+                    <!--                    <hr>-->
+                    <!--                    <h3>Download Your Resources</h3>-->
+
+                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">-->
+                    <!--                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number-->
+                    <!--                            in the Get Your Oracle Integration Environment section to access your download.</a></p>-->
+                    <!--                    </div>-->
+                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">-->
+                    <!--                        <p>Download the following additional assets:-->
+                    <!--                            <b><a style="color: #C74634" ; href="../assets/events-lab/LetterOfCreditPortal.zip" ;-->
+                    <!--                                  data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span-->
+                    <!--                                    data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a></b>-->
+                    <!--                        </p>-->
+                    <!--                    </div>-->
+                    <hr>
+                    <h3>Get Your FTP Environment</h3>
+                    <p>Select your environment to get the information to access the FTP server.</p>
+                    <p class="comment">Please let me know the connection information for the FTP you will be using in the training so that I can add it to the list.</p>
+                    <p><strong>FTP Environment</strong>:
+                        <select data-bind="options: availableFTPEnvironments,
+                           optionsText: 'name',
+                           value: selectedFTPEnvironment,
+                           optionsCaption: 'Select...'">
+                        </select>
+                    </p>
+                    <ul>
+                        <li><strong>URL</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                        </li>
+                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
+                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                        </li>
+                        <li><strong>Password:</strong> will be provided during the training session.</li>
+                    </ul>
+                </section>
+                <hr>
+                <!-- ########## Sign In ########## -->
+                <section>
+                    <h2>Sign In</h2>
+                    <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
+                    <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
+                    <!--                        restricted to specific environments. They may be assigned different roles in each-->
+                    <!--                        environment.</p>-->
+                    <ol>
+                        <li><p>Open your Oracle Integration instance.</p>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p>
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment' }">
+                                        <span>
+                                            <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>
+                                        </span>
+                                    </a>
+                                </p>
+
+                                <!--                                <p><code class="allow-copy"><span><span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>-->
+                                <!--                                </p>-->
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    Oracle Integration environment in the Before You Begin section to get a customized URL.</a></p>
+                            </div>
+                        </li>
+                        <li><p>Enter your user name and password.</p>
+                            <ul>
+
+                                <li>Your user name is:
+                                    <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <code class="allow-copy">
+                                                <span>
+                                                    <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                                        data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                                </span>
+                                        </code>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter
+                                            your
+                                            user number in the Before You Begin section to get a customized user
+                                            name.</a></p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                            your
+                                            Oracle Integration environment in the Before You Begin section to get a customized user
+                                            name.</a>
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li>Your password will be provided by the instructor during the training session.</li>
+                            </ul>
+                        </li>
+                        <li><p>Click
+                            <strong>Sign In</strong>.</p>
+                            <p>The <strong>Home</strong> page appears.</p>
+                            <p>You are now logged in and ready to use Oracle Integration.</p>
+                            <img src="img/screenshots/integration/home-page.png" width="600px"/>
+                        </li>
+                    </ol>
+
+                </section>
+                <hr>
+                <!-- ########## Clone the Integration Using REST ########## -->
+                <section>
+                    <h2>Clone the Integration Using REST</h2>
+                    <ol>
+                        <li>Download the <a href="../assets/pending-worker-import-lab/OICRestLab.postman_collection.json" download="OICRestLab.postman_collection.json" target="_blank">OICRestLab.postman_collection.json</a> file.</li>
+                        <li>Open Postman.</li>
+                        <li>Make sure the sidebar is visible.</li>
+                        <li><p>Import the file you just downloaded.</p>
+                            <p>The <strong>Collections</strong> tab in the side bar shows a new node called <strong>OICRestLab</strong> with the operations <strong>clone</strong> and <strong>activate</strong>.</p>
+                        </li>
+                        <li>Select the <strong>clone</strong> operation.</li>
+                        <li>Edit the post URL and replace <strong>&lt;oic_host&gt;</strong> with
+                        <code data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></code>.
+                        </li>
+                        <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
+                            Integration credentials.</p>
+                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><strong>Oracle Integration User Name</strong>:
+                                    <code class="allow-copy"><span>
+                                            <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                            data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                            </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                    user number in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    Oracle Integration environment in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <p>The password will be provided by your instructor during the training session.</p>
+                        </li>
+                        <li><p>Send the request.</p>
+                            <p>The response status should be <code>204</code>.</p>
+                        </li>
+                        <li>Open Oracle Integration.</li>
+                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
+                            <p>Notice that the cloned integration appears in the <strong>Integrations</strong> list.</p>
+                            <img src="img/screenshots/HCM/cloned-integration.png" width="700px"/>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Activate the Integration Using REST ########## -->
+                <section>
+                    <h2>Activate the Integration Using REST</h2>
+                    <ol>
+                        <li>Select the <strong>activate</strong> operation.</li>
+                        <li>Edit the post URL and replace:
+                            <ul>
+                                <li><strong>&lt;oic_host&gt;</strong> with
+                                <code class="allow-copy" data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></code>.</li>
+                                <li><strong>StudentID</strong> with <code class="allow-copy" data-bind="text: user_number()? user_number() : 'your_user_number'"></code>.</li>
+                            </ul>
+                        </li>
+                        <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
+                            Integration credentials.</p>
+                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><strong>Oracle Integration User Name</strong>:
+                                    <code class="allow-copy"><span>
+                                            <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                            data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                            </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                    user number in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    Oracle Integration environment in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <p>The password will be provided by your instructor during the training session.</p>
+                        </li>
+                        <li><p>Send the request.</p>
+                            <p>The response status should be <code>200 OK</code>.</p>
+                        </li>
+                        <li>Open Oracle Integration.</li>
+                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
+                            <p>Notice that the cloned integration status is <strong>Activated</strong>.</p>
+                            <img src="img/screenshots/HCM/activated-integration.png" width="700px"/>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Understand HCM Data Loader DAT Files ########## -->
+                <section>
+                    <h2>Understand HCM Data Loader DAT Files</h2>
+                    <p>Use the NXSD native schema to generate a DAT file compatible with the HCM Data Loader in an integration.
+                    </p>
+                    <p>The NXSD schema defines the structure of the output file (fields) and the formatting of the data.</p>
+                    <ol>
+                        <li>Download the <a href="../assets/pending-worker-import-lab/worker-hdl-lab-exercise.nxsd" download="worker-hdl-lab-exercise.nxsd" target="_blank">worker-hdl-lab-exercise.nxsd</a> file.</li>
+                        <li>Open the file in a text editor.</li>
+                        <li><p>Locate the <code>schema</code> element at the beginning of the file.</p>
+                            <p>This element defines the global schema attributes. You must include a similar <code>schema</code> element
+                                in the NXSD schemas you build for HDL objects. You will need to change the object names.</p>
+                            <pre><code>
+&lt;schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:nxsd="http://xmlns.oracle.com/pcbpel/nxsd"
+        xmlns:tns="http://supoc.oracle.com/WorkerData"
+        targetNamespace="http://supoc.oracle.com/WorkerData"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+
+        nxsd:stream="chars"
+        nxsd:version="NXSD"
+        nxsd:encoding="UTF8"
+        nxsd:encodeLineTerminators="false"
+&gt;
+                            </code></pre>
+                        </li>
+                        <li><p>Locate the <code>WorkerData</code> element.</p>
+                            <p>This element defines the set of objects and child objects required to load this business
+                                object to the HCM Data Loader.</p>
+                            <p>The following elements are specified for each of the objects in the NXSD schema:</p>
+                            <ul>
+                                <li><code><em>Object</em>Label</code> element: inserts a <code>METADATA</code> line in the <code>DAT</code> file.
+                                    <br>For example: <code>WorkerLabel</code>
+                                    </li>
+                                <li><code><em>Object</em></code> element: inserts a <code>MERGE</code> line in the <code>DAT</code> file.
+                                    <br>For example: <code>Worker</code>
+                                </li>
+                            </ul>
+                            <p>The format for the lines is specified in the <code>nxsd:startsWidth</code> attribute
+                                with the values <code>METADATA</code> for the object label and <code>MERGE</code> for the object.
+                            </p>
+                            <pre style="width:1400px;overflow:auto"><code>
+&lt;element name="WorkerData"&gt;
+    &lt;complexType&gt;
+        &lt;choice maxOccurs="unbounded" minOccurs="0"&gt;
+             &lt;element ref="tns:WorkerLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|Worker|" /&gt;
+             &lt;element ref="tns:Worker" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|Worker|" /&gt;
+             &lt;element ref="tns:PersonLegislativeDataLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonLegislativeData|" /&gt;
+             &lt;element ref="tns:PersonLegislativeData" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonLegislativeData|" /&gt;
+             &lt;element ref="tns:PersonNameLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonName|" /&gt;
+             &lt;element ref="tns:PersonName" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonName|" /&gt;
+             &lt;element ref="tns:PersonEmailLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonEmail|" /&gt;
+             &lt;element ref="tns:PersonEmail" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonEmail|" /&gt;
+             &lt;element ref="tns:PersonAddressLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonAddress|" /&gt;
+             &lt;element ref="tns:PersonAddress" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonAddress|" /&gt;
+             &lt;element ref="tns:PersonPhoneLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonPhone|" /&gt;
+             &lt;element ref="tns:PersonPhone" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonPhone|" /&gt;
+             &lt;element ref="tns:PersonNationalIdentifierLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|PersonNationalIdentifier|" /&gt;
+             &lt;element ref="tns:PersonNationalIdentifier" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|PersonNationalIdentifier|" /&gt;
+             &lt;element ref="tns:WorkRelationshipLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|WorkRelationship|" /&gt;
+             &lt;element ref="tns:WorkRelationship" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|WorkRelationship|" /&gt;
+             &lt;element ref="tns:WorkTermsLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|WorkTerms|" /&gt;
+             &lt;element ref="tns:WorkTerms" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|WorkTerms|" /&gt;
+             &lt;element ref="tns:AssignmentLabel" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="METADATA|Assignment|" /&gt;
+             &lt;element ref="tns:Assignment" minOccurs="0" maxOccurs="unbounded" nxsd:startsWith="MERGE|Assignment|" /&gt;
+        &lt;/choice>
+    &lt;/complexType>
+&lt;/element>
+                            </code></pre>
+                        </li>
+                        <li><p>Find the <code>WokerLabel</code> element.</p>
+                            <p>This element adds the name of the fields to the <code>METADATA</code> line.
+                                Each object requires its corresponding label element.
+                            <pre style="width:1150px;overflow:auto"><code>
+&lt;element name="WorkerLabel"&gt;
+    &lt;complexType&gt;
+        &lt;sequence&gt;
+            &lt;element name="EffectiveStartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="EffectiveEndDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="StartDateLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="CategoryCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="ActionCodeLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="DateOfBirthLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemOwnerLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemIdLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="ApplicantNumberLabel" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" /&gt;
+        &lt;/sequence&gt;
+    &lt;/complexType&gt;
+&lt;/element&gt;
+                            </code></pre>
+                        </li>
+                        <li><p>Locate the <code>Worker</code> element.</p>
+                            <p>This element defines the fields required by the HCM Data Loader <code>Worker</code> object.
+                                The format is defined in the <code>nxsd:terminatedBy</code> attribute which adds a
+                                separator at the end of each line.</p>
+                            <pre style="width:1150px;overflow:auto"><code>
+&lt;element name="Worker"&gt;
+    &lt;complexType&gt;
+        &lt;sequence&gt;
+            &lt;element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="StartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="CategoryCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="ActionCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="DateOfBirth" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="ApplicantNumber" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" /&gt;
+        &lt;/sequence>
+    &lt;/complexType>
+&lt;/element>
+                            </code></pre>
+                        </li>
+                        <li><p>Locate the <code>PersonName</code> element.</p>
+                            <p>This element defines the fields required by HCM Data Loader <code>Person</code> object.
+                                The format is defined in the <code>nxsd:terminatedBy</code> attribute which adds a
+                                separator at the end of each line.</p>
+                            <pre style="width:1150px;overflow:auto"><code>
+&lt;element name="PersonName"&gt;
+    &lt;complexType&gt;
+        &lt;sequence&gt;
+            &lt;element name="PersonIdSourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="EffectiveStartDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="EffectiveEndDate" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="LegislationCode" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="NameType" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="FirstName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="MiddleNames" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="LastName" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemOwner" type="string" nxsd:style="terminated" nxsd:terminatedBy="|" /&gt;
+            &lt;element name="SourceSystemId" type="string" nxsd:style="terminated" nxsd:terminatedBy="${eol}" /&gt;
+        &lt;/sequence>
+    &lt;/complexType>
+&lt;/element>
+                            </code></pre>
+                        </li>
+                    </ol>
+                </section>
+                <!-- ########## Understand the Integration ########## -->
+                <section>
+                    <h2>Understand the Integration</h2>
+                    <p>Open Oracle Integration and click the integration named <code>Import Pending Worker <em
+                            data-bind="text: user_number()? user_number() :'your_user_number'"></em></code>.
+                    </p>
+                    <p>The following integration flow appears:</p>
+                    <p><img src="img/screenshots/HCM/integration-flow.png" width="700px"/></p>
+                    <p>This table briefly describes the different steps in the integration. For more details, you can
+                    open the integration and click each of the steps.</p>
+                    <p class="comment">I generally call these "activities" not "steps". Please confirm that it is okay to change it to activities here too.</p>
+                    <table>
+                        <tr>
+                            <th style="width:20%">Step</th>
+                            <th style="width:20%">Type</th>
+                            <th style="width:60%">Description</th>
+                        </tr>
+                        <tr>
+                            <td>Schedule</td>
+                            <td>Schedule</td>
+                            <td><p>Start of the integration.</p>
+                                <p>This step is read-only.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Map to ReadFileFromFTP</td>
+                            <td>Map</td>
+                            <td>
+                                <p class="comment">This data mapping is empty. Can we remove it from the integration? If we can't, please provide a description.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ReadFileFromFTP</td>
+                            <td>FTP Adapter: Download File</td>
+                            <td>
+                                <p>Reads the file from an FTP server.</p>
+                                <p>In this lab, you will edit this step to specify the FTP directory where you uploaded the file.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ReadFile</td>
+                            <td>Stage File: Read</td>
+                            <td><p>Reads the file retrieved from the FTP server and loads the data to a schema.</p>
+                                <p>This step is read-only.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Map to WriteFile</td>
+                            <td>Map</td>
+                            <td><p>Maps and transforms the data to generate the HCM Data Loader file.</p>
+                                <p>This step is read-only.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>WriteFile</td>
+                            <td>Stage File: Write Files</td>
+                            <td><p>Write the result of the data mapping and transformation to a virtual directory in Oracle Integration.</p>
+                                <p>This step is read-only.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ListFile</td>
+                            <td>Stage File: List Files</td>
+                            <td><p>Returns a list of files that match the a file name pattern of the virtual directory in Oracle Integration.</p></td>
+                        </tr>
+                        <tr>
+                            <td>ZipFile</td>
+                            <td>Stage File: Zip Files</td>
+                            <td><p>Creates a zip file that contains the <code>worker.dat</code> file that was created in the  Write File step.</p></td>
+                        </tr>
+                        <tr>
+                            <td>Map to SendToUCM</td>
+                            <td>Map</td>
+                            <td><p>Maps the UCM properties required to check in the file to UCM.</p></td>
+                        </tr>
+                        <tr>
+                            <td>SendToUCM</td>
+                            <td>Oracle HCM Cloud Endpoint</td>
+                            <td><p>Checks in the file to UCM using the HCM adapter.</p></td>
+                        </tr>
+                        <tr>
+                            <td>Wait</td>
+                            <td>Wait</td>
+                            <td><p>Waits for 2 minutes.</p></td>
+                        </tr>
+                        <tr>
+                            <td>Map to ImportLoadData</td>
+                            <td>Map</td>
+                            <td><p>Maps the ContentID that was successfully uploaded to UCM.</p></td>
+                        </tr>
+                        <tr>
+                            <td>ImportLoadData</td>
+                            <td>Stop</td>
+                            <td><p>Uploads the file to HCM Cloud using the UCM ContentId</p></td>
+                        </tr>
+                        <tr>
+                            <td>Stop</td>
+                            <td>Stop</td>
+                            <td><p>The end of the integration.</p></td>
+                        </tr>
+                    </table>
+                </section>
+                <hr>
+                <!-- ########## Edit the ReadFileFromFTP Activity ########## -->
+                <section>
+                    <h2>Edit the ReadFileFromFTP Activity</h2>
+                    <ol>
+                        <li>Download the <a href="../assets/pending-worker-import-lab/persons.xml" download="persons.xml" target="_blank">persons.xml</a> file.</li>
+                        <li><p>Log in to the FTP server.</p>
+                            <ul>
+                                <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
+                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                                </li>
+                                <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
+                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                                </li>
+                                <li><strong>Password:</strong> will be provided during the training session.</li>
+                            </ul>
+                        </li>
+                        <li><p>If the following directory doesn't exist in the FTP server, create it:</p>
+                            <p><code class="allow-copy"><span>/upload/public_ftp/<em
+                                    data-bind="text:user_number() || 'your_user_number'"></em></span></code></p>
+                        </li>
+                        <li>Copy the <code>persons.xml</code> file to the directory mentioned in the previous step.</li>
+                        <li>Select the <strong>ReadFileFromFTP</strong> activity.</li>
+                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                            <p class="comment">If I leave the task sequence as the PDF indicates, this step isn't
+                                possible. Because you activated the integration when you open it, it's in read-only
+                                mode. Did you add the activate step above by mistake? Or did you mean to deactivate the
+                                integration and forgot to include it? Please let me know so that I can fix this. As is,
+                                this lab can't be run.
+                            </p>
+                        </li>
+                        <li>Click the <strong>Operations</strong> tab.</li>
+                        <li>In the <strong>Input Directory</strong> field, enter <code class="allow-copy"><span>/upload/public_ftp/<em
+                                data-bind="text:user_number() || 'your_user_number'"></em></span></code>.</li>
+                        <li><p>Click <strong>Next</strong>.</p>
+                            <p>The <strong>Schema</strong> page appears.</p>
+                        </li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>Review the summary and click <strong>Done</strong>.</p>
+                            <p>The <strong>FTP Adapter</strong> closes and the <strong>Update Configuration?</strong> dialog appears.</p>
+                        </li>
+                        <li>Click <strong>Update</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Understand the Data Mapping ########## -->
+                <section>
+                    <h2>Understand the Data Mapping</h2>
+                    <ol>
+                        <li>Select the <strong>Map To WriteFile</strong> activity.</li>
+                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                            <p>The <strong>Map</strong> page appears.</p>
+                            <p>The <strong>Sources</strong> section shows all the fields available for mapping.</p>
+                            <p>The <strong>Target</strong> section shows the <code>Write</code> hierarchy.</p>
+                            <p>This data mapping is a representation of the <code>Worker.dat</code> file.</p>
+                            <p class="comment">The PDF says "This is a representation. That this is preceded by the Sources and Target sections and in general by the data mapping. Which of the three are you referring to? </p>
+                            <p class="comment">What is the <code>Worker.dat</code> file and why does it matter to the reader?</p>
+                            <p><img src="img/screenshots/HCM/data-map.png" width="700px"/></p>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Edit the Zip File Action ########## -->
+                <section>
+                    <h2>Edit the Zip File Action</h2>
+                    <ol>
+                        <li>Select the <strong>Zip File</strong> action.</li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li><p>Click the <strong>Next</strong>.</p>
+                            <p>The <strong>Configure Operation</strong> page appears.</p>
+                        </li>
+                        <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Specify the File Name</strong> field.</li>
+                        <li><p>Edit the expression to use your user number as a prefix:</p>
+                            <code class="allow-copy">'<em data-bind="text:user_number() || ''"></em>_WorkerOutput.zip'</code>
+                            <p>This will help you identify your file in UCM and the HCM DataLoader.</p>
+                            <p class="comment">Subhani: Can you please either remove the KK prefix in the cloned integration or change it to a number like 11?</p>
+                        </li>
+                        <li>Click <strong>Save</strong>.</li>
+                        <li>Click <strong>Exit Expression Builder</strong>.</li>
+                        <li>Click <strong>Next</strong>.</li>
+                        <li><p>Review the summary and click <strong>Done</strong>.</p>
+                            <p>The <strong>FTP Adapter</strong> closes and the <strong>Update Configuration?</strong> dialog appears.</p>
+                        </li>
+                        <li>Click <strong>Update</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Define the Tracking Fields ########## -->
+                <section>
+                    <h2>Define the Tracking Fields</h2>
+                    <p>Tracking fields specify a unique value to monitor your integration instance.</p>
+                    <p class="comment">The tracking field is already defined in the cloned integration. Is this the way
+                    it's going to be in the version of the lab available to the public? Do we need to change this step?</p>
+                    <ol>
+                        <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png"
+                                                                                      alt="Actions icon"
+                                                                                      style="height: 15px; width: 15px;"/>,
+                            and then select <strong>Tracking</strong>.</p>
+                            <p><img src="img/screenshots/HCM/tracking.png" alt="Tracking selection"
+                                    style="width: 200px;"/></p>
+                            <p>The <strong>Business Identifiers for Tracking</strong> dialog appears.</p>
+                        </li>
+                        <li>From the <strong>Source</strong> section, select <strong>startTime</strong>, and
+                            then click <img src="img/right-arrow.png" alt="Edit icon"
+                                            style="height: 15px; width: 15px;"/>.
+                        <li>Click <strong>Save</strong>.</li>
+                        <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
+                            <strong>Close</strong>.
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Activate the Integration Using REST ########## -->
+                <section>
+                    <h2>Activate the Integration Using REST</h2>
+                    <ol>
+                        <li>Select the <strong>activate</strong> operation.</li>
+                        <li>Edit the post URL and replace:
+                            <ul>
+                                <li><strong>&lt;oic_host&gt;</strong> with
+                                    <code class="allow-copy" data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></code>.</li>
+                                <li><strong>StudentID</strong> with <code class="allow-copy" data-bind="text: user_number()? user_number() : 'your_user_number'"></code>.</li>
+                            </ul>
+                        </li>
+                        <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
+                            Integration credentials.</p>
+                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                <p><strong>Oracle Integration User Name</strong>:
+                                    <code class="allow-copy"><span>
+                                            <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                            data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                            </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
+                                    user number in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
+                                    Oracle Integration environment in the Before You Begin section to get a customized user.</a></p>
+                            </div>
+                            <p>The password will be provided by your instructor during the training session.</p>
+                        </li>
+                        <li><p>Send the request.</p>
+                            <p>The response status should be <code>200 OK</code>.</p>
+                        </li>
+                        <li>Open Oracle Integration.</li>
+                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
+                            <p>Notice that the cloned integration status is <strong>Activated</strong>.</p>
+                            <img src="img/screenshots/HCM/activated-integration.png" width="650px"/>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Run the Integration ########## -->
+                <section>
+                    <h2>Run the Integration</h2>
+                    <ol>
+                        <li><p>After the status changes to active, click <img src="img/how-to-run.png"
+                                                                              alt="How to Run icon"
+                                                                              style="height: 15px; width: 15px;"/>.</p>
+                            <img src="img/screenshots/ERP/how-to-run.png" width="650px"/>
+                        </li>
+                        <li>Click <strong>Submit Now</strong>.</li>
+                        <li><p>In the <strong>Submit Now</strong> dialog, click <strong>Submit Now</strong>.</p>
+                            <p>A confirmation message with a request ID appears.</p>
+                            <img src="img/screenshots/HCM/request-id-message.png" width="650px"/>
+                        </li>
+                        <li><p>Click the request ID link in the confirmation message</p>
+                            <p>The <strong>Track Runs</strong> page appears.</p>
+                        </li>
+                        <li><p>Wait for your integration to complete.</p>
+                            <p>The wait activity is set to 2 minutes so you will have to wait at least 2 minutes.</p>
+                            <p>A confirmation message indicating the integration ran successfully appears. The message contains a <strong>Run ID</strong> link.</p>
+                        </li>
+                        <li><p>Click the <strong>Run ID</strong> link.</p>
+                            <p>The <strong>Tracking Instances</strong> page with the tracking summary for the integration appears.</p>
+                        </li>
+                        <li><p>Click the <strong>Start Time</strong> link.</p>
+                            <p>This is the tracking field you configured earlier.</p>
+                            <img src="img/screenshots/HCM/start-time.png" width="650px"/>
+                            <p>The flow for your instance appears. The flow is colored in green to indicate that it ran successfully.</p>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Verify the File Creation in UCM ########## -->
+                <section>
+                    <h2>Verify the File Creation in UCM</h2>
+                    <p>While the integration is still running you can verify the file was transferred to UCM. After the
+                        HCM Data Loader finishes importing and loading the file, it is deleted from UCM and will no
+                        longer appear in the UCM search.
+                    </p>
+                    <ol>
+                        <li><p>Sign in to HCM Cloud using the following information:</p>
+                        </li>
+                        <li><p>Open a browser to sign in to HCM Cloud using the following
+                            information:</p>
+                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
+                                    your ERP Cloud environment in the Before You Begin section to get a
+                                    customized URL.</a></p>
+                            </div>
+                            <ul>
+                                <li>
+<!--                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">-->
+                                        <strong>ERP Cloud URL</strong>:
+                                            <!--                                            <code class="allow-copy"><span-->
+                                            <!--                                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'your_ERP_environment'"></span></code>-->
+
+                                            <a class="allow-copy" target="_blank"
+                                               data-bind="attr: { href: selectedAppEnvironment()? selectedAppEnvironment().url : 'your_ERP_environment' }">
+                                        <span>
+                                            <em data-bind="text: selectedAppEnvironment()? selectedAppEnvironment().url : 'your_ERP_environment'"></em>
+                                        </span>
+                                            </a>
+<!--                                    </div>-->
+                                </li>
+                                <li>
+<!--                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">-->
+                                    <strong>User:</strong> <code class="allow-copy"><span>betty.anderson</span></code>
+<!--                                        <code class="allow-copy"><span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'your_ERP_user'"></em></span></code>-->
+<!--                                    </div>-->
+                                </li>
+                                <li><strong>Password:</strong> the password will be provided during the training.</li>
+                            </ul>
+                        </li>
+                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                            <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
+                            <p class="comment">This is the UI I've been seeing for a week. Is this what you are going
+                                to use for the trainings? Please let me know so that I can update the other labs images and instructions.</p>
+                        </li>
+                        <li>Expand <strong>Tools</strong> and then click <strong>File Import and Export</strong>.</li>
+                        <li><p>In the <strong>Search</strong> section, in the <strong>File</strong> field, enter <code class="allow-copy"><span><em
+                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'your_ERP_user'"></em>_WorkerOutput.zip</span></code>.</p>
+                            <p class="comment">The PDF says to enter XX_Worker.dat but the screenshot shows
+                                XX_WorkerOuput.zip. I tried the two and the latter is the one that works.
+                                Please confirm that this is what you will be using during the training.</p>
+                        </li>
+                        <li><p>Click <strong>Search</strong>.</p>
+                            <p>The <strong>Search Results</strong> section shows the file you uploaded to UCM.</p>
+                            <img src="img/screenshots/HCM/UCM-search-results.png" width="650px"/>
+                        </li>
+                    </ol>
+                </section>
+                <hr>
+                <!-- ########## Verify the Data in HCM ########## -->
+                <section>
+                    <h2>Verify the Data in HCM</h2>
+
+                    <ol>
+                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                            <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
+                        </li>
+                        <li>Expand <strong>My Client Groups</strong> and then click <strong>Data Exchange</strong>.</li>
+                        <li><p>In the <strong>HCM Data Loader</strong> section, click <strong>Import and Load Data</strong>.</p>
+                            <p >The Data Sets section shows the file you uploaded.</p>
+                            <p class="comment">I wasn't able to test this because the upload is failing.</p>
+                        </li>
+                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                        </li>
+                        <li>Expand <strong>My Client Groups</strong> and then click <strong>Person Management</strong>.</li>
+                        <li>In the <strong>Name</strong> field enter <code class="allow-copy"><span>John Brown</span></code>.</li>
+                        <li><p>Click <strong>Search</strong>.</p>
+                            <p>The <strong>Search Results</strong> section shows the data for John Brown. This confirms
+                            that the data was imported to your HCM instance.</p>
+                            <p class="comment">I wasn't able to test this because the upload is failing.</p>
+                        </li>
+                    </ol>
+                </section>
+                <p><strong>Congratulations!</strong> You've configured and run an integration to retrieve a file, transform
+                    it, and import peding workers to HCM Data Loader. You've also used the Oracle Integration REST API to
+                    clone an existing integration and activate it.
+                </p>
+                <!-- ========================================================================================================================= -->
+            </article>
+        </div>
+        <br class="clearfloat">
+        <br class="clearfloat">
+    </div>
+</div>
+<!--close main-->
+<!--end content-->
+<div class="footer-container ">
+    <div>
+        <img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
+        <footer class="footer-list">
+            <ul>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/corporate/index.html" target="_blank">About
+                    Oracle</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/corporate/contact/index.html"
+                       target="_blank">Contact Us</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/index.html" target="_blank">Legal
+                    Notices</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms
+                    of Use</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html"
+                       target="_blank">Your Privacy Rights</a></li>
+                <li><a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash"
+                       target="_blank">#OOW19</a></li>
+                <li><a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright ©
+                    2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+            </ul>
+        </footer>
+    </div>
+    <!--script type="text/javascript" src="https://www.oracleimg.com/us/assets/metrics/ora_docs.js"></script-->
+</div>
+<!-- OBE Dialog Box code 10/15/2018 -->
+<!-- DO NOT ALTER THE CODE BELOW   -->
+<!--div id="lpModal" class="modal"-->
+<!-- Modal hdr and body -->
+<!--div id="obe_dialog" class="modal-content">
+    <div class="modal-header">
+        <a href="#" class="close">
+            <span class="close">&times;</span>
+        </a>
+        <h1>Associated Learning Paths</h1>
+    </div>
+    <div id="dialog-content" >
+    </div>
+    <div id="dialog-close" class="closeBtn">
+        <a href="#" class="close2">
+            <p class="close2">
+                 <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span>
+            </p>
+        </a>
+    </div>
+</div>
+</div-->
+<!-- END OBE Dialog Box code -->
+</body>
+</html>
