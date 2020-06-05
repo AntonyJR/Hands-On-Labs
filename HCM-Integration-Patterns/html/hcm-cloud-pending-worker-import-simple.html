@@ -689,7 +689,7 @@
                         </li>
                         <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Specify the File Name</strong> field.</li>
                         <li><p>Edit the expression to use your user number as a prefix:</p>
-                            <code class="allow-copy">'<em data-bind="text:user_number() || ''"></em>_WorkerOutput.zip'</code>
+                            <code class="allow-copy"><span>'<em data-bind="text:user_number() || ''"></em>_WorkerOutput.zip'</span></code>
                             <p>This will help you identify your file in UCM and the HCM DataLoader.</p>
                             <p class="comment">Subhani: Can you please either remove the KK prefix in the cloned integration or change it to a number like 11?</p>
                         </li>
@@ -733,6 +733,7 @@
                 <section>
                     <h2>Activate the Integration Using REST</h2>
                     <ol>
+                        <li>Open Postman.</li>
                         <li>Select the <strong>activate</strong> operation.</li>
                         <li><p>Edit the post URL and replace:</p>
                             <ul>
