@@ -276,8 +276,11 @@
                             <p>The <strong>Collections</strong> tab in the side bar shows a new node called <strong>OICRestLab</strong> with the operations <strong>clone</strong> and <strong>activate</strong>.</p>
                         </li>
                         <li>Select the <strong>clone</strong> operation.</li>
-                        <li>Edit the post URL and replace <strong>&lt;oic_host&gt;</strong> with
-                        <code data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></code>.
+                        <li><p>Edit the post URL and replace <strong>&lt;oic_host&gt;</strong> with:</p>
+                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().baseURL : 'your_OIC_environment'"></em></span></code>.</p>
+                            <p>The resulting URL is: <code class="allow-copy"><span>
+                                <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().baseURL : 'your_OIC_environment'"></em>/icsapis/v2/integrations/IMPORT_PENDING_WORKER|01.00.0000/clone
+                            </span></code></p>
                         </li>
                         <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
                             Integration credentials.</p>
@@ -300,6 +303,18 @@
                             </div>
                             <p>The password will be provided by your instructor during the training session.</p>
                         </li>
+                        <li><p>Edit the body of the request and replace <code>&lt;StudentID&gt;</code> with <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
+                                data-bind="text: user_number()? user_number() :'your_user_number'"></em></span></code>.</p>
+                            <p>The resulting body is:</p>
+                            <pre><code class="allow-copy"><span>
+{
+	"code":"IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() :'your_user_number'"></em>",
+	"version":"01.00.0000",
+	"name":"Import Pending Worker <em data-bind="text: user_number()? user_number() :'your_user_number'"></em>",
+	"description":"Pending worker import <em data-bind="text: user_number()? user_number() :'your_user_number'"></em>"
+}
+                            </span></code></pre>
+                        </li>
                         <li><p>Send the request.</p>
                             <p>The response status should be <code>204</code>.</p>
                         </li>
@@ -316,12 +331,14 @@
                     <h2>Activate the Integration Using REST</h2>
                     <ol>
                         <li>Select the <strong>activate</strong> operation.</li>
-                        <li>Edit the post URL and replace:
+                        <li><p>Edit the post URL and replace:</p>
                             <ul>
                                 <li><strong>&lt;oic_host&gt;</strong> with
-                                <code class="allow-copy" data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></code>.</li>
-                                <li><strong>StudentID</strong> with <code class="allow-copy" data-bind="text: user_number()? user_number() : 'your_user_number'"></code>.</li>
+                                <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em></span></code>.</li>
+                                <li><strong>StudentID</strong> with <code class="allow-copy" ><span><em data-bind="text: user_number()? user_number() : 'your_user_number'"></em></span></code>.</li>
                             </ul>
+                            <p>The resulting URL is:</p>
+                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>/icsapis/v2/integrations/IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() : 'your_user_number'"></em>|01.00.0000</span></code></p>
                         </li>
                         <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
                             Integration credentials.</p>
@@ -760,7 +777,7 @@
                         <li><p>After the status changes to active, click <img src="img/how-to-run.png"
                                                                               alt="How to Run icon"
                                                                               style="height: 15px; width: 15px;"/>.</p>
-                            <img src="img/screenshots/ERP/how-to-run.png" width="650px"/>
+                            <img src="img/screenshots/HCM/how-to-run.png" width="650px"/>
                         </li>
                         <li>Click <strong>Submit Now</strong>.</li>
                         <li><p>In the <strong>Submit Now</strong> dialog, click <strong>Submit Now</strong>.</p>
