@@ -742,7 +742,7 @@
                                 <li><strong>StudentID</strong> with <code class="allow-copy" ><span><em data-bind="text: user_number()? user_number() : 'your_user_number'"></em></span></code>.</li>
                             </ul>
                             <p>The resulting URL is:</p>
-                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>/icsapis/v2/integrations/IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() : 'your_user_number'"></em>|01.00.0000</span></code></p>
+                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>icsapis/v2/integrations/IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() : 'your_user_number'"></em>|01.00.0000</span></code></p>
                         </li>
                         <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
                             Integration credentials.</p>
@@ -768,9 +768,8 @@
                         <li><p>Send the request.</p>
                             <p>The response status should be <code>200 OK</code>.</p>
                         </li>
-                        <li>Open Oracle Integration.</li>
-                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
-                            <p>Notice that the cloned integration status is <strong>Activated</strong>.</p>
+                        <li><p>Open Oracle Integration.</p>
+                            <p>Notice that the cloned integration status is <strong>Active</strong>.</p>
                             <img src="img/screenshots/HCM/activated-integration.png" width="700px"/>
                         </li>
                     </ol>
