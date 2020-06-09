@@ -319,7 +319,7 @@
                             <p>The response status should be <code>204</code>.</p>
                         </li>
                         <li>Open Oracle Integration.</li>
-                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
+                        <li><p>In the <strong>Navigator Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
                             <p>Notice that the cloned integration appears in the <strong>Integrations</strong> list.</p>
                             <img src="img/screenshots/HCM/cloned-integration.png" width="700px"/>
                         </li>
@@ -365,7 +365,7 @@
 <!--                            <p>The response status should be <code>200 OK</code>.</p>-->
 <!--                        </li>-->
 <!--                        <li>Open Oracle Integration.</li>-->
-<!--                        <li><p>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>-->
+<!--                        <li><p>In the <strong>Navigator Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>-->
 <!--                            <p>Notice that the cloned integration status is <strong>Activated</strong>.</p>-->
 <!--                            <img src="img/screenshots/HCM/activated-integration.png" width="700px"/>-->
 <!--                        </li>-->
@@ -742,7 +742,7 @@
                                 <li><strong>StudentID</strong> with <code class="allow-copy" ><span><em data-bind="text: user_number()? user_number() : 'your_user_number'"></em></span></code>.</li>
                             </ul>
                             <p>The resulting URL is:</p>
-                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>icsapis/v2/integrations/IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() : 'your_user_number'"></em>|01.00.0000</span></code></p>
+                            <p><code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().baseURL : 'your_OIC_environment'"></em>/icsapis/v2/integrations/IMPORT_PENDING_WORKER_<em data-bind="text: user_number()? user_number() : 'your_user_number'"></em>|01.00.0000</span></code></p>
                         </li>
                         <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
                             Integration credentials.</p>
@@ -848,14 +848,14 @@
                                 <li><strong>Password:</strong> the password will be provided during the training.</li>
                             </ul>
                         </li>
-                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
                             <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
                             <p class="comment">This is the UI I've been seeing for a week. Is this what you are going
                                 to use for the trainings? Please let me know so that I can update the other labs images and instructions.</p>
                         </li>
                         <li>Expand <strong>Tools</strong> and then click <strong>File Import and Export</strong>.</li>
                         <li><p>In the <strong>Search</strong> section, in the <strong>File</strong> field, enter <code class="allow-copy"><span><em
-                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'your_ERP_user'"></em>_WorkerOutput.zip</span></code>.</p>
+                                data-bind="text: user_number()? user_number() :'your_user_number'"></em>_WorkerOutput.zip</span></code>.</p>
                             <p class="comment">The PDF says to enter XX_Worker.dat but the screenshot shows
                                 XX_WorkerOuput.zip. I tried the two and the latter is the one that works.
                                 Please confirm that this is what you will be using during the training.</p>
@@ -872,15 +872,15 @@
                     <h2>Verify the Data in HCM</h2>
 
                     <ol>
-                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
                             <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
                         </li>
                         <li>Expand <strong>My Client Groups</strong> and then click <strong>Data Exchange</strong>.</li>
                         <li><p>In the <strong>HCM Data Loader</strong> section, click <strong>Import and Load Data</strong>.</p>
                             <p >The Data Sets section shows the file you uploaded.</p>
-                            <p class="comment">I wasn't able to test this because the upload is failing.</p>
+<!--                            <p class="comment">I wasn't able to test this because the upload is failing.</p>-->
                         </li>
-                        <li><p>Click the <strong>Main Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
                         </li>
                         <li>Expand <strong>My Client Groups</strong> and then click <strong>Person Management</strong>.</li>
                         <li>In the <strong>Name</strong> field enter <code class="allow-copy"><span>John Brown</span></code>.</li>
