@@ -96,6 +96,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       }      
       self.availableFTPEnvironments = ko.observableArray([
         new FTPEnvironment("Drive HQ", "https://www.drivehq.com", "oichcmcloud"),
+        new FTPEnvironment("Cloud", "http://sftp.us2.cloud.oracle.com/", "us258614"),
       ]),
       self.selectedFTPEnvironment = ko.observable()
     }
