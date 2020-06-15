@@ -1,1 +1,1 @@
-"Salutation","FirstName","LastName","CorrespondenceLanguage","PersonNumber","DateOfBirth","UserName","WorkEmail","WorkerType"
+"PersonId","PersonName","PersonNumber","PrimaryPhoneNumber","WorkerType","WorkerEmail","EffectiveStartDate","EffectiveDate","PeriodType"

@@ -23,6 +23,12 @@ p.comment {
 	background-color: #fefb00;
 }
 
+p.todo {
+	background-color: #ff2f92;
+	color: #feffff;
+}
+
+
 a, a:link {
 	text-decoration: none;
 	/*color: #0572ce; DL*/	
