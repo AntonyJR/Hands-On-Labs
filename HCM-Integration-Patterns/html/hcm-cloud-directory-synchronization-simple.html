@@ -282,7 +282,7 @@
                 <section>
                     <h2>Create the Integration</h2>
                     <ol>
-                        <li>In the <strong>Main Menu</strong>, click <strong>Integrations</strong>, and then click
+                        <li>In the <strong>Navigation Menu</strong>, click <strong>Integrations</strong>, and then click
                             <strong>Integrations</strong>.
                         </li>
                         <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
@@ -333,7 +333,7 @@
                         </li>
                         <li>Click the <strong>Parameter Name</strong> column and change the name to <code class="allow-copy"><span>ATOMLastRunDateTime</span></code>.</li>
                         <li>Click the <strong>Description</strong> column and enter <code class="allow-copy"><span>Last successful processed ATOM pull.</span></code></li>
-                        <li>In the <strong>Value</strong> column, enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code>.</p>
+                        <li><p>In the <strong>Value</strong> column, enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code>.</p>
 <!--                            <p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> in the-->
 <!--                            <strong>Value</strong> column, and enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code> in the <strong>Expression</strong> field.</p>-->
                             <p>This sets the initial date to retrieve the ATOM feed from HCM Cloud to January 1<sup>st</sup> 2019.</p>
@@ -668,7 +668,7 @@
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
                             and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
                             the <strong>Integration</strong> canvas and place it after the <strong>writeRecordToStage</strong> activity.</p>
-                            <img src="img/screenshots/HCM/actions-assign.png" width="450px"/>
+                            <img src="img/screenshots/HCM/add-assign.png" width="550px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
                         </li>
                         <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>assignStageFileRef</span></code>.</li>
@@ -698,12 +698,12 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Upload the File to the FTP ########## -->
+                <!-- ########## Upload the File to the FTP Server########## -->
                 <section>
-                    <h2>Upload the File to the FTP</h2>
+                    <h2>Upload the File to the FTP Server</h2>
                     <p>Let's use the FTP adapter to upload the stage file to the FTP server. The FTP server represents the customer's system.</p>
                     <ol>
-                        <li><p>Sign in to the FTP server using the following information:</p>
+                        <li><p>Use an FTP client to sign in to the FTP server using the following information:</p>
                             <ul>
                                 <li><strong>URL</strong>: <code class="allow-copy"><span><em
                                         data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select an environment from the FTP Environment list.'"></em></span></code>
@@ -718,7 +718,10 @@
                             <p><code class="allow-copy"><span>/upload/public_ftp/<em
                                     data-bind="text:user_number() || 'your_user_number'"></em>/out</span></code></p>
                         </li>
-                        <li>Hover over the outgoing arrow for the end of the for each loop activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>Go back to Oracle Integration.</li>
+                        <li><p>Hover over the outgoing arrow for the end of the for each loop activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
+                            <img src="img/screenshots/HCM/add-FTP-adapter.png" width="650"/>
+                        </li>
                         <li>In the <strong>Search</strong> field, type <code class="allow-copy"><span>FTP File</span></code>.</li>
                         <li><p>Select <strong>FTP File Server</strong>.</p>
                             <p class="comment">The PDF uses FTP Conn. I'm using FTP File Server because that's what we
@@ -738,9 +741,9 @@
                                 <li><p>In the <strong>File Name Pattern</strong> field, enter
                                     <code class="allow-copy"><span>newCandidateRecord%yyyyMMddHHmmss%.csv</span></code>.</p>
                                     <p>This pattern will append the year, month, date, and time to the prefix
-                                        <code>newCandidateRecord. For example, if you wrote the file on
-                                            April 18<sup>th</sup> 2018 at 08:21:00 A.M., the file name is
-                                            <code>newCandidateRecord20180418082100.csv</code></code></p>
+                                        <code>newCandidateRecord</code>. For example, if you wrote the file on
+                                            April 18<sup>th</sup> 2018 at 08:21:00 A.M., the file name would be
+                                            <code>newCandidateRecord20180418082100.csv</code></p>
                                 </li>
                             </ol>
                         </li>
@@ -752,6 +755,7 @@
                             <p>A summary of the properties you configured appears.</p>
                         </li>
                         <li>Review the summary and click <strong>Done</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
                     </ol>
                     <!-- ########## Define the Data Mapping ########## -->
                     <h3>Define the Data Mapping</h3>
@@ -763,10 +767,12 @@
                             <p>The <strong>Data Mapping</strong> page appears.</p>
                         </li>
                         <li>In the <strong>Target</strong> section, expand <strong>ICSFile</strong>.</li>
-                        <li>Map the <strong>StageFileRef_assignment_1</strong> field in the <strong>Sources</strong> section, to the
+                        <li>Map the <strong>$StageFileRef_assignment_1</strong> field in the <strong>Sources</strong> section, to the
                             <strong>FileReference</strong> field in the <strong>Target</strong> section.
                         </li>
-                        <li>Click <strong>Validate</strong>.</li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A message confirming the mapping is valid appears.</p>
+                        </li>
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
@@ -774,7 +780,7 @@
                 <hr>                   
                 <!-- ########## Set the Last Run Date ########## -->
                 <section>
-                    <h2>Set the Last Run Date</h2>
+                    <h2>Save the Last Run Date</h2>
                     <p>The last step in the integration is to store the date and time you polled the ATOM feed. The next
                     time this integration runs, it will use this date and time to avoid retrieving duplicated results.</p>
                     <ol>
@@ -783,9 +789,9 @@
                             and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
                             the <strong>Integration</strong> canvas and place it after the end of the
                                 <strong>Switch</strong> activity, before the <strong>Stop</strong> activity.</p>
-                            <p class="comment">I would like to add a screenshot here, but right now I'm not able to run
-                                this lab because the credentials are outdated. Will add it after Monday.</p>
-<!--                            <img src="img/screenshots//.png" width="450px"/>-->
+<!--                            <p class="comment">I would like to add a screenshot here, but right now I'm not able to run-->
+<!--                                this lab because the credentials are outdated. Will add it after Monday.</p>-->
+                            <img src="img/screenshots/HCM/add-last-run-assign.png" width="450px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
                         </li>
                         <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>assignATOMLRD</span></code>.</li>
@@ -797,7 +803,7 @@
                         <li><p>In the <strong>Value</strong> column, click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                             <p>The <strong>Expression Builder</strong> appears.</p>
                         </li>
-                        <li>From the <strong>Source</strong> section, select <code>$ts</code></li>
+                        <li>In the <strong>Source</strong> section, scroll down and select <code>$ts</code></li>
                         <li>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
                         <li><p>Click <strong>Validate</strong>.</p>
                             <p>A message confirming the expression is valid appears.</p>
@@ -838,10 +844,10 @@
                 <section>
                     <h2>Activate the Integration</h2>
                     <ol>
-                        <li><p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
-                            <p>The name of your integration is <code>Directory Synchronization <em
+                        <li><p>On the <strong>Integrations</strong> page, select your integration:</p>
+                            <p><code>Directory Synchronization <em
                                     data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
-                            <p>When you hover over the integration, a set of actions appear in the
+                            <p>When you select the integration, a set of actions appear in the
                                 <strong>Status</strong> column. </p>
                             <img src="img/screenshots/HCM/sync-hover-activate.png" width="650px"/>
                         </li>
@@ -883,25 +889,40 @@
                         </li>
                         <li>Click <strong>Submit Now</strong>.</li>
                         <li><p>In the <strong>Submit Now</strong> dialog, click <strong>Submit Now</strong>.</p>
+                            <p class="comment">A confirmation message with a request ID appears.</p>
+                            <p class="comment">This is the step that appears in the PDF however, it doesn't apply to
+                                this lab. After I click <strong>Submit Now</strong> I get this page. Please let me know
+                                if I need to enter a value. For now I'm writing the instructions as if I could just click Submit.</p>
+                            <img src="img/screenshots/HCM/submit-now.png" width="650px"/>
+<!--                            <p class="todo">Will update this screenshot once I'm able to run the lab.</p>-->
+                        </li>
+                        <li><p>Click <strong>Submit</strong>.</p>
                             <p>A confirmation message with a request ID appears.</p>
                             <img src="img/screenshots/HCM/sync-request-id-message.png" width="650px"/>
-                            <p class="todo">Will update this screenshot once I'm able to run the lab.</p>
                         </li>
                         <li><p>Click the request ID link in the confirmation message</p>
                             <p>The <strong>Track Runs</strong> page appears.</p>
                         </li>
-                        <li><p>Wait for your integration to complete.</p>            
-                            <p>A confirmation message indicating the integration ran successfully appears. The message contains a <strong>Run ID</strong> link.</p>
-                        </li>
                         <li><p>Click the <strong>Run ID</strong> link.</p>
-                            <p>The <strong>Tracking Instances</strong> page with the tracking summary for the integration appears.</p>
+                            <p>The <strong>Track Instances</strong> page with the tracking summary for the integration appears.</p>
                         </li>
                         <li><p>Click the <strong>start Time</strong> link.</p>
                             <p>This is the tracking field you configured earlier.</p>
                             <img src="img/screenshots/HCM/sync-start-time.png" width="650px"/>
-                            <p class="todo">Will update this screenshot once I'm able to run the lab.</p>
                             <p>The flow for your instance appears. The flow is colored in green to indicate that it ran successfully.</p>
                         </li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li>In the <strong>Navigation Menu</strong>, click
+                            <img src="img/home.png" alt="Home icon" style="height: 18px; width: 18px;"/>, then click
+                            <strong>Integrations</strong>, and then click
+                            <strong>Integrations</strong>.
+                        <li>Locate your integration and click <img src="img/how-to-run.png" alt="How to Run icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li><p>Click <strong>Submit Now</strong>.</p>
+                            <p>The <strong>Schedule Parameters</strong> page appears.</p>
+                            <p>Notice that the <strong>Current Value</strong> is updated with the date that you last ran the integration.</p>
+                            <img src="img/screenshots/HCM/second-run.png" width="650px"/>
+                        </li>
+                        <li>Click <strong>Submit</strong>.</li>
                     </ol>
                 </section>
                 <hr>
@@ -923,12 +944,17 @@
                         </li>
                         <li>Browse to your directory: <code class="allow-copy"><span>/upload/public_ftp/<em
                                 data-bind="text:user_number() || 'your_user_number'"></em>/out</span></code>.</li>
-                        <li>Verify that the file was uploaded to your directory.</li>
+                        <li><p>Verify that the file was uploaded to your directory.</p>
+                            <p class="comment">After running this a couple of times I have a lot of files in the FTP directory.
+                                Is this expected? If it is maybe we should change this to "verify that the files were
+                                uploaded"? Are these files the employee records?</p>
+                        </li>
                     </ol>
                 </section>
-<!--                <hr>-->
-<!--                <p><strong>Congratulations!</strong>-->
-<!--                </p>-->
+                <hr>
+                <p><strong>Congratulations!</strong> You just created a integration that retrieves data from an ATOM
+                    feed, transforms it, and uploads it to an FTP server for an identity management system to use it.
+                </p>
                 <!-- ========================================================================================================================= -->
             </article>
         </div>
@@ -956,7 +982,7 @@
                 <li><a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash"
                        target="_blank">#OOW19</a></li>
                 <li><a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright ©
-                    2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    2019-2020, Oracle and/or its affiliates. All rights reserved.</a></li>
             </ul>
         </footer>
     </div>
