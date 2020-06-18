@@ -503,7 +503,9 @@
                                     <li>In the <strong>Source</strong> section, select <strong>$countofNewHires_assignment_1</strong>.</li>
                                     <li>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
                                     <li>In the <strong>New Condition</strong> box, enter <code class="allow-copy"><span>0.0</span></code> in the field after the equal operator. </li>
-                                    <li>Click <strong>Validate</strong>.</li>
+                                    <li><p>Click <strong>Validate</strong>.</p>
+                                        <p>A message confirming the expression is valid appears.</p>
+                                    </li>
                                     <li>Click <strong>Close</strong>.</li>
                                 </ol>
                             </li>
@@ -530,7 +532,13 @@
                             <li>Click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
                             <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> in the
                                 <strong>Value</strong> column, and enter <code class="allow-copy"><span>""</span></code> in the <strong>Expression</strong> field.</p>
-                            <li>Click <strong>Validate</strong>.</li>
+                            <li><p>Click <strong>Validate</strong>.</p>
+                                <p>A message confirming the expression is valid appears.</p>
+                            </li>
+                            <li>Click <strong>Close</strong>.</li>
+                            <li><p>Click <strong>Validate</strong>.</p>
+                                <p>A message confirming the action is valid appears.</p>
+                            </li>
                             <li>Click <strong>Close</strong>.</li>
                             <li>Click <strong>Save</strong>.</li>
                         </ol>
@@ -539,7 +547,7 @@
                 <!-- ########## Process the Records ########## -->
                 <section>
                     <h2>Process the Records</h2>
-                    <p>Let's iterate over the new hires that we got from the ATOM feed in a JSON file, and retrieve
+                    <p>Let's iterate over the new hires that you got from the ATOM feed in a JSON file, and retrieve
                         the record for each new hire using the HCM Cloud REST service.
                     </p>
                     <ol>
@@ -551,7 +559,8 @@
                             <p>The <strong>Create Action</strong> dialog appears.</p>
                         </li>
                         <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>ForEachEntry</span></code>.</li>
-                        <li><p>Select the <strong>EmployeeNewHireFeed_Update</strong> element located under <strong>EmployeeNewHireFeedResponse</strong>.</p>
+                        <li><p>Select the <strong>EmployeeNewHireFeed_Update</strong> element located under
+                            <strong>EmployeeNewHireFeedResponse</strong>, that is in turn located under <strong>$getNewHireATOMFeed</strong>.</p>
                             <p>The EmployeeNewHireFeed_Update represents an individual new hire in the JSON ATOM feed result.</p>
                         </li>
                         <li><p>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
@@ -599,7 +608,7 @@
                         <li>On the <strong>Schema Options</strong> page, click <strong>Next</strong>.</li>
                         <li><p>On the <strong>Format Definition</strong> page, enter the following values:</p>
                             <ol>
-                                <li>Click the <strong>Browse</strong> button
+                                <li>Click the <strong>Choose File/Browse</strong> button
                                     next to <strong>Select a New Delimited Data File</strong>.</li>
                                 <li><p>Navigate to the location where you stored the <code>newEmployeeFile</code> you
                                     downloaded earlier and select it.</p>
@@ -609,7 +618,6 @@
                                 <li>In the <strong>Recordset Name</strong> field, enter <code class="allow-copy"><span>NewUser</span></code>.</li>
                             </ol>
                         </li>
-                        <li>Click <strong>Next</strong>.</li>
                         <li><p>Click <strong>Next</strong>.</p>
                             <p>A summary of the properties you configured appears.</p>
                         </li>
@@ -647,7 +655,9 @@
                                 reach the target element the line turns green and a check mark appears. </p>
                             <img src="img/screenshots/HCM/map-to-WriteRecordToStage.png" width="650px"/>
                         </li>
-                        <li>Click <strong>Validate</strong>.</li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A message confirming the mapping is valid appears.</p>
+                        </li>
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
@@ -662,9 +672,6 @@
                             <p>The <strong>Create Action</strong> dialog appears.</p>
                         </li>
                         <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>assignStageFileRef</span></code>.</li>
-                        <li>Click <strong>Create</strong>.</li>
-                        
-                        <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>assignStageFileRef</span></code>.</li>
                         <li><p>Click <strong>Create</strong>.</p>
                             <p>The <strong>Assign</strong> page appears.</p>
                         </li>
@@ -673,13 +680,19 @@
                         <li><p>In the <strong>Value</strong> column, click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                             <p>The <strong>Expression Builder</strong> appears.</p>
                         </li>
-                        <li>In the <strong>Source</strong> section, expand <strong>WriteRecordToStage</strong>, then
-                            expand <strong>WriteResponse</strong>, then expand <strong>WriteResponse</strong>, and then
-                            expand <strong>ICSFile</strong>.
+                        <li>In the <strong>Source</strong> section, locate the element <strong>WriteResponse</strong>
+                            located under <strong>WriteResponse</strong>, that in turn is located under <strong>$WriteRecordToStage</strong>.
                         </li>
+                        <li>Expand <strong>WriterResponse</strong>, then expand <strong>ICSFile</strong>, and click <strong>Load more</strong>.</li>
                         <li>Select <strong>FileReference</strong>.</li>
                         <li>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
-                        <li>Click <strong>Validate</strong>.</li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A message confirming the expression is valid appears.</p>
+                        </li>
+                        <li>Click <strong>Close</strong>.</li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A message confirming the action is valid appears.</p>
+                        </li>
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
