@@ -333,8 +333,9 @@
                         </li>
                         <li>Click the <strong>Parameter Name</strong> column and change the name to <code class="allow-copy"><span>ATOMLastRunDateTime</span></code>.</li>
                         <li>Click the <strong>Description</strong> column and enter <code class="allow-copy"><span>Last successful processed ATOM pull.</span></code></li>
-                        <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> in the
-                            <strong>Value</strong> column, and enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code> in the <strong>Expression</strong> field.</p>
+                        <li>In the <strong>Value</strong> column, enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code>.</p>
+<!--                            <p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> in the-->
+<!--                            <strong>Value</strong> column, and enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code> in the <strong>Expression</strong> field.</p>-->
                             <p>This sets the initial date to retrieve the ATOM feed from HCM Cloud to January 1<sup>st</sup> 2019.</p>
                             <p class="comment">
                                 What do you mean with the warning below? When would the reader have to adjust
@@ -422,7 +423,9 @@
                                 then while clicking your mouse move it towards the target element. When you
                                 reach the target element the line turns green and a check mark appears. </p>
                         </li>
-                        <li>Click <strong>Validate</strong>.</li>
+                        <li><p>Click <strong>Validate</strong>.</p>
+                            <p>A message confirming the mapping is valid appears.</p>
+                        </li>
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
@@ -452,7 +455,7 @@
                         </li>
                         <li>In the <strong>Component</strong> section, expand <strong>Functions</strong>, and then expand <strong>Node-set</strong>.</li>
                         <li>Drag and drop the <strong>Count</strong> function to the <strong>Expression</strong> field.</li>
-                        <li>In the <strong>Source</strong> find the element <strong>EmployeeNewHireFeed_Update</strong> located under <strong>employeeNewHireFeedResponse</strong> that is in turn located under <strong>$getNewHireATOMFeed</strong>.
+                        <li>In the <strong>Source</strong> section, locate the element <strong>EmployeeNewHireFeed_Update</strong> located under <strong>employeeNewHireFeedResponse</strong>, that is in turn located under <strong>$getNewHireATOMFeed</strong>.
                             </li>
                         <li><p>Select the <strong>nodeSet</strong> parameter in the expression.</p>
                             <p class="comment">Added this step because just dropping the field over the Count function expression didn't work for me. Please confirm this is OK.</p>
@@ -483,7 +486,7 @@
                             <img src="img/screenshots/HCM/actions-switch.png" width="450px"/>
                             <p>Two flow branches appear in the flow:</p>
                             <ul>
-                                <li><strong>Undefined</strong>: this branch validates the countOfNewHires for routing.</li>
+                                <li><strong>Undefined</strong>: this branch checks the countOfNewHires. If the expression evaluates to true the instance follows the flow in this branch.</li>
                                 <li><strong>Otherwise</strong>: the instance follows this branch when the routing expression for the initial branch resolves to false.</li>
                             </ul>
                         </li>
