@@ -24,6 +24,7 @@
     <script type="text/javascript" src="./js/app.js"></script>
     <link rel="stylesheet" href="css/copy-button.css">
     <script src="js/copytoclipboard.js"></script>
+    <script type="text/javascript" src="./js/time.js"></script>
 </head>
 <body>
 
@@ -333,19 +334,25 @@
                         </li>
                         <li>Click the <strong>Parameter Name</strong> column and change the name to <code class="allow-copy"><span>ATOMLastRunDateTime</span></code>.</li>
                         <li>Click the <strong>Description</strong> column and enter <code class="allow-copy"><span>Last successful processed ATOM pull.</span></code></li>
-                        <li><p>In the <strong>Value</strong> column, enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code>.</p>
-<!--                            <p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> in the-->
-<!--                            <strong>Value</strong> column, and enter <code class="allow-copy"><span>2019-01-01T00:00:00.000Z</span></code> in the <strong>Expression</strong> field.</p>-->
-                            <p>This sets the initial date to retrieve the ATOM feed from HCM Cloud to January 1<sup>st</sup> 2019.</p>
-                            <p class="comment">
-                                What do you mean with the warning below? When would the reader have to adjust
-                                the time and how? I can't tell them that they may need to do something without
-                                explaining when or how.
-                                <em>"You may need to adjust this to a closer DateTime value depending on when
-                                    you are building this integration. After the first time the integration is run,
-                                    this value will be updated to reflect the actual Date and Time values."</em>
-                                <br>
-                                <p>
+                        <li><p>In the <strong>Value</strong> column, enter <code class="allow-copy"><span>
+                            <em id="year"></em>-<em id="month"></em>-01T00:00:00.000Z</span></code>.</p>
+                            <p>This sets the initial date to get the data from the HCM ATOM feed for the last six months.</p>
+                            <!-- Script to calculate date -->
+                            <script>
+                                var d = new Date();
+                                d.setDate(d.getDate() - 180);
+                                document.getElementById("month").innerHTML= (d.getMonth()+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+                                document.getElementById("year").innerHTML= d.getFullYear();
+                            </script>
+<!--                            <p class="comment">-->
+<!--                                What do you mean with the warning below? When would the reader have to adjust-->
+<!--                                the time and how? I can't tell them that they may need to do something without-->
+<!--                                explaining when or how.-->
+<!--                                <em>"You may need to adjust this to a closer DateTime value depending on when-->
+<!--                                    you are building this integration. After the first time the integration is run,-->
+<!--                                    this value will be updated to reflect the actual Date and Time values."</em>-->
+<!--                                <br>-->
+<!--                            <p>-->
                         </li>
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
@@ -458,7 +465,7 @@
                         <li>In the <strong>Source</strong> section, locate the element <strong>EmployeeNewHireFeed_Update</strong> located under <strong>employeeNewHireFeedResponse</strong>, that is in turn located under <strong>$getNewHireATOMFeed</strong>.
                             </li>
                         <li><p>Select the <strong>nodeSet</strong> parameter in the expression.</p>
-                            <p class="comment">Added this step because just dropping the field over the Count function expression didn't work for me. Please confirm this is OK.</p>
+<!--                            <p class="comment">Added this step because just dropping the field over the Count function expression didn't work for me. Please confirm this is OK.</p>-->
                         </li>
                         <li><p>Drag and drop the <strong>EmployeeNewHireFeed_Update</strong> function to the <strong>Count</strong> function in the <strong>Expression</strong> field.</p>
                         </li>
@@ -501,7 +508,10 @@
                                 <ol>
                                     <li>In the <strong>Expression Name</strong> field, enter <code class="allow-copy"><span>no new hires</span></code>.</li>
                                     <li>In the <strong>Source</strong> section, select <strong>$countofNewHires_assignment_1</strong>.</li>
-                                    <li>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</li>
+                                    <li><p>Click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
+                                        <img src="img/screenshots/HCM/if-expression-editing.png" width="450px"/>
+                                        <p>The <strong>$countofNewHires_assignment_1</strong> variable appears in the first part of the expression, and a green checkmark appears next to the variable.</p>
+                                    </li>
                                     <li>In the <strong>New Condition</strong> box, enter <code class="allow-copy"><span>0.0</span></code> in the field after the equal operator. </li>
                                     <li><p>Click <strong>Validate</strong>.</p>
                                         <p>A message confirming the expression is valid appears.</p>
@@ -578,7 +588,7 @@
                     <p>Let's write each new record to a stage file.</p>
                     <ol>
                         <li><p>Download the <a href="../assets/directory-synchronization_lab/newEmployeeFile.csv" download="newEmployeeFile.csv" target="_blank">newEmployeeFile.csv</a> file.</p>
-                            <p class="comment">The PDF says to use newCandidateRecord.csv but the only file I could find was newEmployeeFile.csv. Please confirm this is the right file or provide the newCandidateRecord.csv.</p>
+<!--                            <p class="comment">The PDF says to use newCandidateRecord.csv but the only file I could find was newEmployeeFile.csv. Please confirm this is the right file or provide the newCandidateRecord.csv.</p>-->
                         </li>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
@@ -593,7 +603,9 @@
                             <ol>
                                 <li>From the <strong>Choose Stage File Operation</strong> list, select <strong>Write File</strong>.</li>
                                 <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the <strong>Specify the Name</strong> field.</li>
-                                <li>In the <strong>Expression</strong> field enter <code class="allow-copy"><span>"newEmployeeFile.csv"</span></code>.</li>
+                                <li><p>In the <strong>Expression</strong> field enter <code class="allow-copy"><span>"newCandidateRecord.csv"</span></code>.</p>
+                                    <p>This will be the name of the temporary file that Oracle Integration writes to stage.</p>
+                                </li>
                                 <li>Click <strong>Save</strong>, and then click <strong>OK</strong>.</li>
                                 <li>Click <strong>Exit Expression Builder</strong>.</li>
                                 <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the 
@@ -676,7 +688,7 @@
                             <p>The <strong>Assign</strong> page appears.</p>
                         </li>
                         <li>Click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                        <li>From the <strong>Variable</strong> column select <strong>>StageFileRef_assignment_1</strong>.</li>
+                        <li>From the <strong>Variable</strong> column select <strong>$StageFileRef_assignment_1</strong>.</li>
                         <li><p>In the <strong>Value</strong> column, click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                             <p>The <strong>Expression Builder</strong> appears.</p>
                         </li>
@@ -725,8 +737,7 @@
                         <li>In the <strong>Search</strong> field, type <code class="allow-copy"><span>FTP File</span></code>.</li>
                         <li><p>Select <strong>FTP File Server</strong>.</p>
                             <p class="comment">The PDF uses FTP Conn. I'm using FTP File Server because that's what we
-                                agreed for the other labs. Please confirm this is correct. I can't test the lab because
-                                the HCM connection isn't working because the password changed.</p>
+                                agreed for the other labs. I ran the lab and it seems to work, please confirm this is the connection for this lab.</p>
                         </li>
                         <li>Name your endpoint: <code class="allow-copy"><span>WriteStageFileToFTP</span></code></li>
                         <li>Click <strong>Next</strong>.</li>
