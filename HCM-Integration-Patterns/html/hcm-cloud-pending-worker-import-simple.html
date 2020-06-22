@@ -80,7 +80,7 @@
                         <li>Postman</li>
                         <li>An FTP server</li>
                     </ul>
-                    <p class="comment">The PDF mentions the file personsSchema.xsd here. I did a search and couldn't find where it was used. Can you please clarify and let me know if this is still needed?</p>
+<!--                    <p class="comment">The PDF mentions the file personsSchema.xsd here. I did a search and couldn't find where it was used. Can you please clarify and let me know if this is still needed?</p>-->
 <!--                    <p>For your convenience we created and configured the following connections:</p>-->
 <!--                    <ul>-->
 <!--                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>-->
@@ -179,7 +179,7 @@
                     <hr>
                     <h3>Get Your FTP Environment</h3>
                     <p>Select your environment to get the information to access the FTP server.</p>
-                    <p class="comment">Please let me know the connection information for the FTP you will be using in the training so that I can add it to the list.</p>
+<!--                    <p class="comment">Please let me know the connection information for the FTP you will be using in the training so that I can add it to the list.</p>-->
                     <p><strong>FTP Environment</strong>:
                         <select data-bind="options: availableFTPEnvironments,
                            optionsText: 'name',
@@ -519,9 +519,9 @@
                     </p>
                     <p>The following integration flow appears:</p>
                     <p><img src="img/screenshots/HCM/integration-flow.png" width="700px"/></p>
-                    <p>This table briefly describes the different steps in the integration. For more details, you can
-                    open the integration and click each of the steps.</p>
-                    <p class="comment">I generally call these "activities" not "steps". Please confirm that it is okay to change it to activities here too.</p>
+                    <p>This table briefly describes the different activities in the integration. For more details, you can
+                    open the integration and click each of the activities.</p>
+<!--                    <p class="comment">I generally call these "activities" not "steps". Please confirm that it is okay to change it to activities here too.</p>-->
                     <table>
                         <tr>
                             <th style="width:20%">Step</th>
@@ -539,7 +539,7 @@
                             <td>Map to ReadFileFromFTP</td>
                             <td>Map</td>
                             <td>
-                                <p class="comment">This data mapping is empty. Can we remove it from the integration? If we can't, please provide a description.</p>
+<!--                                <p class="comment">This data mapping is empty. Can we remove it from the integration? If we can't, please provide a description.</p>-->
                             </td>
                         </tr>
                         <tr>
@@ -639,12 +639,12 @@
                                 data-bind="text:user_number() || 'your_user_number'"></em></code>.</li>
                         <li>Select the <strong>ReadFileFromFTP</strong> activity.</li>
                         <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
-                            <p class="comment">If I leave the task sequence as the PDF indicates, this step isn't
-                                possible. Because you activated the integration when you open it, it's in read-only
-                                mode. Did you add the activate step above by mistake? Or did you mean to deactivate the
-                                integration and forgot to include it? Please let me know so that I can fix this. As is,
-                                this lab can't be run.
-                            </p>
+<!--                            <p class="comment">If I leave the task sequence as the PDF indicates, this step isn't-->
+<!--                                possible. Because you activated the integration when you open it, it's in read-only-->
+<!--                                mode. Did you add the activate step above by mistake? Or did you mean to deactivate the-->
+<!--                                integration and forgot to include it? Please let me know so that I can fix this. As is,-->
+<!--                                this lab can't be run.-->
+<!--                            </p>-->
                         </li>
                         <li>Click the <strong>Operations</strong> tab.</li>
                         <li>In the <strong>Input Directory</strong> field, enter <code class="allow-copy"><span>/upload/public_ftp/<em
@@ -670,8 +670,8 @@
                             <p>The <strong>Sources</strong> section shows all the fields available for mapping.</p>
                             <p>The <strong>Target</strong> section shows the <code>Write</code> hierarchy.</p>
                             <p>This data mapping is a representation of the <code>Worker.dat</code> file.</p>
-                            <p class="comment">The PDF says "This is a representation. That this is preceded by the Sources and Target sections and in general by the data mapping. Which of the three are you referring to? </p>
-                            <p class="comment">What is the <code>Worker.dat</code> file and why does it matter to the reader?</p>
+<!--                            <p class="comment">The PDF says "This is a representation. That this is preceded by the Sources and Target sections and in general by the data mapping. Which of the three are you referring to? </p>-->
+<!--                            <p class="comment">What is the <code>Worker.dat</code> file and why does it matter to the reader?</p>-->
                             <p><img src="img/screenshots/HCM/data-map.png" width="700px"/></p>
                         </li>
                         <li>Click <strong>Close</strong>.</li>
@@ -691,7 +691,7 @@
                         <li><p>Edit the expression to use your user number as a prefix:</p>
                             <code class="allow-copy"><span>'<em data-bind="text:user_number() || ''"></em>_WorkerOutput.zip'</span></code>
                             <p>This will help you identify your file in UCM and the HCM DataLoader.</p>
-                            <p class="comment">Subhani: Can you please either remove the KK prefix in the cloned integration or change it to a number like 11?</p>
+<!--                            <p class="comment">Subhani: Can you please either remove the KK prefix in the cloned integration or change it to a number like 11?</p>-->
                         </li>
                         <li>Click <strong>Save</strong>.</li>
                         <li>Click <strong>Exit Expression Builder</strong>.</li>
@@ -708,8 +708,8 @@
                 <section>
                     <h2>Define the Tracking Fields</h2>
                     <p>Tracking fields specify a unique value to monitor your integration instance.</p>
-                    <p class="comment">The tracking field is already defined in the cloned integration. Is this the way
-                    it's going to be in the version of the lab available to the public? Do we need to change this step?</p>
+<!--                    <p class="comment">The tracking field is already defined in the cloned integration. Is this the way-->
+<!--                    it's going to be in the version of the lab available to the public? Do we need to change this step?</p>-->
                     <ol>
                         <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png"
                                                                                       alt="Actions icon"
@@ -850,15 +850,15 @@
                         </li>
                         <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
                             <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
-                            <p class="comment">This is the UI I've been seeing for a week. Is this what you are going
-                                to use for the trainings? Please let me know so that I can update the other labs images and instructions.</p>
+<!--                            <p class="comment">This is the UI I've been seeing for a week. Is this what you are going-->
+<!--                                to use for the trainings? Please let me know so that I can update the other labs images and instructions.</p>-->
                         </li>
                         <li>Expand <strong>Tools</strong> and then click <strong>File Import and Export</strong>.</li>
                         <li><p>In the <strong>Search</strong> section, in the <strong>File</strong> field, enter <code class="allow-copy"><span><em
                                 data-bind="text: user_number()? user_number() :'your_user_number'"></em>_WorkerOutput.zip</span></code>.</p>
-                            <p class="comment">The PDF says to enter XX_Worker.dat but the screenshot shows
-                                XX_WorkerOuput.zip. I tried the two and the latter is the one that works.
-                                Please confirm that this is what you will be using during the training.</p>
+<!--                            <p class="comment">The PDF says to enter XX_Worker.dat but the screenshot shows-->
+<!--                                XX_WorkerOuput.zip. I tried the two and the latter is the one that works.-->
+<!--                                Please confirm that this is what you will be using during the training.</p>-->
                         </li>
                         <li><p>Click <strong>Search</strong>.</p>
                             <p>The <strong>Search Results</strong> section shows the file you uploaded to UCM.</p>
@@ -887,12 +887,12 @@
                         <li><p>Click <strong>Search</strong>.</p>
                             <p>The <strong>Search Results</strong> section shows the data for John Brown. This confirms
                             that the data was imported to your HCM instance.</p>
-                            <p class="comment">I wasn't able to test this because the upload is failing.</p>
+<!--                            <p class="comment">I wasn't able to test this because the upload is failing.</p>-->
                         </li>
                     </ol>
                 </section>
                 <p><strong>Congratulations!</strong> You've configured and run an integration to retrieve a file, transform
-                    it, and import peding workers to HCM Data Loader. You've also used the Oracle Integration REST API to
+                    it, and import pending workers to HCM Data Loader. You've also used the Oracle Integration REST API to
                     clone an existing integration and activate it.
                 </p>
                 <!-- ========================================================================================================================= -->
