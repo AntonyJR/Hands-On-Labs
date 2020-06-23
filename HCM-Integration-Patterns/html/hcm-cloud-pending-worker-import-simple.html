@@ -67,11 +67,11 @@
                         output files in any desired format.
                     </p>
                     <p>This lab uses Oracle Integration to automate the following tasks:</p>
-                    <ol>
+                    <ul>
                         <li>Read a file that contains new hired employees from an external FTP server.</li>
                         <li>Transform and format the data to generate an DAT file that can be used in HCM.</li>
                         <li>Import the DAT file to HCM Cloud using the HCM Data Loader, to create pending workers.</li>
-                    </ol>
+                    </ul>
                     <p> The following diagram shows the interaction between the systems involved in this use case:</p>
                     <p><img src="img/pending-worker-import.png" width="700px"/></p>
                 </section>
@@ -551,6 +551,7 @@
                             <td>Map to ReadFileFromFTP</td>
                             <td>Map</td>
                             <td>
+                                <p>Mapts the data to read the file from the FTP server.</p>
 <!--                                <p class="comment">This data mapping is empty. Can we remove it from the integration? If we can't, please provide a description.</p>-->
                             </td>
                         </tr>
