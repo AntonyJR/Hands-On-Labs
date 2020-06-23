@@ -50,10 +50,27 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       /* You should have one self.<binding> for each input field in your OBE. 
          username and password used here are just samples. */
       self.user_number = ko.observable("");
-      self.user_name_prefix = ko.observable("OICTraining1ic");
-
-      self.userName = ko.observable("");
+      self.oic_environment_name = ko.observable("");
       
+      class OICEnvironmentRegion {
+        constructor(name, code) {
+          this.name = name;
+          this.code = code;
+        }
+
+        oicEnvironmentURL(name) {
+          return 'https://' + name + '-oicpm-' + this.code + '.integration.ocp.oraclecloud.com/ic/home/'
+        }
+        oicEnvironmentBaseURL(name) {
+          return 'https://' + name + '-oicpm-' + this.code + '.integration.ocp.oraclecloud.com'
+        }
+      }
+      self.availableOICEnvironmentRegions = ko.observableArray([
+        new OICEnvironmentRegion("Phoenix", "px"),
+        new OICEnvironmentRegion("London", "ld"),
+      ]),
+      self.selectedOICEnvironmentRegion = ko.observable()
+/**
       class OICEnvironment {
         constructor(name, baseURL, url, usernamePrefix) {
           this.name = name;
@@ -70,7 +87,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         new OICEnvironment("SC Training 2", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscB")
       ]),
       self.selectedOICEnvironment = ko.observable()
-
+**/
       class AppEnvironment {
         constructor(name, url, usernamePrefix) {
           this.name = name;

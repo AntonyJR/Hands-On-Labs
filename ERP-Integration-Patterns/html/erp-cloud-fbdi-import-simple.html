@@ -86,73 +86,144 @@
                         <li>An FTP server</li>
                         <li>The file <code>apinvoiceimport.zip</code></li>
                     </ul>
-<!--                    <p>For your convenience we created and configured the following connections:</p>-->
-<!--                    <ul>-->
-<!--                        <li><strong>ERP adapter</strong>: <code>ERP Conn_&lt;&lt;zjie&gt;&gt;</code></li>-->
-<!--                        <li><strong>FTP adapter</strong>: <code>FTP Conn</code></li>-->
-<!--                    </ul>-->
+
                     <hr>
-                    <h3>Get Your OIC Environment</h3>
-                    <p>Select your OIC environment and enter your user number to get the information to access Oracle
-                        Integration.</p>
-                    <p><strong>OIC Environment</strong>:&nbsp;
-                        <select data-bind="options: availableOICEnvironments,
-									optionsText: 'name',
-									value: selectedOICEnvironment,
-									optionsCaption: 'Select...'">
-                        </select>
-                    </p>
-                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input
-                            data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>
-                        OK
-                    </button>
-                    </p>
+
+                    <h3>Get Your Oracle Integration (OIC) Environment</h3>
+                    <p>Select your environment and enter your user number to get the information to access Oracle Integration.</p>
+                        <p><strong>OIC Environment Region</strong>:&nbsp;
+                            <a name=oicEnvironmentRegion>
+                                <select data-bind="options: availableOICEnvironmentRegions,
+                                            optionsText: 'name',
+                                            value: selectedOICEnvironmentRegion,
+                                            optionsCaption: 'Select...'">
+                                </select>
+                            </a>
+                        </p>
+
+                        <p>
+                            <label><a name=oicEnvironmentName><strong>OIC Environment Name</strong></a>:&nbsp;<input
+                            data-bind="value: oic_environment_name" type="text" placeholder="OIC Environment Name"/></label>&nbsp;<button>OK</button>
+                        </p>
+                    
+                        <p>
+                            <label><a name=userNumber><strong>User Number</strong></a>:&nbsp;<input
+                            data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button>
+                        </p>
+                
                     <ul>
-                        <li><strong>OIC URL</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the OIC Environment above'"></em></span></code>
+                        <li> 
+                            <strong>OIC URL</strong>:
+                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() && oic_environment_name() ? 'display:initial' : 'display:none'}">  
+                                <p>                                    
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : '' }">
+                                        <span>
+                                            <p><em data-bind="text: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : 'Enter an OIC Environment Region and Name above.'"></em></p>                                       
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentRegion">
+                                        Select your OIC Environment Region to get your OIC URL.
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentName">
+                                        Enter your OIC Environment Name to get your OIC URL.
+                                    </a>
+                                </p>
+                            </div>
                         </li>
-                        <li><strong>OIC User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select the OIC Environment above'"></em><em
-                                data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></li>
+
+                        <li><strong>OIC User Name</strong>:
+                            <div data-bind="attr: {style: oic_environment_name() && user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>    
+                                    <code class="allow-copy">                           
+                                        <span>
+                                            <p><em data-bind="text: user_number() && oic_environment_name() ? oic_environment_name() + '_' + user_number() : 'Enter an OIC Environment Name and User Number above.'"></em></p>                                       
+                                        </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentName">
+                                        Enter your OIC Environment Name to get your OIC Username.
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#userNumber">
+                                        Enter your User Number to get your OIC Username.
+                                    </a>
+                                </p>
+                            </div>
+                        </li>
+
                         <li><strong>OIC Password</strong>: will be provided during the training session.</li>
                     </ul>
+
                     <hr>
-                    <h3>Get Your ERP Cloud Environment</h3>
-                    <p>Select your ERP environment to get the information to access Oracle ERP Cloud.</p>
-                    <p><strong>ERP Cloud Purchasing Environment</strong>:&nbsp;
-                        <select data-bind="options: availableAppEnvironments,
-									optionsText: 'name',
-									value: selectedAppEnvironment,
-									optionsCaption: 'Select...'">
-                        </select>
-                    </p>
-                    <ul>
-                        <li><strong>ERP Cloud URL</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select the App Environment above'"></em></span></code>
-                        </li>
-                        <li><strong>ERP Cloud User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></em></span></code>
-                        </li>
-                        <li><strong>ERP Password</strong>: will be provided during the training session.</li>
-                    </ul>
-                    <hr>
-                    <h3>FTP Environment</h3>
+
+                    <h3>Get Your FTP Environment</h3>
                     <p>Select your <strong>FTP Environment</strong> to get the information to access the FTP server:</p>
-                    <p><strong>FTP Environment</strong>:
-                        <select data-bind="options: availableFTPEnvironments,
-                           optionsText: 'name',
-                           value: selectedFTPEnvironment,
-                           optionsCaption: 'Select...'">
-                        </select>
+                    <p><strong>FTP Environment</strong>:&nbsp;
+                        <a name=ftpEnvironment>
+                            <select data-bind="options: availableFTPEnvironments,
+                                        optionsText: 'name',
+                                        value: selectedFTPEnvironment,
+                                        optionsCaption: 'Select...'">
+                            </select>
+                        </a>
                     </p>
+
                     <ul>
-                        <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                        <li>
+                            <strong>FTP URL</strong>:
+                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                <p>    
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                        <span>
+                                            <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : 'Select an FTP Environment above.'"></em></p>
+                                        </span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                        Select your FTP environment to get your FTP URL.
+                                    </a>
+                                </p>
+                            </div>
                         </li>
-                        <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                        <li>
+                            <strong>FTP User Name</strong>:
+                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                <p>   
+                                    <code class="allow-copy">
+                                        <span>
+                                            <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an FTP environment above.'"></em></p>                                       
+                                        </span>
+                                    </code>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                        Select your FTP environment to get your FTP Username.
+                                    </a>
+                                </p>
+                            </div>
                         </li>
-                        <li><strong>Password:</strong> will be provided during the training session.</li>
+                        <li><strong>FTP Password</strong>: will be provided during the training session.</li>
                     </ul>
                 </section>
                 <hr>
@@ -232,86 +303,107 @@
 <!-- ########## Sign In ########## -->
                 <section>
                     <h2>Sign In</h2>
-                    <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
-                    <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
-                    <!--                        restricted to specific environments. They may be assigned different roles in each-->
-                    <!--                        environment.</p>-->
                     <ol>
-                        <li><p>Open a browser to the <strong>OIC URL</strong>.</p>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p><strong>OIC URL</strong>: <code class="allow-copy"><span><span
-                                        data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>
+                        <li>
+                            <p>Open your Oracle Integration instance.</p>
+                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() && oic_environment_name() ? 'display:initial' : 'display:none'}">  
+                                <p>                                    
+                                    <a class="allow-copy" target="_blank"
+                                       data-bind="attr: { href: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : '' }">
+                                        <span>
+                                            <p><em data-bind="text: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : 'Enter an OIC Environment Region and Name above.'"></em></p>                                       
+                                        </span>
+                                    </a>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
-                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
+                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentRegion">
+                                        Select your OIC Environment Region to get your OIC URL.
+                                    </a>
+                                </p>
+                            </div>
+                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentName">
+                                        Enter your OIC Environment Name to get your OIC URL.
+                                    </a>
+                                </p>
                             </div>
                         </li>
-                        <li><p>Enter your <strong>OIC User Name</strong>.</p>
-                            <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p><strong>OIC User Name</strong>:
-                                    <code class="allow-copy">
+                        <li><p>Enter your user name and password.</p>
+                            <div data-bind="attr: {style: oic_environment_name() && user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>    
+                                    <code class="allow-copy">                           
                                         <span>
-                                            <span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></span><span
-                                                data-bind="text: user_number()? user_number() :'your_user_number'"></span>
+                                            <p><em data-bind="text: user_number() && oic_environment_name() ? oic_environment_name() + '_' + user_number() : 'Enter OIC Environment Name and User Number above.'"></em></p>                                       
                                         </span>
                                     </code>
                                 </p>
                             </div>
+                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#oicEnvironmentName">
+                                        Enter your OIC Environment Name to get your OIC Username.
+                                    </a>
+                                </p>
+                            </div>
                             <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
-                                    user name in the Before You Begin section to get a customized URL.</a></p>
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#userNumber">
+                                        Enter your User Number to get your OIC Username.
+                                    </a>
+                                </p>
                             </div>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
-                                    OIC environment in the Before You Begin section to get a customized URL.</a></p>
-                            </div>
+
+                            Your password will be provided by the instructor during the training session.
                         </li>
-                        <li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click
+                        <li><p>Click
                             <strong>Sign In</strong>.</p>
-                            <p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn
-                                more. Keep scrolling to find more useful links.</p>
-                        </li>
-                        <li><p>Click <strong>Home</strong>.</p>
-                            <p>The <strong>Home</strong> page displays an overview with the current state of your
-                                instance. You can drill down to get information about available Processes, Integrations,
-                                and Visual Applications.</p><br>
+                            <p>The <strong>Home</strong> page appears.</p>
+                            <p>You are now logged in and ready to use Oracle Integration.</p>
                             <img src="img/screenshots/integration/home-page.png" width="600px"/>
                         </li>
                     </ol>
-                    <p>You are now logged in and ready to use Oracle Integration.</p>
                 </section>
                 <hr>
 <!-- ########## CREATE THE INTEGRATION ########## -->
                 <section>
-                    <h2>Create the integration</h2>
-                    <p></p>
-
+                    <h2>Create the Integration</h2>
                     <ol>
-                        <li>On the Oracle Integration <strong>Home</strong> page, click <strong>Integrations</strong>.
-                        </li>
+                        <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                         <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
-                        <li>Select <strong>Scheduled Orchestration</strong>.</li>
-                        <li><p>Enter the following values:</p>
-                            <ul>
-                                <li><strong>Name</strong>: <code class="allow-copy"><span>Invoice Bulk Import to ERP <em
-                                        data-bind="text:user_number() || 'your_user_number'"></em></span></code></li>
-<!--                                <li><strong>Identifier</strong>: leave the default value.-->
-<!--                                    <p>The default value is the name of the integration in upper case.</p>-->
-<!--                                </li>-->
-<!--                                <li><strong>Version</strong>: leave the default value (01.00.0000).-->
-<!--                                    <p>To change this value enter a version number in the format ##.##.####</p>-->
-<!--                                </li>-->
-                                <li><strong>Description:</strong>
-                                    <code class="allow-copy"><span>This integration demonstrates the use of OIC’s ERP Cloud Adapter with the FTP adapter to retrieve an AP Invoices file, import it to the ERP Cloud, and receive a call back from the ERP Cloud.</span></code>
+                        <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>Scheduled Orchestration</strong>.</li>
+                        <li>Click <strong>Select</strong>.</li>
+                        <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
+                            <ol type="a">
+                                <li><p><strong>What do you want to call your integration?</strong></p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>  
+                                            Enter <code class="allow-copy">
+                                                <span>Invoice Bulk Import to ERP 
+                                                    <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>                                      
+                                                </span>
+                                            </code>
+                                        </p>
+                                    </div>
+        
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to specify your unique integration name.
+                                            </a>
+                                        </p>
+                                    </div>        
                                 </li>
-<!--                                <li><strong>Package</strong>: leave blank.</li>-->
-                            </ul>
+                                <li>
+                                    <p>In the <strong>What does this integration do?</strong> field, enter:</p>
+                                    <p><code class="allow-copy"><span>This integration demonstrates the use of OIC’s ERP Cloud Adapter with the FTP adapter to retrieve an AP Invoices file, import it to the ERP Cloud, and receive a call back from the ERP Cloud.</span></code></p>
+                                </li>
+                            </ol>
                         </li>
-                        <li><p>Click <strong>Create</strong>.</p>
-                            <p>The <strong>Integration</strong> canvass appears.</p>
-                        </li>
+                        <li>Click <strong>Create</strong>.</li>
+                        <li>Click <strong>Save</strong>.</li>
                     </ol>
                 </section>
                 <hr>
@@ -483,25 +575,31 @@
 <!-- ########## ACTIVATE THE INTEGRATION ########## -->
                 <section>
                     <h2>Activate the Integration</h2>
-                    <p></p>
                     <ol>
-                        <li><p>On the <strong>Integrations</strong> page, locate your integration</p>
-                            <p>The name of your integration is <code><span>Invoice Bulk Import to ERP <em
-                                    data-bind="text:user_number() || 'your_user_number'"></em></span></code>.</p>
+                        <li><p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>The name of your integration is <code>Invoice Bulk Import to ERP <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text"><a style="color: #e3503c" href="#userNumber">Enter
+                                    your User Number to get your unique integration name.</a></p>
+                            </div>
+
+                            <p>When you hover over the integration, a set of actions appear in the
+                                <strong>Status</strong> column. </p>
                         </li>
                         <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>
-                            <p>This option sends your mappings to the recommendations engine which uses this information
-                                to suggest you mappings for similar integrations.</p>
-                        </li>
-                        <li><p>Select <strong>Enable Tracing</strong> and <strong>Include Payload</strong>.</p>
+                        <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
+                        <li><p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.
+                        </p>
                             <p>Typically these options are disabled in production environments, but we'll enable them
                                 for the purpose of this lab.</p>
                         </li>
                         <li><p>Click <strong>Activate</strong>.</p>
-                            <p>The activation will complete in a few seconds. If the activation succeeds a confirmation
-                                message appears at the top of the page.</p>
+                            <p>The activation will complete in a few seconds. If the activation succeeds, a confirmation
+                                message appears at the top of the page, and the status will change to <span
+                                        style="color:#86BD66;">&#x25CF;</span> Active.</p>
                         </li>
                     </ol>
                 </section>
