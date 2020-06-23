@@ -365,7 +365,7 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
+                            and from the <strong>Data</strong> section, drag  <strong>Assign</strong> to
                             the <strong>Integration</strong> canvas, and place it after the <strong>Schedule</strong> activity.</p>
                             <img src="img/screenshots/HCM/actions-assign.png" width="450px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
@@ -446,7 +446,7 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
+                            and from the <strong>Data</strong> section, drag <strong>Assign</strong> to
                             the <strong>Integration</strong> canvas and place it after the <strong>getNewHireATOMFeed</strong> activity.</p>
                             <img src="img/screenshots/HCM/actions-assign.png" width="450px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
@@ -461,13 +461,13 @@
                             <p>The <strong>Expression Builder</strong> appears.</p>
                         </li>
                         <li>In the <strong>Component</strong> section, expand <strong>Functions</strong>, and then expand <strong>Node-set</strong>.</li>
-                        <li>Drag and drop the <strong>Count</strong> function to the <strong>Expression</strong> field.</li>
+                        <li>Drag the <strong>Count</strong> to the <strong>Expression</strong> field.</li>
                         <li>In the <strong>Source</strong> section, locate the element <strong>EmployeeNewHireFeed_Update</strong> located under <strong>employeeNewHireFeedResponse</strong>, that is in turn located under <strong>$getNewHireATOMFeed</strong>.
                             </li>
                         <li><p>Select the <strong>nodeSet</strong> parameter in the expression.</p>
 <!--                            <p class="comment">Added this step because just dropping the field over the Count function expression didn't work for me. Please confirm this is OK.</p>-->
                         </li>
-                        <li><p>Drag and drop the <strong>EmployeeNewHireFeed_Update</strong> function to the <strong>Count</strong> function in the <strong>Expression</strong> field.</p>
+                        <li><p>Drag the <strong>EmployeeNewHireFeed_Update</strong> function to the <strong>Count</strong> function in the <strong>Expression</strong> field.</p>
                         </li>
                         <li><p>Click <strong>Validate</strong>.</p>
                             <p>A message confirming the expression is valid appears.</p>
@@ -488,7 +488,7 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Collection</strong> section, drag and drop <strong>Switch</strong> to
+                            and from the <strong>Collection</strong> section, drag <strong>Switch</strong> to
                             the <strong>Integration</strong> canvas and place it after the <strong>countOfNewHires</strong> activity.</p>
                             <img src="img/screenshots/HCM/actions-switch.png" width="450px"/>
                             <p>Two flow branches appear in the flow:</p>
@@ -522,7 +522,7 @@
                             <li>Click <strong>Save</strong>.</li>
                             <li>
                                 <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                                    and from the <strong>End</strong> section, drag and drop <strong>Stop</strong> to
+                                    and from the <strong>End</strong> section, drag <strong>Stop</strong> to
                                     the <strong>Integration</strong> canvas and place it after the <strong>IF no new hires</strong> condition.</p>
                                 <p>This lets the integration complete if there aren't any new hires.</p>
                                 <img src="img/screenshots/HCM/actions-stop.png" width="450px"/>
@@ -532,7 +532,7 @@
                         <ol>
                             <li>
                                 <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                                and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
+                                and from the <strong>Data</strong> section, drag <strong>Assign</strong> to
                                 the <strong>Integration</strong> canvas and place it after the <strong>Otherwise</strong> activity.</p>
                                 <p>The <strong>Create Action</strong> dialog appears.</p>
                                 <p>This assign activity creates a temporary variable to store the file reference of a stage file activity.</p>
@@ -563,7 +563,7 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Collection</strong> section, drag and drop <strong>For Each</strong> to
+                            and from the <strong>Collection</strong> section, drag <strong>For Each</strong> to
                             the <strong>Integration</strong> canvas and place it after the <strong>StageFileRef</strong> activity.</p>
                             <img src="img/screenshots/HCM/actions-for-each.png" width="450px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
@@ -592,8 +592,8 @@
                         </li>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Data</strong> section, drag and drop <strong>Stage File</strong> to
-                            the <strong>Integration</strong> canvas and place it after the <strong>For Each</strong> activity.</p>
+                            and from the <strong>Data</strong> section, drag <strong>Stage File</strong> to
+                                the <strong>Integration</strong> canvas and place it after the <strong>For Each</strong> activity.</p>
                             <img src="img/screenshots/HCM/add-writerecordstostage.png" width="450px"/>
                             <p>The <strong>Configure Stage File Action</strong> dialog appears.</p>
                         </li>
@@ -678,8 +678,8 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
-                            the <strong>Integration</strong> canvas and place it after the <strong>writeRecordToStage</strong> activity.</p>
+                            and from the <strong>Data</strong> section, drag <strong>Assign</strong> to
+                                the <strong>Integration</strong> canvas and place it after the <strong>writeRecordToStage</strong> activity.</p>
                             <img src="img/screenshots/HCM/add-assign.png" width="550px"/>
                             <p>The <strong>Create Action</strong> dialog appears.</p>
                         </li>
@@ -797,8 +797,8 @@
                     <ol>
                         <li>
                             <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
-                            and from the <strong>Data</strong> section, drag and drop <strong>Assign</strong> to
-                            the <strong>Integration</strong> canvas and place it after the end of the
+                            and from the <strong>Data</strong> section, drag <strong>Assign</strong> to
+                                the <strong>Integration</strong> canvas and place it after the end of the
                                 <strong>Switch</strong> activity, before the <strong>Stop</strong> activity.</p>
 <!--                            <p class="comment">I would like to add a screenshot here, but right now I'm not able to run-->
 <!--                                this lab because the credentials are outdated. Will add it after Monday.</p>-->
