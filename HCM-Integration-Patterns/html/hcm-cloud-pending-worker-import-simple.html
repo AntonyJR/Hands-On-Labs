@@ -47,21 +47,33 @@
         </div>
         <div id="bookContainer">
             <article>
-                <!-- ########## Background ########## -->
+                <!-- ########## Use Case ########## -->
                 <section>
                     <h2>Background</h2>
+                    <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
+                        (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, HCM Cloud,
+                        Salesforce, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify
+                        connectivity by handling the underlying complexities of connecting to applications using
+                        industry-wide best practices. To connect to a system, you just need to create a connection that
+                        requires minimal
+                        connectivity information.</p>
+                </section>
+                <hr>
+                <!-- ########## Use Case ########## -->
+                <section>
+                    <h2>Use Case</h2>
                     <p> You can use Oracle Integration (OIC) mapping to transform source data at runtime. If you
                         combine this with native schema formatting for output file definition, you can produce
                         output files in any desired format.
                     </p>
                     <p>This lab uses Oracle Integration to automate the following tasks:</p>
-                    <ol>
+                    <ul>
                         <li>Read a file that contains new hired employees from an external FTP server.</li>
                         <li>Transform and format the data to generate an DAT file that can be used in HCM.</li>
                         <li>Import the DAT file to HCM Cloud using the HCM Data Loader, to create pending workers.</li>
-                    </ol>
+                    </ul>
                     <p> The following diagram shows the interaction between the systems involved in this use case:</p>
-                    <p><img src="img/screenshots/HCM/pending-worker-import.png" width="700px"/></p>
+                    <p><img src="img/pending-worker-import.png" width="700px"/></p>
                 </section>
                 <hr>
                 <!-- ########## Before You Begin ########## -->
@@ -81,11 +93,11 @@
                         <li>An FTP server</li>
                     </ul>
 <!--                    <p class="comment">The PDF mentions the file personsSchema.xsd here. I did a search and couldn't find where it was used. Can you please clarify and let me know if this is still needed?</p>-->
-<!--                    <p>For your convenience we created and configured the following connections:</p>-->
-<!--                    <ul>-->
-<!--                        <li><strong>ERP adapter</strong>: <code>ERP Cloud</code></li>-->
-<!--                        <li><strong>REST adapter</strong>: <code>Visual Builder PO Event</code></li>-->
-<!--                    </ul>-->
+                    <p>For your convenience, we created and configured the following connections:</p>
+                    <ul>
+                        <li><strong>HCM adapter</strong>: <code>HCM Cloud</code></li>
+                        <li><strong>FTP adapter</strong>: <code>FTP File Server</code></li>
+                    </ul>
                     <hr>
                     <h3>Get Your Oracle Integration (OIC) Environment</h3>
                     <p>Select your environment and enter your user number to get the information to access Oracle
@@ -117,7 +129,7 @@
                                 </p>
                             </div>
                             <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <code>Select an environment from the Oracle Integration Environment list.</code>
+                                <code><em>Select an environment from the Oracle Integration Environment list.</em></code>
                             </div>
                         </li>
 
@@ -154,7 +166,7 @@
                                 </p>
                             </div>
                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                <code>Select an environment from the ERP Cloud Environment list.</code>
+                                <code><em>Select an environment from the ERP Cloud Environment list.</em></code>
                             </div>
                         </li>
                         <li><strong>User Name</strong>: <code class="allow-copy"><span><em
@@ -319,7 +331,7 @@
                             <p>The response status should be <code>204</code>.</p>
                         </li>
                         <li>Open Oracle Integration.</li>
-                        <li><p>In the <strong>Navigator Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
+                        <li><p>In the <strong>Navigation Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
                             <p>Notice that the cloned integration appears in the <strong>Integrations</strong> list.</p>
                             <img src="img/screenshots/HCM/cloned-integration.png" width="700px"/>
                         </li>
@@ -365,7 +377,7 @@
 <!--                            <p>The response status should be <code>200 OK</code>.</p>-->
 <!--                        </li>-->
 <!--                        <li>Open Oracle Integration.</li>-->
-<!--                        <li><p>In the <strong>Navigator Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>-->
+<!--                        <li><p>In the <strong>Navigation Menu</strong>, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>-->
 <!--                            <p>Notice that the cloned integration status is <strong>Activated</strong>.</p>-->
 <!--                            <img src="img/screenshots/HCM/activated-integration.png" width="700px"/>-->
 <!--                        </li>-->
@@ -539,6 +551,7 @@
                             <td>Map to ReadFileFromFTP</td>
                             <td>Map</td>
                             <td>
+                                <p>Mapts the data to read the file from the FTP server.</p>
 <!--                                <p class="comment">This data mapping is empty. Can we remove it from the integration? If we can't, please provide a description.</p>-->
                             </td>
                         </tr>
@@ -848,7 +861,7 @@
                                 <li><strong>Password:</strong> the password will be provided during the training.</li>
                             </ul>
                         </li>
-                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigation Menu</strong> icon.</p>
                             <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
 <!--                            <p class="comment">This is the UI I've been seeing for a week. Is this what you are going-->
 <!--                                to use for the trainings? Please let me know so that I can update the other labs images and instructions.</p>-->
@@ -872,7 +885,7 @@
                     <h2>Verify the Data in HCM</h2>
 
                     <ol>
-                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigation Menu</strong> icon.</p>
                             <img src="img/screenshots/HCM/HCM-main-menu.png" width="650px"/>
                         </li>
                         <li>Expand <strong>My Client Groups</strong> and then click <strong>Data Exchange</strong>.</li>
@@ -880,7 +893,7 @@
                             <p >The Data Sets section shows the file you uploaded.</p>
 <!--                            <p class="comment">I wasn't able to test this because the upload is failing.</p>-->
                         </li>
-                        <li><p>Click the <strong>&#9776; Navigator Menu</strong> icon.</p>
+                        <li><p>Click the <strong>&#9776; Navigation Menu</strong> icon.</p>
                         </li>
                         <li>Expand <strong>My Client Groups</strong> and then click <strong>Person Management</strong>.</li>
                         <li>In the <strong>Name</strong> field enter <code class="allow-copy"><span>John Brown</span></code>.</li>
@@ -891,6 +904,7 @@
                         </li>
                     </ol>
                 </section>
+                <hr>
                 <p><strong>Congratulations!</strong> You've configured and run an integration to retrieve a file, transform
                     it, and import pending workers to HCM Data Loader. You've also used the Oracle Integration REST API to
                     clone an existing integration and activate it.
@@ -922,7 +936,7 @@
                 <li><a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash"
                        target="_blank">#OOW19</a></li>
                 <li><a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright ©
-                    2019, Oracle and/or its affiliates. All rights reserved.</a></li>
+                    2019-2020, Oracle and/or its affiliates. All rights reserved.</a></li>
             </ul>
         </footer>
     </div>
