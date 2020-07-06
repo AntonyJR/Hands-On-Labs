@@ -52,12 +52,10 @@
                 <section>
                     <h2>Background</h2>
                     <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
-                        (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, HCM Cloud,
-                        Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify
-                        connectivity by handling the underlying complexities of connecting to applications using
-                        industry-wide best practices. To connect to a system, you just need to create a connection that
-                        requires minimal
-                        connectivity information.</p>
+                        (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, Oracle HCM Cloud,
+                        Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify best practice 
+                        connectivity to these applications by handling the many of the underlying technical complexities often 
+                        encountererd when integrating applications.</p>
                 </section>
                 <hr>
                 <!-- ########## Use Case ########## -->
@@ -67,10 +65,10 @@
                         push the relevant event information to downstream systems. As part of the lab you will build
                         the following use case scenario:</p>
                     <ul>
-                        <li>You create and activate an integration that subscribes to an ERP event.</li>
-                        <li>A user creates a Purchase Order (PO) in ERP Cloud and a PO event is triggered.</li>
-                        <li>Oracle Integration receives to the PO event, and transforms and pushes the relevant
-                            information to a Visual Builder application business object.
+                        <li>You create and activate an integration that subscribes to an ERP Cloud Purchase Order (PO) event.</li>
+                        <li>You then create a PO in ERP Cloud and a PO event is triggered.</li>
+                        <li>Your integration receives the PO event and pushes the data 
+                            into a Visual Builder Web App.
                         </li>
                     </ul>
                     <p> The following diagram shows the runtime interaction between the systems involved in this use case:</p>
@@ -98,20 +96,17 @@
                     <hr>
 
                     <h3>Get Your Oracle Integration (OIC) Environment</h3>
-                    <p>Select your environment and enter your user number to get the information to access Oracle Integration.</p>
-                        <p><strong>OIC Environment Region</strong>:&nbsp;
-                            <a name=oicEnvironmentRegion>
-                                <select data-bind="options: availableOICEnvironmentRegions,
-                                            optionsText: 'name',
-                                            value: selectedOICEnvironmentRegion,
-                                            optionsCaption: 'Select...'">
+                    <p>Select your OIC Environment and enter your User Number to get the information needed to access Oracle Integration.</p>
+                    
+                        <h3>OIC Environment</h3>
+                        <p>Select your <strong>OIC environment</strong>:&nbsp;
+                            <a name=oicEnvironment>
+                                <select data-bind="options: availableOICEnvironments,
+                                    optionsText: 'name',
+                                    value: selectedOICEnvironment,
+                                    optionsCaption: 'Select...'">
                                 </select>
                             </a>
-                        </p>
-
-                        <p>
-                            <label><a name=oicEnvironmentName><strong>OIC Environment Name</strong></a>:&nbsp;<input
-                            data-bind="value: oic_environment_name" type="text" placeholder="OIC Environment Name"/></label>&nbsp;<button>OK</button>
                         </p>
                     
                         <p>
@@ -121,47 +116,41 @@
                 
                     <ul>
                         <li> 
+
                             <strong>OIC URL</strong>:
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() && oic_environment_name() ? 'display:initial' : 'display:none'}">  
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
                                 <p>                                    
                                     <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : '' }">
+                                        data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
                                         <span>
-                                            <p><em data-bind="text: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : 'Enter an OIC Environment Region and Name above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'Select an OIC Environment above.'"></em></p>
                                         </span>
                                     </a>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">  
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentRegion">
-                                        Select your OIC Environment Region to get your OIC URL.
-                                    </a>
-                                </p>
-                            </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC URL.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your OIC URL.
                                     </a>
                                 </p>
                             </div>
                         </li>
 
                         <li><strong>OIC User Name</strong>:
-                            <div data-bind="attr: {style: oic_environment_name() && user_number() ? 'display:initial' : 'display:none'}">  
+                            <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                 <p>    
                                     <code class="allow-copy">                           
                                         <span>
-                                            <p><em data-bind="text: user_number() && oic_environment_name() ? oic_environment_name() + '_' + user_number() : 'Enter an OIC Environment Name and User Number above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></p>                                       
                                         </span>
                                     </code>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC Username.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your OIC Username.
                                     </a>
                                 </p>
                             </div>
@@ -174,13 +163,13 @@
                             </div>
                         </li>
 
-                        <li><strong>OIC Password</strong>: will be provided during the training session.</li>
+                        <li><strong>OIC Password</strong>: Your password will be provided by the instructor.</li>
                     </ul>
 
                     <hr>
 
                     <h3>Get Your ERP Cloud Environment</h3>
-                    <p>Select your ERP environment to get the information to access Oracle ERP Cloud.</p>
+                    <p>Select your ERP environment to get the information needed to access Oracle ERP Cloud.</p>
                         <p><strong>ERP Cloud Environment</strong>:&nbsp;
                             <a name=erpEnvironment>
                                 <select data-bind="options: availableAppEnvironments,
@@ -197,9 +186,9 @@
                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
                                 <p>    
                                     <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: selectedAppEnvironment()? selectedAppEnvironment().url : '' }">
+                                       data-bind="attr: { href: selectedAppEnvironment() ? selectedAppEnvironment().url : '' }">
                                         <span>
-                                            <p><em data-bind="text: selectedAppEnvironment()? selectedAppEnvironment().url : 'Select an ERP Cloud environment above.'"></em></p>
+                                            <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : ''"></em></p>
                                         </span>
                                     </a>
                                 </p>
@@ -218,7 +207,7 @@
                                 <p>   
                                     <code class="allow-copy">
                                         <span>
-                                            <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an ERP Cloud environment above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : ''"></em></p>                                       
                                         </span>
                                     </code>
                                 </p>
@@ -231,7 +220,7 @@
                                 </p>
                             </div>
                         </li>
-                        <li><strong>ERP Cloud Password</strong>: will be provided during the training session.</li>
+                        <li><strong>ERP Cloud Password</strong>: Your password will be provided by the instructor.</li>
                     </ul>
 
                 </section>
@@ -242,45 +231,38 @@
                     <ol>
                         <li>
                             <p>Open your Oracle Integration instance.</p>
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() && oic_environment_name() ? 'display:initial' : 'display:none'}">  
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
                                 <p>                                    
                                     <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : '' }">
+                                       data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().url : '' }">
                                         <span>
-                                            <p><em data-bind="text: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentURL(oic_environment_name()) : 'Enter an OIC Environment Region and Name above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : ''"></em></p>                                       
                                         </span>
                                     </a>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentRegion">
-                                        Select your OIC Environment Region to get your OIC URL.
-                                    </a>
-                                </p>
-                            </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC URL.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your OIC URL.
                                     </a>
                                 </p>
                             </div>
                         </li>
                         <li><p>Enter your user name and password.</p>
-                            <div data-bind="attr: {style: oic_environment_name() && user_number() ? 'display:initial' : 'display:none'}">  
+                            <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                 <p>    
                                     <code class="allow-copy">                           
                                         <span>
-                                            <p><em data-bind="text: user_number() && oic_environment_name() ? oic_environment_name() + '_' + user_number() : 'Enter OIC Environment Name and User Number above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></p>                                       
                                         </span>
                                     </code>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC Username.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your OIC Username.
                                     </a>
                                 </p>
                             </div>
@@ -292,7 +274,7 @@
                                 </p>
                             </div>
 
-                            Your password will be provided by the instructor during the training session.
+                            Your password will be provided by the instructor.
                         </li>
                         <li><p>Click
                             <strong>Sign In</strong>.</p>
@@ -340,7 +322,6 @@
                             </ol>
                         </li>
                         <li>Click <strong>Create</strong>.</li>
-                        <li>Click <strong>Save</strong>.</li>
                     </ol>
                 </section>
                 <hr>
@@ -351,8 +332,8 @@
                         <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon"
                                                                              style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li>Type <code class="allow-copy"><span>ERP</span></code> in the <strong>Search</strong> field
-                            to find your rest connection.
+                        <li>Begin Typing <code class="allow-copy"><span>ERP Cloud</span></code> in the <strong>Search</strong> field
+                            to find the connection to your ERP Cloud.
                         </li>
                         <li><p>Select the connection named <code class="allow-copy"><span>ERP Cloud</span></code>.
                         </p>
@@ -369,8 +350,8 @@
                                 <li>From the <strong>Define the purpose of this trigger</strong> options, select
                                     <strong>Receive Business Events raised within ERP Cloud</strong>.
                                 </li>
-                                <li>In the <strong>Business Event For Subscription</strong> field, type <code
-                                        class="allow-copy"><span>Purchase Order</span></code>.
+                                <li>In the <strong>Business Event For Subscription</strong> field, begine typing <code
+                                        class="allow-copy"><span> Purchase Order Event</span></code>.
                                 </li>
                                 <li><p>Select <strong>Purchase Order Event</strong>.</p></li>
 
@@ -408,8 +389,8 @@
                         <li>Hover over the outgoing arrow for the <strong>POEVENT</strong> activity and click <img
                                 src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li>In the <strong>Search</strong> field, type <code
-                                class="allow-copy"><span>Visual</span></code>.
+                        <li>In the <strong>Search</strong> field, begin typing <code
+                                class="allow-copy"><span>Visual Builder</span></code>.
                         </li>
                         <li><p>Select the connection named <code class="allow-copy"><span>Visual Builder</span></code>.
                         <li><p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
@@ -423,8 +404,8 @@
                                     <p><code
                                             class="allow-copy"><span>/ic/builder/design/PurchaseOrders/1.0/resources/data/PO</span></code>
                                     </p>
-                                    <p>This is the specific app API resource. The Visual Builder PO Event connector
-                                        provides the base endpoint to the PO Event app.</p>
+                                    <p>This is the relative URI to a Visual Builder application API. The Visual Builder connection
+                                        specifies the base URL to your OIC environment which combined with relative URI defines the complete API endpoint.</p>
                                 </li>
                                 <li>In the <strong>action to perform on the endpoint</strong> field, select
                                     <strong>POST</strong>.
@@ -553,28 +534,16 @@
                                     style="width: 200px;"/></p>
                             <p>The <strong>Business Identifiers for Tracking</strong> dialog appears.</p>
                         </li>
-                        <li>In the <strong>Source</strong> section, expand <strong>result</strong> and click <strong>Load
-                            more</strong>.
+                        <li>In the <strong>Source search</strong> field, enter <code class="allow-copy"><span>ordernumber</span></code> and click 
+                            <img src="img/search.png"
+                            alt="Search icon"
+                            style="height: 15px; width: 15px;"/>.
                         </li>
-                        <li>Expand <strong>Value</strong> and then click <strong>Load more</strong>.</li>
-                        <li><p>Configure tracking
-                            fields to identify your instance when a purchase order is created in ERP Cloud:</p>
-                            <ol type="a">
-                                <li>From the <strong>Source</strong> section, select <strong>OrderNumber</strong>, and
-                                    then click <img src="img/right-arrow.png" alt="Edit icon"
-                                                    style="height: 15px; width: 15px;"/>.
-                                </li>
-                                <li>Select <strong>POHeaderId</strong>, and then click <img src="img/right-arrow.png"
-                                                                                            alt="Edit icon"
-                                                                                            style="height: 15px; width: 15px;"/>.
-                                </li>
-                                <li>Scroll down and expand <strong>PurchaseOrderLine</strong>, click <strong>Load
-                                    More</strong>, select <strong>ItemDescription</strong>, and then click <img
-                                        src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.
-                                </li>
-                            </ol>
-                            <p>The selected fields appear in the <strong>Tracking Fields</strong> table. The <strong>OrderNumber</strong>
-                                field is marked as <strong>Primary</strong>.</p>
+                        <li>From the <strong>Source</strong> section, select <strong>OrderNumber</strong>, and
+                            then click <img src="img/right-arrow.png" alt="Edit icon"
+                                            style="height: 15px; width: 15px;"/>.
+                            <p>The <strong>Order Number</strong> field appears in the <strong>Tracking Fields</strong> table.</p>
+                
                         </li>
                         <li>Click <strong>Save</strong>.</li>
                         <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
@@ -663,7 +632,7 @@
                                         </p>
                                     </div>
                                 </li>
-                                <li><strong>ERP Cloud Password</strong>: will be provided during the training session.</li>
+                                <li><strong>ERP Cloud Password</strong>: Your password will be provided by the instructor.</li>
                             </ol>
                         </li>
                         <li>Select the <strong>Procurement</strong> tab.</li>
@@ -742,65 +711,65 @@
                             <p>If the status isn't <strong>Open</strong>, wait a couple of minutes and run the search
                                 again until the status changes to change to <strong>Open</strong>.
                         </li>
+                    </ol>
+
+                    <h3>Review your integration</h3>
+                    <ol>
                         <li>Open <strong>Oracle Integration</strong>.</li>
                         <li>In the <strong>Navigation</strong> menu, select
                             <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select
                             <strong>Tracking</strong>.
                         </li>
-                        <li>Click the <strong>Order Number</strong> and confirm that the flow was successfully
-                            completed. The flow is colored in green to indicate that it ran successfully.
+                        <li>Look for a completed integration with your <strong>Order Number</strong>. The flow is colored in green to indicate that it ran successfully.
                         </li>
+                        <li>
+                            Click the <strong>Order Number</strong> link to open the integration instance.
+                        </li>
+                        <li>
+                            Click <img src="img/menu.png" alt="Menu" style="height: 20px; width: 20px;"/> and select <strong>View Activity Stream</strong>.
+                        </li>
+                        <li>Review the flow and messages from your integration.</li>
+                        <li>Click <strong>Close</strong> when done reviewing.</li>
                     </ol>
-                </section>
-                <hr>
-                <!-- ########## Run the Web Application ########## -->
-                <section>
-                    <h2>Run the Web Application</h2>
-                    <ol>
 
-                        <li> 
-                            <p>Open the following link in a web browser:</p>
-                            <p>This basic application lets you test the end to end flow.</p>
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() && oic_environment_name() ? 'display:initial' : 'display:none'}">  
+                    <h3>Run the Web Application</h3>
+                    <ol>
+                        <li>
+                            <p>Open the following link:</p>
+                            <p>This Visual Builder Web App lets you verify your purchase order.</p>
+
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
                                 <p>                                    
                                     <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentBaseURL(oic_environment_name()) + '/ic/builder/design/LetterOfCreditPortalForEventsLab/1.0/preview/webApps/locapp/' : '' }">
+                                       data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().baseURL + '/ic/builder/design/PurchaseOrders/1.0/preview/webApps/locapp/' : '' }">
                                         <span>
-                                            <p><em data-bind="text: oic_environment_name()? selectedOICEnvironmentRegion().oicEnvironmentBaseURL(oic_environment_name()) + '/ic/builder/design/LetterOfCreditPortalForEventsLab/1.0/preview/webApps/locapp/' : 'Enter an OIC Environment Region and Name above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().baseURL + '/ic/builder/design/PurchaseOrders/1.0/preview/webApps/locapp/' : ''"></em></p>                                       
                                         </span>
                                     </a>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: selectedOICEnvironmentRegion() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentRegion">
-                                        Select your OIC Environment Region to get your OIC URL.
-                                    </a>
-                                </p>
-                            </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC URL.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your Visual Builder Web App URL.
                                     </a>
                                 </p>
                             </div>
                         </li>
-
-                        <li><strong>OIC User Name</strong>:
-                            <div data-bind="attr: {style: oic_environment_name() && user_number() ? 'display:initial' : 'display:none'}">  
+                        <li><p>Enter your user name and password.</p>
+                            <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                 <p>    
                                     <code class="allow-copy">                           
                                         <span>
-                                            <p><em data-bind="text: user_number() && oic_environment_name() ? oic_environment_name() + '_' + user_number() : 'Enter an OIC Environment Name and User Number above.'"></em></p>                                       
+                                            <p><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></p>                                       
                                         </span>
                                     </code>
                                 </p>
                             </div>
-                            <div data-bind="attr: {style: oic_environment_name() ? 'display:none' : 'display:initial'}">
+                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                 <p class="warning-text">
-                                    <a style="color: #e3503c" href="#oicEnvironmentName">
-                                        Enter your OIC Environment Name to get your OIC Username.
+                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                        Select your OIC Environment to get your OIC Username.
                                     </a>
                                 </p>
                             </div>
@@ -811,17 +780,21 @@
                                     </a>
                                 </p>
                             </div>
-                        </li>
 
-                        <li><strong>OIC Password</strong>: will be provided during the training session.</li>
+                            Your password will be provided by the instructor.
+                        </li>
                         <li>Click <strong>PO List Page</strong>.</li>
-                        <li>Verify that your purchase order was created in the Visual Builder application.
+                        <li>Verify that your purchase order was created in the Visual Builder Web App.
                         </li>
                     </ol>
-                </section>
 
-                <p><strong>Congratulations!</strong> You have created an integration flow and learnt how to capture
-                    events raised in an Oracle ERP application.</p>
+                    <hr>
+                    <p><strong>Congratulations!</strong> You have created your integration flow and learned how to capture
+                        events raised in an Oracle ERP CLoud application.</p>
+    
+                </section>
+                <hr>
+
             </article>
         </div>
         <br class="clearfloat">
