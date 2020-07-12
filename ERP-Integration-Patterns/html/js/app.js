@@ -84,10 +84,10 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         new OICEnvironment("Training 2", "https://oictraining2-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining2-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscB"),
         new OICEnvironment("Training 3", "https://oictraining3-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining3-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscA"),
         new OICEnvironment("Training 4", "https://oictraining4-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining4-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscB")
-        /**
+        
         ,
         new OICEnvironment("Gold", "https://training-gold-oicpm-px.integration.ocp.oraclecloud.com", "https://training-gold-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscB")
-        **/
+        
       ]),
       self.selectedOICEnvironment = ko.observable()
 
@@ -112,8 +112,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }      
       self.availableFTPEnvironments = ko.observableArray([
-        new FTPEnvironment("Drive HQ", "https://www.drivehq.com", "oichcmcloud"),
-        new FTPEnvironment("Cloud", "http://sftp.us2.cloud.oracle.com/", "us258614"),
+        new FTPEnvironment("OCI FTP Server", "http://sftp.us2.cloud.oracle.com/", "us258614")
       ]),
       self.selectedFTPEnvironment = ko.observable()
     }
