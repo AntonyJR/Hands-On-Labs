@@ -50,7 +50,7 @@
                             <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
                                 (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, Oracle HCM Cloud,
                                 Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify best practice 
-                                connectivity to these applications by handling the many of the underlying technical complexities often 
+                                connectivity to these applications by handling many of the underlying technical complexities often 
                                 encountererd when integrating applications.</p>
                         </section>
                         <hr>
@@ -66,7 +66,7 @@
                             </ul>
                             <p>The data file can be larger than 10MB. Oracle Integration supports handling large files as an
                                 attachment (instead of base64 encoding). We recommend that you use CSV format to reduce the size of the file.</p>
-                            <p>See this <a href="https://blogs.oracle.com/fmw/oracle-integration-cloud-oic-file-based-integration-best-practices">blog article</a> to learn how to handle files from various interfaces and file size constraints.</p>
+                            <p>See this <a target="_blank" href="https://blogs.oracle.com/fmw/oracle-integration-cloud-oic-file-based-integration-best-practices"><em>blog article</em></a> to learn how to handle files from various interfaces and file size constraints.</p>
                             <p> The following diagram shows the interaction between the systems involved in this use case.</p>
                             <p><img src="img/screenshots/ERP/bulk-export-callback.png" width="650px"/></p>
                         </section>
@@ -341,7 +341,7 @@
                             <ol>
                                 <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                                 <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
-                                <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>Scheduled Orchestration</strong>.</li>
+                                <li>In the <strong>Select Integration Style</strong> dialog, select <strong>Scheduled Orchestration</strong>.</li>
                                 <li>Click <strong>Select</strong>.</li>
                                 <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
                                     <ol type="a">
@@ -380,9 +380,12 @@
                             <h2>Create the Initiate Extract Activity </h2>
                             <p></p>
                             <ol>
-                                <li>Hover over the outgoing arrow for the <strong>Schedule</strong> activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Type <code class="allow-copy"><span>ERP</span></code> in the <strong>Search</strong> field to find your connection.</li>
-                                <li><p>Select the connection named <code class="allow-copy"><span>ERP Conn</span></code>.</p>
+                                <li>Hover over the outgoing arrow for the <strong>Schedule</strong> activity and click
+                                    <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                                </li>
+                                <li>In the <strong>Search</strong> field, begin typing <code class="allow-copy"><span>ERP Cloud</span></code> to find your connection.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>ERP Cloud</span></code>.</p>
                                     <p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
                                 </li>
                                 <li>Name your endpoint <code class="allow-copy"><span>InitiateExtract</span></code>.</li>
@@ -390,13 +393,21 @@
                                     <p><code class="allow-copy"><span>This endpoint starts the extraction of payable transactions.</span></code></p>
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
-                                <li>On the <strong>Actions</strong> page, Query, Create, Update or Delete Information.</li>
+                                <li>On the <strong>Actions</strong> page, select the <strong>Query, Create, Update or Delete Information</strong> option.</li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Operations</strong> page, from the <strong>Browse by</strong> list, select <strong>Services</strong>.</li>
                                 <li>In the <strong>Select a Service</strong> field, enter <strong>ERPIntegrationService</strong> and select it from the list.</li>
                                 <li>From the <strong>Operation to perform on the Business Object/Resource or Service</strong> list, select <strong>Export Bulk Data</strong>.</li>
-                                <li>Click <strong>Next</strong>.</li>
+                                
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
+                                    <p>A summary of the properties you configured appears.</p>
+                                </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
+                                <li>
+                                    <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
+                                </li>
+                                <li>Click <strong>Save</strong>.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -408,7 +419,16 @@
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
                                 <li>In the <strong>Target</strong> section, expand the <strong>exportBulkData</strong> element.</li>
-                                <li><p>Map the fields under the <strong>exportBulkData</strong> element to the following values:</p>
+                                <li>
+                                    <p>To create a literal mapping:</p>
+                                        <ol type="a">
+                                            <li>Right-mouse click on the desired node and select <strong>Create Target Node</strong>.</li>
+                                            <li>In the <strong>Expression</strong> editor at the bottom of the page, click the <strong>Set Text</strong> button (<strong>A</strong>)</li>
+                                            <li>Verify the Expression editor title changes to <strong>Text for: </strong> your selected node name.</li>
+                                            <li>Enter the literal data and click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor.</li>
+                                        </ol>
+                                </li>
+                                <li><p>Map the fields under the <strong>exportBulkData</strong> element to the following literal values:</p>
                                     <ul>
                                         <li><strong>jobName</strong>: <code class="allow-copy"><span>oracle/apps/ess/financials/commonModules/shared/common/outbound,FinOutboundProcess</span></code></li>
                                         <li><strong>parameterList</strong>: <code class="allow-copy"><span>92,/oracle/apps/ess/financials/commonModules/shared/common/outbound;PayablesTransactionsExtract,BIPREP ORT,FULL_EXTRACT,#NULL,300000046987012,#NULL,#NULL,#NULL,#NULL,#NULL,12- 18,N,N,300000046975971,#NULL,#NULL,#NULL,FULL_EXTRACT,#NULL,#NULL,#NULL,PayablesTransactionsExtract, #NULL</span></code></li>
@@ -428,13 +448,27 @@
                         <section>
                             <h2 >Define the Tracking Fields</h2>
                             <ol>
+                                <li>
+                                    <p>
+                                        In the <strong>Integration</strong> canvas, you should see an error icon
+                                            <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>
+                                            next to the <strong>Last Saved</strong> field.
+                                    </p>
+                                    <p>
+                                        The icon shows the number of errors you need to fix in your integration. You should have
+                                        one error. To fix this error you need to add business tracking identifiers.
+                                    </p>
+                                </li>
                                 <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>, and then select <strong>Tracking</strong>.</p>
                                     <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection" style="width: 200px;"/></p>
                                 </li>
                                 <li><p>In the <strong>Business Identifiers for Tracking</strong> dialog, from the <strong>Source</strong> section, select <strong>StartTime</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The selected field appears in the <strong>Tracking Fields</strong> table. The <strong>StartTime</strong> field is marked as <strong>Primary</strong>.</p>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>
+                                    <p>Click <strong>Save</strong>.</p>
+                                    <p>Notice there are no errors.</p>
+                                </li>
                                 <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
                             </ol>
                         </section>
@@ -480,25 +514,38 @@
                         </section>
                         <hr>
 
-<!-- ########## CREATE THE TRIGGER ACTIVITY ########## -->
+
+<!-- ########## Create the Trigger ########## -->
                         <section>
-                            <h2>Create the Trigger Activity</h2>
+                            <h2>Create the ERP Cloud Callback Trigger</h2>
                             <ol>
                                 <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Type <code class="allow-copy"><span>SOAP ERP</span></code> in the <strong>Search</strong> field to find your connection.</li>
-                                <li><p>Select the connection named <code class="allow-copy"><span>SOAP ERP Conn</span></code>.</p>
-                                    <p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
+                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud Callback</span></code> in the <strong>Search</strong> field to find the connection to your ERP Cloud Callback.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>ERP Cloud Callback</span></code>.</p>
+                                    <p>The <strong>Configure SOAP Endpoint</strong> wizard appears.</p>
                                 </li>
-                                <li>Name your endpoint <code class="allow-copy"><span>bulkExtractCallback</span></code>.</li>
-    <!--                            <li>In the <strong>What does this endpoint do?</strong> field, enter <code class="allow-copy"><span></span></code></li>-->
-                                <li>Click <strong>Next</strong>.</li>
-                                <li>On the <strong>Actions</strong> page, select <strong>Query, Create, Update or Delete Information</strong>.</li>
+                                <li>Name your endpoint <code class="allow-copy"><span>BulkExtractCallback</span></code>.</li>
+                                <li>
+                                    <p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
+                                    <p><code class="allow-copy"><span>This endpoint defines an ERP Cloud callback.</span></code></p>
+                                </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Operations</strong> page, from the <strong>Disable SOAP Action Validation</strong> options, select <strong>No</strong>.</li>
                                 <li>Click <strong>Next</strong>.</li>
+                                <li>On the <strong>Callback Operation</strong> page, from the <strong>type of response expected</strong> options, select <strong>No Response</strong>.</li>
+                                <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Headers</strong> page, from the <strong>Do you want to configure headers for this endpoint?</strong> options, select <strong>No</strong>.</li>
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
+                                    <p>A summary of the properties you configured appears.</p>
+                                </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
+                                <li>
+                                    <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
+                                </li>
                                 <li>Click <strong>Save</strong>.</li>
+
                             </ol>
                         </section>
                         <hr>
@@ -507,16 +554,30 @@
                         <section>
                             <h2>Create the Download Activity </h2>
                             <ol>
-                                <li>Hover over the outgoing arrow for the <strong>bulkExtractCallback</strong> activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Type <code class="allow-copy"><span>ERP Integration</span></code> in the <strong>Search</strong> field to find your connection.</li>
-                                <li>Select the connection named <code class="allow-copy"><span>ERP Integration SOAP Conn</span></code>.
+                                <li>Hover over the outgoing arrow for the <strong>BulkExtractCallback</strong> activity and click
+                                    <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
-                                <li>Name your endpoint <code class="allow-copy"><span>downloadFile</span></code>.</li>
+                                <li>In the <strong>Search</strong> field, begin typing <code class="allow-copy"><span>ERP Cloud Integration Service</span></code> to find your connection.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>ERP Cloud Integration Service</span></code>.</p>
+                                    <p>The <strong>Configure SOAP Endpoint<strong> wizard appears.</p>
+                                </li>
+
+                                <li>Name your endpoint <code class="allow-copy"><span>ownloadFile</span></code>.</li>
                                 <li>Click <strong>Next</strong>.</li>
-                                <li>On the <strong>Operations</strong> page, from the <strong>Operation</strong> list, select <strong>getDocumentsForFilePrefix</strong>.</li>
+                                <li>
+                                    <p>On the <strong>Operations</strong> page, from the <strong>Operation</strong> list, select <strong>getDocumentsForFilePrefix</strong>.</p>
+                                    <p>Be careful to select the correct operation as many of them have similiar names.</p>
+                                    <p><img src="img/screenshots/integration/getDocumentsForFilePrefix.png" alt="GetDocuments For File Prefix" style="width: 300px;"/></p>
+                                </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Headers</strong> page, select <strong>Accept attachments in response</strong>.</p>
                                     <p><i>Note</i>: The SOAP adapter allows rich capability to accept content as an attachment, instead of base64-encoded data.</p>
+                                    <p>If you don't see this option, it is likely you selected the wrong operation. Click <stong>Back</stong> and verify you have the correct operation.</p>
+                                </li>
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
+                                    <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
                                 <li>Click <strong>Save</strong>.</li>
@@ -524,13 +585,13 @@
 
 <!-- ########## Define the Data Mapping ########## -->
                             <h3>Define the Data Mapping</h3>
-                            <p>A Map action named <strong>Map to downloadFile</strong> is automatically created. We'll define this data mapping.</p>
+                            <p>A Map action named <strong>Map to DownloadFile</strong> is automatically created. We'll define this data mapping.</p>
                             <ol>
-                                <li>Select the <strong>Map to InitiateExtract</strong> action.</li>
+                                <li>Select the <strong>Map to DownloadFile</strong> action.</li>
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
-                                <li>In the <strong>Target</strong> section, expand the <strong>getDocumentsForFilePrefix</strong> element.</li>
+                                <li>In the <strong>Target</strong> section, expand the <strong>OutboundSOAPRequestDocument</strong>, <strong>Body</strong>, then <strong>getDocumentsForFilePrefix</strong> elements.</li>
                                 <li><p>Click the <strong>Toggle Functions</strong> button located in the <strong>Target</strong> section toolbar.</p>
                                     <p><img src="img/screenshots/ERP/toggle-functions.png" width="500px"/></p>
                                 </li>
@@ -538,14 +599,14 @@
                                 <li>Drag the <strong>concat</strong> function and drop it on <strong>prefix</strong> element in the <strong>Target</strong> section.</li>
                                 <li><p>In the <strong>Expression</strong> window, edit the <code>concat</code> function to use the following parameters:</p>
                                     <ol type="a">
-                                        <li><code class="allow-copy"><span>“ESS_”</span></code></li>
+                                        <li><code class="allow-copy"><span>&quot;ESS_&quot;</span></code></li>
                                         <li><code class="allow-copy"><span>//requestId</span></code></li>
-                                        <li><code class="allow-copy"><span>“_BIPReport0”</span></code></li>
+                                        <li><code class="allow-copy"><span>&quot;_BIPReport0&quot;</span></code></li>
                                     </ol>
-                                    <p>The complete expression should read: <code class="allow-copy"><span>concat ( "ESS_", //requestId ,"_BIPReport0" )</span></code></p>
+                                    <p>The complete expression should read: <code class="allow-copy"><span>concat ( &quot;ESS_&quot;, //requestId, &quot;_BIPReport0&quot; )</span></code></p>
                                 </li>
-                                <li>Map the <strong>account</strong> element to the following expression: <code class="allow-copy"><span>“fin$/payables$/export$”</span></code></li>
-                                <li>Map the <strong>comments</strong> element to the following expression: <code class="allow-copy"><span>concat ( "processedby=" , //requestId )</span></code></li>
+                                <li>Map the <strong>account</strong> element to the following expression: <code class="allow-copy"><span>&quot;fin$/payables$/export$&quot;</span></code></li>
+                                <li>Map the <strong>comments</strong> element to the following expression: <code class="allow-copy"><span>concat ( &quot;processedby=&quot;, //requestId )</span></code></li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
                                 <li>Click <strong>Save</strong>.</li>
@@ -557,14 +618,36 @@
                         <section>
                             <h2>Create the Write Extract Activity</h2>
                             <ol>
-                                <li>Hover over the outgoing arrow for the <strong>downloadFile</strong> activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Type <code class="allow-copy"><span>FTP</span></code> in the <strong>Search</strong> field to find your connection.</li>
-                                <li>Select the connection named <strong>FTP File Server</strong>.</li>
-                                <li>Name your endpoint <code class="allow-copy"><span>writeExtract</span></code>.</li>
+                                <li>Hover over the outgoing arrow for the <strong>DownloadFile</strong> activity and click
+                                    <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                                </li>
+                                <li>In the <strong>Search</strong> field, begin typing <code class="allow-copy"><span>FTP File Server</span></code> to find your connection.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>FTP File Server</span></code>.</p>
+                                    <p>The <strong>Configure Oracle Adapter Endpoint Configuration Wizard</strong> appears.</p>
+                                </li>
+
+                                <li>Name your endpoint <code class="allow-copy"><span>WriteExtract</span></code>.</li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Operations</strong> page, configure the following properties:</p>
                                     <ol type="a">
-                                        <li>From the <strong>Operation</strong> list, select <strong>Write Files</strong>.</li>
+                                        <li>From the <strong>Select Operation</strong> list, select <strong>Write File</strong>.</li>
+                                        <li>
+                                            In the <strong>Output Directory</strong> field, enter
+                                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                                <p>
+                                                    <code class="allow-copy"><span>&#x2f;upload&#x2f;public_ftp&#x2f;<em data-bind="text: user_number() ? user_number : 'Enter User Number above.'"></em></span></code>
+                                                </p>
+                                            </div>
+                
+                                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#userNumber">
+                                                        Enter your User Number to specify your unique output directory.
+                                                    </a>
+                                                </p>
+                                            </div> 
+                                        </li>
                                         <li>In the <strong>File Name Pattern</strong> field, enter
                                             <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
                                                 <p>
@@ -579,25 +662,16 @@
                                                     </a>
                                                 </p>
                                             </div>        
-                                        <li>In the <strong>Output Directory</strong> field, enter
-                                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                                <p>
-                                                    <code class="allow-copy"><span>&#x2f;upload&#x2f;public_ftp&#x2f;<em data-bind="text: user_number() ? user_number : 'Enter User Number above.'"></em></span></code>
-                                                </p>
-                                            </div>
-                
-                                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                                <p class="warning-text">
-                                                    <a style="color: #e3503c" href="#userNumber">
-                                                        Enter your User Number to specify your unique output directory.
-                                                    </a>
-                                                </p>
-                                            </div> 
+                                        </li>
                                     </ol>
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Schema</strong> page, from the <strong>Specify the structure for the contents of the file</strong> options, select <strong>No</strong>.</p>
                                     <p>For the purpose of this lab we will write the complete extract.</p>
+                                </li>
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
+                                    <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
                                 <li>Click <strong>Save</strong>.</li>
@@ -605,16 +679,15 @@
 
 <!-- ########## Define the Data Mapping ########## -->
                             <h3>Define the Data Mapping</h3>
-                            <p>A Map action named <strong>Map to writeExtract</strong> is automatically created. We'll define this data mapping.</p>
+                            <p>A Map action named <strong>Map to WriteExtract</strong> is automatically created. We'll define this data mapping.</p>
                             <ol>
-                                <li>Select the <strong>Map to writeExtract</strong> action.</li>
+                                <li>Select the <strong>Map to WriteExtract</strong> action.</li>
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
-                                <li>In the <strong>Source</strong> section, expand <strong>$downloadFile</strong>, then expand the <strong>getDocumentsForFilePrefixResponse</strong>, and then expand <strong>result</strong>.</li>
+                                <li>In the <strong>Source</strong> section, expand <strong>$DownloadFile</strong>, then expand the <strong>getDocumentsForFilePrefixResponse</strong>, and then expand <strong>result</strong>.</li>
                                 <li>In the <strong>Target</strong> section, expand <strong>ICSFile</strong>.</li>
                                 <li>Map the <strong>Content</strong> element in the <strong>Source</strong> section to the <strong>FileReference</strong> element in the <strong>Target</strong> section.</li>
-                                <li>In the <strong>Expression</strong> window, click <img src="img/check.png" alt="Check icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
                                 <li>Click <strong>Save</strong>.</li>
@@ -626,13 +699,27 @@
                         <section>
                             <h2 >Define the Tracking Fields</h2>
                             <ol>
+                                <li>
+                                    <p>
+                                        In the <strong>Integration</strong> canvas, you should see an error icon
+                                            <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>
+                                            next to the <strong>Last Saved</strong> field.
+                                    </p>
+                                    <p>
+                                        The icon shows the number of errors you need to fix in your integration. You should have
+                                        one error. To fix this error you need to add business tracking identifiers.
+                                    </p>
+                                </li>
                                 <li><p>On the <strong>Integration</strong> canvas, click <img src="img/more-actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>, and then select <strong>Tracking</strong>.</p>
                                     <p><img src="img/screenshots/ERP/tracking.png" alt="Tracking selection" style="width: 200px;"/></p>
                                 </li>
                                 <li><p>In the <strong>Business Identifiers for Tracking</strong> dialog, from the <strong>Source</strong> section, select <strong>requestId</strong>, and then click <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
-                                    <p>The selected field appears in the <strong>Tracking Fields</strong> table. The <strong>StartTime</strong> field is marked as <strong>Primary</strong>.</p>
+                                    <p>The selected field appears in the <strong>Tracking Fields</strong> table. The <strong>requestId</strong> field is marked as <strong>Primary</strong>.</p>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>
+                                    <p>Click <strong>Save</strong>.</p>
+                                    <p>Notice there are no errors.</p>
+                                </li>
                                 <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
                             </ol>
                         </section>

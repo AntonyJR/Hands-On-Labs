@@ -51,7 +51,7 @@
                             <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
                                 (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, Oracle HCM Cloud,
                                 Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify best practice 
-                                connectivity to these applications by handling the many of the underlying technical complexities often 
+                                connectivity to these applications by handling many of the underlying technical complexities often 
                                 encountererd when integrating applications.</p>
                         </section>
                         <hr>
@@ -242,7 +242,7 @@
                                             <a class="allow-copy" target="_blank"
                                             data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
                                                 <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : 'Select an FTP Environment above.'"></em></p>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
                                                 </span>
                                             </a>
                                         </p>
@@ -261,7 +261,7 @@
                                         <p>   
                                             <code class="allow-copy">
                                                 <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an FTP environment above.'"></em></p>                                       
+                                                    <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
                                                 </span>
                                             </code>
                                         </p>
@@ -298,8 +298,7 @@
                                 <p>This spreadsheet contains macros and you might get a security warning. Select the option to enable the content.</p>
                             </li>
 
-                            <li><p>Open the <strong>AP_INVOICES_INTERFACE</strong> sheet and update the following fields
-                                with unique random numbers:</p>
+                            <li><p>Open the <strong>AP_INVOICES_INTERFACE</strong> sheet and update the following fields with unique random numbers:</p>
                                 <ul>
                                     <li><strong>Invoice ID</strong></li>
                                     <li><strong>Invoice Number</strong></li>
@@ -317,26 +316,60 @@
                                 sheet.
                             </li>
                             <li>Save the file.</li>
-                            <li>Open the sheet <strong>Instructions and CSV Generation</strong>.</li>
+                            <li>Open the <strong>Instructions and CSV Generation</strong> sheet.</li>
                             <li><p>Click <strong>Generate CSV file</strong></p>
                                 <p>A file browser dialog appears.</p>
                             </li>
                             <li>Name the zip file: <code class="allow-copy"><span>apinvoiceimport.zip</span></code>.</li>
                             <li>Save the <strong>AP_INVOICES_INTERFACE</strong> file as <code class="allow-copy"><span>ApInvoiceInterface.csv</span></code>.</li>
                             <li>Save the <strong>AP_INVOICES_LINES_INTERFACE</strong> file as <code class="allow-copy"><span>ApInvoiceLinesInterface.csv</span></code>.</li>
-                            <li><p>Copy the <code>APTEST.PROPERTIES</code> file to the <code>apinvoiceimport.zip</code> zip file.</p>
+                            <li>You can close the GSEPayablesStandardInvoiceImportTemplate.xlsm spreadsheet</li>
+                            <li><p>From File Explorer, copy the <code>APTEST.PROPERTIES</code> file to the <code>apinvoiceimport.zip</code> zip file.</p>
                                 <p>The zip file should contain three files: <code>ApInvoiceInterface.csv</code>, <code>ApInvoiceLinesInterface.csv</code>, and <code>APTEST.PROPERTIES</code>.</p>
                                 <p><em>Note</em>: Failing to copy the <code>APTEST.PROPERTIES</code> file will prevent the import payables job from running.</p>
                             </li>
-                            <li><p>Log in to the FTP server.</p>
+                            <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
                                 <ul>
-                                    <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
-                                            data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                                    <li>
+                                        <strong>FTP URL</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>    
+                                                <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
+                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP URL.
+                                                </a>
+                                            </p>
+                                        </div>
                                     </li>
-                                    <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
-                                            data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                                    <li>
+                                        <strong>FTP User Name</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>   
+                                                <code class="allow-copy">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
+                                                    </span>
+                                                </code>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP Username.
+                                                </a>
+                                            </p>
+                                        </div>
                                     </li>
-                                    <li><strong>Password:</strong> will be provided during the training session.</li>
+                                    <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
                                 </ul>
                             </li>
                             <li><p>If the following directory doesn't exist in the FTP server, create it:</p>
@@ -360,18 +393,67 @@
                         <ol>
                             <li><p>Log in to the FTP server.</p>
                                 <ul>
-                                    <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em
-                                            data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code>
+                                    <li>
+                                        <strong>FTP URL</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>    
+                                                <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
+                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP URL.
+                                                </a>
+                                            </p>
+                                        </div>
                                     </li>
-                                    <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em
-                                            data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code>
+                                    <li>
+                                        <strong>FTP User Name</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>   
+                                                <code class="allow-copy">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
+                                                    </span>
+                                                </code>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP Username.
+                                                </a>
+                                            </p>
+                                        </div>
                                     </li>
-                                    <li><strong>Password:</strong> will be provided during the training session.</li>
+                                    <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
                                 </ul>
                             </li>
-                            <li><p>If the following directory doesn't exist in the FTP server, create it:</p>
-                                <p><code class="allow-copy"><span>/upload/public_ftp/<em
-                                        data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></p>
+                            <li>
+                                <p>If the following directory doesn't exist in the FTP server, create it:</p>
+                                <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                    <p>
+                                        <code class="allow-copy">
+                                            <span>
+                                                /upload/public_ftp/<em data-bind="text: user_number() ? user_number() : ''"></em>/in
+                                            </span>
+                                        </code>
+                                    </p>
+                                </div>
+    
+                                <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                    <p class="warning-text">
+                                        <a style="color: #e3503c" href="#userNumber">
+                                            Enter your User Number to specify your FTP directory name.
+                                        </a>
+                                    </p>
+                                </div>        
                             </li>
                             <li>Copy the <code>apinvoiceimport.zip</code> file to the directory mentioned in the previous step.</li>
                         </ol>
@@ -452,7 +534,7 @@
                         <ol>
                             <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                             <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
-                            <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>Scheduled Orchestration</strong>.</li>
+                            <li>In the <strong>Select Integration Style</strong> dialog, select <strong>Scheduled Orchestration</strong>.</li>
                             <li>Click <strong>Select</strong>.</li>
                             <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
                                 <ol type="a">
@@ -497,7 +579,7 @@
                             </li>
                             <li>Select the FTP File Server.</li>
                             <li>In the <strong>Oracle Adapter Endpoint Configuration Wizard</strong> name your endpoint
-                                <code class="allow-copy"><span>ReadAPInvoicesFileFromFTP</span></code>.
+                                <p><code class="allow-copy"><span>ReadAPInvoicesFileFromFTP</span></code>.</p>
                             </li>
                             <li><p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
                                 <p><code class="allow-copy"><span>Retrieves the AP Invoices that comply with FBDI from an FTP location.</span></code></p>
@@ -507,31 +589,45 @@
                             <li>From the <strong>Transfer Mode</strong> options, select <strong>ASCII</strong>.</li>
                             <li><p>Enter the following values</p>
                                 <ol type="a">
-                                    <li><strong>Input Directory</strong>: <code class="allow-copy"><span>/upload/public_ftp/<em
-                                            data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></li>
+                                    <li>
+                                        <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                            <p>
+                                                Input Directory: 
+                                                <code class="allow-copy">
+                                                    <span>
+                                                        /upload/public_ftp/<em data-bind="text: user_number() ? user_number() : ''"></em>/in
+                                                    </span>
+                                                </code>
+                                            </p>
+                                        </div>
+            
+                                        <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#userNumber">
+                                                    Enter your User Number to specify your FTP directory name.
+                                                </a>
+                                            </p>
+                                        </div>   
+                                    </li>    
                                     <li><strong>File Name</strong>: <code
                                             class="allow-copy"><span>apinvoiceimport.zip</span></code></li>
                                 </ol>
-                                <p>
-                                    <i>Note:</i> verify that the input directory exists.
-                                    If it doesn't exist, create a folder named after your student ID in the folder
-                                    <code>upload/public_ftp/</code>. Then create the subfolders <code>in</code> and <code>out</code>.
-                                </p>
                             </li>
                             <li>Click <strong>Next</strong>.</li>
-                            <li>On the <strong>Schema</strong> page, in the <p><strong>Do you want to specify the structure for the contents of the
-                                file</strong> section, select <strong>No</strong>.</p>
+                            <li>On the <strong>Schema</strong> page, in the <strong>Do you want to specify the structure for the contents of the
+                                file</strong> section, select <strong>No</strong>.
+                            </li>
 
+                            <li>
+                                <p>Click <strong>Next</strong>.</p>
+                                <p>A summary of the properties you configured appears.</p>
                             </li>
-                            <li>Click <strong>Next</strong>.</li>
-                            <li><p>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</p>
-                                <p>The FTP endpoint and a Mapping action appear in the <strong>Integration</strong> canvas.
-                                </p>
+                            <li>Review the summary and click <strong>Done</strong>.</li>
+                            <li>
+                                <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
+                                <p>We will not be using the <strong>ReadAPInvoicesFileFromFTP</strong> map activity. You can either leave it or delete it.</p>
                             </li>
-                            <li><p>Delete the Mapping action.</p>
-                                <p>This action isn't needed because we aren't passing parameters from the Schedule action
-                                    and the downloadInvoiceZIP action.</p>
-                            <li>Click <strong>Save</strong>.</li>
+                            <li>Click <strong>Save</strong> to save the integration.</li>
                         </ol>
                     </section>
                     <hr>
@@ -576,11 +672,13 @@
                                     convenience, you can configure these values from the adapter without having to open the
                                     ERP Console.</p>
                             </li>
-                            <li>Click <strong>Next</strong>.</li>
-                            <li><p>Review the <strong>Summary</strong> page, and click <strong>Done</strong>.</p>
-                                <p>The endpoint you just created appears on the canvas followed by a mapping action.</p>
+
+                            <li>
+                                <p>Click <strong>Next</strong>.</p>
+                                <p>A summary of the properties you configured appears.</p>
                             </li>
-                            <li>Click <strong>Save</strong> to save your integration.</li>
+                            <li>Review the summary and click <strong>Done</strong>.</li>
+                            <li>Click <strong>Save</strong> to save the integration.</li>
                         </ol>
 
     <!-- ########## DEFINE THE DATA MAPPING ########## -->
@@ -619,19 +717,19 @@
                             <li><p>Click <strong>Validate</strong>.</p>
                                 <p>A confirmation message appears.</p>
                             </li>
-                            <li>Click <strong>Close</strong> and <strong>Save</strong>.</li>
+                            <li>Click <strong>Close</strong>.</li>
                             <li>Click <strong>Save</strong> to save the integration.</li>
                         </ol>
                     </section>
                     <hr>
 
-    <!-- ########## DEFINE THE TRACKING FIELDS ########## -->
+<!-- ########## DEFINE THE TRACKING FIELDS ########## -->
                     <section>
                         <h2>Define the Tracking Fields</h2>
                         <ol>
                             <li>
                                 <p>
-                                    In the <strong>Integration</strong> canvas, click the error icon
+                                    In the <strong>Integration</strong> canvas, you should see an error icon
                                         <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>
                                         next to the <strong>Last Saved</strong> field.
                                 </p>
@@ -655,17 +753,15 @@
                             <li>
                                 <p>In the <strong>Source</strong> section, select <strong>startTime</strong>, and then click
                                     <img src="img/right-arrow.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
-                                <p>The selected field appears in the <strong>Tracking Fields</strong> table and is marked as
+                                <p>The startTime field appears in the <strong>Tracking Fields</strong> table and is marked as
                                     <strong>Primary</strong>.</p>
                                 <p>This defines how to identify your instances in the <strong>Monitoring</strong> console.</p>
                             </li>
                             <li>
                                 <p>Click <strong>Save</strong>.</p>
-                                <p>Notice that now there aren't any errors.</p>
+                                <p>Notice there are no errors.</p>
                             </li>
-                            <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
-                                <strong>Close</strong>.
-                            </li>
+                            <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
                         </ol>
                     </section>
                     <hr>
@@ -709,13 +805,13 @@
                         <h2>Run the Integration</h2>
                         <p></p>
                         <ol>
-                            <li><p>Click <strong>How to run</strong>, then click <strong>Submit Now</strong> twice.</p>
+                            <li><p>Click <strong>Run</strong> <img src="img/how-to-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>, then click <strong>Submit Now</strong> and then <stong>Submit Now</stong> again when prompted.</p>
                                 <p>A confirmation message with a link to track instance appears.</p>
                             </li>
                             <li><p>Click the link to track the instance.</p>
                                 <p>The <strong>Track Instances</strong> page appears. The integration state should be
                                     <strong>Processing</strong> or <strong>Successful</strong>.</p>
-                                <p>The importing of the invoices to the ERP Cloud might take a few minutes.</p>
+                                <p>Importing of the invoices to the ERP Cloud might take a few minutes.</p>
                             </li>
 
                         </ol>
@@ -774,29 +870,6 @@
                                 </ol>
                             </li>
 
-                            <li><p>Log in to the ERP Cloud Service using these values:</p>
-                                <ol type="a">
-                                    <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/fscmUI/faces/FuseWelcome</span></code>
-                                    </li>
-                                    <li>
-                                        <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                            <strong>User name</strong>: <code
-                                                    class="allow-copy"><span
-                                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></code>
-                                        </div>
-                                        <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                            <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
-                                                your ERP Cloud environment in the Before You Begin section to get a customized
-                                                user.</a></p>
-                                        </div>
-                                    </li>
-                                    <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code>
-                                    </li>
-                                </ol>
-                                <p>Notice that the scheduled processes are specific to user. To check scheduled process, log
-                                    in with the
-                                    same user that you used to create ERP connection.</p>
-                            </li>
                             <li>Click <strong>Payables</strong>.</li>
                             <li>Click <strong>Invoices</strong>.</li>
                             <li>Click <img src="img/preview.png" alt="Search icon" style="height: 15px; width: 15px;"/> in
