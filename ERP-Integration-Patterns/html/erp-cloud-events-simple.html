@@ -50,7 +50,7 @@
                             <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
                                 (SaaS) and On-premises applications, such as Oracle ERP Cloud, Oracle Service Cloud, Oracle HCM Cloud,
                                 Salesforce.com, Workday, EBS, SAP, NetSuite and so on. Oracle Integration adapters simplify best practice 
-                                connectivity to these applications by handling the many of the underlying technical complexities often 
+                                connectivity to these applications by handling many of the underlying technical complexities often 
                                 encountererd when integrating applications.</p>
                         </section>
                         <hr>
@@ -287,7 +287,7 @@
                             <ol>
                                 <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                                 <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
-                                <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
+                                <li>In the <strong>Select Integration Style</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
                                 <li>Click <strong>Select</strong>.</li>
                                 <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
                                     <ol type="a">
@@ -312,7 +312,7 @@
                                         </li>
                                         <li>
                                             <p>In the <strong>What does this integration do?</strong> field, enter:</p>
-                                            <p><code class="allow-copy"><span>This integration shows you how to use Oracle Integration ERP Cloud adapter event to store a purchase order record in a Visual Builder application.</span></code></p>
+                                            <p><code class="allow-copy"><span>This integration shows how to use the Oracle Integration ERP Cloud adapter to subscribe to ERP Cloud business events.</span></code></p>
                                         </li>
                                     </ol>
                                 </li>
@@ -323,22 +323,18 @@
 
 <!-- ########## Create the Trigger ########## -->
                         <section>
-                            <h2>Create the Trigger</h2>
+                            <h2>Create the ERP Cloud PO Event Trigger</h2>
                             <ol>
-                                <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon"
-                                                                                    style="height: 15px; width: 15px;"/>.
-                                </li>
-                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud</span></code> in the <strong>Search</strong> field
-                                    to find the connection to your ERP Cloud.
-                                </li>
-                                <li><p>Select the connection named <code class="allow-copy"><span>ERP Cloud</span></code>.
-                                </p>
+                                <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud</span></code> in the <strong>Search</strong> field to find the connection to your ERP Cloud environment.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>ERP Cloud</span></code>.</p>
                                     <p>The <strong>Configure Oracle ERP Cloud Endpoint</strong> wizard appears.</p>
                                 </li>
-                                <li>Name your endpoint <code class="allow-copy"><span>POEVENT</span></code>.</li>
+                                <li>Name your endpoint <code class="allow-copy"><span>POEvent</span></code>.</li>
                                 <li>
                                     <p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
-                                    <p><code class="allow-copy"><span>This endpoint subscribes to the purchase order events.</span></code></p>
+                                    <p><code class="allow-copy"><span>This endpoint subscribes to the ERP Cloud Purchase Order business event.</span></code></p>
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Request</strong> page, configure the request properties:
@@ -369,45 +365,52 @@
                                 <li>On the <strong>Response</strong> page, from the <strong>Response Type</strong> options,
                                     select <strong>None</strong>.
                                 </li>
-                                <li><p>Click <strong>Next</strong>.</p>
+
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
                                     <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
+                                <li>
+                                    <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
+                                </li>
                                 <li>Click <strong>Save</strong>.</li>
+
                             </ol>
                         </section>
                         <hr>
 
-<!-- ########## Create the Purchase Order ########## -->
+<!-- ########## Create the Create Purchase Order Activity ########## -->
                         <section>
-                            <h2>Create the Purchase Order</h2>
-                            <p></p>
+                            <h2>Create the Create Purchase Order Activity</h2>
                             <ol>
-                                <li>Hover over the outgoing arrow for the <strong>POEVENT</strong> activity and click <img
-                                        src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
+                                <li>Hover over the outgoing arrow for the <strong>POEvent</strong> activity and click
+                                    <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
-                                <li>In the <strong>Search</strong> field, begin typing <code
-                                        class="allow-copy"><span>Visual Builder</span></code>.
+                                <li>In the <strong>Search</strong> field, begin typing <code class="allow-copy"><span>Visual Builder</span></code> to find your connection.</li>
+                                <li>
+                                    <p>Select the connection named <code class="allow-copy"><span>Visual Builder</span></code>.</p>
+                                    <p>The <strong>Configure REST Endpoint</strong> wizard appears.</p>
                                 </li>
-                                <li><p>Select the connection named <code class="allow-copy"><span>Visual Builder</span></code>.
-                                <li><p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
+    
+                                <li>
+                                    <p>In the <strong>Basic Info</strong> page, configure the endpoint:</p>
                                     <ol type="a">
-                                        <li>Name your endpoint <code class="allow-copy"><span>CREATEPO</span></code>.</li>
+                                        <li>Name your endpoint <code class="allow-copy"><span>CreatePO</span></code>.</li>
                                         <li>
                                             <p>In the <strong>What does this endpoint do?</strong> field, enter:</p>
-                                            <p><code class="allow-copy"><span>This endpoint creates a purchase order in a Visual Builder application.</span></code>
-                                            </p></li>
-                                        <li><p>In the <strong>relative resource URI</strong>, enter:</p>
-                                            <p><code
-                                                    class="allow-copy"><span>/ic/builder/design/PurchaseOrders/1.0/resources/data/PO</span></code>
+                                            <p><code class="allow-copy"><span>This endpoint creates a purchase order record in a Visual Builder application.</span></code>
                                             </p>
+                                        </li>
+                                        <li>
+                                            <p>In the <strong>relative resource URI</strong>, enter:</p>
+                                            <p><code class="allow-copy"><span>/ic/builder/design/PurchaseOrders/1.0/resources/data/PO</span></code></p>
                                             <p>This is the relative URI to a Visual Builder application API. The Visual Builder connection
                                                 specifies the base URL to your OIC environment which combined with relative URI defines the complete API endpoint.</p>
                                         </li>
-                                        <li>In the <strong>action to perform on the endpoint</strong> field, select
-                                            <strong>POST</strong>.
-                                        </li>
-                                        <li><p>In the <strong>options that you want to configure</strong> section, select:</p>
+                                        <li>In the <strong>action to perform on the endpoint</strong> field, select <strong>POST</strong>.</li>
+                                        <li>
+                                            <p>In the <strong>options that you want to configure</strong> section, select:</p>
                                             <ul>
                                                 <li><strong>Configure a request payload for this endpoint</strong></li>
                                                 <li><strong>Configure this endpoint to receive the response</strong></li>
@@ -416,14 +419,13 @@
                                     </ol>
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
-                                
-                                <li><p>On the <strong>Request</strong> page, configure the following values:</p>
+                                <li>
+                                    <p>On the <strong>Request</strong> page, configure the following values:</p>
                                     <ol type="a">
-                                        <li><p>From the <strong>Select the request payload format</strong> list, select <strong>JSON
-                                            Sample</strong>.</li>
+                                        <li><p>From the <strong>Select the request payload format</strong> list, select <strong>JSON Sample</strong>.</li>
                                         <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
                                         <li>Enter the following JSON sample:
-                                            <pre class="allow-copy"><code><span>{
+<pre class="allow-copy"><code><span>{
             "pOHeaderId": "300000074157551",
             "orderNumber": "163521",
             "procurementBUId": "300000046987012",
@@ -431,19 +433,17 @@
             "supplierId": "300000047414679",
             "supplier": "Dell Inc.",
             "soldToLegalEntity": "US1 Legal Entity"
-        }</span></code></pre>
+}</span></code></pre>
                                         </li>
                                         <li>Click <strong>OK</strong>.</li>
                                     </ol>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Response</strong> page, configure the following values:</p>
                                     <ol type="a">
-                                        <li><p>From the <strong>Select the response payload format</strong> list, select
-                                            <strong>JSON
-                                                Sample</strong>.</li>
+                                        <li><p>From the <strong>Select the response payload format</strong> list, select <strong>JSON Sample</strong>.</li>
                                         <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
                                         <li>Enter the following JSON response sample:
-                                            <pre class="allow-copy"><code><span>{
+<pre class="allow-copy"><code><span>{
             "id": 41,
             "creationDate": "2019-01-22T17:32:24+00:00",
             "lastUpdateDate": "2019-01-22T17:32:24.027+00:00",
@@ -458,11 +458,12 @@
             "soldToLegalEntity": "300000046973970", 
             "lOCId": null,
             "soldToLegalEntity": "300000046973970", "lOCId": null
-        }</span></code></pre>
+}</span></code></pre>
                                         </li>
                                         <li>Click <strong>OK</strong>.</li>
                                     </ol>
-                                <li><p>Click <strong>Next</strong>.</p>
+                                <li>
+                                    <p>Click <strong>Next</strong>.</p>
                                     <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
@@ -471,12 +472,13 @@
 
 <!-- ########## Define the Data Mapping ########## -->
                             <h3>Define the Data Mapping</h3>
-                            <p>A Map action named <strong>Map to CREATEPO</strong> is automatically created. We'll define this
+                            <p>A Map action named <strong>Map to CreatePO</strong> is automatically created. We'll define this
                                 data mapping.</p>
                             <ol>
-                                <li>Click the action <strong>Map to CREATEPO</strong> and click
+                                <li>Click the action <strong>Map to CreatePO</strong> and click
                                     <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.
-                                    <p>The <strong>Map to CREATEPO</strong> page appears.</p>
+                                    <p>The <strong>Map to CreatePO</strong> page appears.</p>
+                                    <p>In a couple of seconds, you should see a <strong>Recommendations Available</strong> popup appear</p>
                                 </li>
                                 <li><p>Click <img src="img/recommendations.png" alt="Recommend icon"
                                                 style="height: 15px; width: 15px;"/> <strong>Recommend</strong>.</p>
@@ -524,7 +526,7 @@
                             <ol>
                                 <li>
                                     <p>
-                                        In the <strong>Integration</strong> canvas, click the error icon
+                                        In the <strong>Integration</strong> canvas, you should see an error icon
                                             <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>
                                             next to the <strong>Last Saved</strong> field.
                                     </p>
@@ -557,11 +559,9 @@
                                 </li>
                                 <li>
                                     <p>Click <strong>Save</strong>.</p>
-                                    <p>Notice that now there aren't any errors.</p>
+                                    <p>Notice there are no errors.</p>
                                 </li>
-                                <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click
-                                    <strong>Close</strong>.
-                                </li>
+                                <li>On the <strong>Integration</strong> canvas, click <strong>Save</strong>, and then click <strong>Close</strong>.</li>
                             </ol>
                         </section>
                         <hr>
@@ -605,10 +605,9 @@
                         <section>
                             <h2>Testing the Integration</h2>
                             <ol>
-                                <li><p>Open a browser to sign in to the <strong>ERP Cloud</strong> using the following
-                                    information:</p>
+                                <li>
+                                    <p>Open a browser and sign in to <strong>ERP Cloud</strong> using the following information:</p>
                                     <ol type="a">
-
                                         <li>
                                             <strong>ERP Cloud URL</strong>:
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
@@ -664,7 +663,7 @@
                                 </li>
                                 <li>In the <strong>Supplier</strong> field, enter <code
                                         class="allow-copy"><span>Dell Inc.</span></code> and from the list that appears, select
-                                    <strong>Dell Inc. 1255</strong>.
+                                    <strong>Dell Inc.</strong>.
                                 </li>
                                 <!--                        <li>For the rest of the fields, leave the default value.</li>-->
                                 <li>Click <strong>Create</strong>.</li>
@@ -736,10 +735,11 @@
                                     <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select
                                     <strong>Tracking</strong>.
                                 </li>
-                                <li>Look for a completed integration with your <strong>Order Number</strong>. The flow is colored in green to indicate that it ran successfully.
+                                <li>Look for a completed integration with your <strong>Order Number</strong>.
                                 </li>
                                 <li>
-                                    Click the <strong>Order Number</strong> link to open the integration instance.
+                                    Click your <strong>Order Number</strong> link to open the integration instance.
+                                    <p>The flow is colored in green to indicate that it ran successfully.</p>
                                 </li>
                                 <li>
                                     Click <img src="img/menu.png" alt="Menu" style="height: 20px; width: 20px;"/> and select <strong>View Activity Stream</strong>.
@@ -751,8 +751,7 @@
                             <h3>Run the Web Application</h3>
                             <ol>
                                 <li>
-                                    <p>Open the following link:</p>
-                                    <p>This Visual Builder Web App lets you verify your purchase order.</p>
+                                    <p>Open the following link to a Visual Builder Web App and verify your Purchase Order was created in the app:</p>
 
                                     <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>                                    
@@ -772,7 +771,7 @@
                                         </p>
                                     </div>
                                 </li>
-                                <li><p>Enter your user name and password.</p>
+                                <li><p>If prompted, enter your user name and password.</p>
                                     <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                         <p>    
                                             <code class="allow-copy">                           
@@ -809,7 +808,7 @@
 <!-- ########## Completion ########## -->
                         <section>
                             <h2>Congratulations!</h2>
-                            <p><strong>Congratulations!</strong> You have created your integration flow and learned how to capture events raised in an Oracle ERP CLoud application.</p>
+                            <p><strong>Congratulations!</strong> You have finished your integration and learned how to subscribe to ERO Cloud business events.</p>
                         </section>
                         
                     </article>
