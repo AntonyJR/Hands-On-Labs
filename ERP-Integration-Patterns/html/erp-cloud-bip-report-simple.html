@@ -154,62 +154,6 @@
 
                                 <li><strong>OIC Password</strong>: Your password will be provided by the instructor.</li>
                             </ul>
-                            <hr>
-
-                            <h3>Get Your ERP Cloud Environment</h3>
-                            <p>Select your ERP environment to get the information needed to access Oracle ERP Cloud.</p>
-                                <p><strong>ERP Cloud Environment</strong>:&nbsp;
-                                    <a name=erpEnvironment>
-                                        <select data-bind="options: availableAppEnvironments,
-                                                    optionsText: 'name',
-                                                    value: selectedAppEnvironment,
-                                                    optionsCaption: 'Select...'">
-                                        </select>
-                                    </a>
-                                </p>
-
-                            <ul>
-                                <li>
-                                    <strong>ERP Cloud URL</strong>:
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
-                                            <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedAppEnvironment() ? selectedAppEnvironment().url : '' }">
-                                                <span>
-                                                    <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : ''"></em></p>
-                                                </span>
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text">
-                                            <a style="color: #e3503c" href="#erpEnvironment">
-                                                Select your ERP Cloud environment to get your ERP Cloud URL.
-                                            </a>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <strong>ERP Cloud User Name</strong>:
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>   
-                                            <code class="allow-copy">
-                                                <span>
-                                                    <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : ''"></em></p>                                       
-                                                </span>
-                                            </code>
-                                        </p>
-                                    </div>
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text">
-                                            <a style="color: #e3503c" href="#erpEnvironment">
-                                                Select your ERP Cloud environment to get your ERP Cloud Username.
-                                            </a>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li><strong>ERP Cloud Password</strong>: Your password will be provided by the instructor.</li>
-                            </ul>
                             
                         </section>
                         <hr>
@@ -371,29 +315,33 @@
                                             Sample</strong>.</li>
                                         <li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
                                         <li>Enter the following JSON sample:
-                                            <pre class="allow-copy"><code><span>[{
+<pre class="allow-copy"><code><span>[
+    {
         "LEDGERNAME" : "US Primary Ledger",
         "SEGMENT1" : 31,
         "SEGMENT2" : 21,
         "AccountID" : 1
-        }, {
+    },
+    {
         "LEDGERNAME" : "US Primary Ledger",
         "SEGMENT1" : 31,
         "SEGMENT2" : 21,
         "AccountID" : 21
-        }]</span></code></pre>
+    }
+]</span></code></pre>
                                         </li>
                                         <li>Click <strong>OK</strong>.</li>
                                     </ol>
+                                </li>
                                 <li>
                                     <p>Click <strong>Next</strong>.</p>
                                     <p>A summary of the properties you configured appears.</p>
-                                </li>
+                                </li>                                
                                 <li>Review the summary and click <strong>Done</strong>.</li>
                                 <li>
                                     <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
                                     <p>
-                                        <img src="img/screenshots/ERP/horizontal-layout.png" width="600px"/>
+                                        <img src="img/screenshots/integration/horizontal-layout.png" width="600px"/>
                                     </p>
                                 </li>
                                 <li>Click <strong>Save</strong>.</li>
@@ -410,9 +358,9 @@
                                     <img
                                             src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
-                                <li>Type <code class="allow-copy"><span>ERP Cloud</span></code> in the <strong>Search</strong> field.
+                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud Public Report Service</span></code> in the <strong>Search</strong> field.
                                 </li>
-                                <li>Select <strong>ERP Cloud BIP Report</strong>.</li>
+                                <li>Select <strong>ERP Cloud Public Report Service</strong>.</li>
                                 <li>In the <strong>Basic Info</strong> page, name your endpoint <code class="allow-copy"><span>GetBIPReport</span></code>.
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
@@ -570,9 +518,6 @@
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>(Optional) On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select
-                                    <strong>Vertical</strong>.
-                                </li>
                                 <li>Click <strong>Save</strong>.</li>
                             </ol>
 
