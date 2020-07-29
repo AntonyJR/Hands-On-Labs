@@ -47,14 +47,14 @@
 <!-- ########## Background ########## -->
                         <section>
                             <h2>Background</h2>
-                            <p>Subscription Management Lab</p>
+                            <p><a class="standalone-link" href="index.html" target="_blank">Subscription Management Lab Background</a></p>
                         </section>
                         <hr>
 
 <!-- ########## Use Case ########## -->
                         <section>
                             <h2>Use Case</h2>
-                            <p>Subscription Management Lab</p>
+                            <p><a class="standalone-link" href="index.html" target="_blank">Subscription Management Lab Use Case</a></p>
                         </section>
                         <hr>
 
@@ -208,9 +208,9 @@
 
 <!-- ########## Create the Integration ########## -->
                         <section>
-                            <h2>Create the Update Subscription Product Bill Lines Integration</h2>
+                            <h2>Create the Update Bill Lines Integration</h2>
 
-                            <p>We'll create an integration to update the Subscription Product Bill Lines in Oracle Engagement Cloud.</p>
+                            <p>We'll create an integration to update the Bill Lines for a Subscription Product in Oracle Engagement Cloud.</p>
 
                             <ol>
                                 <li>
@@ -219,9 +219,9 @@
                                     <p>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</p>
                                 </li>
                                 <li>
-                                    <p>The <strong>Integration</strong> page lists all the available integrations in your environment. These integrations can be in different stages of the development cycle. You can look at the status column to find out if an integration is running (<span style="color:#86BD66;">&#x25CF;</span> Active)  or under construction (<span style="color:#F6BC4F;">&#x25CF;</span> Configured).</p>
+                                    <p>The <strong>Integration</strong> page lists the integrations in your environment. These integrations can be in different stages of the development cycle. You can check the status column to see if an integration is activated (<span style="color:#86BD66;">&#x25CF;</span> Active)  or under construction (<span style="color:#F6BC4F;">&#x25CF;</span> Configured).</p>
                                     <br>
-                                    <p>Typically, the first step in creating an integration is to create a Connection. Connections define the attributes used to connect to a specific type of application or technology, such as the hostname and security policies.</p>
+                                    <p>The first step in creating an integration is to create a Connection. Connections define the attributes, such as the hostname and security policies, used to connect to a specific type of application or technology.</p>
                                     <p>We have already created an Oracle Engagement Cloud connection for your use in this lab.</p>
                                     <br>
                                     <p>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</p>
@@ -229,7 +229,7 @@
                                 <li>
                                     In the <strong>Select Integration Style</strong> dialog, select <strong>App Driven Orchestration</strong>.
                                     <br>
-                                    <p>This style lets  you run integrations on demand as opposed to scheduled orchestrations that are batch driven and run at specific times of the day.
+                                    <p>This style lets you run integrations on demand as opposed to Scheduled Orchestrations that are batch driven and run on a defined schedule.
                                         We also support other patterns such as publish and subscribe that let you distribute events to multiple integrations.</p>                                        
                                 </li>
                                 <li>Click <strong>Select</strong>.</li>
@@ -271,7 +271,7 @@
 <!-- ########## Create the Trigger ########## -->
                         <section>
                             <h2>Create the Update Bill Lines Trigger</h2>
-                            <p>Triggers define how your integration is exposed to the world. In this case, we will define a trigger to expose your integration as a REST API.</p>
+                            <p>Triggers define how your integration is exposed to to be invoked. In this case, we will define a trigger to expose your integration as a REST API.</p>
 
                             <ol>
                                 <li>Hover over <strong>START</strong> and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
@@ -292,8 +292,8 @@
                                         <li>
                                             <p><strong>What is the endpoint's relative resource URI</strong>: <code class="allow-copy"><span>/subscriptionProducts/billLines/{SubscriptionProductPuid}</span></code></p>
                                             <br>
-                                            <p>The URI is the relative path that when combined with the integration environment hostname and integration identifier will define the REST API endpoint.</p>
-											<p>The path parameters (surrounded with curly braces) are template parameters that will be supplied when the integration is called.</p>
+                                            <p>The relative URI is combined with the integration environment hostname and integration identifier to define the full REST API endpoint.</p>
+											<p>The parts of the URI enclosed with curly braces are template parameters that will be supplied when the integration is called.</p>
                                         </li>
                                         <li><strong>What action do you want to perform on the endpoint?</strong>: select
                                             <strong>PATCH</strong>.
@@ -314,7 +314,7 @@
 									<ol type="a">
 										<li>
                                             <p>From the <strong>request payload format</strong> list, select <strong>JSON Sample</strong>.</p>
-											<p>The JSON schema used by this integration can automatically be generated with a sample JSON payload.</p>
+											<p>The JSON schema used by an integration can automatically be generated with a sample JSON payload.</p>
 										</li>
 										<li>Click the <strong>&lt;&lt;&lt;inline&gt;&gt;&gt;</strong> link.</li>
 										<li>Enter the following JSON sample:
@@ -328,11 +328,11 @@
 	]
 }</span></code></pre>
 										
-										<p>This payload specifies a collection of Bill Lines, each with a BillLinePUID and UsageQuantity element.
+										<p>This payload specifies a collection of Bill Lines to be updated, each with a BillLinePUID and UsageQuantity element.</p>
 										</li>
 										<li>
                                             Click <strong>OK</strong>.
-                                            <p>The JSON sample will be validated and a schema will be generated for use later in the integration.</p>
+                                            <p>The JSON sample will be validated and a JSON schema will be generated.</p>
                                         </li>
 										<li>Click <strong>Next</strong>.</li>
 									</ol>
@@ -351,7 +351,7 @@
 		}
 	]
 }</span></code></pre>
-										
+                                        <p>This integration will be defined to simply return the request payload.</p>
 										</li>																				
 										<li>Click <strong>OK</strong>.</li>
 										<li>Click <strong>Next</strong>.</li>																				
@@ -376,7 +376,7 @@
                             <p>We defined our REST Interface trigger to accept a collection of Bill Lines to update. Oracle Engagement Cloud only provides an API to update a single Bill Line at a time. So we need to loop through the collection of Bill Lines passed to our integration and invoke the Engagement Cloud API for each.</p>
                             <p>We'll add a For Each construct to loop through our Bill Lines.</p>
                             <ol>
-                                <li><p>On the canvas, hover over the line coming out of our trigger, and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
+                                <li><p>On the canvas, hover over the line coming out of our <strong>UpdateBillLines</strong> trigger, and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
                                 </li>
                                 <li><p>In the <strong>Search</strong> field, enter <code>For Each</code>.</p>
                                 	<p><img src="img/screenshots/integration/iterate-plus.png" width="400px"/></p>
@@ -387,13 +387,16 @@
                                 <li>In the <strong>Name</strong> field, enter <code class="allow-copy"><span>ForEachBillLine</span></code>.                                	
                                 </li>
                                 <li>Drag the <strong>BillLines</strong> element from the <strong>Source</strong> tree, and drop it on the <strong>Repeating Element</strong> field.</li>
-                                <li>In the <strong>Current Element Name</strong> field, enter <code class="allow-copy"><span>CurrentBillLine</span></code>.</li>
+                                <li>
+                                    <p>In the <strong>Current Element Name</strong> field, enter <code class="allow-copy"><span>CurrentBillLine</span></code>.</p>
+                                    <p><img src="img/screenshots/integration/for-each-detail.png" width="600px"/></p>
+                                </li>
                                 <li>
                                     <p>Click <strong>Create</strong>.</p>
                                     <p>The canvas now displays a loop.</p>
                                     <p><img src="img/screenshots/integration/canvas-loop.png" width="600px"/></p> 
                                 </li>                               
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -403,10 +406,12 @@
                             <h2 id="section_5" role="button" style="text-align: left;">Update the Bill Line Quantity</h2>
                             <p>Next we will add an activity inside our For Each loop to update each Bill Line in Oracle Engagement Cloud.</p>
                             <ol>
-                                <li>Hover over the outgoing arrow for the <strong>ForEachBillLine</strong> action and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>In the <strong>Search</strong> field, enter <code>Engagement Cloud</code>.</li>
+                                <li>Hover over the line coming out of the <strong>ForEachBillLine</strong> action and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</li>
+                                <li>In the <strong>Search</strong> field, enter <code>Engagement Cloud</code> to find our Engagement Cloud connection.</li>
                                 <li><p>From the <strong>Invokes</strong> section, select <strong>Engagement Cloud</strong>.</p>
-                                	<p>The <strong>Configure Oracle Engagement Cloud Endpoint</strong> dialog appears.</p>
+                                    <p>The <strong>Configure Oracle Engagement Cloud Endpoint</strong> dialog appears.</p>
+                                    <br>
+                                    <p>Connections created with our application adapters simplyfy the task of discovering and configuring access to application business objects and events.</p>
                                 </li>
                                 <li>Name the endpoint <code class="allow-copy"><span>UpdateBillLine</span></code>.</li>
                                 <li>Click <strong>Next</strong>.</li>
@@ -427,7 +432,10 @@
                                     Click <strong>Next</strong>.
                                     <p>A summary of the properties you configured appears.</p>
                                 </li> 
-                                <li>Review the summary and click <strong>Done</strong>.</li>
+                                <li>
+                                    Review the summary and click <strong>Done</strong>.
+                                    <p>That's all it takes to configured an action that will update a Bill Line.</p>
+                                </li>
                                 <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                             <p><img src="img/screenshots/integration/canvas-update-billline.png" width="700px"/></p>
@@ -439,27 +447,28 @@
                             <p>Next we need to map the data sent to our integration to the activity we just created to update a Bill Line in Engagement Cloud. In this case, we want to map the current Bill Line in our For Each loop.</p>
                             <ol>
                                 <li><p>Click <strong>Map to UpdateBillLine</strong>, and then click <img src="img/edit.png" alt="Edit icon" style="height: 18px; width: 18px;"/>.</p>
-                                	<p>The <strong>Map to UpdateBillLine</strong> page appears. Notice a tooltip indicates available recommendations for this data mapping.</p>
+                                    <p>The <strong>Map to UpdateBillLine</strong> page appears.</p>
+                                    <p>Notice a tooltip indicates available recommendations for this data mapping.</p>
                                 </li>
                                 <li><p>Click <img src="img/recommendations.png" alt="Edit icon" style="height: 15px; width: 15px;"/>&nbsp;<strong>Recommendations</strong>.</p>
-                                	<p>You can also map your recommendations manually by dragging the data from the <strong>Source</strong> tree, and dropping it on the <strong>Target</strong> tree. For this lab, we'll use the recommended mappings so that you see how easy it is.</p>
-                                	<p>The following recommended mappings appear:</p>
+                                </li>
+                                <li><p>Click <strong>&check; Apply Recommendations</strong>.</p>
+                                	<p>A <strong>Confirmation</strong> message appears informing you that the recommended mappings were applied.</p>
+                                </li>
+                                <li>
+                                    <p>Optionally, can also map data manually by dragging the data elements from the <strong>Source</strong> tree, and dropping them on the <strong>Target</strong> tree.</p>
+                                	<p>Verify the following mappings:</p>
                                 	<ul class="display-item">
 	                                	<li class="display-item">TemplateParameters.SubscriptionProductPuid &#x27F6; TemplateParameters.id0</li>
 	                                	<li class="display-item">CurrentBillLine.BillLines.BillLinePUID &#x27F6; TemplateParameters.id1</li>
 	                                	<li class="display-item">CurrentBillLine.BillLines.UsageQuantity &#x27F6; billLines.UsageQuantity</li>
                                 	</ul>
                                 	<p><img src="img/screenshots/integration/map-dialog.png" width="700px"/></p>
-                                	<p>When you map data fields, you set the values for target data based on the source data.  Notice that the <strong>CurrentBillLine</strong> variable in the for each loop is treated in the same way as the incoming request variable.</p>
-                                </li>
-                                <li><p>Click <strong>&check; Apply Recommendations</strong>.</p>
-                                	<p>A <strong>Confirmation</strong> message appears informing you that the recommended mappings were applied.</p>
-                                	<p>The view changes back to <img src="img/design.png" alt="Design view icon" style="height: 15px; width: 15px;"/>&nbsp;<strong>Designer</strong>.</p>
                                 </li>
                                 <li><p>Click <strong>Validate</strong> and then click <strong>Close</strong>.</p>
                                 	<p>The <strong>Integration</strong> canvas appears.</p>
                                 </li>
-                                <li><p>Click <strong>Save</strong>.</p>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                                 </li>
                             </ol>
                         </section>
@@ -467,45 +476,46 @@
 <!-- ########## ADD RESPONSE MAPPING ########## -->                        
                         <section> 
                             <h2 id="section_7" role="button" style="text-align: left;">Add Response Mapping</h2>
-                            <p>After running the integration we want to send a response to the caller to confirmed the job was successful and provide any available feedback.</p>
+                            <p>Most integrations will need to return a response to the caller. This integration will be simply return the request payload.</p>
                             <p>We'll use the UpdateBillLines map to populate the response data.</p>
 	                        <ol>
                                 <li><p>Click <strong>Map to UpdateBillLines</strong>, and then click <img src="img/edit.png" alt="Edit icon" style="height: 18px; width: 18px;"/>.</p>
-                                	<p>The <strong>Map to UpdateBillLines</strong> page appears. Notice that there is a tooltip that indicates that there are available recommendations for this data mapping.</p>
+                                    <p>The <strong>Map to UpdateBillLines</strong> page appears.</p>
+                                    <p>Notice a tooltip indicates available recommendations for this data mapping.</p>
                                 </li>
                                 <li><p>Click <img src="img/recommendations.png" alt="Recommendations icon" style="height: 15px; width: 15px;"/>&nbsp;<strong>Recommendations</strong>.</p>
-                                	<p>The following recommended mappings appear:</p>
+                                </li>
+                                <li><p>Click <strong>&check; Apply Recommendations</strong>.</p>
+                                	<p>A <strong>Confirmation</strong> message appears informing you that the recommended mappings were applied.</p>
+                                </li>
+                                <li>
+                                    <p>Optionally, can also map data manually by dragging the data elements from the <strong>Source</strong> tree, and dropping them on the <strong>Target</strong> tree.</p>
+                                	<p>Verify the following mappings:</p>
                                 	<ul class="display-item">
 	                                	<li class="display-item">request-wrapper.BillLines &#x27F6; response-wrapper.BillLines&nbsp;</li>
 	                                	<li class="display-item">request-wrapper.BillLines.BillLinePUID &#x27F6; response-wrapper.BillLines.BillLinePUID</li>
 	                                	<li class="display-item">request-wrapper.BillLines.UsageQuantity &#x27F6; response-wrapper.BillLines.UsageQuantity</li>
-                                	</ul>	                                
-                                </li>
-                                <li><p>(Optional) Click <img src="img/advanced.png" alt="Advanced view icon" style="height: 15px; width: 15px;"/> <strong>Advanced</strong> to view the <strong>for each</strong> loop that was automatically added when you mapped the <strong>BillLines</strong> element.</p>
-                                	<p>Each of the bill lines in the source data is mapped through successive iterations of the for each loop to populate the target data.</p>
-                                </li>
-                                <li><p>Click <strong>&check; Apply Recommendations</strong>.</p>
-                                	<p>A <strong>Confirmation</strong> message appears informing you that the recommended mappings were applied.</p>
-                                	<p>The view changes back to <img src="img/design.png" alt="Design view icon" style="height: 15px; width: 15px;"/>&nbsp;<strong>Designer</strong>.</p>
+                                	</ul>
+                                	<p><img src="img/screenshots/integration/map-dialog.png" width="700px"/></p>
                                 </li>
                                 <li><p>Click <strong>Validate</strong> and then click <strong>Close</strong>.</p>
                                 	<p>The <strong>Integration</strong> canvas appears.</p>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
 <!-- ########## ADD TRACKING FIELDS ########## -->                        
                         <section>
                             <h2 id="section_8" role="button" style="text-align: left;">Add Tracking Fields</h2>
-                            <p>Tracking fields let you identify specific integration instances. A tracking field associates an integration instance with a business identifier. You must define at least one tracking field per integration. You can use tracking fields to track and locate instances. </p>
-                            <p>For example, for an integration that handles orders, you can track the order number. If for some reason the order is missing or delayed, you can search by the order number to locate the order and find out what caused the issue. </p>
+                            <p>Tracking fields let you identify and find specific integration instances. A tracking field associates an integration instance with a business identifier. You must define at least one tracking field per integration.</p>
+                            <p>For example, for an integration that processes orders, you can track the integration by an order number. If for some reason the order is missing or delayed, you can search by the order number to locate the order and find out what caused the issue. </p>
                             <ol>
                                 <li><p>In the <strong>Integration</strong> canvas, click the error icon <img src="img/error.png" alt="Error icon" style="height: 15px; width: 15px;"/>&nbsp; next to the <strong>Last Saved</strong> field.</p>
                                 	<p>Hover over the error to see the detailed error description. In this case, the error should indicate that you need to define a primary business identifier for tracking.</p></li>
                                 <li>Click <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/> next to the <strong>Last Saved</strong> field.</li>
                                 <li>Select <strong>Tracking</strong>.</li>
-                                <li>In the <strong>Source</strong> tree, expand the <strong>execute</strong>, and then expand the <strong>TemplateParameters</strong> node.</li>
+                                <li>In the <strong>Source</strong> tree, expand the <strong>execute</strong> node, and then expand the <strong>TemplateParameters</strong> node.</li>
                                 <li><p>Drag the <strong>SubscriptionProductPuid</strong> to the first row of the <strong>Tracking Fields</strong> table.</p>
                                 	<p>The first field in the list is the primary tracking field. It's used as the primary index to find an integration instance.</p>
                                 </li>
@@ -538,7 +548,7 @@
                                     </div>
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
                                 </li>
-                                <li><p>Click <img src="img/activate.png" alt="Activate icon" style="height: 17px; width: 17px;"/>.</p>
+                                <li><p>Click <img src="img/activate.png" alt="Activate icon" style="height: 17px; width: 17px;"/> to activate your integration.</p>
                                 </li>
                                 <li><p>In the <strong>Activate Integration</strong> dialog select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
                                 	<p>Select <strong>Enable Tracing</strong> to keep a record of all the steps the integration performed.</p>
@@ -575,11 +585,11 @@
                                     </div>
                                 </li>
                                 <li>Click <img src="img/run.png" alt="Menu icon" style="height: 15px; width: 15px;"/> and select <strong>Test</strong>.</li>
-                                <li><p>On the <strong>Test</strong> page, configure the following URI parameters:</p>
+                                <li><p>On the <strong>Test</strong> page, configure the following URI Parameters:</p>
                                 	<ul>
 	                                	<li><strong>SubscriptionProductPuid</strong>: <code class="allow-copy"><span>3021-PRDT-2005</span></code></li>
                                 	</ul>
-                                	<p>These requested values are the template parameters that you specified in the endpoint URI that triggers the integration.</p>
+                                	<p>These are the template parameters that you specified in the relative endpoint URI that triggers the integration.</p>
                                 </li>
                                 <li>Click the <strong>Body</strong> tab.</li>
                                 <li>Enter the following JSON:                                	
@@ -596,9 +606,11 @@
                                 <li><p>Click <strong>Test</strong>.</p>
                                 		<p>A confirmation message informing you that the request was submitted appears.</p>
                                 </li>
-								<li>Expand the <strong>Response</strong> section to verify that you got a successful response.</li>                               		                                								<li><p>Click the <strong>Instance Id</strong> link.</p>
-										<p>The <strong>Tracking</strong> page appears. This page shows an outline of the integration you just tested with the runtime details.</p>
-										<p><img src="img/screenshots/integration/tracking-details.png" width="600px"/></p>										
+                                <li>Expand the <strong>Response</strong> section to verify that you got a successful response and verify the <strong>Status</strong> is <strong>200 OK</strong>.</li>
+                                <li>
+                                    <p>Click the <strong>Instance Id</strong> link.</p>
+									<p>The integration <strong>Tracking</strong> page appears. This page shows an outline of the integration you just tested. Note the counter over the <strong>ForEachBillLine</strong> activity indicating this loop was executed 1 time since your payload only had a single Bill Line.</p>
+									<p><img src="img/screenshots/integration/tracking-details.png" width="600px"/></p>										
 								</li>                         
                             </ol>
                         </section>
@@ -606,17 +618,13 @@
 <!-- ########## VIEW TRACKING INFORMATION ########## -->                        
                         <section> 
                             <h2 id="section_11" role="button" style="text-align: left;">View Tracking Information</h2>
-                            <p>The tracking information shows us the path our integration followed as well as any payload data associated with it.</p>
+                            <p>The <strong>Activity Stream</strong> shows us each activity that was executed during our integration as well as any messages and payloads exchanged.</p>
                             <ol>
 	                            <li><p>Click <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/> and select <strong>View Activity Stream</strong>.</p>
 	                            	<p>The <strong>Activity Stream</strong> pane displays the list of activities.</p>
 	                            	<p><img src="img/screenshots/integration/activity-stream.png" width="400px"/></p>
 	                            </li>
 	                            <li>Click <strong>Message</strong> or <strong>Payload</strong> to view the payload data for a specific activity.
-	                            </li>
-	                            <li><p>Click <img src="img/maximize.png" alt="Maximize icon" style="height: 15px; width: 15px;"/> to maximize the payload view.</p>
-	                            	<p>You can now see a maximized view of the request payload. The request payload includes the body you entered, and the template or path parameters. </p>
-	                            	<p>Notice that you can also click other payloads and messages to view their associated payloads.</p>
 	                            </li>
                             </ol>
                         </section>   
