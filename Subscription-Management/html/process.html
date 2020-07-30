@@ -496,8 +496,44 @@
 								<li><p>Let's preview the behavior you just added to the form controls:</p>
 									<ol type="a">
 										<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
-										<li>From the <strong>Subscription</strong> list, select <code class="allow-copy"><span>New Start Gyms - 3021</span></code>.</li>
-										<li>Now select the <strong>Product</strong> control and note the list of products for the selected subscription.</li>
+
+										<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+												<p>    
+													<code class="allow-copy">                           
+														<span>
+															<em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em>
+														</span>
+													</code>
+												</p>
+											</div>
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+												<p class="warning-text">
+													<a style="color: #e3503c" href="#oicEnvironment">
+														Select your OIC Environment to get your Subscription.
+													</a>
+												</p>
+											</div>
+										<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
+											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+												<p>  
+													<code class="allow-copy">
+														<span>Product - 
+															<em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>
+														</span>
+													</code>
+												</p>
+											</div>
+				
+											<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+												<p class="warning-text">
+													<a style="color: #e3503c" href="#userNumber">
+														Enter your User Number to find your Product.
+													</a>
+												</p>
+											</div>  		
+										</li>
+
 										<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
 									</ol>
 								</li>
@@ -569,11 +605,48 @@
 								<li><p>Let's preview the behavior you just added to the table control:</p>
 									<ol type="a">
 										<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
-										<li><p>From the <strong>Subscription</strong> list, select <code class="allow-copy"><span>New Start Gyms - 3021</span></code>.</p></li>
-										<li>
-											<p>From the <strong>Product</strong> list, select <code class="allow-copy"><span>1 - SR41110</span></code>.</p>
-											<p>The Bill Lines table should load with the bill lines for the select product.</p>
+
+										<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+												<p>    
+													<code class="allow-copy">                           
+														<span>
+															<em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em>
+														</span>
+													</code>
+												</p>
+											</div>
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+												<p class="warning-text">
+													<a style="color: #e3503c" href="#oicEnvironment">
+														Select your OIC Environment to get your Subscription.
+													</a>
+												</p>
+											</div>
+										<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
+											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+												<p>  
+													<code class="allow-copy">
+														<span>Product - 
+															<em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>
+														</span>
+													</code>
+												</p>
+											</div>
+				
+											<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+												<p class="warning-text">
+													<a style="color: #e3503c" href="#userNumber">
+														Enter your User Number to find your Product.
+													</a>
+												</p>
+											</div>  		
 										</li>
+
+										<li>
+											<p>The Bill Lines table should load with the bill lines for the selected product.</p>
+										</li>
+
 										<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
 									</ol>
 								</li>
@@ -742,7 +815,7 @@
 									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 										<p class="warning-text">
 											<a style="color: #e3503c" href="#userNumber">
-												Enter your User Number to specify your unique Process App Title.
+												Enter your User Number to specify your Process App Title.
 											</a>
 										</p>
 									</div>  
@@ -750,12 +823,30 @@
 										<p>The process start form appears.</p>
 										<p>Typically, this form would be hosted in a customer portal where the customer can self-report their usage. The customer would select the subscription and products that they want to report. They would then enter the usage data.</p>
 									</li>
-									<li><p>From the <strong>Subscription</strong> control, select <code class="allow-copy"><span>New Start Gyms - 3021</span></code>.</p></li>
-									<li>From the <strong>Product</strong> control, select the product that has been assigned to your user:
+									<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
+										<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+											<p>    
+												<code class="allow-copy">                           
+													<span>
+														<em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em>
+													</span>
+												</code>
+											</p>
+										</div>
+										<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+											<p class="warning-text">
+												<a style="color: #e3503c" href="#oicEnvironment">
+													Select your OIC Environment to get your Subscription.
+												</a>
+											</p>
+										</div>
+									<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
 										<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
 											<p>  
 												<code class="allow-copy">
-													<em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em><span> - SR41101</span>
+													<span>Product - 
+														<em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>
+													</span>
 												</code>
 											</p>
 										</div>
@@ -763,12 +854,13 @@
 										<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 											<p class="warning-text">
 												<a style="color: #e3503c" href="#userNumber">
-													Enter your User Number to find your unique Product.
+													Enter your User Number to find your Product.
 												</a>
 											</p>
 										</div>  
 	
-										<p>Since you are working on a shared environment, it is important to use the Product assigned to you to avoid conflicting with others who are also working on this lab.</p>
+										<p>Since you are working on a shared environment, it is important to use the Subscription and Product assigned to you to avoid conflicting with others who are also working on this lab.</p>
+									</li>
 									<li>In the <strong>Bill Lines</strong> table, update the <strong>Usage Quantity</strong> fields of your choice.</li>
 									<li><p>Click <strong>Submit</strong>.</p>
 										The request to accept this usage data has now been submitted. In our simple process flow, this request is routed for approval. Since you are perfoming both the customer and approver role, you now get to approve the request you just submitted.
