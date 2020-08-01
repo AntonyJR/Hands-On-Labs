@@ -88,6 +88,10 @@
                                 <li>ERP Cloud</li>
                                 <li>FTP Server</li>
                             </ul>
+                            <p>For this lab you will need the following:</p>
+                            <ul>
+                                <li>FTP Client</li>
+                            </ul>
                             <hr>
 
                             <h3>Get Your Oracle Integration (OIC) Environment</h3>
@@ -228,13 +232,13 @@
 
                             <ul>
                                 <li>
-                                    <strong>FTP URL</strong>:
+                                    <strong>FTP Server</strong>:
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>    
                                             <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
                                                 <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : 'Select an FTP Environment above.'"></em></p>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
                                                 </span>
                                             </a>
                                         </p>
@@ -242,7 +246,47 @@
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#ftpEnvironment">
-                                                Select your FTP environment to get your FTP URL.
+                                                Select your FTP environment to get your FTP Server.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP Port</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Port.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>Protocol</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Protocol.
                                             </a>
                                         </p>
                                     </div>
@@ -253,7 +297,7 @@
                                         <p>   
                                             <code class="allow-copy">
                                                 <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an FTP environment above.'"></em></p>                                       
+                                                    <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
                                                 </span>
                                             </code>
                                         </p>
@@ -267,6 +311,7 @@
                                     </div>
                                 </li>
                                 <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+
                             </ul>
 
                         </section>
@@ -408,7 +453,7 @@
                                     <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
                                     <img src="img/screenshots/integration/horizontal-layout.png" width="600px"/>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -418,29 +463,40 @@
                                 <li>Select the <strong>Map to InitiateExtract</strong> action.</li>
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
+                                    <p>Note: Ignore the suggestion for recommended mappings.</p>
                                 </li>
                                 <li>In the <strong>Target</strong> section, expand the <strong>exportBulkData</strong> element.</li>
                                 <li>
-                                    <p>To create a literal mapping:</p>
+                                    <p>In cases where you are not mapping from source to target, for example when the target requires a literal value or expression, you need to manually create the target node:</p>
                                         <ol type="a">
                                             <li>Right-mouse click on the desired node and select <strong>Create Target Node</strong>.</li>
-                                            <li>In the <strong>Expression</strong> editor at the bottom of the page, click the <strong>Set Text</strong> button (<strong>A</strong>)</li>
-                                            <li>Verify the Expression editor title changes to <strong>Text for: </strong> your selected node name.</li>
-                                            <li>Enter the literal data and click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor.</li>
+                                            <li>
+                                                <p>Enter the desired literal value or expression in the Expression editor at the bottom of the page.</p>
+                                                <br>
+                                                <p>Note: Literal values need to be enclosed in &quot;  &quot;</p>
+                                                <p>The literal values include in this lab guide are already enclosed in &quot;  &quot;, so please do not add addition quotes.</p>
+                                            </li>
+                                            <!--<li>In the <strong>Expression</strong> editor at the bottom of the page, click the <strong>Set Text</strong> button (<strong>A</strong>)</li>-->
+                                            <!--<li>Verify the Expression editor title changes to <strong>Text for: </strong> your selected node name.</li>-->
+                                            <li>
+                                                <p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the data.</p>
+                                                <p>Verify a graphic is added to the mapping canvas indicating your target node has the literal or expression correctly mapped.</p>
+                                                <p><img src="img/screenshots/integration/literal_expression.png" alt="Tracking selection" style="width: 400px;"/></p>
+                                            </li>
                                         </ol>
                                 </li>
                                 <li><p>Map the fields under the <strong>exportBulkData</strong> element to the following literal values:</p>
                                     <ul>
-                                        <li><strong>jobName</strong>: <code class="allow-copy"><span>oracle/apps/ess/financials/commonModules/shared/common/outbound,FinOutboundProcess</span></code></li>
-                                        <li><strong>parameterList</strong>: <code class="allow-copy"><span>"92,/oracle/apps/ess/financials/commonModules/shared/common/outbound;PayablesTransactionsExtract,BIPREPORT,FULL_EXTRACT,#NULL,300000046987012,#NULL,#NULL,#NULL,#NULL,#NULL,12-19,N,N,300000046975971,#NULL,#NULL,#NULL,FULL_EXTRACT,#NULL,#NULL,#NULL,PayablesTransactionsExtract,#NULL"</span></code></li>
-                                        <li><strong>jobOptions</strong>: <code class="allow-copy"><span>ExtractFileType=ALL</span></code></li>
-                                        <li><strong>callbackURL</strong>: leave empty. We will assign a value after we design and activate the callback flow.</li>
+                                        <li><strong>jobName</strong>: <code class="allow-copy"><span>&quot;oracle/apps/ess/financials/commonModules/shared/common/outbound,FinOutboundProcess&quot;</span></code></li>
+                                        <li><strong>parameterList</strong>: <code class="allow-copy"><span>&quot;92,/oracle/apps/ess/financials/commonModules/shared/common/outbound;PayablesTransactionsExtract,BIPREPORT,FULL_EXTRACT,#NULL,300000046987012,#NULL,#NULL,#NULL,#NULL,#NULL,12-19,N,N,300000046975971,#NULL,#NULL,#NULL,FULL_EXTRACT,#NULL,#NULL,#NULL,PayablesTransactionsExtract,#NULL&quot;</span></code></li>
+                                        <li><strong>jobOptions</strong>: <code class="allow-copy"><span>&quot;ExtractFileType=ALL&quot;</span></code></li>
+                                        <li><strong>callbackURL</strong>: skip this mapping for now. We will assign a value after we design and activate the callback flow.</li>
                                         <li><strong>notificationCode</strong>: <code class="allow-copy"><span>30</span></code></li>
                                     </ul>
                                 </li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -479,7 +535,6 @@
                         <section>
                             <h2>Create the ERP Bulk Extract Callback Integration</h2>
                             <ol>
-                                <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                                 <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
                                 <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
                                 <li>Click <strong>Select</strong>.</li>
@@ -547,7 +602,7 @@
                                     <p>On the <strong>Integration</strong> canvas, from the <strong>Layout</strong> list, select <strong>Horizontal</strong>.</p>
                                     <img src="img/screenshots/integration/horizontal-layout.png" width="600px"/>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
 
                             </ol>
                         </section>
@@ -566,7 +621,7 @@
                                     <p>The <strong>Configure SOAP Endpoint<strong> wizard appears.</p>
                                 </li>
 
-                                <li>Name your endpoint <code class="allow-copy"><span>ownloadFile</span></code>.</li>
+                                <li>Name your endpoint <code class="allow-copy"><span>DownloadFile</span></code>.</li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>
                                     <p>On the <strong>Operations</strong> page, from the <strong>Operation</strong> list, select <strong>getDocumentsForFilePrefix</strong>.</p>
@@ -583,7 +638,7 @@
                                     <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -608,11 +663,22 @@
                                     </ol>
                                     <p>The complete expression should read: <code class="allow-copy"><span>concat ( &quot;ESS_&quot;, //requestId, &quot;_BIPReport0&quot; )</span></code></p>
                                 </li>
-                                <li>Map the <strong>account</strong> element to the following expression: <code class="allow-copy"><span>&quot;fin$/payables$/export$&quot;</span></code></li>
-                                <li>Map the <strong>comments</strong> element to the following expression: <code class="allow-copy"><span>concat ( &quot;processedby=&quot;, //requestId )</span></code></li>
+                                <li>
+                                    <p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the expression.</p>
+                                </li>
+
+                                <li>
+                                    Map the <strong>account</strong> element to the following expression: <code class="allow-copy"><span>&quot;fin$/payables$/export$&quot;</span></code>
+                                    <ol type="a">
+                                        <li>Right-mouse click on the account node and select <strong>Create Target Node</strong>.</li>
+                                        <li><p>Enter the literal value.</p></li>
+                                        <li><p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the data.</p></li>
+                                    </ol>
+                                </li>
+                                <li>In the same way. map the <strong>comments</strong> element to the following expression: <code class="allow-copy"><span>concat ( &quot;processedby=&quot;, //requestId )</span></code></li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -635,36 +701,39 @@
                                 <li><p>On the <strong>Operations</strong> page, configure the following properties:</p>
                                     <ol type="a">
                                         <li>From the <strong>Select Operation</strong> list, select <strong>Write File</strong>.</li>
+
+
                                         <li>
                                             In the <strong>Output Directory</strong> field, enter
-                                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                            <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                                 <p>
-                                                    <code class="allow-copy"><span>&#x2f;upload&#x2f;public_ftp&#x2f;<em data-bind="text: user_number() ? user_number : 'Enter User Number above.'"></em></span></code>
+                                                    <code class="allow-copy">
+                                                        <span>
+                                                            /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
+                                                        </span>
+                                                    </code>
                                                 </p>
                                             </div>
-                
+                                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#oicEnvironment">
+                                                        Select your OIC Environment to get your FTP directory name.
+                                                    </a>
+                                                </p>
+                                            </div>
                                             <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                                 <p class="warning-text">
                                                     <a style="color: #e3503c" href="#userNumber">
-                                                        Enter your User Number to specify your unique output directory.
+                                                        Enter your User Number to specify your FTP directory name.
                                                     </a>
                                                 </p>
-                                            </div> 
-                                        </li>
+                                            </div>   
+                                        </li>    
+
                                         <li>In the <strong>File Name Pattern</strong> field, enter
-                                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                                <p>
-                                                    <code class="allow-copy"><span>PayablesExtract<em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span></code> 
-                                                </p>
-                                            </div>
-                
-                                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                                <p class="warning-text">
-                                                    <a style="color: #e3503c" href="#userNumber">
-                                                        Enter your User Number to specify your unique file name pattern.
-                                                    </a>
-                                                </p>
-                                            </div>        
+                                            <p>
+                                                <code class="allow-copy"><span>PayablesExtract</span></code> 
+                                            </p>
                                         </li>
                                     </ol>
                                 </li>
@@ -677,7 +746,7 @@
                                     <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -693,7 +762,7 @@
                                 <li>Map the <strong>Content</strong> element in the <strong>Source</strong> section to the <strong>FileReference</strong> element in the <strong>Target</strong> section.</li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -748,7 +817,6 @@
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
                                 </li>
                                 <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
                                 <li>
                                     <p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
                                     <p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
@@ -759,7 +827,7 @@
                                         message appears at the top of the page, and the status will change to <span style="color:#86BD66;">&#x25CF;</span> Active.</p>
                                 </li>
 
-                                <li>Click <img src="img/how-to-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
+                                <li>Click <img src="img/msg-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>Copy the link in the <strong>WSDL URL</strong> without the <code>?wsdl</code> at the end.</li>
 
                             </ol>
@@ -783,11 +851,16 @@
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
-                                <li>In the <strong>Target</strong> section,  select the <strong>callbackURL</strong> element.</li>
-                                <li>In the <strong>Expression</strong> window, enter a string with the callback URL you copied before.</li>
+                                <li>In the <strong>Target</strong> section, right-mouse click on the callbackURL node and select <strong>Create Target Node</strong>.</li>
+                                <li>In the <strong>Expression</strong> window, paste the WSDL, enclosed in quotes, that you copied from the activated callback integration.</li>
+                                <li><p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the expression.</p>
+                                    <p>Your mapping should look similiar to this.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/callback-mapping.png" alt="Tracking selection" style="width: 700px;"/></p>
+                                </li>
                                 <li>Click <strong>Validate</strong>.</li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -812,7 +885,6 @@
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
                                 </li>
                                 <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
                                 <li>
                                     <p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
                                     <p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
@@ -831,13 +903,28 @@
                             <h2 >Run the ERP Bulk Extract Integration</h2>
                             <p> </p>
                             <ol>
-                                <li>Click <img src="img/how-to-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li><p>Click <strong>Submit Now</strong> twice.</p>
+                                <li>Click <img src="img/vb-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
+                                <li><p>Click <strong>Submit Now</strong>, and then <strong>Submit Now</strong> again.</p>
                                     <p>A confirmation message with a link to track instance appears.</p>
                                 </li>
-                                <li>From the <strong>Navigation</strong> menu, select <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select <strong>Tracking</strong>.</li>
-                                <li><p>Click the job and confirm that the flow was successfully completed.</p>
-                                    <p>The flow is colored in green to indicate that it ran successfully.</p>
+                                <li><p>Click <strong>Integrations</strong> in the top level navigation pane to return to <strong>Home</strong>.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/integration-home-navigation.png" alt="Tracking selection" style="width: 200px;"/></p>
+                                </li>
+                                <li>From <strong>Home</strong>, click <strong>Monitoring</strong>, then <strong>Integrations</strong>, then <strong>Tracking</strong>.</li>
+                                <li><p>Find your the integration instance with your integration name and click on the <strong>startTime</strong> link top open the integration instance flow.</p>
+                                    <p>Confirm the flow was successfully completed.</p>
+                                </li>
+                                <li>
+                                    <p>Click <img src="img/menu.png" alt="Menu" style="height: 20px; width: 20px;"/> and select <strong>View Activity Stream</strong>.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/view-activitystream.png" alt="Tracking selection" style="width: 200px;"/></p>
+                                </li>
+                                <li>
+                                    <p>Click on the last <strong>Message</strong> link in the <strong>Activity Stream</strong> labeled <strong>received from InitiateExtract</strong>
+                                    and copy the Process Id returned in the <strong>result</strong> data element.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/actvitystream-export-processid.png" alt="Tracking selection" style="width: 400px;"/></p>
                                 </li>
                             </ol>
                         </section>
@@ -848,38 +935,180 @@
                             <h2 >Verify</h2>
                             <p> </p>
                             <ol>
-                                <li><p>Log in to the ERP Cloud Service using these values:</p>
+                                <li><p>Log in to the ERP Cloud:</p>
                                     <ol type="a">
-                                        <li><strong>URL</strong>: <code class="allow-copy"><span>https://your_host/homePage/faces/AtkHomePageWelcome</span></code></li>
+
+
                                         <li>
-                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                                <strong>User name</strong>: <code class="allow-copy"><span
-                                                    data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select the ERP Cloud Environment above'"></span></code>
+                                            <strong>ERP Cloud URL</strong>:
+                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>    
+                                                    <a class="allow-copy" target="_blank"
+                                                    data-bind="attr: { href: selectedAppEnvironment() ? selectedAppEnvironment().url : '' }">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : ''"></em></p>
+                                                        </span>
+                                                    </a>
+                                                </p>
                                             </div>
                                             <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your ERP Cloud environment in the Before You Begin section to get a customized user.</a></p>
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#erpEnvironment">
+                                                        Select your ERP Cloud environment to get your ERP Cloud URL.
+                                                    </a>
+                                                </p>
                                             </div>
                                         </li>
-                                        <li><strong>Password</strong>: use the credentials listed in the file <code>ERPIntegrationWorkshopEnv.txt</code></li>
+                                        <li>
+                                            <strong>ERP Cloud User Name</strong>:
+                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>   
+                                                    <code class="allow-copy">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : ''"></em></p>                                       
+                                                        </span>
+                                                    </code>
+                                                </p>
+                                            </div>
+                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#erpEnvironment">
+                                                        Select your ERP Cloud environment to get your ERP Cloud Username.
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li><strong>ERP Cloud Password</strong>: Your password will be provided by the instructor.</li>
+
                                     </ol>
-                                    <p>Notice that the scheduled processes are specific to user. To check scheduled process, log in with the
-                                        same user that you used to create ERP connection.</p>
                                 </li>
                                 <li>Select the <strong>Tools</strong> tab.</li>
                                 <li>Click <strong>Scheduled Processes</strong>.</li>
-                                <li>Verify that the <strong>Payables transaction</strong> job completed successfully, and write down the process ID.</li>
-                                <li>In <strong>Oracle Integration</strong>, in the Tracking page, search for the process ID you wrote down.</li>
-                                <li><p>Click the instance and confirm that the flow was successfully completed.</p>
-                                    <p>The flow is colored in green to indicate that it ran successfully.</p>
+                                <li>
+                                    <p>Expand <strong>Search</strong> and search for the <strong>Process Id</strong> returned from your integration.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/export-processid.png" alt="Tracking selection" style="width: 700px;"/></p>
                                 </li>
-                                <li><p>Log in to the FTP server and verify that the payables transaction extract file exists.</p>
+                                <li>
+                                    <p>Click the process to open and verify that the <strong>Payables transaction</strong> job completed successfully.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/successful-export.png" alt="Tracking selection" style="width: 400px;"/></p>
+                                </li>
+
+
+
+                                <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
                                     <ul>
-                                        <li><strong>FTP URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select the FTP Environment above'"></em></span></code></li>
-                                        <li><strong>FTP User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select the FTP Environment above'"></em></span></code></li>
-                                        <li><strong>Password:</strong> will be provided during the training session.</li>
+                                        <li>
+                                            <strong>FTP Server</strong>:
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>    
+                                                    <a class="allow-copy" target="_blank"
+                                                    data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                                        Select your FTP environment to get your FTP Server.
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <strong>FTP Port</strong>:
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>    
+                                                    <a class="allow-copy" target="_blank"
+                                                    data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                                        Select your FTP environment to get your FTP Port.
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <strong>Protocol</strong>:
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>    
+                                                    <a class="allow-copy" target="_blank"
+                                                    data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
+                                                        </span>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                                        Select your FTP environment to get your FTP Protocol.
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <strong>FTP User Name</strong>:
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                                <p>   
+                                                    <code class="allow-copy">
+                                                        <span>
+                                                            <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
+                                                        </span>
+                                                    </code>
+                                                </p>
+                                            </div>
+                                            <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                                <p class="warning-text">
+                                                    <a style="color: #e3503c" href="#ftpEnvironment">
+                                                        Select your FTP environment to get your FTP Username.
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+    
                                     </ul>
                                 </li>
-                                <li>Download the extract file from the FTP server and verify it.</li>
+                                <li>
+                                    Open the following FTP directory and verify the PayablesExtract file exists.
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>
+                                            <code class="allow-copy">
+                                                <span>
+                                                    /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
+                                                </span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your FTP directory name.
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to specify your FTP directory name.
+                                            </a>
+                                        </p>
+                                    </div>   
+                                </li>    
+                                <li>Download the PayablesExtract file and review.</li>
                             </ol>
                         </section>
                         <hr>

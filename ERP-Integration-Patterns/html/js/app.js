@@ -81,14 +81,16 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       self.selectedAppEnvironment = ko.observable()
 
       class FTPEnvironment {
-        constructor(name, url, usernamePrefix) {
+        constructor(name, server, port, protocol, usernamePrefix) {
           this.name = name;
-          this.url = url;
+          this.server = server;
+          this.port = port;
+          this.protocol = protocol;
           this.usernamePrefix = usernamePrefix;
         }
       }      
       self.availableFTPEnvironments = ko.observableArray([
-        new FTPEnvironment("OCI FTP Server", "http://sftp.us2.cloud.oracle.com/", "us258614")
+        new FTPEnvironment("OCI FTP Server", "sftp.us2.cloud.oracle.com", "22", "SFTP", "us258614")
       ]),
       self.selectedFTPEnvironment = ko.observable()
     }
