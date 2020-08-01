@@ -96,6 +96,11 @@
                                 <li>FTP server</li>
                                 <li>Template to generate an ERP Cloud FBDI import file</li>
                             </ul>
+                            <p>For this lab you will need the following:</p>
+                            <ul>
+                                <li>FTP Client</li>
+                            </ul>
+
                             <hr>
 
                             <h3>Get Your Oracle Integration (OIC) Environment</h3>
@@ -236,13 +241,13 @@
 
                             <ul>
                                 <li>
-                                    <strong>FTP URL</strong>:
+                                    <strong>FTP Server</strong>:
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>    
                                             <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
                                                 <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
                                                 </span>
                                             </a>
                                         </p>
@@ -250,7 +255,47 @@
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#ftpEnvironment">
-                                                Select your FTP environment to get your FTP URL.
+                                                Select your FTP environment to get your FTP Server.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP Port</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Port.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>Protocol</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Protocol.
                                             </a>
                                         </p>
                                     </div>
@@ -328,55 +373,7 @@
                                 <p>The zip file should contain three files: <code>ApInvoiceInterface.csv</code>, <code>ApInvoiceLinesInterface.csv</code>, and <code>APTEST.PROPERTIES</code>.</p>
                                 <p><em>Note</em>: Failing to copy the <code>APTEST.PROPERTIES</code> file will prevent the import payables job from running.</p>
                             </li>
-                            <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
-                                <ul>
-                                    <li>
-                                        <strong>FTP URL</strong>:
-                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                            <p>    
-                                                <a class="allow-copy" target="_blank"
-                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
-                                                    </span>
-                                                </a>
-                                            </p>
-                                        </div>
-                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
-                                            <p class="warning-text">
-                                                <a style="color: #e3503c" href="#ftpEnvironment">
-                                                    Select your FTP environment to get your FTP URL.
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <strong>FTP User Name</strong>:
-                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                            <p>   
-                                                <code class="allow-copy">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
-                                                    </span>
-                                                </code>
-                                            </p>
-                                        </div>
-                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
-                                            <p class="warning-text">
-                                                <a style="color: #e3503c" href="#ftpEnvironment">
-                                                    Select your FTP environment to get your FTP Username.
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
-                                </ul>
-                            </li>
-                            <li><p>If the following directory doesn't exist in the FTP server, create it:</p>
-                                <p><code class="allow-copy"><span>/upload/public_ftp/<em
-                                        data-bind="text:user_number() || 'your_user_number'"></em>/in</span></code></p>
-                            </li>
-                            <li>Copy the <code>apinvoiceimport.zip</code> file to the directory mentioned in the previous step.</li>
+
                         </ol>
                         <p><i>Note</i>: For the purpose of this lab we won't change the values for the <strong>Business
                             Unit</strong>, <strong>Supplier Name</strong>, <strong>Supplier Number</strong>,
@@ -391,16 +388,16 @@
                         <h2>Upload the FBDI File to the FTP File Server</h2>
                         <p></p>
                         <ol>
-                            <li><p>Log in to the FTP server.</p>
+                            <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
                                 <ul>
                                     <li>
-                                        <strong>FTP URL</strong>:
+                                        <strong>FTP Server</strong>:
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>    
                                                 <a class="allow-copy" target="_blank"
-                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().url : '' }">
+                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
                                                     <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().url : ''"></em></p>
+                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
                                                     </span>
                                                 </a>
                                             </p>
@@ -408,7 +405,47 @@
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
                                             <p class="warning-text">
                                                 <a style="color: #e3503c" href="#ftpEnvironment">
-                                                    Select your FTP environment to get your FTP URL.
+                                                    Select your FTP environment to get your FTP Server.
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <strong>FTP Port</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>    
+                                                <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
+                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP Port.
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <strong>Protocol</strong>:
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                            <p>    
+                                                <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
+                                                    <span>
+                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
+                                                    </span>
+                                                </a>
+                                            </p>
+                                        </div>
+                                        <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#ftpEnvironment">
+                                                    Select your FTP environment to get your FTP Protocol.
                                                 </a>
                                             </p>
                                         </div>
@@ -433,29 +470,35 @@
                                         </div>
                                     </li>
                                     <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+
                                 </ul>
                             </li>
                             <li>
-                                <p>If the following directory doesn't exist in the FTP server, create it:</p>
-                                <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                Copy the <code>apinvoiceimport.zip</code> file to the following FTP directory:
+                                <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                     <p>
                                         <code class="allow-copy">
                                             <span>
-                                                /upload/public_ftp/<em data-bind="text: user_number() ? user_number() : ''"></em>/in
+                                                /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
                                             </span>
                                         </code>
                                     </p>
                                 </div>
-    
+                                <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                    <p class="warning-text">
+                                        <a style="color: #e3503c" href="#oicEnvironment">
+                                            Select your OIC Environment to get your FTP directory name.
+                                        </a>
+                                    </p>
+                                </div>
                                 <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                     <p class="warning-text">
                                         <a style="color: #e3503c" href="#userNumber">
                                             Enter your User Number to specify your FTP directory name.
                                         </a>
                                     </p>
-                                </div>        
+                                </div>  
                             </li>
-                            <li>Copy the <code>apinvoiceimport.zip</code> file to the directory mentioned in the previous step.</li>
                         </ol>
                         <p><i>Note</i>: For the purpose of this lab we won't change the values for the <strong>Business
                             Unit</strong>, <strong>Supplier Name</strong>, <strong>Supplier Number</strong>,
@@ -590,17 +633,23 @@
                             <li><p>Enter the following values</p>
                                 <ol type="a">
                                     <li>
-                                        <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                             <p>
-                                                Input Directory: 
+                                                Input Directory:
                                                 <code class="allow-copy">
                                                     <span>
-                                                        /upload/public_ftp/<em data-bind="text: user_number() ? user_number() : ''"></em>/in
+                                                        /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
                                                     </span>
                                                 </code>
                                             </p>
                                         </div>
-            
+                                        <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                            <p class="warning-text">
+                                                <a style="color: #e3503c" href="#oicEnvironment">
+                                                    Select your OIC Environment to get your FTP directory name.
+                                                </a>
+                                            </p>
+                                        </div>
                                         <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                             <p class="warning-text">
                                                 <a style="color: #e3503c" href="#userNumber">
@@ -808,7 +857,7 @@
                         <h2>Run the Integration</h2>
                         <p></p>
                         <ol>
-                            <li><p>Click <strong>Run</strong> <img src="img/how-to-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>, then click <strong>Submit Now</strong> and then <stong>Submit Now</stong> again when prompted.</p>
+                            <li><p>Click <strong>Run</strong> <img src="img/vb-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>, then click <strong>Submit Now</strong> and then <stong>Submit Now</stong> again when prompted.</p>
                                 <p>A confirmation message with a link to track instance appears.</p>
                             </li>
                             <li><p>Click the link to track the instance.</p>
