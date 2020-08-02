@@ -278,7 +278,6 @@
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Resource Configuration</strong> page, configure the following properties:
                                     <ol type="a">
-                                        <li><strong>Provide and operation name</strong>: <code class="allow-copy"><span>ShortBIPReport</span></code></li>
                                         <li><strong>What does this operation do?</strong>: <code class="allow-copy"><span>Retrieves ledgers from the ERP system.</span></code></li>
                                         <li><strong>What is the endpoint's relative resource URI</strong>: <code
                                                 class="allow-copy"><span>/BIP</span></code></li>
@@ -345,7 +344,7 @@
                                         <img src="img/screenshots/integration/horizontal-layout.png" width="600px"/>
                                     </p>
                                 </li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -359,23 +358,20 @@
                                     <img
                                             src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
-                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud Public Report Service</span></code> in the <strong>Search</strong> field.
+                                <li>Begin typing <code class="allow-copy"><span>ERP Cloud External Report Service</span></code> in the <strong>Search</strong> field.
                                 </li>
-                                <li>Select <strong>ERP Cloud Public Report Service</strong>.</li>
+                                <li>Select <strong>ERP Cloud External Report Service</strong>.</li>
                                 <li>In the <strong>Basic Info</strong> page, name your endpoint <code class="allow-copy"><span>GetBIPReport</span></code>.
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
-        <!--                        <li>From the <strong>Do you want to configure this as a callback invoke?</strong> options,-->
-        <!--                            select <strong>No</strong>.-->
                                 </li>
-        <!--                        <li>Click <strong>Next</strong>.</li>-->
                                 <li>On the <strong>Operations</strong> page, from the <strong>Select the Operation</strong>
                                     list, select <strong>runReport</strong>.
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>On the <strong>Headers</strong> page, click <strong>Next</strong>.</li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -388,24 +384,12 @@
                                 <li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/>.</p>
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
-                                <li><p>Map the <strong>UserID</strong>and <strong>Password</strong> fields:</p>
-                                    <ol type="a">
-                                        <li>In the <strong>Sources</strong> section, expand <strong>execute</strong>, and then
-                                            <strong>QueryParameters</strong>.
-                                        </li>
-                                        <li>In the <strong>Target</strong> section, under
-                                            <strong>OutboundSOAPRequestDocument</strong> expand <strong>Body</strong>, and
-                                            then expand <strong>runReport</strong>.
-                                        </li>
-                                        <li><p>Map the <strong>UserID</strong> field in the <strong>Sources</strong> section, to
-                                            the <strong>UserID</strong> field in the <strong>Target</strong> section.</p>
-                                            <p>To map an element, select the element from the <strong>Sources</strong> section,
-                                                then while clicking your mouse move it towards the target element. When you
-                                                reach the target element the line turns green and a check mark appears. </p>
-                                        </li>
-                                        <li><p>Map the <strong>Password</strong> field in the <strong>Sources</strong> section, to
-                                            the <strong>password</strong> field in the <strong>Target</strong> section.</p>
-                                    </ol>
+                                <li>In the <strong>Sources</strong> section, expand <strong>execute</strong>, and then
+                                    <strong>QueryParameters</strong>.
+                                </li>
+                                <li>In the <strong>Target</strong> section, under
+                                    <strong>OutboundSOAPRequestDocument</strong> expand <strong>Body</strong>, and
+                                    then expand <strong>runReport</strong>.
                                 </li>
                                 <li><p>Map the <strong>ReportAbsolutePath</strong> field:</p>
                                     <ol type="a">
@@ -425,19 +409,34 @@
                                         <li>Right click the <strong>name</strong> field.</li>
                                         <li>Click <strong>Create Target Node</strong>.</li>
                                         <li>In the <strong>Expression for name</strong> panel, enter <code
-                                                class="allow-copy"><span>"LedgerName"</span></code>.
+                                                class="allow-copy"><span>&quot;LedgerName&quot;</span></code>.
                                         </li>
                                         <li>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/>.
                                         </li>
-                                        <li>Click <img src="img/close.png" alt="Close icon" style="height: 15px; width: 15px;"/>.
+                                    </ol>
+                                </li>
+                                <li>In the <strong>Target</strong> section, under <strong>parameterNameValues</strong> expand
+                                    <strong>values</strong>.
+                                </li>
+                                <li>
+                                    <p>Map the <strong>LedgerName</strong> field in the <strong>Sources</strong> section, to the
+                                    <strong>item</strong> field located under <strong>values</strong> in the <strong>Target</strong> section.</p>
+                                </li>
+                                <li><p>Assign a value to the <strong>sizeOfDataChunkDownload</strong> field:</p>
+                                    <ol type="a">
+                                        <li>Right click the <strong>sizeOfDataChunkDownload</strong> field.</li>
+                                        <li>Click <strong>Create Target Node</strong>.</li>
+                                        <li>In the <strong>Expression for sizeOfDataChunkDownload</strong> panel, enter <code
+                                                class="allow-copy"><span>-1</span></code>.
+                                        </li>
+                                        <li>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/>.
                                         </li>
                                     </ol>
                                 </li>
-                                <li>In the <strong>Target</strong> section, under <strong>parameterNameValues</strong>expand
-                                    <strong>values</strong>.
-                                </li>
-                                <li>Map the <strong>LedgerName</strong> field in the <strong>Sources</strong> section, to the
-                                    <strong>item</strong> field located under <strong>values</strong> in the <strong>Target</strong> section.
+                                <li>
+                                    <p>Your map should like this:</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/bip-map-getbipreport.png" width="700px"/></p>
                                 </li>
                                 <li><p>Click <strong>Validate</strong>.</p>
                                     <p>A confirmation message appears.</p>
@@ -450,11 +449,13 @@
                                 <li>Click <img src="img/execute.png" alt="Execute icon" style="height: 15px; width: 15px;"/>
                                     <strong>Execute</strong>.
                                 </li>
-                                <li>Verify that the <strong>Target</strong> section shows the values that you have assigned to
-                                    the different fields.
+                                <li>
+                                    <p>Verify that the <strong>Target</strong> section shows the values that you have assigned to the different fields.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/target-test.png" width="600px"/></p>
                                 </li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -468,7 +469,7 @@
                                 <li>Hover over the outgoing arrow for the <strong>GetBIPReport</strong> activity and click <img
                                         src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
-                                <li>Type <code class="allow-copy"><span>Stage</span></code> in the <strong>Search</strong>
+                                <li>Type <code class="allow-copy"><span>Stage File</span></code> in the <strong>Search</strong>
                                     field.
                                 </li>
                                 <li><p>Select the action named <strong>Stage File</strong>.
@@ -519,7 +520,7 @@
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping ########## -->
@@ -535,7 +536,6 @@
                                 <li>In the <strong>Sources</strong> section, expand <strong>$GetBIPReport</strong>, then
                                     <strong>runReportResponse</strong>, and then <strong>runReportReturn</strong>.
                                 </li>
-        <!--                        <li>In the <strong>Target</strong> section, expand <strong>Write</strong>.</li>-->
                                 <li>Map the <strong>reportBytes</strong> field in the <strong>Sources</strong> section, to the
                                     <strong>opaqueElement</strong> field in the <strong>Target</strong> section.
                                 </li>
@@ -543,7 +543,7 @@
                                     <p>A confirmation message appears.</p>
                                 </li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -552,7 +552,7 @@
                         <section>
                             <h2>Read the File from Stage</h2>
                             <ol>
-                                <li>Download the <a href="../assets/bip-report-lab/GLCCReport1.csv" download="GLCCReport1.csv" target="_blank">GLCCReport1.csv</a> file.</li>
+                                <li>Download the <a href="../assets/bip-report-lab/GLCCReport.csv" download="GLCCReport.csv" target="_blank">GLCCReport.csv</a> file.</li>
                                 <li>
                                     <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
                                         and from the <strong>Data</strong> section, drag and drop <strong>Stage File</strong> to
@@ -604,7 +604,7 @@
                                 <li>On the <strong>Schema Options</strong> page, click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Format Definition</strong> page, specify the following values:</p>
                                     <ol type="a">
-                                        <li>Click <strong>Choose File</strong> and select the <code>GLCCReport1.csv</code> file you downloaded.</li>
+                                        <li>Click <strong>Choose File</strong> and select the <code>GLCCReport.csv</code> file you downloaded.</li>
                                         <li>In the <strong>Enter Record Name</strong> field, enter <code
                                                 class="allow-copy"><span>Ledger</span></code>.
                                         </li>
@@ -617,7 +617,7 @@
                                     <p>A summary of the properties you configured appears.</p>
                                 </li>
                                 <li>Review the summary and click <strong>Done</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
 
 <!-- ########## Define the Data Mapping########## -->
@@ -651,24 +651,29 @@
                                             <td>LEDGERNAME</td>
                                         </tr>
                                         <tr>
-                                            <td>SEGMENT1</td>
-                                            <td>SEGMENT1</td>
+                                            <td>SEGMENT3</td>
+                                            <td>SEGMENT3</td>
                                         </tr>
                                         <tr>
-                                            <td>SEGMENT2</td>
-                                            <td>SEGMENT2</td>
+                                            <td>SEGMENT4</td>
+                                            <td>SEGMENT4</td>
                                         </tr>
                                         <tr>
-                                            <td>CHART_OF_ACCOUNTS_ID</td>
-                                            <td>AccountID</td>
+                                            <td>FIN_CATEGORY</td>
+                                            <td>FIN_CATEGORY</td>
                                         </tr>
                                     </table>
+                                </li>
+                                <li>
+                                    <p>Your map should like this:</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/bip-map-to-shortbipreport.png" width="700px"/></p>
                                 </li>
                                 <li><p>Click <strong>Validate</strong>.</p>
                                     <p>A confirmation message appears.</p>
                                 </li>
                                 <li>Click <strong>Close</strong>.</li>
-                                <li>Click <strong>Save</strong>.</li>
+                                <li>Click <strong>Save</strong> to save the integration.</li>
                             </ol>
                         </section>
                         <hr>
@@ -727,10 +732,9 @@
                                     </div>
 
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
-                                    <img src="img/screenshots/ERP/hover-activate-bip-report.png" width="650px"/>
+                                    <img src="img/screenshots/integration/deactivated-status-icons.png" width="150px"/>
                                 </li>
                                 <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
-                                <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
                                 <li>
                                     <p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
                                     <p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
@@ -748,95 +752,65 @@
                         <section>
                             <h2>Run the Integration</h2>
                             <ol>
-                                <li>Open Postman.</li>
-                                <li>Create a new request.</li>
-                                <li>Name your request <code class="allow-copy"><span>Short BIP Report</span></code>.</li>
-                                <li>Create a collection named <code class="allow-copy"><span>OIC</span></code>.</li>
-                                <li>Create a folder named <code class="allow-copy"><span>OIC</span></code>.</li>
-                                <li>Save your request to the <strong>OIC</strong> folder.</li>
-                                <li>Enter the URL you copied before in the request URL field.</li>
-                                <li><p>Configure the query parameter to use the following values:</p>
-                                    <ul>
-                                        <li><strong>LedgerName</strong>: <code
-                                                class="allow-copy"><span>US Primary Ledger</span></code></li>
-                                        <li><strong>ReportAbsolutePath</strong>: <code class="allow-copy"><span>/Custom/Financials/GLCCReport.xdo</span></code>
-                                        </li>
-                                        <li><strong>UserID</strong>:
-                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                                <code class="allow-copy"><span><em
-                                                        data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'your_ERP_user'"></em></span></code>
-                                            </div>
-                                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
-                                                    your ERP Cloud environment in the Before You Begin section to get a
-                                                    customized
-                                                    user.</a></p>
-                                            </div>
-                                        </li>
-                                        <li><strong>Password</strong>: the ERP password that your instructor provided.</li>
-                                    </ul>
-                                </li>
-                                <li><p>Configure the authorization to use <strong>Basic Auth</strong> and your Oracle
-                                    Integration credentials.</p>
-                                    <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                        <p><strong>Oracle Integration User Name</strong>:
-                                            <code class="allow-copy"><span>
-                                                    <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
-                                                    data-bind="text: user_number()? user_number() :'your_user_number'"></em>
-                                                    </span>
-                                            </code>
-                                        </p>
+                                <li>We can test our integration right from Oracle Integration.</li>
+                                <li>
+                                    <p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>The name of your integration is <code>Short BIP Report <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
                                     </div>
                                     <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your
-                                            user number in the Before You Begin section to get a customized user.</a></p>
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your unique integration name.
+                                            </a>
+                                        </p>
                                     </div>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
-                                            Oracle Integration environment in the Before You Begin section to get a customized user.</a></p>
-                                    </div>
-                                    <p>The password will be provided by your instructor during the training session.</p>
+
+                                    <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                                    <img src="img/screenshots/integration/activated-status-icons.png" width="150px"/>
                                 </li>
-                                <li><p>Send the request.</p>
-                                    <p>The response you get should look similar to the following JSON:</p>
-                                    <pre><code>
-        [
-            {
-                “LEDGERNAME”: “US Primary Ledger”,
-                “SEGMENT1”: 101,
-                “SEGMENT2”: 10,
-                “AccountID”: 21
-            },
-            {
-                “LEDGERNAME”: “US Primary Ledger”,
-                “SEGMENT1”: 101,
-                “SEGMENT2”: 10,
-                “AccountID”: 21
-            },
-            {
-                “LEDGERNAME”: “US Primary Ledger”,
-                “SEGMENT1”: 101,
-                “SEGMENT2”: 10,
-                “AccountID”: 21
-            },
-            {
-                “LEDGERNAME”: “US Primary Ledger”,
-                “SEGMENT1”: 101,
-                “SEGMENT2”: 10,
-                “AccountID”: 21
-            }
-        ]
-                                    </code>
-                                    </pre>
+                                <li>Click <img src="img/vb-run.png" alt="Run icon" style="height: 15px; width: 15px;"/>.</li>
+                                <li>
+                                    <p>Click <strong>Test</strong>.</p>
                                 </li>
-                                <li>Open Oracle Integration.</li>
-                                <li>In the <strong>Navigation</strong> menu, select
-                                    <strong>Monitoring</strong>, then select <strong>Integrations</strong>, and then select
-                                    <strong>Tracking</strong>.
+                                <li><p>Configure the URI parameters:</p>
+                                    <ul>
+                                        <li><strong>ReportAbsolutePath</strong>: <code class="allow-copy"><span>/Custom/Financials/GLCCReport.xdo</span></code></li>
+                                        <li><strong>LedgerName</strong>: <code class="allow-copy"><span>US Primary Ledger</span></code></li>
+                                    </ul>
                                 </li>
-                                <li>Confirm that the flow was successfully completed. The flow is colored in green to indicate
-                                    that it ran successfully.
+                                <li>Click <strong>Test</strong> (in the upper right of the page).</li>
+                                <li>Expand the <strong>Response</strong> section to verify that you got a successful response and verify the <strong>Status</strong> is <strong>200 OK</strong>.</li>
+                               
+                               
+                                <li><p>Click <img src="img/oic-menu-icon.png" alt="Home icon" style="height: 15px; width: 15px;"/> to open the navigation panel.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/oic-menu.png" alt="OIC Navigation Menu" style="width: 200px;"/></p>
                                 </li>
+                               
+                               
+                                <li><p>Click <strong>Integrations</strong> in the top level navigation pane to return to <strong>Home</strong>.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/integration-home-navigation.png" alt="Home" style="width: 200px;"/></p>
+                                </li>
+                                <li>From <strong>Home</strong>, click <strong>Monitoring</strong>, then <strong>Integrations</strong>, then <strong>Tracking</strong>.</li>
+
+                                <li>
+                                    Find the integration with your integragtion name and click the <strong>Ledger Name</strong> link to open the integration instance.
+                                    <p>The flow is colored in green to indicate that it ran successfully.</p>
+                                </li>
+                                <li>
+                                    <p>Click <img src="img/menu.png" alt="Menu" style="height: 20px; width: 20px;"/> and select <strong>View Activity Stream</strong>.</p>
+                                    <br>
+                                    <p><img src="img/screenshots/integration/view-activitystream.png" alt="Tracking selection" style="width: 200px;"/></p>
+                                </li>
+                                <li>Review the flow and messages from your integration.</li>
+                                <li>Click <strong>Close</strong> when done reviewing.</li>
+
+
+
+
+
                             </ol>
                         </section>
                         <hr>
