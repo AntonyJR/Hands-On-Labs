@@ -815,6 +815,7 @@
                                     </div>
 
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                                    <img src="img/screenshots/integration/deactivated-status-icons.png" width="150px"/>
                                 </li>
                                 <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>
@@ -827,6 +828,22 @@
                                         message appears at the top of the page, and the status will change to <span style="color:#86BD66;">&#x25CF;</span> Active.</p>
                                 </li>
 
+                                <li>
+                                    <p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>The name of your integration is <code>ERP Bulk Extract Callback <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your unique integration name.
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                                    <img src="img/screenshots/integration/message-activated-status.png" width="150px"/>
+                                </li>
                                 <li>Click <img src="img/msg-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>Copy the link in the <strong>WSDL URL</strong> without the <code>?wsdl</code> at the end.</li>
 
@@ -883,6 +900,7 @@
                                     </div>
 
                                     <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                                    <img src="img/screenshots/integration/deactivated-status-icons.png" width="150px"/>
                                 </li>
                                 <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li>
@@ -901,8 +919,25 @@
 <!-- ########## RUN THE BULK EXTRACT INTEGRATION ########## -->
                         <section>
                             <h2 >Run the ERP Bulk Extract Integration</h2>
-                            <p> </p>
+                            
                             <ol>
+                                <li>
+                                    <p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>The name of your integration is <code>ERP Bulk Extract <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your unique integration name.
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                                    <img src="img/screenshots/integration/activated-status-icons.png" width="150px"/>
+                                </li>
+
                                 <li>Click <img src="img/vb-run.png" alt="How to run icon" style="height: 15px; width: 15px;"/>.</li>
                                 <li><p>Click <strong>Submit Now</strong>, and then <strong>Submit Now</strong> again.</p>
                                     <p>A confirmation message with a link to track instance appears.</p>

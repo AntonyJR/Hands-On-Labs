@@ -297,15 +297,7 @@
                                 <li>In the <strong>Name</strong> column, enter <code class="allow-copy"><span>LedgerName</span></code>.
                                 </li>
                                 <li>From the list in the <strong>Data Type</strong> column, select <strong>string</strong>.</li>
-                                <li><p>In the same way you added the <code>LedgerName</code> parameter, add the following
-                                    parameters of type <code>string</code>:</p>
-                                    <ol type="a">
-                                        <li><code class="allow-copy"><span>ReportAbsolutePath</span></code></li>
-                                        <!--
-                                        <li><code class="allow-copy"><span>UserID</span></code></li>
-                                        <li><code class="allow-copy"><span>Password</span></code></li>
-                                        -->
-                                    </ol>
+                                <li><p>In the same way,  create a Query Parameter named <code class="allow-copy"><span>ReportAbsolutePath</span></code> of type <strong>string</strong>.</p></li>
                                 </li>
                                 <li>Click <strong>Next</strong>.</li>
                                 <li><p>On the <strong>Response</strong> page, configure the following values:</p>
@@ -450,7 +442,13 @@
                                     <strong>Execute</strong>.
                                 </li>
                                 <li>
-                                    <p>Verify that the <strong>Target</strong> section shows the values that you have assigned to the different fields.</p>
+                                    <p>Verify the <strong>Target</strong> payload contains sample data for the data elements you mapped. Specifically:</p>
+                                    <ol type="a">
+                                        <li>name</li>
+                                        <li>item</li>
+                                        <li>reportAbsolutePath</li>
+                                        <li>sizeOfDataChunckDownload</li>
+                                    </ol>
                                     <br>
                                     <p><img src="img/screenshots/integration/target-test.png" width="600px"/></p>
                                 </li>
@@ -465,7 +463,7 @@
                             <h2>Write the File</h2>
                             <p></p>
                             <ol>
-                                <li>Download the <a href="../assets/bip-report-lab/opaque_schema.xsd" download="opaque_schema.xsd" target="_blank">opaque_schema.xsd</a> file.</li>
+                                <li>Download the <a href="../assets/bip-report-lab/opaque_schema.xsd" download="opaque_schema.xsd" target="_blank"><u>opaque_schema.xsd</u></a> file.</li>
                                 <li>Hover over the outgoing arrow for the <strong>GetBIPReport</strong> activity and click <img
                                         src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.
                                 </li>
@@ -552,7 +550,7 @@
                         <section>
                             <h2>Read the File from Stage</h2>
                             <ol>
-                                <li>Download the <a href="../assets/bip-report-lab/GLCCReport.csv" download="GLCCReport.csv" target="_blank">GLCCReport.csv</a> file.</li>
+                                <li>Download the <a href="../assets/bip-report-lab/GLCCReport.csv" download="GLCCReport.csv" target="_blank"><u>GLCCReport.csv</u></a> file.</li>
                                 <li>
                                     <p>Click <img src="img/actions.png" alt="Actions icon" style="height: 15px; width: 15px;"/>
                                         and from the <strong>Data</strong> section, drag and drop <strong>Stage File</strong> to
