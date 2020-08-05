@@ -432,7 +432,6 @@
 								<li>Click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
 								<li>Click the <strong>Subscription</strong> control and verify a list of subscriptions from Engagement Cloud.</li>
 								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
-	
                             </ol> 
 							<h3>Configure the list of Products</h3>
 							<p>Let’s configure the Product Select control to retrieve a list of Products.</p>
@@ -443,7 +442,7 @@
 								<li>From the <strong>Connector</strong> list, select <strong>SubscriptionManagement</strong>.</li>
 								<li>From the <strong>Resource</strong> list, select <strong>/subscriptionProducts</strong>.</li>
 								<li>From the <strong>Operation</strong> list, select <strong>getSubscriptionProducts</strong>.</li>
-								<li>In the <strong>Template Parameters</strong> section, from the <strong>SubscriptionNumber</strong> field, select <strong>Control value</strong>.</li>
+								<li>In the <strong>Query Parameters</strong> section, from the <strong>SubscriptionNumber</strong> field, select <strong>Control value</strong>.</li>
 								<li>
 									From the field next to <strong>SubscriptionNumber</strong>, select <strong>SubscriptionNumber</strong>.
 									<p>Remember, our list of products is dependent on the selected subscription. The integration exposes a subscriptionNumber parameter and will only return products for the supplied subscription. By selecting Control value and the name of our Subscription Select control (SubscriptionNumber), we have configured the Product Select control to get the value from the Subscription control and pass that to the integration.</p>
@@ -560,6 +559,7 @@
 											<li>In the <strong>Charge</strong> field, select <code>invoiceText</code>.</li>
 											<li>In the <strong>BillingDate</strong> field, select <code>dateToInterface</code>.</li>
 											<li>In the <strong>BillFromDate</strong> field, select <code>dateBilledFrom</code>.</li>
+											<li>In the <strong>BillToDate</strong> field, select <code>dateBilledTo</code>.</li>
 											<li>In the <strong>UsageQuantity</strong> field, select <code>usageQuantity</code>.</li>
 										</ul>
 									</ul>
