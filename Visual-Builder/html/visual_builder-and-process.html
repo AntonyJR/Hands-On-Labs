@@ -7,7 +7,7 @@
         <meta name="contentid" content="Visual Builder and Process Automation Lab">
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
-		<!-- Use an imperative verb in the title. -->
+        <!-- Use an imperative verb in the title. -->
         <title>Oracle Integration - Visual Builder and Process Automation Lab</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="robots" content="INDEX, FOLLOW">
@@ -21,77 +21,172 @@
         <script src="js/jquery.tocify.jd.js"></script>
         <script src="js/leftnav.js"></script>
         <script type="text/javascript" src="./js/libs/require/require.js"></script>
-		<script type="text/javascript" src="./js/app.js"></script> 
-		<link rel="stylesheet" href="css/copy-button.css">
-        <script src="js/copytoclipboard.js"></script>  
-        
+        <script type="text/javascript" src="./js/app.js"></script>
+        <link rel="stylesheet" href="css/copy-button.css">
+        <script src="js/copytoclipboard.js"></script>
     </head>
     <body>
 
         <div id="content" style="margin-top:5px">
-
-            <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
-			<!-- Use an imperative verb in the title. -->
-			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration  - Visual Builder and Process Automation Lab</h1>
-			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" heierght="10px" width="100%"></a>
-
+            <h1>Oracle Integration - ERP Cloud Events Lab</h1>
+            <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"/>
             <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
-                <div class="navbackwide border-right"><!-- --></div>
+                <div class="navbackwide border-right"></div>
                 <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
-                <div id="sidebar"><!-- -->
-                    <div class="left-nav-tut"><!-- -->
+                <div id="sidebar">
+                    <div class="left-nav-tut">
                         <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
-                        <div  id="navbar" class="left-nav-w"><!-- -->
-                            <div id="toc" class="tocify"><!-- --></div>
+                        <div id="navbar" class="left-nav-w">
+                            <div id="toc" class="tocify"></div>
                         </div>
                     </div>
                 </div>
                 <div id="bookContainer">
                     <article>
-<!-- ########## Before You Begin ########## -->						
+<!-- ########## Before You Begin ########## -->
                         <section>
-							<h2>Before You Begin</h2>
+                            <h2>Before You Begin</h2>
 
-                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Cliboard" height="19px" width="19px"> icon next to them. Click this icon to copy the snippet of text to your clipboard and then paste where needed.</p>						
-							<p>Your lab facilitator will provide you the following information to access the environments used in this lab.</p>
+                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard"
+                                                                    height="19px" width="19px"> icon next to them. Click this
+                                icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                            <p>Your instructor will provide you the information you need to access the environments used in this
+                                lab.</p>
+                                <hr>
+                            <p>For this lab we will provide you the following:</p>
+                            <ul>
+                                <li>Oracle Integration</li>
+                            </ul>
+                            <hr>
 
-                            <h3>OIC Environment</h3>
-							<p>Select your <strong>OIC Environment</strong>:&nbsp;
-								<select data-bind="options: availableOICEnvironments,
-									optionsText: 'name',
-									value: selectedOICEnvironment,
-									optionsCaption: 'Select...'">
-								</select>
-							</p>
-                            <p><label>Enter your <a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button></p>                         
-                            <p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-                            <p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
-                            <p>Your OIC Password will be provided by your lab facilitator.</p>
-						</section>
-						<hr>
-<!-- ########## Sign In ########## -->
-                        <section>    
-                            <h2 id="section_1" role="button" style="text-align: left;">Sign In</h2>
-							<p>Access to Oracle Integration is secured through Oracle Identity Cloud Service.  Users may be granted access to all the Oracle Integration environments in a cloud tenancy, or they may be restricted to specific environments. They may be assigned different roles in each environment.</p>
+                            <h3>Get Your Oracle Integration (OIC) Environment</h3>
+                            <p>Select your OIC Environment and enter your User Number to get the information needed to access Oracle Integration.</p>
+                            <p>Select your <strong>OIC environment</strong>:&nbsp;
+                                <a name=oicEnvironment>
+                                    <select data-bind="options: availableOICEnvironments,
+                                        optionsText: 'name',
+                                        value: selectedOICEnvironment,
+                                        optionsCaption: 'Select...'">
+                                    </select>
+                                </a>
+                            </p>
+                            <p>
+                                <label><a name=userNumber><strong>User Number</strong></a>:&nbsp;<input
+                                data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button>
+                            </p>
+                        
+                            <ul>
+                                <li> 
+                                    <strong>OIC URL</strong>:
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>                                    
+                                            <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'Select an OIC Environment above.'"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">  
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC URL.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
 
-                            <ol>
-								<li><p>Open a browser to the <strong>OIC URL</strong>.
-									<p><strong>OIC URL</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : '[Select your OIC Environment]'"></em></span></code></p>
-								</li>
-								<li><p>Enter your <strong>OIC User Name</strong>.</p>
-									<p><strong>OIC User Name</strong>: <code class="allow-copy"><span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : '[Select your OIC Environment]'"></em><em data-bind="text:user_number() || '[Enter your User Number]'"></em></span></code></p>
-								</li>
-								<li><p>Enter your <strong>OIC Password</strong> provided by your lab facilitator and click <strong>Sign In</strong>.</p>
-									<p>The <strong>Welcome</strong> page appears. Check out the tour, videos, and links to learn more. Keep scrolling to find more useful links.</p>
-								</li>
-                                <li><p>Click <strong>Home</strong>.</p>
-                                	<p>The <strong>Home</strong> page displays an overview with the current state of your instance. You can drill down to get information about available Processes, Integrations, and Visual Applications.</p><br>
-                                	<img src="img/screenshots/integration/home-page.png" width="600px"/>
-                                </li>  
-							</ol>
-							<p>You are now logged in and ready to use Oracle Integration.</p>
+                                <li><strong>OIC User Name</strong>:
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">                           
+                                                <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li><strong>OIC Password</strong>: Your password will be provided by the instructor.</li>
+                            </ul>
                         </section>
-                        <hr>                        
+                        <hr>
+
+<!-- ########## Sign In ########## -->
+                        <section>
+                            <h2>Sign In</h2>
+                            <ol>
+                                <li>
+                                    <p>Open your Oracle Integration instance.</p>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>                                    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().url : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : ''"></em></p>                                       
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC URL.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><p>Enter your user name and password.</p>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">                           
+                                                <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    Your password will be provided by the instructor.
+                                </li>
+                                <li><p>Click
+                                    <strong>Sign In</strong>.</p>
+                                    <p>The <strong>Home</strong> page appears.</p>
+                                    <p>You are now logged in and ready to use Oracle Integration.</p>
+                                    <img src="img/screenshots/integration/home-page.png" width="600px"/>
+                                </li>
+                            </ol>
+
+                        </section>
+                        <hr>
+
+                  
 <!-- ########## Documents ########## -->
 						<section>    
 							<h2 id="section_1" role="button" style="text-align: left;">Documentation</h2>

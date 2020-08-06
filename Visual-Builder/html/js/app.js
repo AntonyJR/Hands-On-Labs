@@ -50,49 +50,22 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
       /* You should have one self.<binding> for each input field in your OBE. 
          username and password used here are just samples. */
       self.user_number = ko.observable("");
-      self.user_name_prefix = ko.observable("OICTraining1ic");
-
-      self.userName = ko.observable("");
       
       class OICEnvironment {
-        constructor(name, url, usernamePrefix) {
+        constructor(name, baseURL, url, usernamePrefix) {
           this.name = name;
+          this.baseURL = baseURL;
           this.url = url;
           this.usernamePrefix = usernamePrefix;
         }
       }
       self.availableOICEnvironments = ko.observableArray([
-        new OICEnvironment("Training 1", "https://oictraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining1ic"),
-        new OICEnvironment("Training 2", "https://oictraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining2ic"),
-        new OICEnvironment("Training 3", "https://oictraining3-oicpm.integration.ocp.oraclecloud.com/ic/home/", "OICTraining3ic"),
-        new OICEnvironment("SC Training 1", "https://oicsctraining1-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscA"),
-        new OICEnvironment("SC Training 2", "https://oicsctraining2-oicpm.integration.ocp.oraclecloud.com/ic/home/", "oicuserscB")
+//        new OICEnvironment("Training 1", "https://oictraining1-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining1-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscA"),
+//        new OICEnvironment("Training 2", "https://oictraining2-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining2-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscB"),
+        new OICEnvironment("Training 3", "https://oictraining3-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining3-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscA"),
+        new OICEnvironment("Training 4", "https://oictraining4-oicpm-px.integration.ocp.oraclecloud.com", "https://oictraining4-oicpm-px.integration.ocp.oraclecloud.com/ic/home", "oicuserscB")
       ]),
       self.selectedOICEnvironment = ko.observable()
-
-      class AppEnvironment {
-        constructor(name, url, usernamePrefix) {
-          this.name = name;
-          this.url = url;
-          this.usernamePrefix = usernamePrefix;
-        }
-      }      
-      self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("ERP Cloud - zfqn", "https://adc2-zfqn-fa-ext.oracledemos.com/crmUI/faces/FuseWelcome?fndThemeName=Vision_NewsFeed", "bala.gupta"),
-      ]),
-      self.selectedAppEnvironment = ko.observable()
-
-      class FTPEnvironment {
-        constructor(name, url, usernamePrefix) {
-          this.name = name;
-          this.url = url;
-          this.usernamePrefix = usernamePrefix;
-        }
-      }      
-      self.availableFTPEnvironments = ko.observableArray([
-        new FTPEnvironment("Drive HQ", "https://www.drivehq.com", "oichcmcloud"),
-      ]),
-      self.selectedFTPEnvironment = ko.observable()
     }
 
     $(function() {
