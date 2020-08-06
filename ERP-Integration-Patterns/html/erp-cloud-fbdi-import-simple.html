@@ -145,9 +145,7 @@
                                     <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                         <p>    
                                             <code class="allow-copy">                           
-                                                <span>
-                                                    <p><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></p>                                       
-                                                </span>
+                                                <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                             </code>
                                         </p>
                                     </div>
@@ -244,12 +242,9 @@
                                     <strong>FTP Server</strong>:
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>    
-                                            <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
-                                                <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
-                                                </span>
-                                            </a>
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
+                                            </code>
                                         </p>
                                     </div>
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -264,12 +259,9 @@
                                     <strong>FTP Port</strong>:
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>    
-                                            <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
-                                                <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
-                                                </span>
-                                            </a>
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
+                                            </code>
                                         </p>
                                     </div>
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -284,12 +276,9 @@
                                     <strong>Protocol</strong>:
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>    
-                                            <a class="allow-copy" target="_blank"
-                                            data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
-                                                <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
-                                                </span>
-                                            </a>
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
+                                            </code>
                                         </p>
                                     </div>
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -305,9 +294,7 @@
                                     <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                         <p>   
                                             <code class="allow-copy">
-                                                <span>
-                                                    <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
-                                                </span>
+                                                <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
                                             </code>
                                         </p>
                                     </div>
@@ -331,11 +318,11 @@
                         <p></p>
                         <ol>
                             <li><p>Download the Invoice Import Template spreadsheet.</p>
-                                <a href="../assets/fbdi-import-lab/GSEPayablesStandardInvoiceImportTemplate.xlsm" download>GSEPayablesStandardInvoiceImportTemplate.xlsm</a>
+                                <a href="../assets/fbdi-import-lab/GSEPayablesStandardInvoiceImportTemplate.xlsm" download><u>GSEPayablesStandardInvoiceImportTemplate.xlsm</u></a>
                             </li>
 
                             <li><p>Download the APTEST.PROPERTIES file.</p>
-                                <a href="../assets/fbdi-import-lab/APTEST.PROPERTIES" download>APTEST.PROPERTIES</a>
+                                <a href="../assets/fbdi-import-lab/APTEST.PROPERTIES" download><u>APTEST.PROPERTIES</u></a>
                             </li>
 
                             <li>
@@ -394,12 +381,9 @@
                                         <strong>FTP Server</strong>:
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>    
-                                                <a class="allow-copy" target="_blank"
-                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().server : '' }">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></p>
-                                                    </span>
-                                                </a>
+                                                <code class="allow-copy">
+                                                    <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
+                                                </code>
                                             </p>
                                         </div>
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -414,12 +398,9 @@
                                         <strong>FTP Port</strong>:
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>    
-                                                <a class="allow-copy" target="_blank"
-                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().port : '' }">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></p>
-                                                    </span>
-                                                </a>
+                                                <code class="allow-copy">
+                                                    <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
+                                                </code>
                                             </p>
                                         </div>
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -434,12 +415,9 @@
                                         <strong>Protocol</strong>:
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>    
-                                                <a class="allow-copy" target="_blank"
-                                                data-bind="attr: { href: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : '' }">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></p>
-                                                    </span>
-                                                </a>
+                                                <code class="allow-copy">
+                                                    <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
+                                                </code>
                                             </p>
                                         </div>
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
@@ -455,9 +433,7 @@
                                         <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>   
                                                 <code class="allow-copy">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></p>                                       
-                                                    </span>
+                                                    <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
                                                 </code>
                                             </p>
                                         </div>
@@ -478,9 +454,7 @@
                                 <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                     <p>
                                         <code class="allow-copy">
-                                            <span>
-                                                /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
-                                            </span>
+                                            <span>/upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                         </code>
                                     </p>
                                 </div>
@@ -537,9 +511,7 @@
                                 <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                     <p>    
                                         <code class="allow-copy">                           
-                                            <span>
-                                                <p><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></p>                                       
-                                            </span>
+                                            <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                         </code>
                                     </p>
                                 </div>
@@ -585,9 +557,7 @@
                                         <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
                                             <p>  
                                                 Enter <code class="allow-copy">
-                                                    <span>Invoice Bulk Import to ERP
-                                                        <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>                                      
-                                                    </span>
+                                                    <span>Invoice Bulk Import to ERP <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
                                                 </code>
                                             </p>
                                         </div>
@@ -637,9 +607,7 @@
                                         <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
                                             <p>
                                                 <code class="allow-copy">
-                                                    <span>
-                                                        /upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em>
-                                                    </span>
+                                                    <span>/upload/public_ftp/<em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                                 </code>
                                             </p>
                                         </div>
@@ -922,9 +890,7 @@
                                         <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
                                             <p>   
                                                 <code class="allow-copy">
-                                                    <span>
-                                                        <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an ERP Cloud environment above.'"></em></p>                                       
-                                                    </span>
+                                                    <span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an ERP Cloud environment above.'"></em></span>
                                                 </code>
                                             </p>
                                         </div>
