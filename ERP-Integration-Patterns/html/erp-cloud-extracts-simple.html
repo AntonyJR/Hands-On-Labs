@@ -445,12 +445,13 @@
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                     <p>Note: Ignore the suggestion for recommended mappings.</p>
                                 </li>
-                                <li>In the <strong>Target</strong> section, expand the <strong>exportBulkData</strong> element.</li>
+                                <li>In the <strong>Target</strong> section, expand the <strong>InitiateExtract Request</strong> element.</li>
                                 <li>
                                     <p>In cases where you are not mapping from source to target, for example when the target requires a literal value or expression, you need to manually create the target node:</p>
                                         <ol type="a">
                                             <li>Right-mouse click on the desired node and select <strong>Create Target Node</strong>.</li>
                                             <li>
+                                                <p>Click <img src="img/mapper_expression_edit.png" alt="Edit icon" style="height: 20px; width: 20px;"/> in the Expression editor to enable edit mode.</p>
                                                 <p>Enter the desired literal value or expression in the Expression editor at the bottom of the page.</p>
                                                 <br>
                                                 <p>Note: Literal values need to be enclosed in &quot;  &quot;</p>
@@ -461,11 +462,11 @@
                                             <li>
                                                 <p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the data.</p>
                                                 <p>Verify a graphic is added to the mapping canvas indicating your target node has the literal or expression correctly mapped.</p>
-                                                <p><img src="img/screenshots/integration/literal_expression.png" alt="Literal Mapping" style="width: 400px;"/></p>
+                                                <p><img src="img/screenshots/integration/literal-expression.png" alt="Literal Mapping" style="width: 400px;"/></p>
                                             </li>
                                         </ol>
                                 </li>
-                                <li><p>Map the fields under the <strong>exportBulkData</strong> element to the following literal values:</p>
+                                <li><p>Map the fields under the <strong>InitiateExtract Request</strong> element to the following literal values:</p>
                                     <ul>
                                         <li><strong>jobName</strong>: <code class="allow-copy"><span>&quot;oracle/apps/ess/financials/commonModules/shared/common/outbound,FinOutboundProcess&quot;</span></code></li>
                                         <li><strong>parameterList</strong>: <code class="allow-copy"><span>&quot;92,/oracle/apps/ess/financials/commonModules/shared/common/outbound;PayablesTransactionsExtract,BIPREPORT,FULL_EXTRACT,#NULL,300000046987012,#NULL,#NULL,#NULL,#NULL,#NULL,12-19,N,N,300000046975971,#NULL,#NULL,#NULL,FULL_EXTRACT,#NULL,#NULL,#NULL,PayablesTransactionsExtract,#NULL&quot;</span></code></li>
@@ -648,7 +649,12 @@
                                 <li>
                                     Map the <strong>account</strong> element to the following expression: <code class="allow-copy"><span>&quot;fin$/payables$/export$&quot;</span></code>
                                     <ol type="a">
-                                        <li>Right-mouse click on the account node and select <strong>Create Target Node</strong>.</li>
+                                        <li>
+                                            <p>Right-mouse click on the account node and select <strong>Create Target Node</strong>.</p>
+                                        </li>
+                                        <li>
+                                            <p>Click <img src="img/mapper_expression_edit.png" alt="Edit icon" style="height: 20px; width: 20px;"/> in the Expression editor to enable edit mode.</p>
+                                        </li>
                                         <li><p>Enter the literal value.</p></li>
                                         <li><p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the data.</p></li>
                                     </ol>
@@ -845,6 +851,7 @@
                                     <p>The <strong>Data Mapping</strong> page appears.</p>
                                 </li>
                                 <li>In the <strong>Target</strong> section, right-mouse click on the callbackURL node and select <strong>Create Target Node</strong>.</li>
+                                <li><p>Click <img src="img/mapper_expression_edit.png" alt="Edit icon" style="height: 20px; width: 20px;"/> in the Expression editor to enable edit mode.</p></li>
                                 <li>In the <strong>Expression</strong> window, paste the WSDL, enclosed in quotes, that you copied from the activated callback integration.</li>
                                 <li><p>Click <img src="img/check.png" alt="Save icon" style="height: 15px; width: 15px;"/> in the Expression editor to commit the expression.</p>
                                     <p>Your mapping should look similiar to this.</p>
