@@ -7,7 +7,7 @@
         <meta content="text/html; charset=utf-8" http-equiv="content-type">
         <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
 		<!-- Use an imperative verb in the title. -->
-        <title>Oracle Integration On-Demad Learning Path - Get Started</title>
+        <title>Oracle Integration On-Demad Learning Path</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="robots" content="INDEX, FOLLOW">
         <meta name="description" content="In these hands-on labs, you will learn the common ERP Cloud integration patterns.">
@@ -22,21 +22,29 @@
         <script type="text/javascript" src="./js/libs/require/require.js"></script>
 		<script type="text/javascript" src="./js/app.js"></script> 
 		<link rel="stylesheet" href="css/copy-button.css">
-		<script src="js/copytoclipboard.js"></script>     
-    </head>
-
-    <body>
+        <script src="js/copytoclipboard.js"></script>    
+        
+        
+        <style>
+            .button:disabled {
+                opacity:0.5;
+            }
+            </style>
         <script>
             function openVideo(url){
                 var w = window.open(url);
             }
         </script>
 
+    </head>
+
+    <body>
+
         <div id="content" style="margin-top:5px">
 
             <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
 			<!-- Use an imperative verb in the title. -->
-			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration On-Demand Learning Path - Get Started</h1>
+			<h1><img src="img/o.png" align="middle" alt="Oracle">Oracle Integration On-Demand Learning Path</h1>
 			<img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"></a>
 
             <div class="w1024" style="clear:both; position:relative; margin-top:30px; margin-left:200px;">
@@ -46,28 +54,34 @@
                             <h2 id="section1" style="text-align: left; margin-left:-4px;">Introduction</h2>
                             
                             <p>
-                                Oracle Integration - Overview
-                                <button onclick="openVideo('')">Launch Video</button>
+                                <button class="button" onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Oracle Integration Overview
                             </p>
                             <p>
-                                Oracle Integration - Process Automation
-                                <button onclick="openVideo('')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Process Automation
                             </p>
                             <p>
-                                Oracle Integration - Insight
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:D04C1F6C6B303B5A5B24FC6C83537BE06C1639578A32&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/D04C1F6C6B303B5A5B24FC6C83537BE06C1639578A32/_OIC_Insight.mp4')">Launch Video</button>
+                                &nbsp;
+                                Insight
                             </p>
                             <p>
-                                Oracle Integration - B2B
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:D33D69E39BC5F173AFE1264D524A0056D313BF54C8DB&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/D33D69E39BC5F173AFE1264D524A0056D313BF54C8DB/_OIC_B2B.mp4')">Launch Video</button>
+                                &nbsp;
+                                B2B
                             </p>
                             <p>
-                                Oracle Integration - File Server
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:D56ED0CE3D1403BF01E43A82623DE797B78B6A7E6A48&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/D56ED0CE3D1403BF01E43A82623DE797B78B6A7E6A48/_OIC_File_Server.mp4')">Launch Video</button>
+                                &nbsp;
+                                File Server
                             </p>
                             <p>
-                                Oracle Integration - Visual Builder
-                                <button onclick="openVideo('')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Visual Builder
                             </p>
                         </section>
                         <hr>
@@ -76,23 +90,75 @@
                             <h2 id="section1" style="text-align: left; margin-left:-4px;">Integration</h2>
                             
                             <p>
-                                Oracle Integration - Integration Architecture
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:D1C9C5486918F8E63C2B65DB70CEA65B5DDD5D751615&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/D1C9C5486918F8E63C2B65DB70CEA65B5DDD5D751615/_OIC_Integration_Architecture.mp4')">Launch Video</button>
+                                &nbsp;
+                                Integration Architecture
                             </p>
                             <p>
-                                Oracle Integration - Integration Best Practices
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:D2887E1F012DB80574F927055A66E9B7F3DB6D63A38D&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/D2887E1F012DB80574F927055A66E9B7F3DB6D63A38D/_OIC_Integration_Best_Practices.mp4')">Launch Video</button>
+                                &nbsp;
+                                Integration Best Practices
                             </p>
                             <p>
-                                Oracle Integration - Integration Anti-Patterns
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:DE68E7BA27EF26C2551AD836710831B3777A0C697434&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/DE68E7BA27EF26C2551AD836710831B3777A0C697434/_OIC_Integration_Anti-Patterns.mp4')">Launch Video</button>
+                                &nbsp;
+                                Integration Anti-Patterns
                             </p>
                             <p>
-                                Oracle Integration - Connectivity Agent
-                                <button onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/web?IdcService=GET_RENDITION_STREAM&suppressHttpErrorCodes=1&item=fFileGUID:DE52688A8B2E8618B9341F8AF90AECD96E31E4D2410F&Rendition=VideoH264&dRevLabel=1')">Launch Video</button>
+                                <button class="button"  onclick="openVideo('https://securesites-prodapp.cec.ocp.oraclecloud.com/documents/link/LF5B84CA14F179A61F4418981C4A01C63D59FDC03E2C/fileview/DE52688A8B2E8618B9341F8AF90AECD96E31E4D2410F/_OIC_Connectivity_Agent.mp4')">Launch Video</button>
+                                &nbsp;
+                                Connectivity Agent
                             </p>
                         </section>
                         <hr>
+<!-- ########## ERP Cloud ########## -->
+                        <section>
+                            <h2 id="section1" style="text-align: left; margin-left:-4px;">Integrating with ERP Cloud</h2>
+                            
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Business Events
+                            </p>
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                File-Based Data Integration (FBDI)
+                            </p>
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Business Intelligence Publish (BIP) Report
+                            </p>
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Business Intelligence Publisher (BIP) Bulk Extract
+                            </p>
+                        </section>
+                        <hr>
+<!-- ########## Sales Tools ########## -->
+                        <section>
+                            <h2 id="section1" style="text-align: left; margin-left:-4px;">Sales Tools</h2>
+                            
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Competing Against MuleSoft
+                            </p>
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Competing Aginas Dell Boomi
+                            </p>
+                            <p>
+                                <button class="button"  onclick="openVideo('')" disabled>Launch Video</button>
+                                &nbsp;
+                                Oracle Integration - Pricing
+                            </p>
+                        </section>
+                        <hr>
+
 <!-- ########## SAFE HARBOR ########## -->
                         <section> 
                             <h2 id="section_4" style="text-align: left; margin-left:-4px;">Safe Harbor</h2>
