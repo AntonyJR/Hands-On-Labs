@@ -78,14 +78,17 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("HCM Cloud - zoml", "https://ucf1-zoml-fa-ext.oracledemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "betty.anderson")
+        
+        new AppEnvironment("HCM Cloud - zoml", "https://ucf1-zoml-fa-ext.oracledemos.com/hcmUI/faces/FuseWelcome?fndThemeName=Vision_Redwood", "betty.anderson")
       ]),
       self.selectedAppEnvironment = ko.observable()
 
       class FTPEnvironment {
-        constructor(name, url, usernamePrefix) {
+        constructor(name, server, port, protocol, usernamePrefix) {
           this.name = name;
-          this.url = url;
+          this.server = server;
+          this.port = port;
+          this.protocol = protocol;
           this.usernamePrefix = usernamePrefix;
         }
       }      
