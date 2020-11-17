@@ -1,54 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Published date: September 2019 -->
-    <!-- Template date: September 2019 -->
-    <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
-    <meta name="contentid" content="HCM Cloud Directory Synchronization Lab">
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
-    <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
-    <!-- Use an imperative verb in the title. -->
-    <title>Oracle Integration - HCM Cloud Directory Synchronization Lab</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="robots" content="INDEX, FOLLOW">
-    <meta name="description" content="ERP Cloud BIP Report Lab">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--link rel="stylesheet" href="css/normalize.min.css"-->
-    <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
-    <link rel="stylesheet" href="css/obe-lite.css">
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/jquery-ui-1.10.4.custom.js"></script>
-    <script src="js/jquery.tocify.jd.js"></script>
-    <script src="js/leftnav.js"></script>
-    <script type="text/javascript" src="./js/libs/require/require.js"></script>
-    <script type="text/javascript" src="./js/app.js"></script>
-    <link rel="stylesheet" href="css/copy-button.css">
-    <script src="js/copytoclipboard.js"></script>
-</head>
-<body>
+    <head>
+        <!-- Published date: September 2019 -->
+        <!-- Template date: September 2019 -->
+        <!-- Put the content ID of this OBE between the empty quotation marks for 'content' below -->
+        <meta name="contentid" content="HCM Cloud Directory Synchronization Lab">
+        <meta content="text/html; charset=utf-8" http-equiv="content-type">
+        <!-- The title below is displayed on the browser tab, in search results, and in  history. It can be longer than the tutorial title in the <h1> element, below.-->
+        <!-- Use an imperative verb in the title. -->
+        <title>Oracle Integration - HCM Cloud Directory Synchronization Lab</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="robots" content="INDEX, FOLLOW">
+        <meta name="description" content="HCM Cloud Directory Synchronization Lab">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--link rel="stylesheet" href="css/normalize.min.css"-->
+        <!--link rel="stylesheet" href="css/font-awesome.min.css"-->
+        <link rel="stylesheet" href="css/obe-lite.css">
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.js"></script>
+        <script src="js/jquery.tocify.jd.js"></script>
+        <script src="js/leftnav.js"></script>
+        <script type="text/javascript" src="./js/libs/require/require.js"></script>
+        <script type="text/javascript" src="./js/app.js"></script>
+        <link rel="stylesheet" href="css/copy-button.css">
+        <script src="js/copytoclipboard.js"></script>
+    </head>
 
-<div id="content" style="margin-top:5px">
-
-    <!-- The title below is displayed as the title at the top of the OBE page. It can be shorter than the title in the <title> element, above. -->
-    <!-- Use an imperative verb in the title. -->
-    <h1><!--img src="img/o.png" align="middle" alt="Oracle"-->Oracle Integration - HCM Cloud Directory Synchronization
-        Lab</h1>
-    <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"/>
-
-    <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
-        <div class="navbackwide border-right"><!-- --></div>
-        <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
-        <div id="sidebar"><!-- -->
-            <div class="left-nav-tut"><!-- -->
-                <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
-                <div id="navbar" class="left-nav-w"><!-- -->
-                    <div id="toc" class="tocify"><!-- --></div>
+    <body>
+        <div id="content" style="margin-top:5px">
+            <h1>Oracle Integration - HCM Cloud Directory Synchronization Lab</h1>
+            <img src="img/header2.png" alt="Oracle Documentation" style="max-width: none;" height="10px" width="100%"/>
+            <div class="w1024" style="clear:both; position:relative; margin-top:30px;">
+                <div class="navbackwide border-right"></div>
+                <div id="shownav" title="Show Navigation" tabindex="0"><span class="fa fa-list"></span></div>
+                <div id="sidebar">
+                    <div class="left-nav-tut">
+                        <div id="hidenavw" title="Hide Navigation" tabindex="0"><span class="fa fa-close"></span></div>
+                        <div id="navbar" class="left-nav-w">
+                            <div id="toc" class="tocify"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div id="bookContainer">
-            <article>
-                <!-- ########## Background ########## -->
+                <div id="bookContainer">
+                    <article>
+                        
+<!-- ########## Background ########## -->
                 <section>
                     <h2>Background</h2>
                     <p>Oracle Integration provides native connectivity to Oracle and non-Oracle Software as a Service
@@ -59,7 +55,8 @@
                         requires minimal
                         connectivity information.</p>
                 </section>
-                <!-- ########## Use Case ########## -->
+
+<!-- ########## Use Case ########## -->
                 <section>
                     <h2>Use Case</h2>
                     <p> This use case explores how to use of Oracle Integration with Oracle HCM REST and ATOM
@@ -78,248 +75,332 @@
 <!--                    </p>-->
                 </section>
                 <hr>
-                <!-- ########## Before You Begin ########## -->
-                <section>
-                    <h2>Before You Begin</h2>
 
-                    <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard"
-                                                               height="19px" width="19px"> icon next to them. Click this
-                        icon to copy the snippet of text to your clipboard and then paste where needed.</p>
-                    <p>Your instructor will provide you the information you need to access the environments used in this
-                        lab.</p>
-                    <p>For this lab we will provide you the following:</p>
-                    <ul>
-                        <li>Oracle Integration</li>
-                        <li>ERP Cloud R13+</li>
-                        <li>An FTP server</li>
-                    </ul>
-                    <p>For your convenience, we created and configured the following connections:</p>
-                    <ul>
-                        <li><strong>HCM adapter</strong>: <code>HCM Cloud</code></li>
-                        <li><strong>FTP adapter</strong>: <code>FTP File Server</code></li>
-                    </ul>
-                    <hr>
-                    <h3>Get Your Oracle Integration (OIC) Environment</h3>
-                    <p>Select your environment and enter your user number to get the information to access Oracle
-                        Integration.</p>
-                    <p><strong>Oracle Integration Environment</strong>:&nbsp;
-                        <select data-bind="options: availableOICEnvironments,
-									optionsText: 'name',
-									value: selectedOICEnvironment,
-									optionsCaption: 'Select...'">
-                        </select>
-                    </p>
-                    <p><label><a name=userNumberInput><strong>User Number</strong></a>:&nbsp;<input
-                            data-bind="value: user_number" type="text" placeholder="Enter a number."/></label>&nbsp;<button>
-                        OK
-                    </button>
-                    </p>
-                    <ul>
-                        <li><strong>URL</strong>:
-                            <!--                            <code class="allow-copy"><span><span-->
-                            <!--                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'Select the Oracle Integration Environment above'"></span></span></code>-->
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p>
-                                    <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
-                                        <span>
-                                            <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>
-                                        </span>
-                                    </a>
-                                </p>
-                            </div>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <code><em>Select an environment from the Oracle Integration Environment list.</em></code>
-                            </div>
-                        </li>
+<!-- ########## Before You Begin ########## -->
+                        <section>
+                            <h2>Before You Begin</h2>
 
-                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'Select an environment from the Oracle Integration Environment list.'"></em><em
-                                data-bind="text:user_number() || ''"></em></span></code></li>
-
-                        <li><strong>Password</strong>: will be provided during the training session.</li>
-                    </ul>
-                    <hr>
-                    <h3>Get Your ERP Cloud Environment</h3>
-                    <p>Select your environment to get the information to access Oracle ERP Cloud.</p>
-                    <p><strong>ERP Cloud Environment</strong>:&nbsp;
-                        <select data-bind="options: availableAppEnvironments,
-									optionsText: 'name',
-									value: selectedAppEnvironment,
-									optionsCaption: 'Select...'">
-                        </select>
-                    </p>
-                    <ul>
-                        <li><strong>URL</strong>:
-                            <!--                            <code class="allow-copy"><span><span-->
-                            <!--                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : 'Select an environment from the ERP Cloud Environment list.'"></span></span>-->
-                            <!--                            </code>-->
-
-                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p>
-                                    <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: selectedAppEnvironment()? selectedAppEnvironment().url : '' }">
-                                        <span>
-                                            <em data-bind="text: selectedAppEnvironment()? selectedAppEnvironment().url : 'your_ERP_environment'"></em>
-                                        </span>
-                                    </a>
-                                </p>
-                            </div>
-                            <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
-                                <code><em>Select an environment from the ERP Cloud Environment list.</em></code>
-                            </div>
-                        </li>
-                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : 'Select an environment from the ERP Cloud Environment list.'"></em></span></code>
-                        </li>
-                        <li><strong>Password</strong>: will be provided during the training session.</li>
-                    </ul>
-                    <!--                    <hr>-->
-                    <!--                    <h3>Download Your Resources</h3>-->
-
-                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">-->
-                    <!--                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter your user number-->
-                    <!--                            in the Get Your Oracle Integration Environment section to access your download.</a></p>-->
-                    <!--                    </div>-->
-                    <!--                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">-->
-                    <!--                        <p>Download the following additional assets:-->
-                    <!--                            <b><a style="color: #C74634" ; href="../assets/events-lab/LetterOfCreditPortal.zip" ;-->
-                    <!--                                  data-bind="attr: { download: 'LetterOfCreditPortal'.concat(user_number()) }"><span-->
-                    <!--                                    data-bind="text: 'LetterOfCreditPortal'.concat(user_number(), '.zip')">LetterOfCreditPortal.zip</span></a></b>-->
-                    <!--                        </p>-->
-                    <!--                    </div>-->
-                    <hr>
-                    <h3>Get Your FTP Environment</h3>
-                    <p>Select your environment to get the information to access the FTP server.</p>
-                    <p><strong>FTP Environment</strong>:
-                        <select data-bind="options: availableFTPEnvironments,
-                           optionsText: 'name',
-                           value: selectedFTPEnvironment,
-                           optionsCaption: 'Select...'">
-                        </select>
-                    </p>
-                    <ul>
-                        <li><strong>URL</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select an environment from the FTP Environment list.'"></em></span></code>
-                        </li>
-                        <li><strong>User Name</strong>: <code class="allow-copy"><span><em
-                                data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an environment from the FTP Environment list.'"></em></span></code>
-                        </li>
-                        <li><strong>Password:</strong> will be provided during the training session.</li>
-                    </ul>
-                </section>
-                <hr>
-                <!-- ########## Sign In ########## -->
-                <section>
-                    <h2>Sign In</h2>
-                    <!--                    <p>Access to Oracle Integration is secured through Oracle Identity Cloud Service. Users may be-->
-                    <!--                        granted access to all the Oracle Integration environments in a cloud tenancy, or they may be-->
-                    <!--                        restricted to specific environments. They may be assigned different roles in each-->
-                    <!--                        environment.</p>-->
-                    <ol>
-                        <li><p>Open your Oracle Integration instance:</p>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                <p>
-                                    <a class="allow-copy" target="_blank"
-                                       data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment' }">
-                                        <span>
-                                            <em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'your_OIC_environment'"></em>
-                                        </span>
-                                    </a>
-                                </p>
-
-                                <!--                                <p><code class="allow-copy"><span><span data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : 'your_OIC_environment'"></span></span></code>-->
-                                <!--                                </p>-->
-                            </div>
-                            <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select your
-                                    Oracle Integration environment in the Before You Begin section to get a customized
-                                    URL.</a></p>
-                            </div>
-                        </li>
-                        <li><p>Enter your user name and password.</p>
+                            <p>Some steps in this tutorial have a <img src="img/copy-to-clipboard.png" alt="Copy to Clipboard"
+                                                                    height="19px" width="19px"> icon next to them. Click this
+                                icon to copy the snippet of text to your clipboard and then paste where needed.</p>
+                            <p>Your instructor will provide you the information you need to access the environments used in this
+                                lab.</p>
+                                <hr>
+                            <p>For this lab we will provide you the following:</p>
                             <ul>
+                                <li>Oracle Integration</li>
+                                <li>HCM Cloud</li>
+                                <li>FTP Server</li>
+                            </ul>
+                            <hr>
 
-                                <li>Your user name is:
-                                    <div data-bind="attr: {style: user_number() || selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
-                                        <code class="allow-copy">
+                            <h3>Get Your Oracle Integration (OIC) Environment</h3>
+                            <p>Select your OIC Environment and enter your User Number to get the information needed to access Oracle Integration.</p>
+                            <p>Select your <strong>OIC environment</strong>:&nbsp;
+                                <a name=oicEnvironment>
+                                    <select data-bind="options: availableOICEnvironments,
+                                        optionsText: 'name',
+                                        value: selectedOICEnvironment,
+                                        optionsCaption: 'Select...'">
+                                    </select>
+                                </a>
+                            </p>
+                            <p>
+                                <label><a name=userNumber><strong>User Number</strong></a>:&nbsp;<input
+                                data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button>
+                            </p>
+                        
+                            <ul>
+                                <li> 
+                                    <strong>OIC URL</strong>:
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>                                    
+                                            <a class="allow-copy" target="_blank"
+                                                data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
                                                 <span>
-                                                    <em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().usernamePrefix : 'your_OIC_environment'"></em><em
-                                                        data-bind="text: user_number()? user_number() :'your_user_number'"></em>
+                                                    <p><em data-bind="text: selectedOICEnvironment()? selectedOICEnvironment().url : 'Select an OIC Environment above.'"></em></p>
                                                 </span>
-                                        </code>
+                                            </a>
+                                        </p>
                                     </div>
-                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Enter
-                                            your
-                                            user number in the Before You Begin section to get a customized user
-                                            name.</a></p>
-                                    </div>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
-                                        <p class="warning-text"><a style="color: #e3503c" href="#userNumberInput">Select
-                                            your
-                                            Oracle Integration environment in the Before You Begin section to get a
-                                            customized user
-                                            name.</a>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">  
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC URL.
+                                            </a>
                                         </p>
                                     </div>
                                 </li>
 
-                                <li>Your password will be provided by the instructor during the training session.</li>
-                            </ul>
-                        </li>
-                        <li><p>Click
-                            <strong>Sign In</strong>.</p>
-                            <p>The <strong>Home</strong> page appears.</p>
-                            <p>You are now logged in and ready to use Oracle Integration.</p>
-                            <img src="img/screenshots/integration/home-page.png" width="600px"/>
-                        </li>
-                    </ol>
+                                <li><strong>OIC User Name</strong>:
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">                           
+                                                <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
 
-                </section>
-                <hr>
-                <!-- ########## Create the Integration ########## -->
+                                <li><strong>OIC Password</strong>: Your password will be provided by the instructor.</li>
+                            </ul>
+                            
+                            <hr>
+                            <h3>Get Your HCM Cloud Environment</h3>
+                            <p>Select your HCM Cloud Payables environment to get the information needed to access Oracle HCM Cloud.</p>
+                                <p><strong>HCM Cloud Environment</strong>:&nbsp;
+                                    <a name=hcmEnvironment>
+                                        <select data-bind="options: availableAppEnvironments,
+                                                    optionsText: 'name',
+                                                    value: selectedAppEnvironment,
+                                                    optionsCaption: 'Select...'">
+                                        </select>
+                                    </a>
+                                </p>
+
+                            <ul>
+                                <li>
+                                    <strong>HCM Cloud URL</strong>:
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedAppEnvironment() ? selectedAppEnvironment().url : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().url : ''"></em></p>
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#hcmEnvironment">
+                                                Select your HCM Cloud environment to get your HCM Cloud URL.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>HCM Cloud User Name</strong>:
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>   
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#hcmEnvironment">
+                                                Select your HCM Cloud environment to get your HCM Cloud Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><strong>HCM Cloud Password</strong>: Your password will be provided by the instructor.</li>
+                            </ul>
+                            <hr>
+
+                            <h3>Get Your FTP Environment</h3>
+                            <p>Select your <strong>FTP Environment</strong> to get the information to access the FTP server:</p>
+                            <p><strong>FTP Environment</strong>:&nbsp;
+                                <a name=ftpEnvironment>
+                                    <select data-bind="options: availableFTPEnvironments,
+                                                optionsText: 'name',
+                                                value: selectedFTPEnvironment,
+                                                optionsCaption: 'Select...'">
+                                    </select>
+                                </a>
+                            </p>
+
+                            <ul>
+                                <li>
+                                    <strong>FTP Server</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Server.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP Port</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Port.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>Protocol</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Protocol.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP User Name</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>   
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+                            </ul>
+
+                        </section>
+                        <hr>
+
+<!-- ########## Sign In ########## -->
+                        <section>
+                            <h2>Sign In</h2>
+                            <ol>
+                                <li>
+                                    <p>Open your Oracle Integration instance.</p>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>                                    
+                                            <a class="allow-copy" target="_blank"
+                                            data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().url : '' }">
+                                                <span>
+                                                    <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : ''"></em></p>                                       
+                                                </span>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC URL.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><p>Enter your user name and password.</p>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">                           
+                                                <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#oicEnvironment">
+                                                Select your OIC Environment to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to get your OIC Username.
+                                            </a>
+                                        </p>
+                                    </div>
+
+                                    Your password will be provided by the instructor.
+                                </li>
+                                <li><p>Click
+                                    <strong>Sign In</strong>.</p>
+                                    <p>The <strong>Home</strong> page appears.</p>
+                                    <p>You are now logged in and ready to use Oracle Integration.</p>
+                                    <img src="img/screenshots/integration/home-page.png" width="600px"/>
+                                </li>
+                            </ol>
+
+                        </section>
+                        <hr>
+
+
+<!-- ########## Create the Integration ########## -->
                 <section>
                     <h2>Create the Integration</h2>
                     <ol>
-                        <li>In the <strong>Navigation Menu</strong>, click <strong>Integrations</strong>, and then click
-                            <strong>Integrations</strong>.
-                        </li>
+                        <li>On the <strong>Home</strong> page, click <strong>Integrations</strong>, and then click <strong>Integrations</strong>.</li>
                         <li>On the <strong>Integrations</strong> page, click <strong>Create</strong>.</li>
-                        <li>In the <strong>Select an Integration Style</strong> dialog, select <strong>Scheduled
-                            Orchestration</strong>.
-                        </li>
+                        <li>In the <strong>Select Integration Style</strong> dialog, select <strong>App Driven Orchestration</strong>.</li>
                         <li>Click <strong>Select</strong>.</li>
                         <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
                             <ol type="a">
                                 <li><p><strong>What do you want to call your integration?</strong></p>
-                                    <p>Enter <code class="allow-copy"><span>Directory Synchronization <em
-                                            data-bind="text:user_number() || 'your_user_number'"></em></span></code></p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>  
+                                            Enter <code class="allow-copy">
+                                                <span>Directory Synchronization <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+        
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number to specify your unique integration name.
+                                            </a>
+                                        </p>
+                                    </div>        
                                 </li>
-                                <!--                                <li><strong>Identifier</strong>: leave the default value (this is the name of the-->
-                                <!--                                    integration in uppercase).-->
-                                <!--                                </li>-->
-                                <!--                                <li><p><strong>Version</strong>: leave the default value.</p>-->
-                                <!--                                    <p>(Optional) To change the version number, use the format <code>##.##.####</code>.-->
-                                <!--                                    </p>-->
-                                <!--                                </li>-->
-                                <li><p><strong>What does this integration do?</strong></p>
-                                    <p>Enter the following text:</p>
-                                    <p><code class="allow-copy"><span>This integration shows you how to use the
-                                        HCM Cloud adapter with the REST adapter to generate a file for Identity
-                                        Management.</span></code>
-                                    </p>
+                                <li>
+                                    <p>In the <strong>What does this integration do?</strong> field, enter:</p>
+                                    <p><code class="allow-copy"><span>This integration shows you how to use the HCM Cloud adapter with the REST adapter to generate a file for Identity Management.</span></code></p>
                                 </li>
-                                <!--                                <li><strong>Which package does this integration belong to?</strong>: leave blank.</li>-->
                             </ol>
                         </li>
                         <li>Click <strong>Create</strong>.</li>
-                        <li>Click <strong>Save</strong>.</li>
-
                     </ol>
+
                 </section>
                 <hr>
-                <!-- ########## Configure the Schedule Action ########## -->
+<!-- ########## Configure the Schedule Action ########## -->
                 <section>
                     <h2>Configure the Schedule Action</h2>
                     <p>Configure the schedule action to get the last time the integration polled the ATOM service. This
@@ -413,7 +494,7 @@
                         <li>Review the summary and click <strong>Done</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
-                        <!-- ########## Define the Data Mapping ########## -->
+<!-- ########## Define the Data Mapping ########## -->
                     <h3>Define the Data Mapping</h3>
                     <p>A Map action named <strong>Map to getNewHireATOMFeed</strong> is automatically created. We'll define this
                     data mapping.</p>
@@ -436,7 +517,7 @@
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
                 </section>
-                <!-- ########## Count the New Hires ########## -->
+<!-- ########## Count the New Hires ########## -->
                 <section>
                     <h2>Count the New Hires</h2>
                     <p>The ATOM feed doesn't return the total number of new hires, so we'll configure an assign action
@@ -480,7 +561,7 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Switch ########## -->
+<!-- ########## Switch ########## -->
                 <section>
                     <h2>Check for New Records</h2>
                     <p>Let's check if the ATOM feed returned new records, and define what to do next.</p>
@@ -553,7 +634,7 @@
                         </ol>
                 </section>
                 <hr>
-                <!-- ########## Process the Records ########## -->
+<!-- ########## Process the Records ########## -->
                 <section>
                     <h2>Process the Records</h2>
                     <p>Let's iterate over the new hires that you got from the ATOM feed in a JSON file, and retrieve
@@ -581,7 +662,7 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Write New Records to Stage ########## -->
+<!-- ########## Write New Records to Stage ########## -->
                 <section>
                     <h2>Write New Records to Stage</h2>
                     <p>Let's write each new record to a stage file.</p>
@@ -635,7 +716,7 @@
                         <li>Review the summary and click <strong>Done</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
-                    <!-- ########## Define the Data Mapping ########## -->
+<!-- ########## Define the Data Mapping ########## -->
                     <h3>Define the Data Mapping</h3>
                     <p>A Map action named <strong>Map to WriteRecordToStage</strong> is automatically created. We'll define this
                     data mapping.</p>
@@ -672,7 +753,7 @@
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
-                    <!-- ########## Assign the File Reference ########## -->
+<!-- ########## Assign the File Reference ########## -->
                     <h3>Assign the File Reference</h3>
                     <ol>
                         <li>
@@ -709,26 +790,104 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Upload the File to the FTP Server########## -->
+<!-- ########## Upload the File to the FTP Server########## -->
                 <section>
                     <h2>Upload the File to the FTP Server</h2>
                     <p>Let's use the FTP adapter to upload the stage file to the FTP server. The FTP server represents the customer's system.</p>
                     <ol>
-                        <li><p>Use an FTP client to sign in to the FTP server using the following information:</p>
+                        <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
                             <ul>
-                                <li><strong>URL</strong>: <code class="allow-copy"><span><em
-                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                                <li>
+                                    <strong>FTP Server</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Server.
+                                            </a>
+                                        </p>
+                                    </div>
                                 </li>
-                                <li><strong>User Name</strong>: <code class="allow-copy"><span><em
-                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                                <li>
+                                    <strong>FTP Port</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Port.
+                                            </a>
+                                        </p>
+                                    </div>
                                 </li>
-                                <li><strong>Password:</strong> will be provided during the training session.</li>
+                                <li>
+                                    <strong>Protocol</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Protocol.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP User Name</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>   
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+
                             </ul>
                         </li>
-                        <li><p>Create the following directory:</p>
-                            <p><code class="allow-copy"><span>/upload/public_ftp/<em
-                                    data-bind="text:user_number() || 'your_user_number'"></em>/out</span></code></p>
+                        <li>
+                            <p>If the following directory doesn't exist in the FTP server, create it:</p>
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>  
+                                    <code class="allow-copy">
+                                        /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
+                                    </code>
+
+                            </div>
+
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#userNumber">
+                                        Enter your User Number.
+                                    </a>
+                                </p>
+                            </div>                        
                         </li>
+
                         <li>Go back to Oracle Integration.</li>
                         <li><p>Hover over the outgoing arrow for the end of the for each loop activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
                             <img src="img/screenshots/HCM/add-FTP-adapter.png" width="650"/>
@@ -745,8 +904,21 @@
                                 <li>From the <strong>Select Operation</strong> list, select <strong>Write File</strong>.</li>
                                 <li>From the <strong>Select a Transfer Mode</strong> group, select <strong>ASCII</strong>.</li>
                                 <li><p>In the <strong>Output Directory</strong> field, enter:</p>
-                                    <p><code class="allow-copy"><span>/upload/public_ftp/<em
-                                            data-bind="text:user_number() || 'your_user_number'"></em>/out</span></code></p>
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                        <p>  
+                                            <code class="allow-copy">
+                                                /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
+                                            </code>
+        
+                                    </div>
+        
+                                    <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#userNumber">
+                                                Enter your User Number.
+                                            </a>
+                                        </p>
+                                    </div>   
                                 </li>
                                 <li><p>In the <strong>File Name Pattern</strong> field, enter
                                     <code class="allow-copy"><span>newCandidateRecord%yyyyMMddHHmmss%.csv</span></code>.</p>
@@ -767,7 +939,7 @@
                         <li>Review the summary and click <strong>Done</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
-                    <!-- ########## Define the Data Mapping ########## -->
+<!-- ########## Define the Data Mapping ########## -->
                     <h3>Define the Data Mapping</h3>
                     <p>A Map action named <strong>Map to WriteStageFileToFTP</strong> is automatically created. We'll define this
                     data mapping.</p>
@@ -788,7 +960,7 @@
                     </ol>
                 </section> 
                 <hr>                   
-                <!-- ########## Set the Last Run Date ########## -->
+<!-- ########## Set the Last Run Date ########## -->
                 <section>
                     <h2>Save the Last Run Date</h2>
                     <p>The last step in the integration is to store the date and time you polled the ATOM feed. The next
@@ -827,7 +999,7 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Define the Tracking Fields ########## -->
+<!-- ########## Define the Tracking Fields ########## -->
                 <section>
                     <h2>Define the Tracking Fields</h2>
                     <p>Let's configure a business identifier that will identify the integration in reports and monitoring.</p>
@@ -850,45 +1022,41 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Activate the Integration ########## -->
+<!-- ########## Activate the Integration ########## -->
                 <section>
                     <h2>Activate the Integration</h2>
                     <ol>
-                        <li><p>On the <strong>Integrations</strong> page, hover over your integration:</p>
-                            <p><code>Directory Synchronization <em
-                                    data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
-                            <p>When you hover over the integration, a set of actions appear in the
-                                <strong>Status</strong> column. </p>
-                            <img src="img/screenshots/HCM/sync-hover-activate.png" width="650px"/>
+                        <li>
+                            <p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>The name of your integration is <code>Directory Synchronization <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
+                            </div>
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#userNumber">
+                                        Enter your User Number to get your unique integration name.
+                                    </a>
+                                </p>
+                            </div>
+
+                            <p>When you hover over the integration, a set of actions appear in the <strong>Status</strong> column. </p>
+                            <img src="img/screenshots/integration/deactivated-status-icons.png" width="150px"/>
                         </li>
-                        <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.
+                        <li>Click <img src="img/activate.png" alt="Activate icon" style="height: 15px; width: 15px;"/>.</li>
+                        <li>
+                            <p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.</p>
+                            <p>Typically these options are disabled in production environments, but we'll enable them for the purpose of this lab.</p>
                         </li>
-                        <li>Deselect <strong>Contribute integration mappings to Oracle Recommends</strong>.</li>
-                        <!--                        <li><p>Select <strong>Contribute integration mappings to Oracle Recommends</strong>.</p>-->
-                        <!--                            <p>This option sends your mappings to the recommendations engine which uses this information-->
-                        <!--                                to suggest you mappings for similar integrations.</p>-->
-                        <!--                        </li>-->
-                        <li><p>Select <strong>Enable Tracing</strong>, and then select <strong>Include Payload</strong>.
-                        </p>
-                            <p>Typically these options are disabled in production environments, but we'll enable them
-                                for the purpose of this lab.</p>
-                        </li>
-                        <li><p>Click <strong>Activate</strong>.</p>
+                        <li>
+                            <p>Click <strong>Activate</strong>.</p>
                             <p>The activation will complete in a few seconds. If the activation succeeds, a confirmation
-                                message appears at the top of the page, and the status will change to <span
-                                        style="color:#86BD66;">&#x25CF;</span> Active.</p>
+                                message appears at the top of the page, and the status will change to <span style="color:#86BD66;">&#x25CF;</span> Active.</p>
                         </li>
-<!--                        <li><p>After the status changes to active, click <img src="img/how-to-run.png"-->
-<!--                                                                              alt="How to Run icon"-->
-<!--                                                                              style="height: 15px; width: 15px;"/>.</p>-->
-<!--                            <img src="img/screenshots/ERP/how-to-run.png" width="650px"/>-->
-<!--                        </li>-->
-<!--                        <li>Click the <strong>Metadata URL</strong> link.</li>-->
-<!--                        <li>Copy the <strong>Endpoint URL</strong></li>-->
                     </ol>
+
                 </section>
                 <hr>
-                <!-- ########## Run the Integration ########## -->
+<!-- ########## Run the Integration ########## -->
                 <section>
                     <h2>Run the Integration</h2>
                     <ol>
@@ -936,24 +1104,104 @@
                     </ol>
                 </section>
                 <hr>
-                <!-- ########## Verify the File Was Uploaded to the FTP ########## -->
-                <section>
+<!-- ########## Verify the File Was Uploaded to the FTP ########## -->
+                <section>                    
                     <h2>Verify the File Was Uploaded to the FTP</h2>
                     <p></p>
                     <ol>
-                        <li><p>Sign in to the FTP server using the following information:</p>
+
+                        <li><p>Using an FTP Client of your choice, log in to the FTP server.</p>
                             <ul>
-                                <li><strong>URL</strong>: <code class="allow-copy"><span><em
-                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().url : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                                <li>
+                                    <strong>FTP Server</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Server.
+                                            </a>
+                                        </p>
+                                    </div>
                                 </li>
-                                <li><strong>User Name</strong>: <code class="allow-copy"><span><em
-                                        data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : 'Select an environment from the FTP Environment list.'"></em></span></code>
+                                <li>
+                                    <strong>FTP Port</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Port.
+                                            </a>
+                                        </p>
+                                    </div>
                                 </li>
-                                <li><strong>Password:</strong> will be provided during the training session.</li>
+                                <li>
+                                    <strong>Protocol</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>    
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Protocol.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>FTP User Name</strong>:
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
+                                        <p>   
+                                            <code class="allow-copy">
+                                                <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
+                                            </code>
+                                        </p>
+                                    </div>
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:none' : 'display:initial'}">
+                                        <p class="warning-text">
+                                            <a style="color: #e3503c" href="#ftpEnvironment">
+                                                Select your FTP environment to get your FTP Username.
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                                <li><strong>FTP Password</strong>: Your password will be provided by the instructor.</li>
+
                             </ul>
                         </li>
-                        <li>Browse to your directory: <code class="allow-copy"><span>/upload/public_ftp/<em
-                                data-bind="text:user_number() || 'your_user_number'"></em>/out</span></code>.</li>
+
+                        <li>Browse to your directory:
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                                <p>  
+                                    <code class="allow-copy">
+                                        /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
+                                    </code>
+
+                            </div>
+
+                            <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
+                                <p class="warning-text">
+                                    <a style="color: #e3503c" href="#userNumber">
+                                        Enter your User Number.
+                                    </a>
+                                </p>
+                            </div>                        
+                        </li>
                         <li><p>Verify that the file was uploaded to your directory.</p>
 <!--                            <p class="comment">After running this a couple of times I have a lot of files in the FTP directory.-->
 <!--                                Is this expected? If it is maybe we should change this to "verify that the files were-->
