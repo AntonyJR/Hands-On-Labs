@@ -452,16 +452,19 @@
                                 </li>
                                 <li><p>Click <strong>&check; Apply Recommendations</strong>.</p>
                                 	<p>A <strong>Confirmation</strong> message appears informing you that the recommended mappings were applied.</p>
-                                </li>
-                                <li>
-                                    <p>Optionally, can also map data manually by dragging the data elements from the <strong>Source</strong> tree, and dropping them on the <strong>Target</strong> tree.</p>
-                                	<p>Verify the following mappings:</p>
+
+                                    <p><strong style="color: #e3503c">Verify the following mappings and correct if necessary:</strong></p>
                                 	<ul class="display-item">
 	                                	<li class="display-item">TemplateParameters.SubscriptionProductPuid &#x27F6; TemplateParameters.id0</li>
 	                                	<li class="display-item">CurrentBillLine.BillLines.BillLinePUID &#x27F6; TemplateParameters.id1</li>
 	                                	<li class="display-item">CurrentBillLine.BillLines.UsageQuantity &#x27F6; billLines.UsageQuantity</li>
                                 	</ul>
+                                    <p><strong style="color: #e3503c">Ensure you are not mapping data from the <code>request-wrapper</code> as this represents the collection of Bill Lines sent to your integration and you are updating only a single Bill Line for the current for loop iteration as defined in <code>$CurrentBillLine</code>.</strong></p>
                                 	<p><img src="img/screenshots/integration/map-dialog.png" width="700px"/></p>
+
+                                </li>
+                                <li>
+                                    <p>Optionally, you can also map data manually by dragging the data elements from the <strong>Source</strong> tree, and dropping them on the <strong>Target</strong> tree.</p>
                                 </li>
                                 <li><p>Click <strong>Validate</strong> and then click <strong>Close</strong>.</p>
                                 	<p>The <strong>Integration</strong> canvas appears.</p>
