@@ -79,8 +79,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }
       self.availableAppEnvironments = ko.observableArray([        
-        new AppEnvironment("HCM Cloud - zoml", "https://ucf1-zoml-fa-ext.oracledemos.com/hcmUI/faces/FuseWelcome?fndThemeName=Vision_Redwood", "betty.anderson"),
-        new AppEnvironment("HCM Cloud - zwpu", "https://ucf5-zwpu-fa-ext.oracledemos.com/hcmUI/faces/FuseWelcome?fndThemeName=Vision_Redwood", "betty.anderson")
+        new AppEnvironment("HCM Cloud - eqir", "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/hcmUI/faces/FuseWelcome?fndThemeName=Vision_Redwood", "betty.anderson")
       ]),
       self.selectedAppEnvironment = ko.observable()
 
