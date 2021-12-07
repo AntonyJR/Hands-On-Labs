@@ -43,7 +43,7 @@
                 </div>
                 <div id="bookContainer">
                     <article>
-                        
+
 <!-- ########## Background ########## -->
                 <section>
                     <h2>Background</h2>
@@ -109,12 +109,12 @@
                                 <label><a name=userNumber><strong>User Number</strong></a>:&nbsp;<input
                                 data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button>
                             </p>
-                        
+
                             <ul>
-                                <li> 
+                                <li>
                                     <strong>OIC URL</strong>:
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>                                    
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <a class="allow-copy" target="_blank"
                                                 data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
                                                 <span>
@@ -123,7 +123,7 @@
                                             </a>
                                         </p>
                                     </div>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">  
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#oicEnvironment">
                                                 Select your OIC Environment to get your OIC URL.
@@ -133,9 +133,9 @@
                                 </li>
 
                                 <li><strong>OIC User Name</strong>:
-                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
-                                            <code class="allow-copy">                           
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
+                                            <code class="allow-copy">
                                                 <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                             </code>
                                         </p>
@@ -158,7 +158,7 @@
 
                                 <li><strong>OIC Password</strong>: Your password will be provided by the instructor.</li>
                             </ul>
-                            
+
                             <hr>
                             <h3>Get Your HCM Cloud Environment</h3>
                             <p>Select your HCM Cloud Payables environment to get the information needed to access Oracle HCM Cloud.</p>
@@ -175,8 +175,8 @@
                             <ul>
                                 <li>
                                     <strong>HCM Cloud URL</strong>:
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <a class="allow-copy" target="_blank"
                                             data-bind="attr: { href: selectedAppEnvironment() ? selectedAppEnvironment().url : '' }">
                                                 <span>
@@ -195,8 +195,8 @@
                                 </li>
                                 <li>
                                     <strong>HCM Cloud User Name</strong>:
-                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>   
+                                    <div data-bind="attr: {style: selectedAppEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedAppEnvironment() ? selectedAppEnvironment().usernamePrefix : ''"></em></span>
                                             </code>
@@ -229,8 +229,8 @@
                             <ul>
                                 <li>
                                     <strong>FTP Server</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
                                             </code>
@@ -246,8 +246,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP Port</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
                                             </code>
@@ -263,8 +263,8 @@
                                 </li>
                                 <li>
                                     <strong>Protocol</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
                                             </code>
@@ -280,8 +280,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP User Name</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>   
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
                                             </code>
@@ -307,12 +307,12 @@
                             <ol>
                                 <li>
                                     <p>Open your Oracle Integration instance.</p>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>                                    
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <a class="allow-copy" target="_blank"
                                             data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().url : '' }">
                                                 <span>
-                                                    <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : ''"></em></p>                                       
+                                                    <p><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().url : ''"></em></p>
                                                 </span>
                                             </a>
                                         </p>
@@ -326,9 +326,9 @@
                                     </div>
                                 </li>
                                 <li><p>Enter your user name and password.</p>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
-                                            <code class="allow-copy">                           
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
+                                            <code class="allow-copy">
                                                 <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                             </code>
                                         </p>
@@ -373,21 +373,21 @@
                         <li>In the <strong>Create New Integration</strong> dialog, configure the integration:
                             <ol type="a">
                                 <li><p><strong>What do you want to call your integration?</strong></p>
-                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>  
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             Enter <code class="allow-copy">
                                                 <span>Directory Synchronization <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
                                             </code>
                                         </p>
                                     </div>
-        
+
                                     <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#userNumber">
                                                 Enter your User Number to specify your unique integration name.
                                             </a>
                                         </p>
-                                    </div>        
+                                    </div>
                                 </li>
                                 <li>
                                     <p>In the <strong>What does this integration do?</strong> field, enter:</p>
@@ -688,7 +688,7 @@
                                 </li>
                                 <li>Click <strong>Save</strong>, and then click <strong>OK</strong>.</li>
                                 <li>Click <strong>Exit Expression Builder</strong>.</li>
-                                <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the 
+                                <li>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> next to the
                                 <strong>Specify the Output Directory</strong> field.</li>
                                 <li>In the <strong>Expression</strong> field enter <code class="allow-copy"><span>"/tmp"</span></code>.</li>
                                 <li>Click <strong>Save</strong>, and then click <strong>OK</strong>.</li>
@@ -799,8 +799,8 @@
                             <ul>
                                 <li>
                                     <strong>FTP Server</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
                                             </code>
@@ -816,8 +816,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP Port</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
                                             </code>
@@ -833,8 +833,8 @@
                                 </li>
                                 <li>
                                     <strong>Protocol</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
                                             </code>
@@ -850,8 +850,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP User Name</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>   
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
                                             </code>
@@ -871,8 +871,8 @@
                         </li>
                         <li>
                             <p>If the following directory doesn't exist in the FTP server, create it:</p>
-                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                <p>  
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                <p>
                                     <code class="allow-copy">
                                         /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
                                     </code>
@@ -885,12 +885,12 @@
                                         Enter your User Number.
                                     </a>
                                 </p>
-                            </div>                        
+                            </div>
                         </li>
 
                         <li>Go back to Oracle Integration.</li>
-                        <li><p>Hover over the outgoing arrow for the end of the for each loop activity and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
-                            <img src="img/screenshots/HCM/add-FTP-adapter.png" width="650"/>
+                        <li><p>Hover over the outgoing arrow after the for loop and click <img src="img/add.png" alt="Add icon" style="height: 15px; width: 15px;"/>.</p>
+
                         </li>
                         <li>In the <strong>Search</strong> field, type <code class="allow-copy"><span>FTP File</span></code>.</li>
                         <li><p>Select <strong>FTP File Server</strong>.</p>
@@ -904,21 +904,21 @@
                                 <li>From the <strong>Select Operation</strong> list, select <strong>Write File</strong>.</li>
                                 <li>From the <strong>Select a Transfer Mode</strong> group, select <strong>ASCII</strong>.</li>
                                 <li><p>In the <strong>Output Directory</strong> field, enter:</p>
-                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>  
+                                    <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
                                             </code>
-        
+
                                     </div>
-        
+
                                     <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#userNumber">
                                                 Enter your User Number.
                                             </a>
                                         </p>
-                                    </div>   
+                                    </div>
                                 </li>
                                 <li><p>In the <strong>File Name Pattern</strong> field, enter
                                     <code class="allow-copy"><span>newCandidateRecord%yyyyMMddHHmmss%.csv</span></code>.</p>
@@ -937,7 +937,10 @@
                             <p>A summary of the properties you configured appears.</p>
                         </li>
                         <li>Review the summary and click <strong>Done</strong>.</li>
-                        <li>Click <strong>Save</strong>.</li>
+                        <li>Click <strong>Save</strong>.
+                          <img src="img/screenshots/HCM/add-FTP-adapter.png" width="650"/>
+                        </li>
+
                     </ol>
 <!-- ########## Define the Data Mapping ########## -->
                     <h3>Define the Data Mapping</h3>
@@ -958,8 +961,8 @@
                         <li>Click <strong>Close</strong>.</li>
                         <li>Click <strong>Save</strong>.</li>
                     </ol>
-                </section> 
-                <hr>                   
+                </section>
+                <hr>
 <!-- ########## Set the Last Run Date ########## -->
                 <section>
                     <h2>Save the Last Run Date</h2>
@@ -1028,7 +1031,7 @@
                     <ol>
                         <li>
                             <p>On the <strong>Integrations</strong> page, locate your integration and hover over it.</p>
-                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
                                 <p>The name of your integration is <code>Directory Synchronization <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
                             </div>
                             <div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
@@ -1105,7 +1108,7 @@
                 </section>
                 <hr>
 <!-- ########## Verify the File Was Uploaded to the FTP ########## -->
-                <section>                    
+                <section>
                     <h2>Verify the File Was Uploaded to the FTP</h2>
                     <p></p>
                     <ol>
@@ -1114,8 +1117,8 @@
                             <ul>
                                 <li>
                                     <strong>FTP Server</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().server : ''"></em></span>
                                             </code>
@@ -1131,8 +1134,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP Port</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().port : ''"></em></span>
                                             </code>
@@ -1148,8 +1151,8 @@
                                 </li>
                                 <li>
                                     <strong>Protocol</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment()? selectedFTPEnvironment().protocol : ''"></em></span>
                                             </code>
@@ -1165,8 +1168,8 @@
                                 </li>
                                 <li>
                                     <strong>FTP User Name</strong>:
-                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>   
+                                    <div data-bind="attr: {style: selectedFTPEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <code class="allow-copy">
                                                 <span><em data-bind="text: selectedFTPEnvironment() ? selectedFTPEnvironment().usernamePrefix : ''"></em></span>
                                             </code>
@@ -1186,8 +1189,8 @@
                         </li>
 
                         <li>Browse to your directory:
-                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-                                <p>  
+                            <div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+                                <p>
                                     <code class="allow-copy">
                                         /upload/public_ftp/<span><em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em>/out</span>
                                     </code>
@@ -1200,7 +1203,7 @@
                                         Enter your User Number.
                                     </a>
                                 </p>
-                            </div>                        
+                            </div>
                         </li>
                         <li><p>Verify that the file was uploaded to your directory.</p>
 <!--                            <p class="comment">After running this a couple of times I have a lot of files in the FTP directory.-->
@@ -1271,4 +1274,3 @@
 <!-- END OBE Dialog Box code -->
 </body>
 </html>
-
