@@ -47,10 +47,10 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
     /* OBE Developer - modify and/or add your bindings here */
     function viewModel() {
       var self = this;
-      /* You should have one self.<binding> for each input field in your OBE. 
+      /* You should have one self.<binding> for each input field in your OBE.
          username and password used here are just samples. */
       self.user_number = ko.observable("");
-      
+
       class OICEnvironment {
         constructor(name, baseURL, url, usernamePrefix) {
           this.name = name;
@@ -74,9 +74,9 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
           this.url = url;
           this.usernamePrefix = usernamePrefix;
         }
-      }      
+      }
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("ERP Cloud Purchasing - eqir", "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "casey.brown"),
+        new AppEnvironment("ERP Cloud Purchasing - eqir", "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "calvin.roth"),
         new AppEnvironment("ERP Cloud Payables - eqie",   "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
       ]),
       self.selectedAppEnvironment = ko.observable()
@@ -89,7 +89,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
           this.protocol = protocol;
           this.usernamePrefix = usernamePrefix;
         }
-      }      
+      }
       self.availableFTPEnvironments = ko.observableArray([
         new FTPEnvironment("OCI FTP Server", "sftp.us2.cloud.oracle.com", "22", "SFTP", "us258614")
       ]),
@@ -98,12 +98,12 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
 
     $(function() {
       function init() {
-        // Bind your ViewModel for the content of the whole page body. 
+        // Bind your ViewModel for the content of the whole page body.
 
         ko.applyBindings(new viewModel());
       }
 
-      // If running in a hybrid (e.g. Cordova) environment, we need to wait for the deviceready 
+      // If running in a hybrid (e.g. Cordova) environment, we need to wait for the deviceready
       // event before executing any code that might interact with Cordova APIs or plugins.
       if ($(document.body).hasClass('oj-hybrid')) {
         document.addEventListener("deviceready", init);
