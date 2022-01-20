@@ -76,7 +76,7 @@ require(['ojs/ojcore', 'knockout', 'ojs/ojknockout', 'ojs/ojbutton', 'ojs/ojtool
         }
       }
       self.availableAppEnvironments = ko.observableArray([
-        new AppEnvironment("ERP Cloud Purchasing - eqir", "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "calvin.roth"),
+        new AppEnvironment("ERP Cloud Purchasing - eqir", "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "may.gee"),
         new AppEnvironment("ERP Cloud Payables - eqie",   "https://fa-eqir-dev14-saasfademo1.ds-fa.oraclepdemos.com/fscmUI/faces/FuseWelcome?fndThemeName=Vision_Newsfeed", "bala.gupta"),
       ]),
       self.selectedAppEnvironment = ko.observable()
