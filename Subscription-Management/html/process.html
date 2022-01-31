@@ -51,7 +51,7 @@
 							<p>The business scenario is to create a self-service Subscription Management application that allows subscribers of a good or service to self report subscription usage. Once subscription usage data is reported, the application will automate the review and approval of that data, and if approved, automate updating Oracle Engagement Cloud Subscription Management with the usage data. This scenario represents a common business process where requests are made, reviewed, approved, and result in updates to an enterprise application. Digitizing and automating these types of business processes can transform how your organization operates and delivers customer value.</p>
 							<h4>What is a Process App?</h4>
 							<p>A Process App orchestrates the activities necessary to execute an end-to-end business process. These activities are digital representations of the individual business process steps and include examples such a user's request that initiates a business process, automated decision services that define business process policies, tasks to engage business process stakeholders responsible for decisions and work, and integrations to interact with enterprise applications relevant to the business process.</p>
-			
+
 							<p>This lab will highlight several key benfits of Oracle Integration Process:</p>
 							<ul>
 								<li>Automate end-to-end business processes that touch multiple stakeholders including requestors and decision makers.</li>
@@ -66,8 +66,8 @@
                             <h2>Use Case</h2>
                             <p><a class="standalone-link" href="index.html" target="_blank">Subscription Management Lab Use Case</a></p>
                         </section>
-						<hr>	
-						
+						<hr>
+
 <!-- ########## Before You Begin ########## -->
                         <section>
                             <h2>Before You Begin</h2>
@@ -100,12 +100,12 @@
                                 <label><a name=userNumber><strong>User Number</strong></a>:&nbsp;<input
                                 data-bind="value: user_number" type="text" placeholder="User Number"/></label>&nbsp;<button>OK</button>
                             </p>
-                        
+
                             <ul>
-                                <li> 
+                                <li>
                                     <strong>OIC URL</strong>:
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>                                    
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <a class="allow-copy" target="_blank"
                                                 data-bind="attr: { href: selectedOICEnvironment()? selectedOICEnvironment().url : '' }">
                                                 <span>
@@ -114,7 +114,7 @@
                                             </a>
                                         </p>
                                     </div>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">  
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:none' : 'display:initial'}">
                                         <p class="warning-text">
                                             <a style="color: #e3503c" href="#oicEnvironment">
                                                 Select your OIC Environment to get your OIC URL.
@@ -124,9 +124,9 @@
                                 </li>
 
                                 <li><strong>OIC User Name</strong>:
-                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
-                                            <code class="allow-copy">                           
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
+                                            <code class="allow-copy">
                                                 <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                             </code>
                                         </p>
@@ -158,8 +158,8 @@
                             <ol>
                                 <li>
                                     <p>Open your Oracle Integration instance.</p>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-                                        <p>                                    
+                                    <div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+                                        <p>
                                             <a class="allow-copy" target="_blank"
                                             data-bind="attr: { href: selectedOICEnvironment() ? selectedOICEnvironment().url : '' }">
                                                 <span>
@@ -177,9 +177,9 @@
                                     </div>
                                 </li>
                                 <li><p>Enter your user name and password.</p>
-                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
-                                        <p>    
-                                            <code class="allow-copy">                           
+                                    <div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">
+                                        <p>
+                                            <code class="allow-copy">
                                                 <span><em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
                                             </code>
                                         </p>
@@ -212,8 +212,8 @@
                         </section>
 						<hr>
 
-<!-- ########## CREATE PROCESS ########## -->                        
-                        <section> 
+<!-- ########## CREATE PROCESS ########## -->
+                        <section>
                             <h2 id="section_2" role="button" style="text-align: left;">Create a Process App</h2>
                             <p>Oracle Integration Process simplifies the effort and skillsets required to create Process Apps that digitize and automate end-to-end business processes. We will create our Process App from a QuickStart App that provides us a good starting point.</p>
 							<h4>What is a QuickStart App?</h4>
@@ -229,34 +229,34 @@
 								</li>
 								<li>
 									In the <strong>Create Application</strong> dialog, in the <strong>Name</strong> field, enter:
-									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-										<p>  
+									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+										<p>
 											<code class="allow-copy">
 												<span>My Subscription Management <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 											</code>
 										</p>
 									</div>
-		
+
 									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 										<p class="warning-text">
 											<a style="color: #e3503c" href="#userNumber">
 												Enter your User Number to specify your unique Process App name.
 											</a>
 										</p>
-									</div>  
+									</div>
 									<p>The Name uniquely identifies your Process App. Since you are working on a shared environment, it is important to use the name assigned to you to avoid conflicting with others who are also working on this lab.</p>
 								</li>
 								<li><p>Click <strong>Create</strong>.</p>
 									<p>The QuickStart App appears.</p>
 									<p>Notice how the options in this design mode are limited to <strong>Configure</strong>, <strong>Test</strong>, and <strong>Activate</strong>. This provides a simplified interface to quicky get Process Apps up and running.</p><br>
 									<img src="img/screenshots/process/quickstart.png" width="600px"/>
-								</li>																
-							</ol>   
-							<p>You have successfully created a Process App using a QuickStart App. In the next section we will configure our new application.</p>                                                          
+								</li>
+							</ol>
+							<p>You have successfully created a Process App using a QuickStart App. In the next section we will configure our new application.</p>
                         </section>
                         <hr>
-<!-- ########## CONFIGURE QUICKSTART APP ########## -->                        
-                        <section> 
+<!-- ########## CONFIGURE QUICKSTART APP ########## -->
+                        <section>
                             <h2 id="section_3" role="button" style="text-align: left;">Configure a QuickStart</h2>
                             <p>The Subscription Management Process App you just created comes ready to run but lacks some core functionality required by the business scenario. You will make the necessary modifications to complete this Process App.</p>
 							<p>We'll start by examining how a QuickStart App author can define specific configuration options that can be tailored with little understanding of the underlying Process App assets.</p>
@@ -272,21 +272,21 @@
 									<img src="img/screenshots/process/quickstart-configure-startForm-editor.png" width="600px"/>
 								</li>
 								<li><p>Replace the <strong>Title</strong> text with:
-									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-										<p>  
+									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+										<p>
 											<code class="allow-copy">
 												<span>Submit Subscription Update <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 											</code>
 										</p>
 									</div>
-		
+
 									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 										<p class="warning-text">
 											<a style="color: #e3503c" href="#userNumber">
 												Enter your User Number to specify your unique Process App Title.
 											</a>
 										</p>
-									</div>  
+									</div>
 									<p>Remember this name for later, when you run the Process App.</p>
 								</li>
 								<li><p>Click <img src="img/close.png" alt="Close icon" style="height: 15px; width: 15px;"/> to close the configuration editor.</p>
@@ -309,8 +309,8 @@
 							<p>You have completed the QuickStart App configurations. In the next section we will expose the underlying Process App assets and make some more extensive customizations.</p>
 						</section>
                         <hr>
-<!-- ########## REVIEW THE PROCESS APP ########## -->                        
-                        <section> 
+<!-- ########## REVIEW THE PROCESS APP ########## -->
+                        <section>
                             <h2 id="section_4" role="button" style="text-align: left;">Review the Process App</h2>
 							<p>The <strong>QuickStart App View</strong> provides a simplified interface to quickly configure and activate a Process App. But the changes you can make are limited to what the QuickStart App author defined. Switching to the <strong>Application View</strong> exposes all of the underlying Process App assets and gives you full access to completely customize the application.</p>
 							<ol>
@@ -335,15 +335,15 @@
 									</ul>
 									</ul>
 										<p>Explore the other types of activites availble from the BPMN pallette.</p><br>
-										
+
 									<p><b><em>Be Careful not to make any changes just yet!</em></b></p><br>
 									<p><img src="img/screenshots/process/process.png" width="600px"/></p>
 								</li>
 							</ol>
                         </section>
                         <hr>
-<!-- ########## EDIT FORM ########## -->                        
-                        <section> 	
+<!-- ########## EDIT FORM ########## -->
+                        <section>
 							<h2 id="section_5" role="button" style="text-align: left;">Edit a Web Form</h2>
                             <p>We have already started a web form for your user to submit their subscription usage data. In this section, you’ll add two controls to the form that allow the user to select the subscription and product that they are reporting on. Of course, we will want that list of subscriptions and products to come directly from Oracle Engagement Cloud.</p>
                             <ol>
@@ -354,7 +354,7 @@
 								<li><p>Add a <strong>Select</strong> control to the form. We will use this control to select the subscription.</p>
 									<ol type="a">
 										<li><p>Drag and drop a <strong>Select</strong> control from the <strong>Basic Palette</strong> to the top of the form.</p></li>
-										<img src="img/screenshots/process/form-canvas-select-control.png" width="600px"/>										
+										<img src="img/screenshots/process/form-canvas-select-control.png" width="600px"/>
 										<li><p>Select the control you just added.</p>
 											<p>Notice how the left Properties pane changes. When you select a control, the Properties pane displays the control properties. When you click outside of a control, the Properties pane displays the underlying form properties.
 										</li>
@@ -371,7 +371,7 @@
 										<li><p>Drag and drop a <strong>Select</strong> control from the <strong>Basic Palette</strong> and place it just under the Subscription Select control.</p></li>
 										<li>Select the control you just added.</li>
 										<li>In the <strong>Properties</strong> pane, locate the <strong>General</strong> tab.</li>
-										<li>in the <strong>Name</strong> field, enter <code class="allow-copy"><span>SubscriptionProductPUID</span></code>.</li>										
+										<li>in the <strong>Name</strong> field, enter <code class="allow-copy"><span>SubscriptionProductPUID</span></code>.</li>
 										<li><p>In the <strong>Label</strong> field, enter <code class="allow-copy"><span>Product</span></code>.</p>
 										</li>
 									</ol>
@@ -382,11 +382,11 @@
 									<p>They don't do much yet, but we will fix that next.</p>
 								</li>
 								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
-                            </ol>                         
+                            </ol>
                         </section>
                         <hr>
-<!-- ########## DISCOVER INTEGRATIONS ########## -->                        
-                        <section> 
+<!-- ########## DISCOVER INTEGRATIONS ########## -->
+                        <section>
                             <h2 id="section_6" role="button" style="text-align: left;">Discover Integrations</h2>
                             <p>To connect your form to a live system of record, such as Oracle Engagement Cloud, we will use integrations that have been created for us.</p>
                             <ol>
@@ -398,11 +398,11 @@
 									<p>Note that you did not need to have any technical understanding of how these integrations were created. You were able to simply discover them and import them for use in your project.</p>
 									<img src="img/screenshots/process/integrations-page.png" width="600px"/>
 								</li>
-                            </ol> 
+                            </ol>
                         </section>
                         <hr>
 <!-- ########## CONNECT THE INTEGRATIONS ########## -->
-                        <section> 
+                        <section>
                             <h2 id="section_7" role="button" style="text-align: left;">Using Integrations</h2>
                             <p>Next let's configure our web form subscription and product controls to use this integration.</p>
                             <h3>Configure the list of Subscriptions</h3>
@@ -417,14 +417,14 @@
 								<li>
 									In the <strong>Response</strong> section, in the <strong>List to Filter</strong> field, select <code class="allow-copy"><span>response.items</span></code>.
 								</li>
-								<li>In the <strong>Label Binding</strong> field, select <code class="allow-copy"><span>displayName</span></code>.</li>	
+								<li>In the <strong>Label Binding</strong> field, select <code class="allow-copy"><span>displayName</span></code>.</li>
 								<li><p>In the <strong>Value Binding</strong> field, select <code class="allow-copy"><span>subscriptionNumber</span></code>.</p>
 									<img src="img/screenshots/process/subscription-connector-detail.png" width="150px"/>
 								</li>
 								<li>Click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
 								<li>Click the <strong>Subscription</strong> control and verify a list of subscriptions from Engagement Cloud.</li>
 								<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
-                            </ol> 
+                            </ol>
 							<h3>Configure the list of Products</h3>
 							<p>Let’s configure the Product Select control to retrieve a list of Products.</p>
 							<p>Engagement Cloud Products are dependent on a Subscription. So our Products control will need to depend on the selected Subscription.</p>
@@ -440,7 +440,7 @@
 									<p>Remember, our list of products is dependent on the selected subscription. The integration exposes a subscriptionNumber parameter and will only return products for the supplied subscription. By selecting Control value and the name of our Subscription Select control (SubscriptionNumber), we have configured the Product Select control to get the value from the Subscription control and pass that to the integration.</p>
 								</li>
 								<li>In the <strong>Response</strong> section, in the <strong>List to Filter</strong> field, select <code class="allow-copy"><span>response.items</span></code>.</li>
-								<li>In the <strong>Label Binding</strong> field, select <code class="allow-copy"><span>displayName</span></code>.</li>	
+								<li>In the <strong>Label Binding</strong> field, select <code class="allow-copy"><span>displayName</span></code>.</li>
 								<li>In the <strong>Value Binding</strong> field, select <code class="allow-copy"><span>subscriptionProductPuid</span></code>.</li>
 
 								<li>Click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
@@ -450,14 +450,14 @@
                             </ol>
 							<h3>Connect the Subscription and Product controls</h3>
 							<ol>
-								<li>On the form canvas, select the <strong>Product</strong> control.</li> 
+								<li>On the form canvas, select the <strong>Product</strong> control.</li>
 								<li>In the <strong>Properties</strong> pane, select <strong>Skip Upon Load</strong>.
 									<p>There is no need to execute the get products integration before we have selected a subscription.</p>
 								</li>
 								<li>Scroll up and select the <strong>Hide</strong> attribute.
 									<p>It will be a cleaner experience if we do not show the products control until we are ready to use it.</p>
-								</li>		
-								<li>On the <strong>Form</strong> canvas, select the <strong>Subscription</strong> control.</li>						
+								</li>
+								<li>On the <strong>Form</strong> canvas, select the <strong>Subscription</strong> control.</li>
 								<li><p>In the Properties pane, scroll down until you find the <strong>Events</strong> section.</li>
 								<li><p>Click <img src="img/add.png" alt="Add icon" style="height: 12px; width: 12px;"/>.</p>
 								</li>
@@ -465,21 +465,21 @@
 									<img src="img/screenshots/process/on-change.png" width="250px"/>
 								</li>
 								<li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to display the <strong>Expression Editor</strong> dialog.</p>
-									<p>The <strong>On Change</strong> dialog appears.</p>									
+									<p>The <strong>On Change</strong> dialog appears.</p>
 								</li>
-								<li><p>Add an action to get the list of products when the user selects a subscription:</p>									
+								<li><p>Add an action to get the list of products when the user selects a subscription:</p>
 									<ol type="a">
 										<li>Click <strong>+ Action</strong>.</li>
-										<li>From the <strong>Control Name</strong> list, select <strong>SubscriptionProductPUID</strong>.</li>										
-										<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>																				
+										<li>From the <strong>Control Name</strong> list, select <strong>SubscriptionProductPUID</strong>.</li>
+										<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>
 									</ol>
 									<p>When we select a subscription, the Change Event will fire and this action will force the product control to call the get products integration with the selected subscription value.</p>
 								</li>
 								<li><p>Add an action to show the <strong>Product</strong> control:</p>
 								<ol type="a">
 										<li>Click <strong>+ Action</strong>.</li>
-										<li>From the <strong>Control Name</strong> list, select <strong>SubscriptionProductPUID</strong>.</li>										
-										<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>																				
+										<li>From the <strong>Control Name</strong> list, select <strong>SubscriptionProductPUID</strong>.</li>
+										<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>
 									</ol>
 									<img src="img/screenshots/process/action-editor.png" width="650px"/>
 								</li>
@@ -489,9 +489,9 @@
 										<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
 
 										<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
-											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-												<p>    
-													<code class="allow-copy">                           
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+												<p>
+													<code class="allow-copy">
 														<span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em></span>
 													</code>
 												</p>
@@ -504,27 +504,27 @@
 												</p>
 											</div>
 										<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
-											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-												<p>  
+											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+												<p>
 													<code class="allow-copy">
 														<span>Product - <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 													</code>
 												</p>
 											</div>
-				
+
 											<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 												<p class="warning-text">
 													<a style="color: #e3503c" href="#userNumber">
 														Enter your User Number to get your Product.
 													</a>
 												</p>
-											</div>  		
+											</div>
 										</li>
 
 										<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
 									</ol>
 								</li>
-                            </ol> 
+                            </ol>
                             <h3>Configure the Bill Lines Table</h3>
 							<p>The final thing we need to do in our web form is to display the Bill Lines for the selected Product. We will do this in the pre-configured Bill Lines table.</p>
 							<ol>
@@ -555,7 +555,7 @@
 							</ol>
 							<h3>Connect the Product and Bill Lines controls</h3>
 							<ol>
-								<li>On the form canvas, select the <strong>Bill Lines</strong> table control.</li> 
+								<li>On the form canvas, select the <strong>Bill Lines</strong> table control.</li>
 								<li>In the <strong>Properties</strong> pane, select <strong>Skip Upon Load</strong>.
 									<p>Again, there is no need to execute the get bill lines integration before we have selected a product.</p>
 								</li>
@@ -564,7 +564,7 @@
 								</li>
 								<li>On the <strong>Form</strong> canvas, select the <strong>Product</strong> control.
 									<p>We are going to do the same thing as before, but this time have the Product Change Event update the Bill Lines table control.</p>
-								</li>						
+								</li>
 								<li><p>In the Properties pane, scroll down until you find the <strong>Events</strong> section.</li>
 								<li><p>Click <img src="img/add.png" alt="Add icon" style="height: 12px; width: 12px;"/>.</p>
 								</li>
@@ -572,20 +572,20 @@
 									<img src="img/screenshots/process/on-change.png" width="250px"/>
 								</li>
 								<li><p>Click <img src="img/edit.png" alt="Edit icon" style="height: 15px; width: 15px;"/> to display the <strong>Expression Editor</strong> dialog.</p>
-									<p>The <strong>On Change</strong> dialog appears.</p>									
+									<p>The <strong>On Change</strong> dialog appears.</p>
 								</li>
-								<li><p>Add an action to get the list of bill lines when the user selects a product:</p>									
+								<li><p>Add an action to get the list of bill lines when the user selects a product:</p>
 									<ol type="a">
 										<li>Click <strong>+ Action</strong>.</li>
-										<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>										
-										<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>																				
+										<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>
+										<li>From the <strong>Action</strong> list, select <strong>Refresh Connector</strong>.</li>
 									</ol>
 								</li>
 								<li><p>Add an action to show the <strong>Bill Lines</strong> table control:</p>
 								<ol type="a">
 										<li>Click <strong>+ Action</strong>.</li>
-										<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>										
-										<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>																				
+										<li>From the <strong>Control Name</strong> list, select <strong>BillLines</strong>.</li>
+										<li>From the <strong>Action</strong> list, select <strong>Show</strong>.</li>
 									</ol>
 									<img src="img/screenshots/process/billlines-action-editor.png" width="650px"/>
 								</li>
@@ -595,9 +595,9 @@
 										<li>On the <strong>Form</strong> canvas, click <img src="img/preview.png" alt="Preview icon" style="height: 15px; width: 15px;"/> Preview.</li>
 
 										<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
-											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-												<p>    
-													<code class="allow-copy">                           
+											<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+												<p>
+													<code class="allow-copy">
 														<span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em></span>
 													</code>
 												</p>
@@ -610,21 +610,21 @@
 												</p>
 											</div>
 										<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
-											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-												<p>  
+											<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+												<p>
 													<code class="allow-copy">
 														<span>Product - <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 													</code>
 												</p>
 											</div>
-				
+
 											<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 												<p class="warning-text">
 													<a style="color: #e3503c" href="#userNumber">
 														Enter your User Number to find your Product.
 													</a>
 												</p>
-											</div>  		
+											</div>
 										</li>
 
 										<li>
@@ -634,10 +634,10 @@
 										<li>Click <img src="img/close.png" alt="Close icon" style="height: 12px; width: 12px;"/> to close the preview.</li>
 									</ol>
 								</li>
-							</ol>									
-                        <hr> 
-                        </section>     
-<!-- ########## AUTOMATE THE UPDATE TASK ########## -->                                                
+							</ol>
+                        <hr>
+                        </section>
+<!-- ########## AUTOMATE THE UPDATE TASK ########## -->
                         <section>
                             <h2 id="section_8" role="button" style="text-align: left;">Automate a Manual Task</h2>
                             <p>Now that we have a web form for users to enter their subscription usage information, we want to automate getting this data into Oracle Engagement Cloud. If you completed the companion Integration lab, you have already created an integration to update bill lines in Engagement Cloud and we will use that here. If you did not complete the integration lab, we have provided a completed integration for you to use.</p>
@@ -649,7 +649,7 @@
 								<li>
 									In the <strong>Use an Integration</strong> dialog, search for and select the <code class="allow-copy"><span>Update Bill Lines</span></code> integration, then click <strong>Create</strong>.
 									<p>Feel free to use the integration you created.</p>
-									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
+									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
 										<p>If you completed the integration lab, the name of your integration is likely <code>Update Bill Lines <em data-bind="text:user_number() || 'your_user_number'"></em></code>.</p>
 									</div>
 									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
@@ -671,14 +671,14 @@
 								<li>Drag and drop the <strong>UpdateBillLines</strong> integration to the same position on the flow as the deleted human task.
 									<img src="img/screenshots/process/billlines-integration.png" width="650px"/>
 								</li>
-                            </ol> 
+                            </ol>
                             <h3>Configure the Integration’s Input</h3>
                             <p>Now that we our using our integration in our process flow, we need to tell it where to get the bill lines data.</p>
                             <ol>
 	                            <li>Select the Update bill lines integration activity.</li>
 	                            <li>Click <img src="img/menu.png" alt="Menu icon" style="height: 15px; width: 15px;"/>.</li>
-	                            <li><p>Select <strong>Open Data Association</strong>.</p>	                            	                            
-	                            	<img src="img/screenshots/process/select-data-association.png" width="650px"/>                            	
+	                            <li><p>Select <strong>Open Data Association</strong>.</p>
+	                            	<img src="img/screenshots/process/select-data-association.png" width="650px"/>
 								</li>
 								<br>
 								<li><p>On the <strong>Data Association</strong> page, click <img src="img/auto-map.png" alt="Auto Mapping icon" style="height: 19px; width: 19px;"/> in the top middle of the mapper.</p>
@@ -707,12 +707,12 @@
 											<li>Click <img src="img/screenshots/process/data-mapping-error-icon.png" alt="Data association error icon" style="width: 35px;"/>.</li>
 											<li><p>Select <strong>Transform</strong>.</p>
 												<img src="img/screenshots/process/data-mapping-error.png" width="600px"/>
-												<p>The <strong>Transformation</strong> dialog appears.</p>					
+												<p>The <strong>Transformation</strong> dialog appears.</p>
 											</li>
 											<li><p>Click <strong>Create</strong>.<p>
 												<p>The Transform dialog appears.</p>
 											</li>
-											<li>In the <strong>Transformation</strong> dialog, enter <code class="allow-copy"><span>Bill Line</span></code>.</li>												
+											<li>In the <strong>Transformation</strong> dialog, enter <code class="allow-copy"><span>Bill Line</span></code>.</li>
 											<li><p>Click <strong>Create</strong>.</p>
 												<p>The <strong>Data Association</strong> page changes to the <strong>Transform</strong> page.</p>
 											</li>
@@ -725,7 +725,7 @@
 														<li>usageQuantity &#x27F6; usageQuantity</li>
 													</ul>
 												</ul>
-			
+
 												<img src="img/screenshots/process/transformation.png" width="600px"/>
 											</li>
 											<li>Click <strong>Save</strong>.
@@ -733,10 +733,10 @@
 												<p>The transformation we just created now allows the Bill Lines table and the bill lines parameter in the integration body to be mapped.</p>
 												<br>
 												<p>We could create a new process data object to hold the integration response and map those in the data association output, but since we won't be using that response, we'll skip this step.</p>
-											</li> 	
-											<li>Click <strong>Apply</strong> to complete the data association and return to the process flow canvas.</li>																			
+											</li>
+											<li>Click <strong>Apply</strong> to complete the data association and return to the process flow canvas.</li>
 										</ol>
-									</li>	                            	
+									</li>
 	                            </li>
 							</ol>
 							<!--
@@ -766,9 +766,9 @@
 	                            	<p>All data associations are saved, and you return to the <strong>Process</strong> tab.
 </p>
 								</li>
-								-->                            	                            	                            
-                        </section>                        
-<!-- ########## TEST THE PROCESS APPLICATION ########## -->                        
+								-->
+                        </section>
+<!-- ########## TEST THE PROCESS APPLICATION ########## -->
                         <section>
                             <h2 id="section_9" role="button" style="text-align: left;">Test the Process Application</h2>
                             <p>We are done with our Process App. Let’s give it a try.</p>
@@ -781,36 +781,36 @@
 									<img src="img/screenshots/process/test.png" width="650px"/>
 								</li>
 								<li><p>In the <strong>Activate to Test</strong> dialog, ensure that <strong>Add Me to All Roles</strong> is selected, and click <strong>Activate</strong>.</p>
-									<p>A confirmation message informs you that the application was successfully activated.</p></li> 
+									<p>A confirmation message informs you that the application was successfully activated.</p></li>
 								<li>Click <strong>OK</strong>.</li>
 								<li><p>Click <strong>Try in Test Mode</strong>.</p>
 									<p>The <strong>My Apps</strong> page appears in a new tab in your web browser.</p>
 								</li>
 								<li>
 									<p>In the <strong>Search</strong> field, enter:</p>
-									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-										<p>  
+									<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+										<p>
 											<code class="allow-copy">
 												<span>Submit Subscription Update <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 											</code>
 										</p>
 									</div>
-		
+
 									<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 										<p class="warning-text">
 											<a style="color: #e3503c" href="#userNumber">
 												Enter your User Number to specify your Process App Title.
 											</a>
 										</p>
-									</div>  
+									</div>
 									<li>Select your Process App.
 										<p>The process start form appears.</p>
 										<p>Typically, this form would be hosted in a customer portal where the customer can self-report their usage. The customer would select the subscription and products that they want to report. They would then enter the usage data.</p>
 									</li>
 									<li><p>From the <strong>Subscription</strong> control, search for and select the subscription assigned to you:</p>
-										<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">  
-											<p>    
-												<code class="allow-copy">                           
+										<div data-bind="attr: {style: selectedOICEnvironment() ? 'display:initial' : 'display:none'}">
+											<p>
+												<code class="allow-copy">
 													<span><em data-bind="text: selectedOICEnvironment() ? selectedOICEnvironment().name : ''"></em></span>
 												</code>
 											</p>
@@ -823,34 +823,34 @@
 											</p>
 										</div>
 									<li>From the <strong>Product</strong> control, search for and select the product that has been assigned to you:
-										<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">  
-											<p>  
+										<div data-bind="attr: {style: user_number() ? 'display:initial' : 'display:none'}">
+											<p>
 												<code class="allow-copy">
 													<span>Product - <em data-bind="text: user_number() ? user_number() : 'Enter User Number above.'"></em></span>
 												</code>
 											</p>
 										</div>
-			
+
 										<div data-bind="attr: {style: user_number() ? 'display:none' : 'display:initial'}">
 											<p class="warning-text">
 												<a style="color: #e3503c" href="#userNumber">
 													Enter your User Number to get your Product.
 												</a>
 											</p>
-										</div>  
-	
+										</div>
+
 										<p>Since you are working on a shared environment, it is important to use the Subscription and Product assigned to you to avoid conflicting with others who are also working on this lab.</p>
 									</li>
-									<li>In the <strong>Bill Lines</strong> table, update the <strong>Usage Quantity</strong> fields of your choice.</li>
+									<li>In the <strong>Bill Lines</strong> table, for the <strong>Usage Time (Hours)<strong> rows ONLY, update the <strong>Usage Quantity</strong> fields of your choice.</li>
 									<li><p>Click <strong>Submit</strong>.</p>
 										The request to accept this usage data has now been submitted. In our simple process flow, this request is routed for approval. Since you are perfoming both the customer and approver role, you now get to approve the request you just submitted.
 									</li>
 									<li>From the <strong>Navigation</strong> menu, select <strong>My Tasks</strong>.</li>
 									<li><p>Select the approval task assigned to your user.</p>
 
-										<div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">  
-											<p>    
-												<code class="allow-copy">                           
+										<div data-bind="attr: {style: selectedOICEnvironment() && user_number() ? 'display:initial' : 'display:none'}">
+											<p>
+												<code class="allow-copy">
 													<span>Approve Subscription Update from <em data-bind="text: selectedOICEnvironment() && user_number() ? selectedOICEnvironment().usernamePrefix + user_number() : ''"></em></span>
 												</code>
 											</p>
@@ -875,8 +875,8 @@
 										<p>The process flow will call the Update Bill Lines integration and update the product bill lines in Oracle Engagement Cloud with the usage quantity changes you requested.</p>
 									</li>
 									<li>While we aren't giving you access to the Engagement Cloud environment for this lab, rest assured, you are updating a live system. To verify your changes were updated, go back to My Apps and select your Process App. Enter the same subscription and product as you did before, and you should see the bill lines now contain your updates.</li>
-                            </ol> 
-						</section> 
+                            </ol>
+						</section>
 <!-- ########## Completion ########## -->
                         <section>
                             <h2>Congratulations!</h2>
@@ -888,10 +888,10 @@
 				<br class="clearfloat">
             </div>
         </div>
-        <!--close main--> 
+        <!--close main-->
         <!--end content-->
-        <div class="footer-container ">	        
-            <div> 
+        <div class="footer-container ">
+            <div>
             	<img src="img/o.png" align="right" style="padding:0 40px 0 0;" alt="Oracle">
                 <footer class="footer-list">
                     <ul>
@@ -901,7 +901,7 @@
                         <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/terms/index.html" target="_blank">Terms of Use</a> </li>
                         <li> <a style="color: #fefffe;" href="https://www.oracle.com/us/legal/privacy/index.html" target="_blank">Your Privacy Rights</a> </li>
                         <li> <a style="color: #fefffe;" href="https://twitter.com/hashtag/OOW19?src=hash" target="_blank">#OOW19</a> </li>
-                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>                        
+                        <li> <a style="color: #fefffe;" href="https://www.oracle.com/pls/topic/lookup?ctx=cpyr&id=en">Copyright © 2019, Oracle and/or its affiliates. All rights reserved.</a></li>
                     </ul>
                 </footer>
             </div>
@@ -913,7 +913,7 @@
             <!-- Modal hdr and body -->
             <!--div id="obe_dialog" class="modal-content">
                 <div class="modal-header">
-                    <a href="#" class="close">  
+                    <a href="#" class="close">
                         <span class="close">&times;</span>
                     </a>
                     <h1>Associated Learning Paths</h1>
@@ -921,13 +921,13 @@
                 <div id="dialog-content" >
                 </div>
                 <div id="dialog-close" class="closeBtn">
-                    <a href="#" class="close2">  
-                        <p class="close2"> 
-                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span> 
+                    <a href="#" class="close2">
+                        <p class="close2">
+                             <span>&nbsp;&nbsp;View&nbsp;&nbsp;</span>
                         </p>
-                    </a>  
+                    </a>
                 </div>
-            </div>   
+            </div>
         </div-->
         <!-- END OBE Dialog Box code -->
     </body>
